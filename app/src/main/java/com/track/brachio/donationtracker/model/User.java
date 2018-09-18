@@ -13,6 +13,13 @@ public class User {
         userType = type;
     }
 
+    public User(){
+        username = "";
+        password = "";
+        email = "";
+        userType = UserType.Donator;
+    }
+
     public void setUsername(String user) {
         username = user;
     }

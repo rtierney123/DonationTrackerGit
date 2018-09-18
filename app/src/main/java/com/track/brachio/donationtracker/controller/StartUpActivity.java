@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.track.brachio.donationtracker.R;
 
-public class MainActivity extends AppCompatActivity {
+public class StartUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
