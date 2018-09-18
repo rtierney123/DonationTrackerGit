@@ -1,12 +1,14 @@
 package com.track.brachio.donationtracker.model;
 
 public class User {
+    private int userId;
     private String username;
     private String password;
     private String email;
     private UserType userType;
 
-    public User(String user, String pass, String em, UserType type){
+    public User(int id, String user, String pass, String em, UserType type){
+        userId = id;
         username = user;
         password = pass;
         email = em;
@@ -14,6 +16,7 @@ public class User {
     }
 
     public User(){
+        userId = -1;
         username = "";
         password = "";
         email = "";
