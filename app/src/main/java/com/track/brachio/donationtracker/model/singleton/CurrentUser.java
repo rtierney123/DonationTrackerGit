@@ -1,4 +1,7 @@
 package com.track.brachio.donationtracker.model.singleton;
 
-public class CurrentUser {
+import com.track.brachio.donationtracker.model.User;
+
+public class CurrentUser{
+
 }
