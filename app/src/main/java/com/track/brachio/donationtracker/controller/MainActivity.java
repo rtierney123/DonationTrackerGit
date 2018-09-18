@@ -1,7 +1,9 @@
-package com.track.brachio.donationtracker;
+package com.track.brachio.donationtracker.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.track.brachio.donationtracker.R;
 
 public class MainActivity extends AppCompatActivity {
 
