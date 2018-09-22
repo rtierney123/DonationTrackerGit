@@ -1,14 +1,14 @@
 package com.track.brachio.donationtracker;
 
 public enum UserType {
-    ADMIN(),
-    DONOR(),
-    MANAGER(),
-    VOLUNTEER();
+    ADMIN,
+    DONOR,
+    MANAGER,
+    VOLUNTEER;
 
-    UserType() {
-
-    }
+//    UserType() {
+//
+//    }
 
 //    public String toString() {
 //
