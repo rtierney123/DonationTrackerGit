@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FirebaseItemHandler {
-    //will complete change to handle item db
+    //TODO will complete change to handle item db
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private FirebaseFirestore mFirestore;
