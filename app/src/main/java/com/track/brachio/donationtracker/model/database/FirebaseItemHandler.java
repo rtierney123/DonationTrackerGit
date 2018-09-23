@@ -26,11 +26,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FirebaseHandler {
+public class FirebaseItemHandler {
+    //will complete change to handle item db
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private FirebaseFirestore mFirestore;
-    private String TAG = "FirebaseHandler";
+    private String TAG = "FirebaseItemHandler";
 
     public ArrayList<User> getUsers(){
         // Firestore
@@ -44,7 +45,7 @@ public class FirebaseHandler {
                         ArrayList<User> users = holder.getUsers();
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
-
+                                /*
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 String userId = document.getId();
                                 String username = document.getString("username");
@@ -53,6 +54,7 @@ public class FirebaseHandler {
                                 String userType = document.getString("usertype");
                                 User user = new User(userId, username, email, password, userType);
                                 users.add(user);
+                                */
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
@@ -63,6 +65,7 @@ public class FirebaseHandler {
     }
 
     public void addUser(User user){
+        /*
         Map<String, Object> userMap = new HashMap<>();
         userMap.put("username", user.getUsername());
         userMap.put("password", user.getPassword());
@@ -84,5 +87,6 @@ public class FirebaseHandler {
                         Log.w(TAG, "Error adding user", e);
                     }
                 });
+                */
     }
 }

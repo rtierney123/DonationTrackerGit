@@ -27,4 +27,8 @@ public class CurrentUser{
     public void setUser(User u) {
         user = u;
     }
+
+    public User getUser(){
+        return user;
+    }
 }

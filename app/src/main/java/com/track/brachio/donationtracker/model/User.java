@@ -11,35 +11,29 @@ public class User {
     //Should probably add first and last name
     private String userId;
     private String username;
-    private String password;
     private String email;
     private UserType userType;
     private @ServerTimestamp Date timestamp;
 
-    public User(FirebaseUser user, String pass, UserType type){
+    public User(FirebaseUser user, UserType type){
         this.userId = user.getUid();
         this.username = user.getDisplayName();
         this.email = user.getEmail();
 
-        password = pass;
         userType = type;
     }
 
-    public User(String id, String name, String em, String pass, UserType type){
-        this.userId = id;
+    public User(String name, String em, UserType type){
         this.username = name;
         this.email = em;
 
-        password = pass;
         userType = type;
     }
 
-    public User(String id, String name, String em, String pass, String type){
-        this.userId = id;
+    public User(String name, String em, String type){
         this.username = name;
         this.email = em;
 
-        password = pass;
         userType = stringToUserType( type );
     }
 
@@ -47,7 +41,6 @@ public class User {
     public User(){
         userId = "";
         username = "";
-        password = "";
         email = "";
         userType = UserType.Donator;
     }
@@ -58,14 +51,6 @@ public class User {
 
     public String getUsername(){
         return username;
-    }
-
-    public void setPassword(String pass){
-        password = pass;
-    }
-
-    public String getPassword(){
-        return password;
     }
 
     public void setEmail(String em){
