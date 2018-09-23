@@ -14,7 +14,7 @@ public class StartUpActivity extends AppCompatActivity {
 
         //use to for login registion page
         /*
-        User user = new User("rtierney", "tierne_r@outlook.com", "Admin");
+        User user = new User("Rachel", "Tierney","tierne_r@outlook.com", "Admin");
         FirebaseUserHandler handler = new FirebaseUserHandler();
         handler.createNewUser( user, "blahblahblah123", this);
         */
@@ -22,7 +22,7 @@ public class StartUpActivity extends AppCompatActivity {
 
         //use for login page
         /*
-        User user = new User("rtierney", "tierne_r@outlook.com", "Admin");
+        User user = new User("Rachel", "Tierney", "tierne_r@outlook.com", "Admin");
         FirebaseUserHandler handler = new FirebaseUserHandler();
         handler.signInUser(user, "blahblahblah123", this);
         boolean signedIn = handler.isUserSignedIn();
