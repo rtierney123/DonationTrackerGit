@@ -6,12 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".StartUpActivity">
 
-    <Button
-        android:id="@+id/logoutButton2"
+    <TextView
+        android:id="@+id/welcomeMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"
-        tools:layout_editor_absoluteX="280dp"
-        tools:layout_editor_absoluteY="513dp" />
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="100dp"
+        android:text="Welcome to Donation Tracker!"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="148dp"
+        android:layout_marginTop="93dp"
+        android:text="Log In"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeMessage" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="325dp" />
 </android.support.constraint.ConstraintLayout>
