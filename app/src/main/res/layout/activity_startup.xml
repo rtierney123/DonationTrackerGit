@@ -26,23 +26,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeMessage" />
 
-    <Button
-        android:id="@+id/registerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="148dp"
-        android:layout_marginTop="64dp"
+    <<<<<<
+
+    < HEAD
         android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+        tools:layout_editor_absoluteY="391dp" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="148dp"
+        android:layout_marginEnd="143dp"
         android:layout_marginTop="60dp"
         android:text="Log In"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guestButton" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="143dp"
+        android:layout_marginTop="60dp"
+        android:text="Register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" /><![CDATA[
+
+    =======
+        android:layout_marginTop="68dp"
+        android:text="Register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+>>>>>>> 6775de46b55945def30520f789ff77903b980a71
+]]>
 </android.support.constraint.ConstraintLayout>

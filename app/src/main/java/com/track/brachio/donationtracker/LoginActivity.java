@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.track.brachio.donationtracker.model.User;
+import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
+
 
 public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
@@ -58,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_main);
+                setContentView(R.layout.activity_startup);
             }
         });
 
@@ -69,7 +71,6 @@ public class LoginActivity extends AppCompatActivity {
 //        //Log.d stuff? to console??
 //        String enteredPassword;
 //        String enteredUsername;
-//        Model model = Model.getInstance();
 //
 //        enteredPassword = passwordField.getText().toString();
 //        enteredUsername = usernameField.getText().toString();
