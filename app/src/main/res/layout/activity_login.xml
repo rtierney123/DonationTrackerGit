@@ -47,14 +47,6 @@ tools:context=".LoginActivity">
         app:layout_constraintStart_toStartOf="@+id/passwordBox"
         app:layout_constraintTop_toBottomOf="@+id/passwordBox" />
 
-    <Button
-        android:id="@+id/cancelButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancel"
-        tools:layout_editor_absoluteX="166dp"
-        tools:layout_editor_absoluteY="276dp" />
-
     <TextView
         android:id="@+id/emailText"
         android:layout_width="wrap_content"
@@ -65,8 +57,7 @@ tools:context=".LoginActivity">
         app:layout_constraintBottom_toTopOf="@+id/emailBox"
         app:layout_constraintStart_toStartOf="@+id/emailBox" />
 
-<<<<<<< HEAD
-=======
+    =======
     <Button
         android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
