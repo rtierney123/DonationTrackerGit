@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_main);
+                setContentView(R.layout.activity_startup);
             }
         });
 
