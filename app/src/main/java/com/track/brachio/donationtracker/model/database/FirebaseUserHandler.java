@@ -124,17 +124,15 @@ public class FirebaseUserHandler {
                         }
                     }
                 });
-        Log.e("username", appUser.getUsername());
-        //updateUserName(appUser.getUsername());
         CurrentUser.getInstance().setUser(appUser);
     }
 
     //use for sign in
     //TODO need to add information for determining type of user
     //make sign in user the CurrentUser
-    public void signInUser(User appUser, String password, Activity activity){
+    public void signInUser(String email, String password, Activity activity){
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        auth.signInWithEmailAndPassword(appUser.getEmail(), password)
+        auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -147,7 +145,8 @@ public class FirebaseUserHandler {
                         }
                     }
                 });
-        CurrentUser.getInstance().setUser(appUser);
+        //TODO add code to retrieve name to currentuser for display
+        //CurrentUser.getInstance().setUser(appUser);
     }
 
     //use for logout
