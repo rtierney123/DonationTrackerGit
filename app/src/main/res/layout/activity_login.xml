@@ -56,7 +56,6 @@
         android:text="Email"
         app:layout_constraintBottom_toTopOf="@+id/emailBox"
         app:layout_constraintStart_toStartOf="@+id/emailBox" />
-
     
     <Button
         android:id="@+id/cancelButton"
