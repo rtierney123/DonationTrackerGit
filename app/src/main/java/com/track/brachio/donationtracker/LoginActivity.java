@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("Login", "Login Successful");
                     Intent intent = new Intent(LoginActivity.this, VolunteerMainActivity.class);
                     startActivity(intent);
+                    setContentView(R.layout.activity_volunteer_main);
                 } else {
                     Log.d("Login", "Login Unsuccessful");
                 }
