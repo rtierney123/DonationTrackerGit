@@ -1,4 +1,4 @@
-package com.track.brachio.donationtracker;
+package com.track.brachio.donationtracker.model;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public class Model {
     }
 
     private boolean demoAdd() {
-        User temp = new User("password", "username", UserType.ADMIN);
+        User temp = new User("01", "user", "email@email", "pass", UserType.Admin);
         addUser(temp);
         return true;
     }
@@ -43,7 +43,7 @@ public class Model {
 
     public boolean signInCheck(String username, String password) {
         for (User u : _users) {
-            if (u.checkUsername(username) && u.checkPassword(password)) {
+            if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
                 return true;
             }
         }

@@ -15,9 +15,9 @@ import android.widget.TextView;
 import android.widget.Button;
 
 
-import com.track.brachio.donationtracker.User;
-import com.track.brachio.donationtracker.UserType;
-import com.track.brachio.donationtracker.Model;
+import com.track.brachio.donationtracker.model.User;
+import com.track.brachio.donationtracker.model.UserType;
+import com.track.brachio.donationtracker.model.Model;
 
 
 
