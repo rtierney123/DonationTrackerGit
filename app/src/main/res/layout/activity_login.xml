@@ -57,20 +57,6 @@
         app:layout_constraintBottom_toTopOf="@+id/emailBox"
         app:layout_constraintStart_toStartOf="@+id/emailBox" />
 
-    <
-
-    <
-
-    <
-
-    <
-
-    <
-
-    <
-
-    < HEAD
-    =======
 
     <Button
         android:id="@+id/cancelButton"
