@@ -57,7 +57,11 @@
         app:layout_constraintBottom_toTopOf="@+id/emailBox"
         app:layout_constraintStart_toStartOf="@+id/emailBox" />
 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 62e3e8b8b6f4ea55b41a99703c4284410b620f41
     <Button
         android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
@@ -68,5 +72,4 @@
         app:layout_constraintStart_toEndOf="@+id/loginButton"
         app:layout_constraintTop_toBottomOf="@+id/passwordBox" />
 
-    >>>>>>> 51e7e8130791f72cf860944d482fd07ff0347b24
 </android.support.constraint.ConstraintLayout>
