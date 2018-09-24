@@ -1,6 +1,7 @@
 package com.track.brachio.donationtracker;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,8 +32,10 @@ public class LoginActivity extends AppCompatActivity {
         cancelButton = (Button) findViewById(R.id.cancelButton);
         usernameField = (EditText) findViewById(R.id.emailBox );
         passwordField = (EditText) findViewById(R.id.passwordBox);
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                Log.d("login", "clicked");
                 //Log.d stuff? to console??
                 String enteredPassword;
                 String enteredEmail;
@@ -45,15 +48,23 @@ public class LoginActivity extends AppCompatActivity {
                 handler.createNewUser(user, "password", LoginActivity.this);
 
                 handler.signInUser( enteredEmail, enteredPassword, LoginActivity.this);
-                //Boolean signInWorked = model.signInCheck(enteredUsername, enteredPassword);
-                if (handler.isUserSignedIn()) {
-                    Log.d("Login", "Login Successful");
-                    Intent intent = new Intent(LoginActivity.this, VolunteerMainActivity.class);
-                    startActivity(intent);
-                    setContentView(R.layout.activity_volunteer_main);
-                } else {
-                    Log.d("Login", "Login Unsuccessful");
-                }
+
+                Handler delayHandler = new Handler();
+                delayHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        //Boolean signInWorked = model.signInCheck(enteredUsername, enteredPassword);
+                        if (handler.isUserSignedIn()) {
+                            Log.d("Login", "Login Successful");
+                            Intent intent = new Intent(LoginActivity.this, VolunteerMainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Log.d("Login", "Login Unsuccessful");
+                        }
+                    }
+                }, 2000);
+
 
             }
         });
@@ -61,7 +72,9 @@ public class LoginActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_startup);
+                Log.d("login", "canceled");
+                Intent intent = new Intent(LoginActivity.this, StartUpActivity.class);
+                startActivity(intent);
             }
         });
 

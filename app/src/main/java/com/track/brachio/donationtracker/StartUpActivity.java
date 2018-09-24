@@ -1,5 +1,6 @@
 package com.track.brachio.donationtracker;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -14,7 +15,8 @@ public class StartUpActivity extends AppCompatActivity {
 
         toLoginPageButton = (Button) findViewById(R.id.loginButton);
         toLoginPageButton.setOnClickListener((view) -> {
-            setContentView(R.layout.activity_login);
+            Intent intent = new Intent(StartUpActivity.this, LoginActivity.class);
+            startActivity(intent);
         });
 
         //Intent intent = new Intent(StartUpActivity.this, LoginActivity.class);
