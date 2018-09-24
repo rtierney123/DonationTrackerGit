@@ -42,8 +42,8 @@ tools:context=".LoginActivity">
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="276dp"
         android:text="@string/login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -57,5 +57,13 @@ tools:context=".LoginActivity">
         android:text="Email"
         app:layout_constraintBottom_toTopOf="@+id/emailBox"
         app:layout_constraintStart_toStartOf="@+id/emailBox" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="276dp" />
 
 </android.support.constraint.ConstraintLayout>
