@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".VolunteerMainActivity">
 
+    <Button
+        android:id="@+id/logoutButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        tools:layout_editor_absoluteX="265dp"
+        tools:layout_editor_absoluteY="503dp" />
 </android.support.constraint.ConstraintLayout>
