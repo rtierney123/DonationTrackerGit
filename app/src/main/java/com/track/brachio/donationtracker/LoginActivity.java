@@ -11,6 +11,12 @@ import android.widget.EditText;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 
+import com.track.brachio.donationtracker.model.User;
+import com.track.brachio.donationtracker.model.UserType;
+import com.track.brachio.donationtracker.model.Model;
+
+
+
 public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private Button cancelButton;
