@@ -42,11 +42,10 @@ tools:context=".LoginActivity">
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="276dp"
+        android:layout_marginTop="16dp"
         android:text="@string/login"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/passwordBox"
+        app:layout_constraintTop_toBottomOf="@+id/passwordBox" />
 
     <TextView
         android:id="@+id/emailText"
@@ -62,8 +61,9 @@ tools:context=".LoginActivity">
         android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Cancel"
-        tools:layout_editor_absoluteX="166dp"
-        tools:layout_editor_absoluteY="276dp" />
+        app:layout_constraintEnd_toEndOf="@+id/passwordBox"
+        app:layout_constraintTop_toBottomOf="@+id/passwordBox" />
 
 </android.support.constraint.ConstraintLayout>
