@@ -13,6 +13,7 @@ import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 
 public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
+    private Button cancelButton;
     private EditText usernameField;
     private EditText passwordField;
 
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         loginButton = (Button) findViewById(R.id.loginButton);
+        cancelButton = (Button) findViewById(R.id.cancelButton);
         usernameField = (EditText) findViewById(R.id.emailBox );
         passwordField = (EditText) findViewById(R.id.passwordBox);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +54,15 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.activity_main);
+            }
+        });
+
+
     }
 
     //    public void onLoginPressed(View view) {
