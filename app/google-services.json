@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "376501687130",
-    "firebase_url": "https://donationtrackergit.firebaseio.com",
-    "project_id": "donationtrackergit",
-    "storage_bucket": "donationtrackergit.appspot.com"
+    "project_number": "671702196173",
+    "firebase_url": "https://donationtracker-9aa16.firebaseio.com",
+    "project_id": "donationtracker-9aa16",
+    "storage_bucket": "donationtracker-9aa16.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:376501687130:android:9060e90938d16868",
+        "mobilesdk_app_id": "1:671702196173:android:9060e90938d16868",
         "android_client_info": {
           "package_name": "com.track.brachio.donationtracker"
         }
       },
       "oauth_client": [
         {
-          "client_id": "376501687130-0bh2vomoac8fnevg3n8m67731aepoq21.apps.googleusercontent.com",
+          "client_id": "671702196173-2e2ivgbtd98pt9fhn7q0qgic74mq3sq5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.track.brachio.donationtracker",
-            "certificate_hash": "67af8be39cbbf74ff782938f52b9bd11463233b1"
+            "certificate_hash": "abadafdea61b6322e8f3b972850f46de3268a960"
           }
         },
         {
-          "client_id": "376501687130-sgfrs75460m9q9t9taucc7ragffhec1h.apps.googleusercontent.com",
+          "client_id": "671702196173-a5lt126odhanh971jhst1r3v7dfsrfd2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBoiIMicvTkHfHo1feTgJzbTnwVUSTA3VI"
+          "current_key": "AIzaSyCnzlfV9ysaZMMyJ7iCKICRUdRWDQCbVUM"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "376501687130-sgfrs75460m9q9t9taucc7ragffhec1h.apps.googleusercontent.com",
+              "client_id": "671702196173-a5lt126odhanh971jhst1r3v7dfsrfd2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
