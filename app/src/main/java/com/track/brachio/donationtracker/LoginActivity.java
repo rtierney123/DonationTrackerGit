@@ -33,6 +33,15 @@ public class LoginActivity extends AppCompatActivity {
         usernameField = (EditText) findViewById(R.id.emailBox );
         passwordField = (EditText) findViewById(R.id.passwordBox);
 
+        FirebaseUserHandler handler = new FirebaseUserHandler();
+        /*
+        if (firstPass) {
+            User user = new User("Test", "User", "newfake@email.com", "Admin");
+            handler.createNewUser(user, "password", LoginActivity.this);
+            firstPass = false;
+        }
+        */
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Log.d("login", "clicked");
@@ -40,12 +49,8 @@ public class LoginActivity extends AppCompatActivity {
                 String enteredPassword;
                 String enteredEmail;
 
-                FirebaseUserHandler handler = new FirebaseUserHandler();
                 enteredPassword = passwordField.getText().toString();
                 enteredEmail = usernameField.getText().toString();
-
-                User user = new User("Test", "User", "fake@email.com", "Admin");
-                handler.createNewUser(user, "password", LoginActivity.this);
 
                 handler.signInUser( enteredEmail, enteredPassword, LoginActivity.this);
 
@@ -60,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, VolunteerMainActivity.class);
                             startActivity(intent);
                         } else {
+                            //TODO create Toast to declare sign in unsuccessful
                             Log.d("Login", "Login Unsuccessful");
                         }
                     }

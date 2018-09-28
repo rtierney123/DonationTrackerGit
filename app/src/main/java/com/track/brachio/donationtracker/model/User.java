@@ -10,7 +10,8 @@ import java.util.Date;
 public class User {
     //Should probably add first and last name
     private String userId;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String email;
     private UserType userType;
     private @ServerTimestamp Date timestamp;
@@ -22,13 +23,15 @@ public class User {
     }
 
     public User(String firstName, String lastName, String em, UserType type){
-        name = firstName + " " + lastName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = em;
         userType = type;
     }
 
     public User(String firstName, String lastName, String em, String type){
-        name = firstName + " " + lastName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = em;
         userType = stringToUserType( type );
     }
@@ -37,7 +40,8 @@ public class User {
     public User(){
         userId = "";
         email = "";
-        name = "";
+        firstName= "";
+        lastName = "";
         userType = UserType.Donator;
     }
 
@@ -63,6 +67,22 @@ public class User {
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getFirstname() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastname() {
+        return lastName;
+    }
+
+    public void setLastName(String lastNameName) {
+        this.lastName = lastName;
     }
 
     private UserType stringToUserType(String str){
