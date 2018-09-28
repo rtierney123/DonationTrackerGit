@@ -21,7 +21,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.WriteBatch;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.singleton.UserHolder;
-
+/*
+import com.google.api.core.ApiFuture;
+import com.google.api.core.ApiFutureCallback;
+import com.google.api.core.ApiFutures;
+*/
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

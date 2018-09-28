@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
+import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -62,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                         //Boolean signInWorked = model.signInCheck(enteredUsername, enteredPassword);
                         if (handler.isUserSignedIn()) {
                             Log.d("Login", "Login Successful");
+                            handler.getSignedInUser();
                             Intent intent = new Intent(LoginActivity.this, VolunteerMainActivity.class);
                             startActivity(intent);
                         } else {

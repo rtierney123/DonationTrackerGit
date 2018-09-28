@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -29,11 +30,13 @@ import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 import com.track.brachio.donationtracker.model.singleton.UserHolder;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executor;
 
 public class FirebaseUserHandler {
     private String TAG = "FirebaseUserHandler";
+    private User userCallback;
 
     public FirebaseUser getCurrentUser(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -166,7 +169,6 @@ public class FirebaseUserHandler {
                         }
                     }
                 });
-        CurrentUser.getInstance().setUser(appUser);
     }
 
     //use for sign in
@@ -181,7 +183,6 @@ public class FirebaseUserHandler {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            //CurrentUser.getInstance().setUser(new User())
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -190,6 +191,7 @@ public class FirebaseUserHandler {
                 });
         //TODO add code to retrieve name to currentuser for display
         //CurrentUser.getInstance().setUser(appUser);
+
     }
 
     //use for logout
@@ -207,5 +209,52 @@ public class FirebaseUserHandler {
             return false;
         }
     }
+
+    public void getSignedInUser(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Log.d(TAG, "email " + user.getEmail());
+        if (user == null) {
+            Log.d( TAG, "onFailure: Not signed it" );
+        } else {
+            db.collection("users").whereEqualTo("email", user.getEmail() )
+                    .get().addOnSuccessListener( new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot documentSnapshots) {
+                    if (documentSnapshots.isEmpty()) {
+                        Log.d( TAG, "onSuccess: LIST EMPTY" );
+                        return;
+                    } else {
+                        // Convert the whole Query Snapshot to a list
+                        // of objects directly! No need to fetch each
+                        // document.
+                        List<DocumentSnapshot> retDocs= documentSnapshots.getDocuments();
+                        Log.d( TAG, "onSuccess: " + retDocs.get(0).getId() );
+                        String firstName = "";
+                        String lastName = "";
+                        String email = "";
+                        String userType = "";
+                        for (DocumentSnapshot doc : retDocs) {
+                            firstName = (String)doc.get("firstname");
+                            lastName = (String)doc.get("lastname");
+                            email = (String)doc.get("email");
+                            userType = (String)doc.get("usertype");
+                        }
+                        //return new User(retString.get(1), retString.get(2), retString.get(3), retString.get(4));
+                        userCallback = new User(firstName, lastName, email, userType);
+                        CurrentUser.getInstance().setUser(userCallback);
+                        Log.d( TAG, "currentUser: "+ userCallback.getFirstname());
+                        if (CurrentUser.getInstance() != null){
+                            Log.d(TAG, CurrentUser.getInstance().getUser().getEmail());
+                        }
+                    }
+                }
+            });
+        }
+
+
+    }
+
+
 
 }
