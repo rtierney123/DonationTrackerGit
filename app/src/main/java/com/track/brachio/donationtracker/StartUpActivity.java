@@ -7,6 +7,7 @@ import android.widget.Button;
 
 public class StartUpActivity extends AppCompatActivity {
     Button toLoginPageButton;
+    Button toRegisterPageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +17,12 @@ public class StartUpActivity extends AppCompatActivity {
         toLoginPageButton = (Button) findViewById(R.id.loginButton);
         toLoginPageButton.setOnClickListener((view) -> {
             Intent intent = new Intent(StartUpActivity.this, LoginActivity.class);
+            startActivity(intent);
+        });
+
+        toRegisterPageButton = (Button) findViewById(R.id.registerButton);
+        toRegisterPageButton.setOnClickListener((view) -> {
+            Intent intent = new Intent(StartUpActivity.this, RegistrationActivity.class);
             startActivity(intent);
         });
 
