@@ -4,6 +4,8 @@ import android.text.TextUtils;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.ServerTimestamp;
+import java.util.Arrays;
+import java.util.List;
 
 import java.util.Date;
 
@@ -14,6 +16,7 @@ public class User {
     private String lastName;
     private String email;
     private UserType userType;
+    private static List<UserType> legalUserTypes = Arrays.asList(UserType.values());
     private @ServerTimestamp Date timestamp;
 
     public User(FirebaseUser user, UserType type){
@@ -45,6 +48,19 @@ public class User {
         userType = UserType.Donator;
     }
 
+    public static List<UserType> getLegalUserTypes() {
+        return legalUserTypes;
+    }
+    public static int findUserTypePosition(UserType code) {
+        int i = 0;
+        while (i < legalUserTypes.size()) {
+            if (code.equals(legalUserTypes.get(i))) {
+                return i;
+            }
+            ++i;
+        }
+        return 0;
+    }
     public void setEmail(String em){
         email = em;
     }
