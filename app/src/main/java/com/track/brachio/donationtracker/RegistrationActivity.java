@@ -54,12 +54,39 @@ public class RegistrationActivity extends AppCompatActivity {
                 String emailEntered;
                 String passwordEntered;
                 UserType userTypeSelected;
+                Boolean registrationSuccessful;
 
                 firstNameEntered = firstNameField.getText().toString();
                 lastNameEntered = lastNameField.getText().toString();
                 emailEntered = emailField.getText().toString();
                 passwordEntered = passwordField.getText().toString();
                 userTypeSelected = (UserType) userTypeSpinner.getSelectedItem();
+                //add a default Spinner value
+                if (firstNameEntered != null && lastNameEntered != null && emailEntered != null
+                        && passwordEntered != null) {
+                    User newUser = new User(firstNameEntered, lastNameEntered, emailEntered, userTypeSelected);
+                    handler.createNewUser(newUser, passwordEntered, RegistrationActivity.this);
+                    registrationSuccessful = true;
+                } else {
+                    registrationSuccessful = false;
+                }
+
+
+                Handler delayHandler = new Handler();
+                delayHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (registrationSuccessful) {
+                            Log.d("Registration", "Registration Successful");
+                            //bring to login page now
+                            Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        } else {
+                            //display error
+                            Log.d("Registration", "Registration Failed");
+                        }
+                    }
+                }, 2000);
             }
         });
     }
