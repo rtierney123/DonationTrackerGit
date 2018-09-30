@@ -123,52 +123,43 @@ public class FirebaseUserHandler {
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         Map<String, Object> userMap = new HashMap<>();
-        userMap.put("firstname", appUser.getFirstname());
-        userMap.put("lastname", appUser.getLastname());
-        userMap.put("email", appUser.getEmail());
-        userMap.put("usertype", appUser.getUserType().name());
-        userMap.put("date created", appUser.getTimestamp());
-        auth.createUserWithEmailAndPassword(appUser.getEmail(), password)
-                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        try {
-                            //check if successful
-                            if (task.isSuccessful()) {
-                                Log.d(TAG, "Registered");
-
-                                FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-                                db.collection("users").document(auth.getUid()).set(userMap)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Log.d(TAG, "Added extra data");
-                                            }
-                                        });
-                                /*
-                                db.getInstance().getReference("users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(appUser).addOnCompleteListener(activity, new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Log.d(TAG, "Entered user data");
-                                        } else {
-                                            Log.e(TAG, "Error entering user data" + task.getException().toString());
-                                        }
+        if(!appUser.isNull() && password != null) {
+            userMap.put("firstname", appUser.getFirstname());
+            userMap.put("lastname", appUser.getLastname());
+            userMap.put("email", appUser.getEmail());
+            userMap.put("usertype", appUser.getUserType().name());
+            userMap.put("date created", appUser.getTimestamp());
+            auth.createUserWithEmailAndPassword(appUser.getEmail(), password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            try {
+                                //check if successful
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "Registered");
+                                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                    if (auth.getUid() != null) {
+                                        db.collection("users").document(auth.getCurrentUser().getUid()).set(userMap)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        Log.d(TAG, "Added extra data");
+                                                    }
+                                                });
+                                    } else {
+                                        Log.e(TAG, "Cannot access current user");
                                     }
-                                } );
-                                */
-
-                            }else{
-                                Log.e(TAG, "Not registered");
+                                }else{
+                                    Log.e(TAG, "Not registered");
+                                }
+                            }catch (Exception e){
+                                e.printStackTrace();
                             }
-                        }catch (Exception e){
-                            e.printStackTrace();
                         }
-                    }
-                });
+                    });
+        } else {
+            Log.e(TAG, "Entered null value");
+        }
     }
 
     //use for sign in

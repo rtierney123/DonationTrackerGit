@@ -111,4 +111,8 @@ public class User {
         }
         return ret;
     }
+
+    public boolean isNull() {
+        return firstName == null || lastName == null || email == null || userType == null ;
+    }
 }

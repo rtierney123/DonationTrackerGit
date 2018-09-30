@@ -10,76 +10,114 @@
         android:id="@+id/first_nameR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:gravity="center"
         android:inputType="textPersonName"
         android:text="First Name"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="27dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/emailBoxR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:ems="10"
+        android:gravity="center_vertical|right"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="177dp" />
+        app:layout_constraintEnd_toEndOf="@+id/last_nameR"
+        app:layout_constraintTop_toBottomOf="@+id/last_nameR" />
 
     <EditText
         android:id="@+id/passwordBoxR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
         android:ems="10"
+        android:gravity="center_vertical|right"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="279dp" />
+        app:layout_constraintEnd_toEndOf="@+id/emailBoxR"
+        app:layout_constraintTop_toBottomOf="@+id/emailBoxR" />
 
     <TextView
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:gravity="center_vertical|right"
         android:text="Email: "
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="143dp" />
+        app:layout_constraintBottom_toTopOf="@+id/emailBoxR"
+        app:layout_constraintStart_toStartOf="@+id/emailBoxR" />
 
     <TextView
         android:id="@+id/Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:gravity="center_vertical|right"
         android:text="TextView"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="246dp" />
+        app:layout_constraintBottom_toTopOf="@+id/passwordBoxR"
+        app:layout_constraintStart_toStartOf="@+id/passwordBoxR" />
 
     <Spinner
         android:id="@+id/userType"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="352dp" />
-
-    <Button
-        android:id="@+id/registerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="404dp" />
-
-    <Button
-        android:id="@+id/cancelButtonR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="cancel"
-        tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="404dp" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical|right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordBoxR" />
 
     <EditText
         android:id="@+id/last_nameR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:ems="10"
+        android:gravity="center_vertical|right"
         android:inputType="textPersonName"
         android:text="Last Name"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="82dp" />
+        app:layout_constraintEnd_toEndOf="@+id/first_nameR"
+        app:layout_constraintTop_toBottomOf="@+id/first_nameR" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:text="Register"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/userType" />
+
+        <Button
+            android:id="@+id/cancelButtonR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:text="cancel"
+            app:layout_constraintTop_toBottomOf="@+id/userType"
+            app:layout_constraintTop_toTopOf="@+id/registerButton" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
