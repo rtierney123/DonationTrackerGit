@@ -113,6 +113,6 @@ public class User {
     }
 
     public boolean isNull() {
-        return firstName == null || lastName == null || email == null || userType == null ;
+        return (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || userType == null);
     }
 }

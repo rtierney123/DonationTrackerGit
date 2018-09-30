@@ -123,40 +123,41 @@ public class FirebaseUserHandler {
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         Map<String, Object> userMap = new HashMap<>();
-        if(!appUser.isNull() && password != null) {
+        if(!appUser.isNull() && password.isEmpty()) {
             userMap.put("firstname", appUser.getFirstname());
             userMap.put("lastname", appUser.getLastname());
             userMap.put("email", appUser.getEmail());
             userMap.put("usertype", appUser.getUserType().name());
             userMap.put("date created", appUser.getTimestamp());
-            auth.createUserWithEmailAndPassword(appUser.getEmail(), password)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            try {
-                                //check if successful
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "Registered");
-                                    FirebaseFirestore db = FirebaseFirestore.getInstance();
-                                    if (auth.getUid() != null) {
-                                        db.collection("users").document(auth.getCurrentUser().getUid()).set(userMap)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        Log.d(TAG, "Added extra data");
-                                                    }
-                                                });
-                                    } else {
-                                        Log.e(TAG, "Cannot access current user");
+                auth.createUserWithEmailAndPassword(appUser.getEmail(), password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                try {
+                                    //check if successful
+                                    if (task.isSuccessful()) {
+                                        Log.d(TAG, "Registered");
+                                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                        if (auth.getUid() != null) {
+                                            db.collection("users").document(auth.getCurrentUser().getUid()).set(userMap)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            Log.d(TAG, "Added extra data");
+                                                        }
+                                                    });
+                                        } else {
+                                            Log.e(TAG, "Cannot access current user");
+                                        }
+                                    }else{
+                                        Log.e(TAG, "Not registered");
                                     }
-                                }else{
-                                    Log.e(TAG, "Not registered");
+                                }catch (Exception e){
+                                    e.printStackTrace();
                                 }
-                            }catch (Exception e){
-                                e.printStackTrace();
                             }
-                        }
-                    });
+                        });
+
         } else {
             Log.e(TAG, "Entered null value");
         }

@@ -59,7 +59,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 passwordEntered = passwordField.getText().toString();
                 userTypeSelected = (UserType) userTypeSpinner.getSelectedItem();
                 //add a default Spinner value
-                if (firstNameEntered != null && lastNameEntered != null && emailEntered != null
+                if (firstNameEntered.isEmpty() && lastNameEntered.isEmpty() && emailEntered.isEmpty()
                         && passwordEntered != null) {
                     User newUser = new User(firstNameEntered, lastNameEntered, emailEntered, userTypeSelected);
                     handler.createNewUser(newUser, passwordEntered, RegistrationActivity.this);
