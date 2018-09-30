@@ -7,7 +7,7 @@
     tools:context=".RegistrationActivity">
 
     <EditText
-        android:id="@+id/first_name"
+        android:id="@+id/first_nameR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -17,7 +17,7 @@
         tools:layout_editor_absoluteY="27dp" />
 
     <EditText
-        android:id="@+id/emailBox"
+        android:id="@+id/emailBoxR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -26,7 +26,7 @@
         tools:layout_editor_absoluteY="177dp" />
 
     <EditText
-        android:id="@+id/passwordBox"
+        android:id="@+id/passwordBoxR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -66,7 +66,7 @@
         tools:layout_editor_absoluteY="404dp" />
 
     <Button
-        android:id="@+id/cancelButton"
+        android:id="@+id/cancelButtonR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="cancel"
@@ -74,7 +74,7 @@
         tools:layout_editor_absoluteY="404dp" />
 
     <EditText
-        android:id="@+id/last_name"
+        android:id="@+id/last_nameR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

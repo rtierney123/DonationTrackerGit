@@ -10,9 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.track.brachio.donationtracker.model.User;
-import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
-import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -31,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton = (Button) findViewById(R.id.loginButton);
         cancelButton = (Button) findViewById(R.id.cancelButton);
-        usernameField = (EditText) findViewById(R.id.emailBox );
+        usernameField = (EditText) findViewById(R.id.emailBox);
         passwordField = (EditText) findViewById(R.id.passwordBox);
 
         FirebaseUserHandler handler = new FirebaseUserHandler();
@@ -89,24 +87,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    //    public void onLoginPressed(View view) {
-//        //Log.d stuff? to console??
-//        String enteredPassword;
-//        String enteredUsername;
-//
-//        enteredPassword = passwordField.getText().toString();
-//        enteredUsername = usernameField.getText().toString();
-//
-//        Boolean signInWorked = model.signInCheck(enteredUsername, enteredPassword);
-//        if (signInWorked) {
-//            //go to main page
-//        } else {
-//            //prompt user it did not work
-//        }
-//
-//    }
 
-    public void onCanceledPressed(View view) {
-        finish();
-    }
+
 }

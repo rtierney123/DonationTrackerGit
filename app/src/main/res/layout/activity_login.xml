@@ -10,15 +10,11 @@
         android:id="@+id/emailBox"
         android:layout_width="220dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="316dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailText"
-        app:layout_constraintVertical_bias="0.0" />
+        tools:layout_editor_absoluteY="98dp" />
 
     <EditText
         android:id="@+id/passwordBox"
@@ -38,17 +34,14 @@
         android:id="@+id/passwordText"
         android:layout_width="115dp"
         android:layout_height="22dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="332dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="@string/password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailBox"
-        app:layout_constraintVertical_bias="0.005" />
+        app:layout_constraintHorizontal_bias="0.229"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/loginButton"

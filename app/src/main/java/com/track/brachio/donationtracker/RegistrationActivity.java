@@ -4,8 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,10 +14,9 @@ import android.widget.ArrayAdapter;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
-import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
 public class RegistrationActivity extends AppCompatActivity {
-    private Button loginButton;
+    private Button registerButton;
     private Button cancelButton;
     private EditText firstNameField;
     private EditText lastNameField;
@@ -30,14 +27,14 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_registration );
+        setContentView( R.layout.activity_registration);
 
-        loginButton = (Button) findViewById(R.id.loginButton);
-        cancelButton = (Button) findViewById(R.id.cancelButton);
-        firstNameField = (EditText) findViewById(R.id.first_name);
-        lastNameField = (EditText) findViewById(R.id.last_name);
-        emailField = (EditText) findViewById(R.id.emailBox);
-        passwordField = (EditText) findViewById(R.id.passwordBox);
+        registerButton = (Button) findViewById(R.id.registerButton);
+        cancelButton = (Button) findViewById(R.id.cancelButtonR);
+        firstNameField = (EditText) findViewById(R.id.first_nameR);
+        lastNameField = (EditText) findViewById(R.id.last_nameR);
+        emailField = (EditText) findViewById(R.id.emailBoxR);
+        passwordField = (EditText) findViewById(R.id.passwordBoxR);
         userTypeSpinner = (Spinner) findViewById(R.id.userType);
 
         FirebaseUserHandler handler = new FirebaseUserHandler();
@@ -46,7 +43,7 @@ public class RegistrationActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         userTypeSpinner.setAdapter(adapter);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Log.d("login", "clicked");
                 String firstNameEntered;
@@ -87,6 +84,15 @@ public class RegistrationActivity extends AppCompatActivity {
                         }
                     }
                 }, 2000);
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Registration", "Registration Canceled");
+                Intent intent = new Intent(RegistrationActivity.this, StartUpActivity.class);
+                startActivity(intent);
             }
         });
     }
