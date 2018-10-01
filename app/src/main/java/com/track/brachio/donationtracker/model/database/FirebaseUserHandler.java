@@ -27,10 +27,14 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.WriteBatch;
+import com.track.brachio.donationtracker.AdminMainActivity;
+import com.track.brachio.donationtracker.DonatorMainActivity;
 import com.track.brachio.donationtracker.LoginActivity;
+import com.track.brachio.donationtracker.ManagerMainActivity;
 import com.track.brachio.donationtracker.RegistrationActivity;
 import com.track.brachio.donationtracker.VolunteerMainActivity;
 import com.track.brachio.donationtracker.model.User;
+import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
 import java.util.HashMap;
@@ -182,7 +186,18 @@ public class FirebaseUserHandler {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            Intent intent = new Intent(activity, VolunteerMainActivity.class);
+                            getSignedInUser();
+                            User currentUser = CurrentUser.getInstance().getUser();
+                            Intent intent = new Intent(activity, DonatorMainActivity.class);;
+                            if (currentUser.getUserType() == UserType.Donator) {
+                                intent = new Intent(activity, DonatorMainActivity.class);
+                            } else if (currentUser.getUserType() == UserType.Admin){
+                                intent = new Intent(activity, AdminMainActivity.class);
+                            } else if (currentUser.getUserType() == UserType.Volunteer) {
+                                intent = new Intent(activity, VolunteerMainActivity.class);
+                            } else if (currentUser.getUserType() == UserType.Manager) {
+                                intent = new Intent(activity, ManagerMainActivity.class);
+                            }
                             login.startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -211,14 +226,14 @@ public class FirebaseUserHandler {
         }
     }
 
-    public void getSignedInUser(){
+    public void getSignedInUser() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Log.d(TAG, "email " + user.getEmail());
+        Log.d( TAG, "email " + user.getEmail() );
         if (user == null) {
             Log.d( TAG, "onFailure: Not signed it" );
         } else {
-            db.collection("users").whereEqualTo("email", user.getEmail() )
+            db.collection( "users" ).whereEqualTo( "email", user.getEmail() )
                     .get().addOnSuccessListener( new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot documentSnapshots) {
@@ -229,28 +244,28 @@ public class FirebaseUserHandler {
                         // Convert the whole Query Snapshot to a list
                         // of objects directly! No need to fetch each
                         // document.
-                        List<DocumentSnapshot> retDocs= documentSnapshots.getDocuments();
-                        Log.d( TAG, "onSuccess: " + retDocs.get(0).getId() );
+                        List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
+                        Log.d( TAG, "onSuccess: " + retDocs.get( 0 ).getId() );
                         String firstName = "";
                         String lastName = "";
                         String email = "";
                         String userType = "";
                         for (DocumentSnapshot doc : retDocs) {
-                            firstName = (String)doc.get("firstname");
-                            lastName = (String)doc.get("lastname");
-                            email = (String)doc.get("email");
-                            userType = (String)doc.get("usertype");
+                            firstName = (String) doc.get( "firstname" );
+                            lastName = (String) doc.get( "lastname" );
+                            email = (String) doc.get( "email" );
+                            userType = (String) doc.get( "usertype" );
                         }
                         //return new User(retString.get(1), retString.get(2), retString.get(3), retString.get(4));
-                        userCallback = new User(firstName, lastName, email, userType);
-                        CurrentUser.getInstance().setUser(userCallback);
-                        Log.d( TAG, "currentUser: "+ userCallback.getFirstname());
-                        if (CurrentUser.getInstance() != null){
-                            Log.d(TAG, CurrentUser.getInstance().getUser().getEmail());
+                        userCallback = new User( firstName, lastName, email, userType );
+                        CurrentUser.getInstance().setUser( userCallback );
+                        Log.d( TAG, "currentUser: " + userCallback.getFirstname() );
+                        if (CurrentUser.getInstance() != null) {
+                            Log.d( TAG, CurrentUser.getInstance().getUser().getEmail() );
                         }
                     }
                 }
-            });
+            } );
         }
 
 

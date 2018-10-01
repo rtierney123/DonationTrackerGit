@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                         //Boolean signInWorked = model.signInCheck(enteredUsername, enteredPassword);
                         if (handler.isUserSignedIn()) {
                             Log.d("Login", "Login Successful");
-                            handler.getSignedInUser();
+                            //handler.getSignedInUser();
                         } else {
                             //TODO create Toast to declare sign in unsuccessful
                             Log.d("Login", "Login Unsuccessful");
