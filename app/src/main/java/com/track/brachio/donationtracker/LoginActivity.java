@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                 enteredPassword = passwordField.getText().toString();
                 enteredEmail = usernameField.getText().toString();
 
-                handler.signInUser( enteredEmail, enteredPassword, LoginActivity.this);
+                handler.signInUser( enteredEmail, enteredPassword, LoginActivity.this, LoginActivity.this);
 
                 Handler delayHandler = new Handler();
                 delayHandler.postDelayed(new Runnable() {
@@ -62,8 +62,6 @@ public class LoginActivity extends AppCompatActivity {
                         if (handler.isUserSignedIn()) {
                             Log.d("Login", "Login Successful");
                             handler.getSignedInUser();
-                            Intent intent = new Intent(LoginActivity.this, VolunteerMainActivity.class);
-                            startActivity(intent);
                         } else {
                             //TODO create Toast to declare sign in unsuccessful
                             Log.d("Login", "Login Unsuccessful");

@@ -2,6 +2,7 @@ package com.track.brachio.donationtracker.model.database;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Debug;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -26,6 +27,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.WriteBatch;
+import com.track.brachio.donationtracker.LoginActivity;
+import com.track.brachio.donationtracker.RegistrationActivity;
+import com.track.brachio.donationtracker.VolunteerMainActivity;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
@@ -117,7 +121,7 @@ public class FirebaseUserHandler {
     //will add user to Firebase, make this user CurrentUser for singleton
     //TODO add first, last, and usertype to Firebase
     //TODO create progress bar to be displayed
-    public void createNewUser(User appUser, String password, Activity activity){
+    public void createNewUser(User appUser, String password, RegistrationActivity registration, Activity activity){
         // Write a message to the database
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -146,6 +150,8 @@ public class FirebaseUserHandler {
                                                             Log.d(TAG, "Added extra data");
                                                         }
                                                     });
+                                            Intent intent = new Intent(activity, LoginActivity.class);
+                                            registration.startActivity(intent);
                                         } else {
                                             Log.e(TAG, "Cannot access current user");
                                         }
@@ -167,15 +173,17 @@ public class FirebaseUserHandler {
     //use for sign in
     //TODO need to add information for determining type of user
     //make sign in user the CurrentUser
-    public void signInUser(String email, String password, Activity activity){
+    public void signInUser(String email, String password, LoginActivity login, Activity activity){
         FirebaseAuth auth = FirebaseAuth.getInstance();
         auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
+                            Intent intent = new Intent(activity, VolunteerMainActivity.class);
+                            login.startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());

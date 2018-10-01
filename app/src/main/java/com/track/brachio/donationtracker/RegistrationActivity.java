@@ -46,7 +46,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Log.d("login", "clicked");
                 String firstNameEntered;
                 String lastNameEntered;
                 String emailEntered;
@@ -63,15 +62,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (!firstNameEntered.isEmpty() && !lastNameEntered.isEmpty() && !emailEntered.isEmpty()
                         && !passwordEntered.isEmpty()) {
                     User newUser = new User(firstNameEntered, lastNameEntered, emailEntered, userTypeSelected);
-                    handler.createNewUser(newUser, passwordEntered, RegistrationActivity.this);
-                    Handler delayHandler = new Handler();
-                    delayHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
-                            startActivity(intent);
-                        }
-                    }, 2000);
+                    handler.createNewUser(newUser, passwordEntered, RegistrationActivity.this, RegistrationActivity.this);
                 } else {
                     Toast.makeText( RegistrationActivity.this, "Must fill in all info boxes.", Toast.LENGTH_SHORT ).show();
                 }
