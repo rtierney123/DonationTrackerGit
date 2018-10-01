@@ -122,7 +122,7 @@ public class FirebaseUserHandler {
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         Map<String, Object> userMap = new HashMap<>();
-        if(!appUser.isNull() && password.isEmpty()) {
+        if(!appUser.isNull() && !password.isEmpty()) {
             userMap.put("firstname", appUser.getFirstname());
             userMap.put("lastname", appUser.getLastname());
             userMap.put("email", appUser.getEmail());

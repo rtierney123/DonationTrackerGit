@@ -62,7 +62,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 //add a default Spinner value
                 if (!firstNameEntered.isEmpty() && !lastNameEntered.isEmpty() && !emailEntered.isEmpty()
                         && !passwordEntered.isEmpty()) {
-                    Log.d("works", "hmmm");
                     User newUser = new User(firstNameEntered, lastNameEntered, emailEntered, userTypeSelected);
                     handler.createNewUser(newUser, passwordEntered, RegistrationActivity.this);
                     Handler delayHandler = new Handler();
