@@ -81,6 +81,7 @@
                 android:gravity="center_vertical|right"
                 android:inputType="textPersonName"
                 android:text="Last Name"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="@+id/first_nameR"
                 app:layout_constraintTop_toBottomOf="@+id/first_nameR" />
 
@@ -91,6 +92,7 @@
                 android:layout_marginStart="8dp"
                 android:gravity="center_vertical|right"
                 android:text="Email: "
+                android:textAlignment="viewStart"
                 app:layout_constraintBottom_toTopOf="@+id/emailBoxR"
                 app:layout_constraintStart_toStartOf="@+id/emailBoxR" />
 
@@ -112,6 +114,7 @@
                 android:layout_marginStart="8dp"
                 android:gravity="center_vertical|right"
                 android:text="Password"
+                android:textAlignment="viewStart"
                 app:layout_constraintBottom_toTopOf="@+id/passwordBoxR"
                 app:layout_constraintStart_toStartOf="@+id/passwordBoxR" />
 
