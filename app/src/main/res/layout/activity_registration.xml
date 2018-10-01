@@ -124,4 +124,5 @@
             app:layout_constraintTop_toBottomOf="@+id/userType"
             app:layout_constraintTop_toTopOf="@+id/registerButton" />
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

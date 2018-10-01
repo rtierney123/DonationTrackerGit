@@ -3,4 +3,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="title_activity_donator_main">DonatorMainActivity</string>
+    <string name="title_activity_admin_main">AdminMainActivity</string>
+    <string name="title_activity_manager_main">ManagerMainActivity</string>
 </resources>

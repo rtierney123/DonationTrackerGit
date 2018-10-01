@@ -16,12 +16,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"
+        <activity
+            android:name=".LoginActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".RegistrationActivity"
+        <activity
+            android:name=".RegistrationActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".VolunteerMainActivity"
-            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".VolunteerMainActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".DonatorMainActivity"
+            android:label="@string/title_activity_donator_main" />
+        <activity
+            android:name=".AdminMainActivity"
+            android:label="@string/title_activity_admin_main" />
+        <activity
+            android:name=".ManagerMainActivity"
+            android:label="@string/title_activity_manager_main"></activity>
     </application>
 
 </manifest>
