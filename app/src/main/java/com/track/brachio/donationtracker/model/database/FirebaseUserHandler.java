@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Debug;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
@@ -150,6 +151,7 @@ public class FirebaseUserHandler {
                                         }
                                     }else{
                                         Log.e(TAG, "Not registered");
+                                        Toast.makeText(activity, "User with email entered already exists.", Toast.LENGTH_LONG).show();
                                     }
                                 }catch (Exception e){
                                     e.printStackTrace();
