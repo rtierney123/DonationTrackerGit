@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
@@ -59,31 +60,23 @@ public class RegistrationActivity extends AppCompatActivity {
                 passwordEntered = passwordField.getText().toString();
                 userTypeSelected = (UserType) userTypeSpinner.getSelectedItem();
                 //add a default Spinner value
-                if (firstNameEntered.isEmpty() && lastNameEntered.isEmpty() && emailEntered.isEmpty()
-                        && passwordEntered != null) {
+                if (!firstNameEntered.isEmpty() && !lastNameEntered.isEmpty() && !emailEntered.isEmpty()
+                        && !passwordEntered.isEmpty()) {
+                    Log.d("works", "hmmm");
                     User newUser = new User(firstNameEntered, lastNameEntered, emailEntered, userTypeSelected);
                     handler.createNewUser(newUser, passwordEntered, RegistrationActivity.this);
-                    registrationSuccessful = true;
-                } else {
-                    registrationSuccessful = false;
-                }
-
-
-                Handler delayHandler = new Handler();
-                delayHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (registrationSuccessful) {
-                            Log.d("Registration", "Registration Successful");
-                            //bring to login page now
+                    Handler delayHandler = new Handler();
+                    delayHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
                             Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                             startActivity(intent);
-                        } else {
-                            //display error
-                            Log.d("Registration", "Registration Failed");
                         }
-                    }
-                }, 2000);
+                    }, 2000);
+                } else {
+                    Toast.makeText( RegistrationActivity.this, "Must fill in all info boxes.", Toast.LENGTH_SHORT ).show();
+                }
+
             }
         });
 
