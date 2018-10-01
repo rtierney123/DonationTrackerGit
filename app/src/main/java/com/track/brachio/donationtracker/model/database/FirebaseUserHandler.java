@@ -27,7 +27,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.WriteBatch;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
-import com.track.brachio.donationtracker.model.singleton.UserHolder;
 
 import java.util.HashMap;
 import java.util.List;

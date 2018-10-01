@@ -20,7 +20,6 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.WriteBatch;
 import com.track.brachio.donationtracker.model.User;
-import com.track.brachio.donationtracker.model.singleton.UserHolder;
 /*
 import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutureCallback;
@@ -36,7 +35,7 @@ public class FirebaseItemHandler {
 
     private FirebaseFirestore mFirestore;
     private String TAG = "FirebaseItemHandler";
-
+    /*
     public ArrayList<User> getUsers(){
         // Firestore
         mFirestore = FirebaseFirestore.getInstance();
@@ -49,7 +48,7 @@ public class FirebaseItemHandler {
                         ArrayList<User> users = holder.getUsers();
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
-                                /*
+
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 String userId = document.getId();
                                 String username = document.getString("username");
@@ -58,7 +57,7 @@ public class FirebaseItemHandler {
                                 String userType = document.getString("usertype");
                                 User user = new User(userId, username, email, password, userType);
                                 users.add(user);
-                                */
+
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
@@ -67,6 +66,7 @@ public class FirebaseItemHandler {
                 });
         return UserHolder.getInstance().getUsers();
     }
+    */
 
     public void addUser(User user){
         /*
