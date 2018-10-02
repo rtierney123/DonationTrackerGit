@@ -2,7 +2,7 @@ package com.track.brachio.donationtracker.model.singleton;
 
 import com.track.brachio.donationtracker.model.User;
 
-public class CurrentUser{
+public class CurrentUser {
     // static variable single_instance of type CurrentUser
     private static CurrentUser single_instance = null;
 
@@ -26,6 +26,7 @@ public class CurrentUser{
 
     public void setUser(User u) {
         user = u;
+        user = user;
     }
 
     public User getUser(){

@@ -102,14 +102,13 @@ public class User {
     }
 
     private UserType stringToUserType(String str){
-        UserType ret = UserType.Donator;
         switch(str){
-            case "Donator" : ret = UserType.Donator;
-            case "Volunteer" : ret = UserType.Volunteer;
-            case "Manager" : ret = UserType.Manager;
-            case "Admin" : ret = UserType.Admin;
+            case "Donator" : return UserType.Donator;
+            case "Volunteer" : return UserType.Volunteer;
+            case "Manager" : return UserType.Manager;
+            case "Admin" : return UserType.Admin;
         }
-        return ret;
+        return null;
     }
 
     public boolean isNull() {

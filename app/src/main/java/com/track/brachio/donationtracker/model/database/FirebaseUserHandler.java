@@ -123,7 +123,6 @@ public class FirebaseUserHandler {
 
     //use for registration page
     //will add user to Firebase, make this user CurrentUser for singleton
-    //TODO add first, last, and usertype to Firebase
     //TODO create progress bar to be displayed
     public void createNewUser(User appUser, String password, RegistrationActivity registration, Activity activity){
         // Write a message to the database
@@ -175,39 +174,25 @@ public class FirebaseUserHandler {
     }
 
     //use for sign in
-    //TODO need to add information for determining type of user
     //make sign in user the CurrentUser
-    public void signInUser(String email, String password, LoginActivity login, Activity activity){
+    public void signInUser(String email, String password, LoginActivity login){
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            getSignedInUser();
-                            User currentUser = CurrentUser.getInstance().getUser();
-                            Intent intent = new Intent(activity, DonatorMainActivity.class);;
-                            if (currentUser.getUserType() == UserType.Donator) {
-                                intent = new Intent(activity, DonatorMainActivity.class);
-                            } else if (currentUser.getUserType() == UserType.Admin){
-                                intent = new Intent(activity, AdminMainActivity.class);
-                            } else if (currentUser.getUserType() == UserType.Volunteer) {
-                                intent = new Intent(activity, VolunteerMainActivity.class);
-                            } else if (currentUser.getUserType() == UserType.Manager) {
-                                intent = new Intent(activity, ManagerMainActivity.class);
+        if (!email.isEmpty() && !password.isEmpty()){
+            auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "signInWithEmail:success");
+                                getSignedInUser(login);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "signInWithEmail:failure", task.getException());
                             }
-                            login.startActivity(intent);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
                         }
-                    }
-                });
-        //TODO add code to retrieve name to currentuser for display
-        //CurrentUser.getInstance().setUser(appUser);
-
+                    });
+        }
     }
 
     //use for logout
@@ -226,7 +211,9 @@ public class FirebaseUserHandler {
         }
     }
 
-    public void getSignedInUser() {
+    //sets CurrentUser information to the logged in user
+    //causes login screen to go to correct screen when complete
+    private void getSignedInUser(LoginActivity login) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.d( TAG, "email " + user.getEmail() );
@@ -256,13 +243,9 @@ public class FirebaseUserHandler {
                             email = (String) doc.get( "email" );
                             userType = (String) doc.get( "usertype" );
                         }
-                        //return new User(retString.get(1), retString.get(2), retString.get(3), retString.get(4));
                         userCallback = new User( firstName, lastName, email, userType );
                         CurrentUser.getInstance().setUser( userCallback );
-                        Log.d( TAG, "currentUser: " + userCallback.getFirstname() );
-                        if (CurrentUser.getInstance() != null) {
-                            Log.d( TAG, CurrentUser.getInstance().getUser().getEmail() );
-                        }
+                        login.goToCorrectActivity();
                     }
                 }
             } );
@@ -270,7 +253,6 @@ public class FirebaseUserHandler {
 
 
     }
-
 
 
 }

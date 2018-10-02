@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.track.brachio.donationtracker.model.User;
+import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
+import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,13 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         passwordField = (EditText) findViewById(R.id.passwordBox);
 
         FirebaseUserHandler handler = new FirebaseUserHandler();
-        /*
-        if (firstPass) {
-            User user = new User("Test", "User", "newfake@email.com", "Admin");
-            handler.createNewUser(user, "password", LoginActivity.this);
-            firstPass = false;
-        }
-        */
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -51,25 +46,9 @@ public class LoginActivity extends AppCompatActivity {
                 enteredPassword = passwordField.getText().toString();
                 enteredEmail = usernameField.getText().toString();
 
-                handler.signInUser( enteredEmail, enteredPassword, LoginActivity.this, LoginActivity.this);
-
-                Handler delayHandler = new Handler();
-                delayHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        //Boolean signInWorked = model.signInCheck(enteredUsername, enteredPassword);
-                        if (handler.isUserSignedIn()) {
-                            Log.d("Login", "Login Successful");
-                            //handler.getSignedInUser();
-                        } else {
-                            //TODO create Toast to declare sign in unsuccessful
-                            Log.d("Login", "Login Unsuccessful");
-                        }
-                    }
-                }, 2000);
-
-
+                if (!enteredPassword.isEmpty() && !enteredEmail.isEmpty()){
+                    handler.signInUser( enteredEmail, enteredPassword, LoginActivity.this);
+                }
             }
         });
 
@@ -85,6 +64,20 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    public void goToCorrectActivity(){
+        User currentUser = CurrentUser.getInstance().getUser();
+        Intent intent = new Intent(LoginActivity.this, DonatorMainActivity.class);;
+        if (currentUser.getUserType() == UserType.Donator) {
+            intent = new Intent(LoginActivity.this, DonatorMainActivity.class);
+        } else if (currentUser.getUserType() == UserType.Admin){
+            intent = new Intent(LoginActivity.this, AdminMainActivity.class);
+        } else if (currentUser.getUserType() == UserType.Volunteer) {
+            intent = new Intent(LoginActivity.this, VolunteerMainActivity.class);
+        } else if (currentUser.getUserType() == UserType.Manager) {
+            intent = new Intent(LoginActivity.this, ManagerMainActivity.class);
+        }
+        startActivity(intent);
+    }
 
 
 }
