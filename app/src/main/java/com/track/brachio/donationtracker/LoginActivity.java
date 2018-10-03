@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                 enteredEmail = usernameField.getText().toString();
 
                 if (!enteredPassword.isEmpty() && !enteredEmail.isEmpty()){
-                    handler.signInUser( enteredEmail, enteredPassword, LoginActivity.this);
+                    handler.signInUser( enteredEmail, enteredPassword, LoginActivity.this, LoginActivity.this);
                 }
             }
         });

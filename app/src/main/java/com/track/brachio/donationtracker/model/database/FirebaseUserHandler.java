@@ -175,7 +175,7 @@ public class FirebaseUserHandler {
 
     //use for sign in
     //make sign in user the CurrentUser
-    public void signInUser(String email, String password, LoginActivity login){
+    public void signInUser(String email, String password, LoginActivity login, Activity activity){
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (!email.isEmpty() && !password.isEmpty()){
             auth.signInWithEmailAndPassword(email, password)
@@ -189,6 +189,7 @@ public class FirebaseUserHandler {
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(activity, "Username or password is incorrect.", Toast.LENGTH_LONG).show();
                             }
                         }
                     });
