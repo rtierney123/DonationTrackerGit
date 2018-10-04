@@ -200,7 +200,7 @@ public class FirebaseUserHandler {
                                     Toast.makeText(activity, e.getReason(), Toast.LENGTH_LONG).show();
                                 } catch (FirebaseAuthInvalidUserException e) {
                                     Toast.makeText(activity, "User does not exist.", Toast.LENGTH_LONG).show();
-                                } 
+                                }
                                 catch(Exception e) {
                                     Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
                                 }
