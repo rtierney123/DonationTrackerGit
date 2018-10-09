@@ -1,18 +1,32 @@
 package com.track.brachio.donationtracker.model;
 
 public class Location {
-    
+    private String id;
     private String name;
     private double latitude;
     private double longitude;
-    private String address;
-    private String city;
-    private String state;
-    private double zip;
     private LocationType type;
     private String phone;
     private String website;
+    private Address address;
 
+    public Location (String i, String n, double lat, double lon, String t, String ph, String web, Address add){
+        id = i;
+        name = n;
+        latitude = lat;
+        longitude = lon;
+        type = getTypebyString( t );
+        phone = ph;
+        website = web;
+        address = add;
+    }
+    public String getId(){
+        return id;
+    }
+
+    public void setId(String id){
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -26,20 +40,8 @@ public class Location {
         return longitude;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public double getZip() {
-        return zip;
     }
 
     public LocationType getType() {
@@ -66,20 +68,8 @@ public class Location {
         this.longitude = longitude;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public void setZip(double zip) {
-        this.zip = zip;
     }
 
     public void setType(LocationType type) {
@@ -92,6 +82,15 @@ public class Location {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    private LocationType getTypebyString(String str){
+        switch (str) {
+            case "DropOff" : return LocationType.DropOff;
+            case "Store" : return LocationType.Store;
+            case "Warehouse" : return LocationType.Warehouse;
+        }
+        return null;
     }
 
 

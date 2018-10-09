@@ -248,6 +248,7 @@ public class FirebaseUserHandler {
                         // document.
                         List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
                         Log.d( TAG, "onSuccess: " + retDocs.get( 0 ).getId() );
+
                         String firstName = "";
                         String lastName = "";
                         String email = "";
