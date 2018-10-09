@@ -1,18 +1,27 @@
 package com.track.brachio.donationtracker.model.database;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.track.brachio.donationtracker.LoginActivity;
 import com.track.brachio.donationtracker.model.Address;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FirebaseLocationHandler {
     private String TAG = "FirebaseLocationHandler";
@@ -88,7 +97,7 @@ public class FirebaseLocationHandler {
                     String city = "";
                     String state = "";
                     long zip = 0;
-                    Log.d(TAG, "onSucccess: Got Location");
+                    Log.d(TAG, "onSucccess: Got Locations");
 
                     locationArray.clear();
                     for (DocumentSnapshot doc : retDocs) {
@@ -112,6 +121,33 @@ public class FirebaseLocationHandler {
             }
         } );
         return locationArray;
+    }
+
+    public void addLocation(Location location)  {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> locMap = new HashMap<>();
+        if(location != null) {
+            locMap.put("name", location.getName());
+            locMap.put("latitude", location.getLatitude());
+            locMap.put("longitude", location.getLongitude());
+            locMap.put("type", location.getType());
+            locMap.put("phone", location.getPhone());
+            locMap.put("website", location.getWebsite());
+            Address address = location.getAddress();
+            locMap.put("address", address.getStreetAddress());
+            locMap.put("city", address.getCity());
+            locMap.put("state", address.getState());
+            locMap.put("zip", address.getZip());
+            db.collection("location").document("location").set(locMap)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "Added location.");
+                        }
+                    });
+        } else {
+            Log.e(TAG, "Entered null location");
+        }
     }
 
 }
