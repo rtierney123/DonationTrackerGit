@@ -26,7 +26,7 @@ import java.util.Map;
 public class FirebaseLocationHandler {
     private String TAG = "FirebaseLocationHandler";
     private Location locationCallback;
-    private ArrayList<Location> locationArray;
+    private ArrayList<Location> locationArray = new ArrayList<>();
 
     public Location getLocation(String name){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -77,7 +77,7 @@ public class FirebaseLocationHandler {
     public ArrayList<Location> getLocations(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection( "location" ).whereEqualTo( "name", true )
+        db.collection( "location" )
                 .get().addOnSuccessListener( new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot documentSnapshots) {

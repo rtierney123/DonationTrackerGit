@@ -15,9 +15,7 @@ public class StartUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_startup );
-
-        FirebaseLocationHandler handler = new FirebaseLocationHandler();
-        handler.getLocation( "AFD Station 4" );
+        
         toLoginPageButton = (Button) findViewById(R.id.loginButton);
         toLoginPageButton.setOnClickListener((view) -> {
             Intent intent = new Intent(StartUpActivity.this, LoginActivity.class);
