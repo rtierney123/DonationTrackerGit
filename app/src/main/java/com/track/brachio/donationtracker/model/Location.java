@@ -10,6 +10,10 @@ public class Location {
     private String website;
     private Address address;
 
+    public Location (){
+
+    }
+
     public Location (String i, String n, double lat, double lon, String t, String ph, String web, Address add){
         id = i;
         name = n;
