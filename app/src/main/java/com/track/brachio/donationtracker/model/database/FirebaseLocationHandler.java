@@ -12,6 +12,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.track.brachio.donationtracker.LocationListActivity;
 import com.track.brachio.donationtracker.LoginActivity;
 import com.track.brachio.donationtracker.model.Address;
 import com.track.brachio.donationtracker.model.Location;
@@ -74,7 +75,7 @@ public class FirebaseLocationHandler {
         return locationCallback;
     }
 
-    public ArrayList<Location> getLocations(){
+    public void getLocations(LocationListActivity locListAct){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection( "location" )
@@ -110,17 +111,17 @@ public class FirebaseLocationHandler {
                         website = (String) doc.get("website");
                         streetAddress = (String) doc.get("address");
                         city = (String) doc.get("city");
-                        state = (String) doc.get("city");
+                        state = (String) doc.get("state");
                         zip = (Long) doc.get("zip");
                         Address address = new Address(streetAddress, city, state, zip);
                         locationCallback = new Location(id, name, longitude, latitude, type, phone, website, address);
                         locationArray.add(locationCallback);
                     }
+                    locListAct.populateLocationList(locationArray);
 
                 }
             }
         } );
-        return locationArray;
     }
 
     public void addLocation(Location location)  {

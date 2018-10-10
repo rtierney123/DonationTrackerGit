@@ -10,12 +10,19 @@ import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
 public class StartUpActivity extends AppCompatActivity {
     Button toLoginPageButton;
     Button toRegisterPageButton;
+    Button toGuestPageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_startup );
-        
+
+        toGuestPageButton = (Button) findViewById(R.id.guestButton);
+        toGuestPageButton.setOnClickListener((view) -> {
+            Intent intent = new Intent(StartUpActivity.this, DonatorMainActivity.class);
+            startActivity(intent);
+        });
+
         toLoginPageButton = (Button) findViewById(R.id.loginButton);
         toLoginPageButton.setOnClickListener((view) -> {
             Intent intent = new Intent(StartUpActivity.this, LoginActivity.class);

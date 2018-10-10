@@ -33,7 +33,10 @@
             android:label="@string/title_activity_admin_main" />
         <activity
             android:name=".ManagerMainActivity"
-            android:label="@string/title_activity_manager_main"></activity>
+            android:label="@string/title_activity_manager_main" />
+        <activity android:name=".LocationListActivity">
+
+        </activity>
     </application>
 
 </manifest>
