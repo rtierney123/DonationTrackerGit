@@ -13,9 +13,12 @@ import android.widget.TextView;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
+import com.track.brachio.donationtracker.model.singleton.CurrentLocation;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 import com.track.brachio.donationtracker.model.LocationType;
+import com.track.brachio.donationtracker.model.Location;
+
 
 
 //Displays specific location information
@@ -31,6 +34,7 @@ public class LocationActivity extends AppCompatActivity {
     private TextView locationType;
     private Button backButton;
     //How do we incorporate the singleton?
+    Location currentLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,17 @@ public class LocationActivity extends AppCompatActivity {
 
         FirebaseLocationHandler handler = new FirebaseLocationHandler();
 
-        
+        currentLocation = CurrentLocation.getInstance().getLocation();
+
+        locationName.setText(currentLocation.getName());
+        longitude.setText(Double.toString(currentLocation.getLongitude()));
+        latitude.setText(Double.toString(currentLocation.getLatitude()));
+        address.setText(currentLocation.getAddress().toString());
+        phone.setText(currentLocation.getPhone());
+        website.setText(currentLocation.getWebsite());
+        //locationType.setText(currentLocation.getTypebyString());
+
+
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
