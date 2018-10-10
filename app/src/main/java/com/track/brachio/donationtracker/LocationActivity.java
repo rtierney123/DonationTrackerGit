@@ -69,8 +69,8 @@ public class LocationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("Location", "Location page canceled");
-                //IDK where this should go, put it to donator for now
-                Intent intent = new Intent(LocationActivity.this, DonatorMainActivity.class);
+                //IDK where this should go, put it to LocationListActivity for now
+                Intent intent = new Intent(LocationActivity.this, LocationListActivity.class);
                 startActivity(intent);
             }
         });
