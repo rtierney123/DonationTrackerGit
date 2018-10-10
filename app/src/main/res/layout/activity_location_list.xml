@@ -15,4 +15,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listOfLocations"
+        android:layout_width="368dp"
+        android:layout_height="224dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="176dp" />
+
 </android.support.constraint.ConstraintLayout>
