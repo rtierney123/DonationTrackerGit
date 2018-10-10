@@ -45,4 +45,9 @@ public class Address {
         this.zip = zip;
     }
 
+    public String toString() {
+        String address = streetAddress + ", " + city + ", " + state + " " + Double.toString(zip);
+        return address;
+    }
+
 }

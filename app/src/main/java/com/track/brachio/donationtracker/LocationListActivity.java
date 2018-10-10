@@ -1,3 +1,4 @@
+
 package com.track.brachio.donationtracker;
 
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 
 public class LocationListActivity extends AppCompatActivity {
     private ArrayList<Location> locations;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -19,10 +21,11 @@ public class LocationListActivity extends AppCompatActivity {
         handler.getLocations( this );
     }
 
-    public void populateLocationList(ArrayList<Location> locs){
+    public void populateLocationList(ArrayList<Location> locs) {
         locations = locs;
 
         //TODO add junk here to take the location array an turn it into displayed list (probably with Recycle view and an adapter)
 
     }
 }
+
