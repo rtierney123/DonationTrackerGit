@@ -1,23 +1,14 @@
 package com.track.brachio.donationtracker.model.database;
 
-import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.track.brachio.donationtracker.LocationListActivity;
-import com.track.brachio.donationtracker.LoginActivity;
 import com.track.brachio.donationtracker.model.Address;
 import com.track.brachio.donationtracker.model.Location;
-import com.track.brachio.donationtracker.model.User;
-import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -117,7 +108,7 @@ public class FirebaseLocationHandler {
                         locationCallback = new Location(id, name, longitude, latitude, type, phone, website, address);
                         locationArray.add(locationCallback);
                     }
-                    locListAct.populateLocationList(locationArray);
+                    locListAct.populateRecycleView(locationArray);
 
                 }
             }
