@@ -2,6 +2,7 @@
 package com.track.brachio.donationtracker;
 
 import android.content.Context;
+import android.util.Log;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Button;
 
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
@@ -24,6 +26,7 @@ public class LocationListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    private Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class LocationListActivity extends AppCompatActivity {
         handler.getLocations( this );
 
         recyclerView = findViewById(R.id.listOfLocations);
+        backButton = findViewById(R.id.locationListBackButton);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
@@ -41,6 +45,16 @@ public class LocationListActivity extends AppCompatActivity {
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("LocationList", "Back");
+                //putting it to donator main activity for now
+                Intent intent = new Intent(LocationListActivity.this, DonatorMainActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
