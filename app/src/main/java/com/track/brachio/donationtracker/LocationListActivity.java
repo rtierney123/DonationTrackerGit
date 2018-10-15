@@ -13,11 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.util.List;
 
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
 
 import java.util.ArrayList;
+
+
 
 
 public class LocationListActivity extends AppCompatActivity {
@@ -66,7 +71,12 @@ public class LocationListActivity extends AppCompatActivity {
         locations = locs;
 
         // populate view based on locations and adapter specifications
-        adapter = new LocationListAdapter(locations);
+        adapter = new LocationListAdapter(locations, new LocationListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Location item) {
+                Toast.makeText(LocationListActivity.this, "Item Clicked", Toast.LENGTH_LONG).show();
+            }
+        });
         recyclerView.setAdapter(adapter);
 
         //TODO add junk here to take the location array an turn it into displayed list (probably with Recycle view and an adapter
@@ -76,6 +86,7 @@ public class LocationListActivity extends AppCompatActivity {
     private static class LocationListAdapter extends RecyclerView.Adapter<LocationListAdapter.LocationViewHolder>{
         private ArrayList<Location> locations;
         private View view;
+        private final OnItemClickListener locationListener;
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
         // you provide access to all the views for a data item in a view holder
@@ -83,17 +94,40 @@ public class LocationListActivity extends AppCompatActivity {
             // each data item is just a string in this case
             private TextView nameText;
             private TextView cityText;
+            private View v;
             public LocationViewHolder(View v) {
                 super(v);
+                this.v = v;
                 nameText = (TextView) v.findViewById(R.id.location_name_adapter);
                 cityText = (TextView) v.findViewById(R.id.locaton_city_adapter);
             }
+
+            public void bind(final Location item, final OnItemClickListener listener) {
+//                nameText.setText("Testing");
+//                cityText.setText("Testing");
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        nameText.setText("Testing");
+                        listener.onItemClick(item);
+                    }
+                });
+            }
         }
 
-        // Provide a suitable constructor (depends on the kind of dataset)
-        public LocationListAdapter(ArrayList<Location> array) {
-            locations = array;
+        public interface OnItemClickListener {
+            void onItemClick(Location item);
         }
+
+
+        public LocationListAdapter(ArrayList<Location> array, OnItemClickListener listener) {
+            locations = array;
+            locationListener = listener;
+        }
+        // Provide a suitable constructor (depends on the kind of dataset)
+//        public LocationListAdapter(ArrayList<Location> array) {
+//            locations = array;
+//        }
 
         // Create new views (invoked by the layout manager)
         // Create new views (invoked by the layout manager)
@@ -116,13 +150,14 @@ public class LocationListActivity extends AppCompatActivity {
             // - replace the contents of the view with that element
             holder.nameText.setText(locations.get(position).getName());
             holder.cityText.setText(locations.get(position).getAddress().getCity());
+            holder.bind(locations.get(position), locationListener);
 
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //TODO add intent to next page
-                }
-            });
+//            view.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    //TODO add intent to next page
+//                }
+//            });
 
         }
 
@@ -131,6 +166,7 @@ public class LocationListActivity extends AppCompatActivity {
         public int getItemCount() {
             return locations.size();
         }
+
 
     }
 }
