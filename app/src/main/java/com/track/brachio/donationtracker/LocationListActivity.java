@@ -78,7 +78,6 @@ public class LocationListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(Location item) {
                 CurrentLocation.getInstance().setLocation(item);
-                Toast.makeText(LocationListActivity.this, "Item Clicked", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LocationListActivity.this, LocationActivity.class);
                 startActivity(intent);
             }

@@ -60,7 +60,7 @@ public class LocationActivity extends AppCompatActivity {
             address.setText(currentLocation.getAddress().toString());
             phone.setText(currentLocation.getPhone());
             website.setText(currentLocation.getWebsite());
-            //locationType.setText(currentLocation.getTypebyString());
+            locationType.setText(currentLocation.getStringLocationType());
         }
 
 

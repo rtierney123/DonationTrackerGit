@@ -5,167 +5,193 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="22dp"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Location: "
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/locationNameID"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="34dp" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/locationNameID"
-        android:layout_width="133dp"
-        android:layout_height="22dp"
-        android:layout_marginBottom="18dp"
-        android:layout_marginTop="34dp"
-        app:layout_constraintBottom_toTopOf="@+id/locationTypeID"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="78dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="29dp">
 
-    <Button
-        android:id="@+id/backButtonID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
-        android:text="Back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Location: "
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/locationNameID"
+                app:layout_constraintHorizontal_bias="0.021"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="437dp" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="58dp"
-        android:layout_height="19dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="16dp"
-        android:text="Latitude:"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/latitudeID"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="92dp" />
+            <TextView
+                android:id="@+id/locationNameID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:layout_marginTop="34dp"
+                android:text="locationName"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/locationTypeID"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:layout_editor_absoluteX="78dp" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:layout_marginStart="16dp"
-        android:text="Longitude:"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/longitudeID"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="111dp" />
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginStart="16dp"
+                android:text="Location Type:"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/locationTypeID"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="73dp" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:layout_marginStart="16dp"
-        android:text="Phone Number:"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/phoneID"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="149dp" />
+            <TextView
+                android:id="@+id/locationTypeID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Location Type:"
+                app:layout_constraintBottom_toTopOf="@+id/phoneID"
+                app:layout_constraintTop_toTopOf="@+id/textView11"
+                app:layout_constraintVertical_bias="0.0"
+                tools:layout_editor_absoluteX="112dp" />
 
-    <TextView
-        android:id="@+id/longitudeID"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:text="Longitude:"
-        app:layout_constraintBottom_toTopOf="@+id/addressID"
-        app:layout_constraintTop_toBottomOf="@+id/locationTypeID"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="92dp" />
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="16dp"
+                android:text="Latitude:"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/latitudeID"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="92dp" />
 
-    <TextView
-        android:id="@+id/latitudeID"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:text="Latitude:"
-        app:layout_constraintBottom_toTopOf="@+id/longitudeID"
-        app:layout_constraintTop_toBottomOf="@+id/locationTypeID"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="82dp" />
+            <TextView
+                android:id="@+id/latitudeID"
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:text="Latitude:"
+                app:layout_constraintBottom_toTopOf="@+id/longitudeID"
+                app:layout_constraintTop_toBottomOf="@+id/locationTypeID"
+                app:layout_constraintVertical_bias="0.0"
+                tools:layout_editor_absoluteX="82dp" />
 
-    <TextView
-        android:id="@+id/phoneID"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/websiteID"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.993"
-        tools:layout_editor_absoluteX="121dp" />
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="16dp"
+                android:text="Longitude:"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/longitudeID"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="111dp" />
 
-    <TextView
-        android:id="@+id/addressID"
-        android:layout_width="wrap_content"
-        android:layout_height="18dp"
-        android:text="Address:"
-        app:layout_constraintBottom_toTopOf="@+id/phoneID"
-        app:layout_constraintTop_toBottomOf="@+id/locationTypeID"
-        app:layout_constraintVertical_bias="0.95"
-        tools:layout_editor_absoluteX="82dp" />
+            <TextView
+                android:id="@+id/longitudeID"
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:text="Longitude:"
+                app:layout_constraintBottom_toTopOf="@+id/addressID"
+                app:layout_constraintTop_toBottomOf="@+id/locationTypeID"
+                app:layout_constraintVertical_bias="1.0"
+                tools:layout_editor_absoluteX="92dp" />
 
-    <TextView
-        android:id="@+id/locationTypeID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Location Type:"
-        app:layout_constraintBottom_toTopOf="@+id/phoneID"
-        app:layout_constraintTop_toTopOf="@+id/textView11"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="112dp" />
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="16dp"
+                android:text="Phone Number:"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/phoneID"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="149dp" />
 
-    <TextView
-        android:id="@+id/websiteID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
-        tools:layout_editor_absoluteX="82dp" />
+            <TextView
+                android:id="@+id/phoneID"
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toTopOf="@+id/websiteID"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.993"
+                tools:layout_editor_absoluteX="121dp" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginStart="16dp"
-        android:text="Address:"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/addressID"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="130dp" />
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:layout_marginEnd="13dp"
+                android:layout_marginStart="16dp"
+                android:text="Address:"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/addressID"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="130dp" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginStart="16dp"
-        android:text="Location Type:"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/locationTypeID"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="73dp" />
+            <TextView
+                android:id="@+id/addressID"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:text="Address:"
+                app:layout_constraintBottom_toTopOf="@+id/phoneID"
+                app:layout_constraintTop_toBottomOf="@+id/locationTypeID"
+                app:layout_constraintVertical_bias="0.95"
+                tools:layout_editor_absoluteX="82dp" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
-        android:layout_marginStart="16dp"
-        android:text="Website:"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/websiteID"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="170dp" />
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="14dp"
+                android:layout_marginStart="16dp"
+                android:text="Website:"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/websiteID"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="170dp" />
+
+            <TextView
+                android:id="@+id/websiteID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="@+id/textView12"
+                app:layout_constraintTop_toBottomOf="@+id/textView9"
+                tools:layout_editor_absoluteX="82dp" />
+
+            <Button
+                android:id="@+id/backButtonID"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:text="Back"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="334dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>
