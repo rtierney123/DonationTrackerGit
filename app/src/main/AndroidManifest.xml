@@ -36,7 +36,11 @@
             android:label="@string/title_activity_manager_main" />
         <activity android:name=".LocationListActivity">
 
+
         </activity>
+        <activity
+            android:name=".LocationActivity"
+            android:label=".LocationActivity" />
     </application>
 
 </manifest>
