@@ -19,6 +19,7 @@ import java.util.List;
 
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
+import com.track.brachio.donationtracker.model.singleton.CurrentLocation;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,7 @@ public class LocationListActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private Button backButton;
+    private int thePosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,7 @@ public class LocationListActivity extends AppCompatActivity {
 
     }
 
+
     private void setupRecyclerView(RecyclerView view) {
 
     }
@@ -74,7 +77,10 @@ public class LocationListActivity extends AppCompatActivity {
         adapter = new LocationListAdapter(locations, new LocationListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Location item) {
+                CurrentLocation.getInstance().setLocation(item);
                 Toast.makeText(LocationListActivity.this, "Item Clicked", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(LocationListActivity.this, LocationActivity.class);
+                startActivity(intent);
             }
         });
         recyclerView.setAdapter(adapter);
@@ -103,12 +109,10 @@ public class LocationListActivity extends AppCompatActivity {
             }
 
             public void bind(final Location item, final OnItemClickListener listener) {
-//                nameText.setText("Testing");
-//                cityText.setText("Testing");
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        nameText.setText("Testing");
+                        Log.d("LocationListActivity", "To Location");
                         listener.onItemClick(item);
                     }
                 });
@@ -166,6 +170,7 @@ public class LocationListActivity extends AppCompatActivity {
         public int getItemCount() {
             return locations.size();
         }
+
 
 
     }
