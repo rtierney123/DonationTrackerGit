@@ -53,14 +53,16 @@ public class LocationActivity extends AppCompatActivity {
         FirebaseLocationHandler handler = new FirebaseLocationHandler();
 
         currentLocation = CurrentLocation.getInstance().getLocation();
+        if (currentLocation != null) {
+            locationName.setText(currentLocation.getName());
+            longitude.setText(Double.toString(currentLocation.getLongitude()));
+            latitude.setText(Double.toString(currentLocation.getLatitude()));
+            address.setText(currentLocation.getAddress().toString());
+            phone.setText(currentLocation.getPhone());
+            website.setText(currentLocation.getWebsite());
+            locationType.setText(currentLocation.getStringLocationType());
+        }
 
-        locationName.setText(currentLocation.getName());
-        longitude.setText(Double.toString(currentLocation.getLongitude()));
-        latitude.setText(Double.toString(currentLocation.getLatitude()));
-        address.setText(currentLocation.getAddress().toString());
-        phone.setText(currentLocation.getPhone());
-        website.setText(currentLocation.getWebsite());
-        //locationType.setText(currentLocation.getTypebyString());
 
 
 

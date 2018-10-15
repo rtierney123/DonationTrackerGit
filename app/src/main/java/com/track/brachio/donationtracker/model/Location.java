@@ -6,6 +6,7 @@ public class Location {
     private double latitude;
     private double longitude;
     private LocationType type;
+    private String stringLocationType;
     private String phone;
     private String website;
     private Address address;
@@ -20,9 +21,14 @@ public class Location {
         latitude = lat;
         longitude = lon;
         type = getTypebyString( t );
+        stringLocationType = t;
         phone = ph;
         website = web;
         address = add;
+    }
+
+    public String getStringLocationType() {
+        return stringLocationType;
     }
     public String getId(){
         return id;
