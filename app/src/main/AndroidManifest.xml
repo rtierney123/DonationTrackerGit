@@ -34,10 +34,9 @@
         <activity
             android:name=".ManagerMainActivity"
             android:label="@string/title_activity_manager_main" />
-        <activity android:name=".LocationListActivity">
-
-
-        </activity>
+        <activity
+            android:name=".LocationListActivity"
+            android:label="LocationListActivity"/>
         <activity
             android:name=".LocationActivity"
             android:label=".LocationActivity" />

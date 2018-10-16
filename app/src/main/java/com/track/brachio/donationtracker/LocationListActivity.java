@@ -40,8 +40,10 @@ public class LocationListActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_location_list );
 
-        FirebaseLocationHandler handler = new FirebaseLocationHandler();
-        handler.getLocations( this );
+        if (locations == null) {
+            FirebaseLocationHandler handler = new FirebaseLocationHandler();
+            handler.getLocations( this );
+        }
 
         recyclerView = findViewById(R.id.listOfLocations);
         backButton = findViewById(R.id.locationListBackButton);
