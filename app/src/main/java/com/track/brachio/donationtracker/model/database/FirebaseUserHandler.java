@@ -266,7 +266,14 @@ public class FirebaseUserHandler {
                 }
             } );
         }
+    }
 
+    private void getLocations(User user){
+        if (user.getUserType() == UserType.Volunteer){
+
+        } else if (user.getUserType() == UserType.Manager){
+
+        }
 
     }
 
