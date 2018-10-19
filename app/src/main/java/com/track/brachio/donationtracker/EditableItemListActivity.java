@@ -109,7 +109,7 @@ public class EditableItemListActivity extends AppCompatActivity {
 
         // Provide a suitable constructor (depends on the kind of dataset)
         public ItemListAdapter(ArrayList<Item> array) {
-            items = array;
+            this.items = array;
         }
 
         // Create new views (invoked by the layout manager)
