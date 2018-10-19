@@ -20,10 +20,10 @@ public class FirebaseLocationHandler {
     private Location locationCallback;
     private ArrayList<Location> locationArray = new ArrayList<>();
 
-    public Location getLocation(String name){
+    public Location getLocation(String locationID){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection( "location" ).whereEqualTo( "name", name )
+        db.collection( "location" ).whereEqualTo( "locationID", locationID )
                 .get().addOnSuccessListener( new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot documentSnapshots) {
@@ -46,7 +46,7 @@ public class FirebaseLocationHandler {
                     Log.d(TAG, "onSucccess: Got Location");
 
                     for (DocumentSnapshot doc : retDocs) {
-                        id = (String) doc.getId();
+                        id = (String) doc.get("locationID");
                         name  = (String) doc.get( "name" );
                         longitude = (Double) doc.get( "longitude" );
                         latitude  = (Double) doc.get( "latitude" );
@@ -93,7 +93,7 @@ public class FirebaseLocationHandler {
 
                     locationArray.clear();
                     for (DocumentSnapshot doc : retDocs) {
-                        id = (String) doc.getId();
+                        id = (String) doc.get("locationID");
                         name  = (String) doc.get( "name" );
                         longitude = (Double) doc.get( "longitude" );
                         latitude  = (Double) doc.get( "latitude" );
