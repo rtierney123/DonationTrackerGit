@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Item {
     private Date dateCreated;
-    private Location location;
+    private String locationID;
     private String shortDescript;
     private String longDescript;
     private double dollarValue;
@@ -15,12 +15,23 @@ public class Item {
     private ArrayList<String> comments;
     private Bitmap picture;
 
+    public Item() {
+
+    }
+
+    public Item(Date d, String l, double val, String cat){
+        dateCreated = d;
+        locationID = l;
+        dollarValue = val;
+        category = cat;
+    }
+
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLocation(String locationID) {
+        this.locationID = locationID;
     }
 
     public void setShortDescript(String shortDescript) {
@@ -51,8 +62,8 @@ public class Item {
         return dateCreated;
     }
 
-    public Location getLocation() {
-        return location;
+    public String getLocation() {
+        return locationID;
     }
 
     public String getShortDescript() {

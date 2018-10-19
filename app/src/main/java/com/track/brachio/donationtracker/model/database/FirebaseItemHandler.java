@@ -19,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.WriteBatch;
+import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.User;
 /*
 import com.google.api.core.ApiFuture;
@@ -26,6 +27,7 @@ import com.google.api.core.ApiFutureCallback;
 import com.google.api.core.ApiFutures;
 */
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,28 +37,33 @@ public class FirebaseItemHandler {
 
     private FirebaseFirestore mFirestore;
     private String TAG = "FirebaseItemHandler";
-    /*
-    public ArrayList<User> getUsers(){
+    private ArrayList<Item> items;
+
+    public void getAllItems(){
         // Firestore
         mFirestore = FirebaseFirestore.getInstance();
-        db.collection("users")
+        db.collection("items")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        UserHolder holder = UserHolder.getInstance();
-                        ArrayList<User> users = holder.getUsers();
+
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                String userId = document.getId();
-                                String username = document.getString("username");
-                                String email = document.getString("email");
-                                String password = document.getString("password");
-                                String userType = document.getString("usertype");
-                                User user = new User(userId, username, email, password, userType);
-                                users.add(user);
+
+                                Date date = document.getDate("date");
+                                String locationID = document.getString("locationID");
+                                Double cost = document.getDouble( "cost" );
+                                String category = document.getString("category");
+                                Item item = new Item(date, locationID, cost, category);
+
+                                String shortDescript = document.getString("shortDescript");
+                                String longDescript = document.getString("longDescript");
+                                //TODO How to get array and picture?
+
+                                items.add(item);
 
                             }
                         } else {
@@ -64,9 +71,8 @@ public class FirebaseItemHandler {
                         }
                     }
                 });
-        return UserHolder.getInstance().getUsers();
     }
-    */
+
 
     public void addUser(User user){
         /*

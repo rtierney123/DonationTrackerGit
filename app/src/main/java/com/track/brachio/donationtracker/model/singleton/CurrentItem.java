@@ -3,8 +3,10 @@ package com.track.brachio.donationtracker.model.singleton;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.Location;
 
+import java.util.Date;
+
 public class CurrentItem {
-    
+
     // static variable single_instance of type CurrentUser
     private static CurrentItem single_instance = null;
 
