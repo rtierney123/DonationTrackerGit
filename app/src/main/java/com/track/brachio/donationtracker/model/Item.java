@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Item {
+
+    private String name;
     private Date dateCreated;
     private String locationID;
     private String shortDescript;
@@ -19,11 +21,20 @@ public class Item {
 
     }
 
-    public Item(Date d, String l, double val, String cat){
+    public Item(String n, Date d, String l, double val, String cat){
+        name = n;
         dateCreated = d;
         locationID = l;
         dollarValue = val;
         category = cat;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setDateCreated(Date dateCreated) {

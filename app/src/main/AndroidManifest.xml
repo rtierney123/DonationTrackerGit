@@ -39,7 +39,10 @@
             android:label="LocationListActivity"/>
         <activity
             android:name=".LocationActivity"
-            android:label=".LocationActivity" />
+             android:label=".LocationActivity" />
+        <activity
+            android:name=".EditableItemListActivity"
+            android:label=".EditableItemListActivity" />
     </application>
 
 </manifest>

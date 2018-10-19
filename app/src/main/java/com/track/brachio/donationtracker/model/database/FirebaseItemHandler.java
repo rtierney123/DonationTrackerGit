@@ -8,19 +8,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.ErrorCodes;
-import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.WriteBatch;
+import com.track.brachio.donationtracker.EditableItemListActivity;
 import com.track.brachio.donationtracker.model.Item;
-import com.track.brachio.donationtracker.model.User;
 /*
 import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutureCallback;
@@ -37,11 +30,12 @@ public class FirebaseItemHandler {
 
     private FirebaseFirestore mFirestore;
     private String TAG = "FirebaseItemHandler";
-    private ArrayList<Item> items;
+    private ArrayList<Item> items = new ArrayList<>();
 
-    public void getAllItems(){
+    public void getAllItems(EditableItemListActivity activity){
         // Firestore
         mFirestore = FirebaseFirestore.getInstance();
+        items.clear();
         db.collection("items")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -53,15 +47,52 @@ public class FirebaseItemHandler {
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 
+                                String name = document.getString("name");
                                 Date date = document.getDate("date");
                                 String locationID = document.getString("locationID");
                                 Double cost = document.getDouble( "cost" );
                                 String category = document.getString("category");
-                                Item item = new Item(date, locationID, cost, category);
+                                Item item = new Item(name, date, locationID, cost, category);
 
                                 String shortDescript = document.getString("shortDescript");
                                 String longDescript = document.getString("longDescript");
-                                //TODO How to get array and picture?
+                                //TODO How to get comment array and picture?
+
+                                items.add(item);
+
+                            }
+                            activity.populateRecycleView(items);
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+    }
+
+    public void getItembyLocation(Item item) {
+        mFirestore = FirebaseFirestore.getInstance();
+        db.collection("items")
+                .whereEqualTo( "locationID", item.getLocation() )
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+
+                                String name = document.getString("name");
+                                Date date = document.getDate("date");
+                                String locationID = document.getString("locationID");
+                                Double cost = document.getDouble( "cost" );
+                                String category = document.getString("category");
+                                Item item = new Item(name, date, locationID, cost, category);
+
+                                String shortDescript = document.getString("shortDescript");
+                                String longDescript = document.getString("longDescript");
+                                //TODO How to get comment array and picture?
 
                                 items.add(item);
 
@@ -74,17 +105,20 @@ public class FirebaseItemHandler {
     }
 
 
-    public void addUser(User user){
-        /*
-        Map<String, Object> userMap = new HashMap<>();
-        userMap.put("username", user.getUsername());
-        userMap.put("password", user.getPassword());
-        userMap.put("email", user.getEmail());
-        userMap.put("usertype", user.getUserType().name());
+    public void addItem(Item item){
+
+        Map<String, Object> itemMap = new HashMap<>();
+        itemMap.put("name", item.getName());
+        itemMap.put("date", item.getDateCreated());
+        itemMap.put("locationID", item.getLocation());
+        itemMap.put("cost", item.getDollarValue());
+        itemMap.put("category", item.getCategory());
+        itemMap.put("shortDescript", item.getShortDescript());
+        itemMap.put("longDescript", item.getLongDescript());
 
         // Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
+        db.collection("items")
+                .add(itemMap)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
@@ -97,6 +131,6 @@ public class FirebaseItemHandler {
                         Log.w(TAG, "Error adding user", e);
                     }
                 });
-                */
+
     }
 }
