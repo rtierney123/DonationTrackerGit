@@ -14,6 +14,7 @@ import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.common.util.concurrent.Callables;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -186,7 +187,7 @@ public class FirebaseUserHandler {
     public void signInUser(String email, String password, LoginActivity login, Activity activity){
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (!email.isEmpty() && !password.isEmpty()){
-            auth.signInWithEmailAndPassword(email, password)
+           Task task = auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {

@@ -9,8 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
+import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
@@ -65,19 +67,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void goToCorrectActivity(){
-        User currentUser = CurrentUser.getInstance().getUser();
-        Intent intent = new Intent(LoginActivity.this, DonatorMainActivity.class);;
-        if (currentUser.getUserType() == UserType.Donator) {
-            intent = new Intent(LoginActivity.this, DonatorMainActivity.class);
-        } else if (currentUser.getUserType() == UserType.Admin){
-            intent = new Intent(LoginActivity.this, AdminMainActivity.class);
-        } else if (currentUser.getUserType() == UserType.Volunteer) {
-            intent = new Intent(LoginActivity.this, VolunteerMainActivity.class);
-        } else if (currentUser.getUserType() == UserType.Manager) {
-            intent = new Intent(LoginActivity.this, ManagerMainActivity.class);
-        }
-        startActivity(intent);
+        PersistanceManager manager = new PersistanceManager(this);
+        manager.loadAppOnStart( this );
+
     }
+
+
 
 
 }
