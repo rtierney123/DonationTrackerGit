@@ -3,18 +3,19 @@ package com.track.brachio.donationtracker.model.singleton;
 import com.track.brachio.donationtracker.model.Location;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class AllLocations {
     // static variable single_instance of type AllLocations
     private static AllLocations single_instance = null;
 
-    // current User
-    private ArrayList<Location> locations;
-
+    private HashMap<String, Location> locMap;
     // private constructor restricted to this class itself
     private AllLocations()
     {
-        locations = new ArrayList<Location>();
+        locMap = new LinkedHashMap<>( );
     }
 
     // static method to create instance of AllLocations class
@@ -26,11 +27,18 @@ public class AllLocations {
         return single_instance;
     }
 
-    public ArrayList<Location> getLocations() {
-        return locations;
+
+    public HashMap<String, Location> getLocationMap(){
+        return locMap;
     }
 
-    public void setLocations(ArrayList<Location> locations) {
-        this.locations = locations;
+    public void setLocationMap(HashMap<String, Location> map){
+        locMap = map;
+    }
+
+    public ArrayList<Location> getLocationArray(){
+        Collection<Location> collect = locMap.values();
+        ArrayList<Location> listOfValues = new ArrayList<Location>(collect);
+        return listOfValues;
     }
 }

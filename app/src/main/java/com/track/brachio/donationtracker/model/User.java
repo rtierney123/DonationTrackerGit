@@ -4,6 +4,8 @@ import android.text.TextUtils;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.ServerTimestamp;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class User {
     private UserType userType;
     private static List<UserType> legalUserTypes = Arrays.asList(UserType.values());
     private @ServerTimestamp Date timestamp;
+    private ArrayList<String> locationIDs;
 
     public User(FirebaseUser user, UserType type){
         this.userId = user.getUid();
@@ -38,6 +41,15 @@ public class User {
         this.email = em;
         userType = stringToUserType( type );
     }
+
+    public User(String firstName, String lastName, String em, String type, ArrayList<String> ids){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = em;
+        userType = stringToUserType( type );
+        locationIDs = ids;
+    }
+
 
 
     public User(){
@@ -61,6 +73,15 @@ public class User {
         }
         return 0;
     }
+
+    public ArrayList<String> getLocations() {
+        return locationIDs;
+    }
+
+    public void setLocations(ArrayList<String> locations) {
+        this.locationIDs = locations;
+    }
+
     public void setEmail(String em){
         email = em;
     }

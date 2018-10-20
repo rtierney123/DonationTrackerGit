@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import com.track.brachio.donationtracker.model.Location;
@@ -51,6 +53,8 @@ public class LocationListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        populateRecycleView();
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +65,7 @@ public class LocationListActivity extends AppCompatActivity {
             }
         });
 
-        populateRecycleView();
+
     }
 
 
@@ -70,7 +74,7 @@ public class LocationListActivity extends AppCompatActivity {
     }
 
     public void populateRecycleView() {
-        locations = AllLocations.getInstance().getLocations();
+       locations = AllLocations.getInstance().getLocationArray();
 
         // populate view based on locations and adapter specifications
         adapter = new LocationListAdapter(locations, new LocationListAdapter.OnItemClickListener() {

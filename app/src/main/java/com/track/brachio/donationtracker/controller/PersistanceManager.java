@@ -2,30 +2,21 @@ package com.track.brachio.donationtracker.controller;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.track.brachio.donationtracker.AdminMainActivity;
 import com.track.brachio.donationtracker.DonatorMainActivity;
-import com.track.brachio.donationtracker.LoginActivity;
 import com.track.brachio.donationtracker.ManagerMainActivity;
 import com.track.brachio.donationtracker.VolunteerMainActivity;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
+import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
+import com.track.brachio.donationtracker.model.singleton.UserLocations;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.HashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -53,6 +44,7 @@ public class PersistanceManager {
         //Get all locations from db so user can view all locations
         FirebaseLocationHandler locHandler = new FirebaseLocationHandler();
         locHandler.getAllLocations(this);
+
     }
 
     private void initializeVariables(){
@@ -61,7 +53,7 @@ public class PersistanceManager {
                 60L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
     }
 
-    public static ThreadPoolExecutor getExecutor(){
+    public ThreadPoolExecutor getExecutor(){
         return executor;
     }
 
@@ -89,6 +81,14 @@ public class PersistanceManager {
                         } else if (currentUser.getUserType() == UserType.Admin){
                             intent = new Intent(activity, AdminMainActivity.class);
                         } else if (currentUser.getUserType() == UserType.Volunteer) {
+                            User user = CurrentUser.getInstance().getUser();
+                            HashMap<String, Location> map = AllLocations.getInstance().getLocationMap();
+                            ArrayList<Location> array = new ArrayList<>();
+                            ArrayList<String> ids = user.getLocations();
+                            for (String id : ids) {
+                                array.add(map.get(id));
+                            }
+                            UserLocations.getInstance().setLocations(array);
                             intent = new Intent(activity, VolunteerMainActivity.class);
                         } else if (currentUser.getUserType() == UserType.Manager) {
                             intent = new Intent(activity, ManagerMainActivity.class);

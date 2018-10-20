@@ -1,47 +1,27 @@
 package com.track.brachio.donationtracker.model.database;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Debug;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.ErrorCodes;
-import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.common.util.concurrent.Callables;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.WriteBatch;
-import com.track.brachio.donationtracker.AdminMainActivity;
-import com.track.brachio.donationtracker.DonatorMainActivity;
 import com.track.brachio.donationtracker.LoginActivity;
-import com.track.brachio.donationtracker.ManagerMainActivity;
 import com.track.brachio.donationtracker.RegistrationActivity;
-import com.track.brachio.donationtracker.VolunteerMainActivity;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
-import com.track.brachio.donationtracker.model.Volunteer;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
 import java.util.ArrayList;
@@ -49,7 +29,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Executor;
 
 public class FirebaseUserHandler {
     private String TAG = "FirebaseUserHandler";
@@ -268,32 +247,9 @@ public class FirebaseUserHandler {
                         }
                         UserType type = stringToUserType( userType );
                         if (type == UserType.Volunteer) {
-                            /*
-                            DocumentReference ref = db.collection("users").document("locationIDs");
-                            ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        locations.clear();
-                                        List<String> list = new ArrayList<>();
-                                        Map<String, Object> map = task.getResult().getData();
-                                        for (Map.Entry<String, Object> entry : map.entrySet()) {
-                                            locations.add(entry.getKey());
-                                            Log.d("TAG", entry.getKey());
-                                        }
-                                    }
-
-                                }
-                            });
-                            */
-                            //Getting Set of keys from HashMap
-
                             Set<String> keySet = locationHash.keySet();
-
-                            //Creating an ArrayList of keys by passing the keySet
-
                             ArrayList<String> listOfKeys = new ArrayList<String>(keySet);
-                            userCallback = new Volunteer(firstName, lastName, email, userType, listOfKeys);
+                            userCallback = new User(firstName, lastName, email, userType, listOfKeys);
                         } else {
                             userCallback = new User( firstName, lastName, email, userType );
                         }

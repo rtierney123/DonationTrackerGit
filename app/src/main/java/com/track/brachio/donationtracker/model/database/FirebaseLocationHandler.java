@@ -15,6 +15,7 @@ import com.track.brachio.donationtracker.controller.PersistanceManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -22,6 +23,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class FirebaseLocationHandler {
     private String TAG = "FirebaseLocationHandler";
     private Location locationCallback;
+    private HashMap<String, Location> locationMap = new LinkedHashMap<>(  );
     private ArrayList<Location> locationArray = new ArrayList<>();
 
     public Location getLocation(String locationID){
@@ -72,7 +74,7 @@ public class FirebaseLocationHandler {
 
     public void getAllLocations(PersistanceManager manager){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        ThreadPoolExecutor executor = PersistanceManager.getExecutor();
+        ThreadPoolExecutor executor = manager.getExecutor();
         Task task = db.collection( "location" )
                 .get().addOnSuccessListener(executor, new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -95,7 +97,7 @@ public class FirebaseLocationHandler {
                     long zip = 0;
                     Log.d(TAG, "onSucccess: Got Locations");
 
-                    locationArray.clear();
+                    locationMap.clear();
                     for (DocumentSnapshot doc : retDocs) {
                         id = (String) doc.get("locationID");
                         name  = (String) doc.get( "name" );
@@ -110,9 +112,9 @@ public class FirebaseLocationHandler {
                         zip = (Long) doc.get("zip");
                         Address address = new Address(streetAddress, city, state, zip);
                         locationCallback = new Location(id, name, longitude, latitude, type, phone, website, address);
-                        locationArray.add(locationCallback);
+                        locationMap.put(id, locationCallback);
                     }
-                    AllLocations.getInstance().setLocations( locationArray );
+                    AllLocations.getInstance().setLocationMap( locationMap );
                     manager.startExecutor();
                 }
             }
@@ -146,7 +148,7 @@ public class FirebaseLocationHandler {
                     long zip = 0;
                     Log.d(TAG, "onSucccess: Got Locations");
 
-                    locationArray.clear();
+                    locationMap.clear();
                     for (DocumentSnapshot doc : retDocs) {
                         id = (String) doc.get("locationID");
                         name  = (String) doc.get( "name" );
@@ -161,9 +163,9 @@ public class FirebaseLocationHandler {
                         zip = (Long) doc.get("zip");
                         Address address = new Address(streetAddress, city, state, zip);
                         locationCallback = new Location(id, name, longitude, latitude, type, phone, website, address);
-                        locationArray.add(locationCallback);
+                        locationMap.put(id, locationCallback);
                     }
-                    AllLocations.getInstance().setLocations( locationArray );
+                    AllLocations.getInstance().setLocationMap( locationMap );
                 }
             }
         } );
