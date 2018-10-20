@@ -25,6 +25,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -39,11 +40,14 @@ import com.track.brachio.donationtracker.RegistrationActivity;
 import com.track.brachio.donationtracker.VolunteerMainActivity;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
+import com.track.brachio.donationtracker.model.Volunteer;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Executor;
 
 public class FirebaseUserHandler {
@@ -253,13 +257,45 @@ public class FirebaseUserHandler {
                         String lastName = "";
                         String email = "";
                         String userType = "";
+                        HashMap<String, Boolean> locationHash = new HashMap<>(  );
                         for (DocumentSnapshot doc : retDocs) {
                             firstName = (String) doc.get( "firstname" );
                             lastName = (String) doc.get( "lastname" );
                             email = (String) doc.get( "email" );
                             userType = (String) doc.get( "usertype" );
+                            locationHash= (HashMap<String, Boolean>) doc.get("locationIDs");
                         }
-                        userCallback = new User( firstName, lastName, email, userType );
+                        UserType type = stringToUserType( userType );
+                        if (type == UserType.Volunteer) {
+                            /*
+                            DocumentReference ref = db.collection("users").document("locationIDs");
+                            ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        locations.clear();
+                                        List<String> list = new ArrayList<>();
+                                        Map<String, Object> map = task.getResult().getData();
+                                        for (Map.Entry<String, Object> entry : map.entrySet()) {
+                                            locations.add(entry.getKey());
+                                            Log.d("TAG", entry.getKey());
+                                        }
+                                    }
+
+                                }
+                            });
+                            */
+                            //Getting Set of keys from HashMap
+
+                            Set<String> keySet = locationHash.keySet();
+
+                            //Creating an ArrayList of keys by passing the keySet
+
+                            ArrayList<String> listOfKeys = new ArrayList<String>(keySet);
+                            userCallback = new Volunteer(firstName, lastName, email, userType, listOfKeys);
+                        } else {
+                            userCallback = new User( firstName, lastName, email, userType );
+                        }
                         CurrentUser.getInstance().setUser( userCallback );
                         login.goToCorrectActivity();
                     }
@@ -275,6 +311,16 @@ public class FirebaseUserHandler {
 
         }
 
+    }
+
+    private UserType stringToUserType(String str){
+        switch(str){
+            case "Donator" : return UserType.Donator;
+            case "Volunteer" : return UserType.Volunteer;
+            case "Manager" : return UserType.Manager;
+            case "Admin" : return UserType.Admin;
+        }
+        return null;
     }
 
 
