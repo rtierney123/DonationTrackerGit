@@ -163,7 +163,6 @@ public class FirebaseLocationHandler {
                         locationCallback = new Location(id, name, longitude, latitude, type, phone, website, address);
                         locationArray.add(locationCallback);
                     }
-                    locListAct.populateRecycleView(locationArray);
                     AllLocations.getInstance().setLocations( locationArray );
                 }
             }

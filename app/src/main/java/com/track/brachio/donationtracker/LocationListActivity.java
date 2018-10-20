@@ -19,6 +19,7 @@ import java.util.List;
 
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
+import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentLocation;
 
 import java.util.ArrayList;
@@ -40,11 +41,6 @@ public class LocationListActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_location_list );
 
-        if (locations == null) {
-            FirebaseLocationHandler handler = new FirebaseLocationHandler();
-            handler.getLocations( this );
-        }
-
         recyclerView = findViewById(R.id.listOfLocations);
         backButton = findViewById(R.id.locationListBackButton);
         // use this setting to improve performance if you know that changes
@@ -65,6 +61,7 @@ public class LocationListActivity extends AppCompatActivity {
             }
         });
 
+        populateRecycleView();
     }
 
 
@@ -72,8 +69,8 @@ public class LocationListActivity extends AppCompatActivity {
 
     }
 
-    public void populateRecycleView(ArrayList<Location> locs) {
-        locations = locs;
+    public void populateRecycleView() {
+        locations = AllLocations.getInstance().getLocations();
 
         // populate view based on locations and adapter specifications
         adapter = new LocationListAdapter(locations, new LocationListAdapter.OnItemClickListener() {

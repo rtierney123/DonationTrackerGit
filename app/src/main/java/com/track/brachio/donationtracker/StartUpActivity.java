@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
 
 public class StartUpActivity extends AppCompatActivity {
@@ -19,8 +20,8 @@ public class StartUpActivity extends AppCompatActivity {
 
         toGuestPageButton = (Button) findViewById(R.id.guestButton);
         toGuestPageButton.setOnClickListener((view) -> {
-            Intent intent = new Intent(StartUpActivity.this, DonatorMainActivity.class);
-            startActivity(intent);
+            PersistanceManager manager = new PersistanceManager(this);
+            manager.loadAppOnStart( this );
         });
 
         toLoginPageButton = (Button) findViewById(R.id.loginButton);
