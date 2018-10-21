@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
@@ -37,8 +38,8 @@ public class EditItemActivity extends AppCompatActivity {
     Item currentItem;
 
     @Override
-    protected void onCreate(Bundle savedInstanceStates) {
-        super.onCreate(savedInstanceStates);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_edit);
 
         newLocation = (EditText) findViewById(R.id.editItemLocationID);
@@ -53,6 +54,8 @@ public class EditItemActivity extends AppCompatActivity {
 
 
         FirebaseLocationHandler handler = new FirebaseLocationHandler();
+
+        //should item category be spinner?
 
         currentItem = CurrentItem.getInstance().getItem();
         if (currentItem != null) {
@@ -74,6 +77,35 @@ public class EditItemActivity extends AppCompatActivity {
                 String shortDescriptionEntered = newShortDescription.getText().toString();
                 String longDescriptionEntered = newLongDescription.getText().toString();
                 String dollarValueEntered = newDollarValue.getText().toString();
+                String commentEntered = newComments.getText().toString();
+                //spinner
+                //image
+                if (!locationEntered.isEmpty() && !locationEntered.equals(currentItem.getLocation())) {
+                    currentItem.setLocation(locationEntered);
+                }
+
+                if (!shortDescriptionEntered.isEmpty() && !shortDescriptionEntered.equals(currentItem.getShortDescript())) {
+                    currentItem.setShortDescript(shortDescriptionEntered);
+                }
+
+                if (!longDescriptionEntered.isEmpty() && !longDescriptionEntered.equals(currentItem.getLongDescript())) {
+                    currentItem.setLongDescript(longDescriptionEntered);
+                }
+
+                if (!dollarValueEntered.isEmpty() && !(Double.parseDouble(dollarValueEntered) == currentItem.getDollarValue())) {
+                    currentItem.setDollarValue(Double.parseDouble(dollarValueEntered));
+                }
+
+                if (!commentEntered.isEmpty()) {
+                    currentItem.addComment(commentEntered);
+                }
+
+                Toast.makeText( getApplicationContext(), "Item Edited", Toast.LENGTH_SHORT ).show();
+
+                Log.d("Edit Item", "Item edited");
+                Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
+                startActivity(intent);
+
             }
         });
 

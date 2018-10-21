@@ -78,9 +78,8 @@ public class EditableItemListActivity extends AppCompatActivity {
             adapter = new EditableItemListActivity.ItemListAdapter(items, new ItemListAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(Item item) {
-                    CurrentItem.getInstance().setItem(item);
-                    Toast.makeText(getApplicationContext(), "This is my Toast message!",
-                            Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(EditableItemListActivity.this, EditItemActivity.class);
+                    startActivity(intent);
                 }
             });
             recyclerView.setAdapter( adapter );

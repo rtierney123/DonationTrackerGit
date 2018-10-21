@@ -129,6 +129,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="?attr/actionModeBackground" />
+
+            <Button
+                android:id="@+id/editItemMakeChangesID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Make Changes" />
+
+            <Button
+                android:id="@+id/editItemCancelButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cancel" />
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

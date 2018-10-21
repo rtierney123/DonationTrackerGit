@@ -65,6 +65,10 @@ public class Item {
         this.comments = comments;
     }
 
+    public void addComment(String comment) {
+        comments.add(comment);
+    }
+
     public void setPicture(Bitmap picture) {
         this.picture = picture;
     }

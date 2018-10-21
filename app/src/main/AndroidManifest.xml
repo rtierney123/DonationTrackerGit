@@ -43,6 +43,9 @@
         <activity
             android:name=".EditableItemListActivity"
             android:label=".EditableItemListActivity" />
+        <activity
+            android:name=".EditItemActivity"
+            android:label=".EditItemActivity" />
     </application>
 
 </manifest>
