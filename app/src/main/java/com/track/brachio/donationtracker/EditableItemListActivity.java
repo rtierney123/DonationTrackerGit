@@ -12,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.database.FirebaseItemHandler;
+import com.track.brachio.donationtracker.model.singleton.CurrentItem;
 
 import java.util.ArrayList;
 
@@ -73,7 +75,14 @@ public class EditableItemListActivity extends AppCompatActivity {
         if (items != null) {
             // populate view based on items and adapter specifications
             //TODO add on click to ItemEditActivity
-            adapter = new EditableItemListActivity.ItemListAdapter(items);
+            adapter = new EditableItemListActivity.ItemListAdapter(items, new ItemListAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(Item item) {
+                    CurrentItem.getInstance().setItem(item);
+                    Toast.makeText(getApplicationContext(), "This is my Toast message!",
+                            Toast.LENGTH_LONG).show();
+                }
+            });
             recyclerView.setAdapter( adapter );
         } else {
             Log.d("ItemEdit", "item is null");
@@ -87,6 +96,7 @@ public class EditableItemListActivity extends AppCompatActivity {
     private static class ItemListAdapter extends RecyclerView.Adapter<EditableItemListActivity.ItemListAdapter.ItemViewHolder>{
         private ArrayList<Item> items;
         private View view;
+        private final OnItemClickListener theItemListener;
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
         // you provide access to all the views for a data item in a view holder
@@ -105,11 +115,26 @@ public class EditableItemListActivity extends AppCompatActivity {
                 valueText = (TextView) v.findViewById(R.id.item_cost_adapter);
                 categoryText = (TextView) v.findViewById(R.id.item_category_adapter);
             }
+
+            public void bind(final Item theItem, final OnItemClickListener listener) {
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("EditItemListActivity", "To Item");
+                        listener.onItemClick(theItem);
+                    }
+                });
+            }
+        }
+
+        public interface OnItemClickListener {
+            void onItemClick(Item item);
         }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public ItemListAdapter(ArrayList<Item> array) {
+        public ItemListAdapter(ArrayList<Item> array, OnItemClickListener listener) {
             this.items = array;
+            this.theItemListener = listener;
         }
 
         // Create new views (invoked by the layout manager)
@@ -135,12 +160,13 @@ public class EditableItemListActivity extends AppCompatActivity {
             holder.dateText.setText(items.get(position).getDateCreated().toString());
             holder.valueText.setText(items.get(position).getDollarValue()+"");
             holder.categoryText.setText(items.get(position).getCategory());
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //TODO add intent to next page
-                }
-            });
+            holder.bind(items.get(position), theItemListener);
+//            view.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    //TODO add intent to next page
+//                }
+//            });
 
         }
 
