@@ -25,6 +25,8 @@ import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.Item;
 
 public class EditItemActivity extends AppCompatActivity {
+    private TextView itemName;
+    private TextView dateCreated;
     private EditText newLocation;
     private EditText newShortDescription;
     private EditText newLongDescription;
@@ -42,6 +44,8 @@ public class EditItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_edit);
 
+        itemName = (TextView) findViewById(R.id.editItemNameID);
+        dateCreated = (TextView) findViewById(R.id.editItemDateCreatedID);
         newLocation = (EditText) findViewById(R.id.editItemLocationID);
         newShortDescription = (EditText) findViewById(R.id.editItemShortDescription);
         newLongDescription = (EditText) findViewById(R.id.editItemLongDescriptionID);
@@ -59,6 +63,10 @@ public class EditItemActivity extends AppCompatActivity {
 
         currentItem = CurrentItem.getInstance().getItem();
         if (currentItem != null) {
+            itemName.setText(currentItem.getName());
+            if (currentItem.getDateCreated() != null) {
+                dateCreated.setText(currentItem.getDateCreated().toString());
+            }
             newLocation.setText(currentItem.getLocation());
             newShortDescription.setText(currentItem.getShortDescript());
             newLongDescription.setText(currentItem.getLongDescript());
