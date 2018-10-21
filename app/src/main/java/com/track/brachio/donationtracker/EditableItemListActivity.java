@@ -78,6 +78,7 @@ public class EditableItemListActivity extends AppCompatActivity {
             adapter = new EditableItemListActivity.ItemListAdapter(items, new ItemListAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(Item item) {
+                    CurrentItem.getInstance().setItem(item);
                     Intent intent = new Intent(EditableItemListActivity.this, EditItemActivity.class);
                     startActivity(intent);
                 }
