@@ -31,6 +31,8 @@ public class EditItemActivity extends AppCompatActivity {
     private Spinner newItemCategory;
     private EditText newComments;
     private ImageView newimage;
+    private Button cancelButton;
+    private Button addButton;
 
     Item currentItem;
 
@@ -46,5 +48,45 @@ public class EditItemActivity extends AppCompatActivity {
         newItemCategory = (Spinner) findViewById(R.id.editItemCategoryID);
         newComments = (EditText) findViewById(R.id.editItemCommentsID);
         newimage = (ImageView) findViewById(R.id.editItemImageID);
+        cancelButton = (Button) findViewById(R.id.editItemCancelButton);
+        addButton = (Button) findViewById(R.id.editItemMakeChangesID);
+
+
+        FirebaseLocationHandler handler = new FirebaseLocationHandler();
+
+        currentItem = CurrentItem.getInstance().getItem();
+        if (currentItem != null) {
+            newLocation.setText(currentItem.getLocation());
+            newShortDescription.setText(currentItem.getShortDescript());
+            newLongDescription.setText(currentItem.getLongDescript());
+            newDollarValue.setText(Double.toString(currentItem.getDollarValue()));
+            //set default for item category
+            //set default for comments
+            //newComments.setText(currentItem.getComments());
+            //set default for image
+        }
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Edit Item", "Change Made");
+                String locationEntered = newLocation.getText().toString();
+                String shortDescriptionEntered = newShortDescription.getText().toString();
+                String longDescriptionEntered = newLongDescription.getText().toString();
+                String dollarValueEntered = newDollarValue.getText().toString();
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Edit Item", "Edit Item Canceled");
+
+                Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }
