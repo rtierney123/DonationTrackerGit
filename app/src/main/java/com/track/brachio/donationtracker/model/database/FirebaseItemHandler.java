@@ -47,12 +47,13 @@ public class FirebaseItemHandler {
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 
+                                String key = document.getId();
                                 String name = document.getString("name");
                                 Date date = document.getDate("date");
                                 String locationID = document.getString("locationID");
                                 Double cost = document.getDouble( "cost" );
                                 String category = document.getString("category");
-                                Item item = new Item(name, date, locationID, cost, category);
+                                Item item = new Item(key, name, date, locationID, cost, category);
 
                                 String shortDescript = document.getString("shortDescript");
                                 String longDescript = document.getString("longDescript");
@@ -83,12 +84,13 @@ public class FirebaseItemHandler {
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 
+                                String key = document.getId();
                                 String name = document.getString("name");
                                 Date date = document.getDate("date");
                                 String locationID = document.getString("locationID");
                                 Double cost = document.getDouble( "cost" );
                                 String category = document.getString("category");
-                                Item item = new Item(name, date, locationID, cost, category);
+                                Item item = new Item(key, name, date, locationID, cost, category);
 
                                 String shortDescript = document.getString("shortDescript");
                                 String longDescript = document.getString("longDescript");

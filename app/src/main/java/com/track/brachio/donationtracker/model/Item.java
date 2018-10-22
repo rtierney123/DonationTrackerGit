@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Item {
-
+    private String key;
     private String name;
     private Date dateCreated;
     private String locationID;
@@ -21,12 +21,21 @@ public class Item {
 
     }
 
-    public Item(String n, Date d, String l, double val, String cat){
+    public Item(String k, String n, Date d, String l, double val, String cat){
+        key = k;
         name = n;
         dateCreated = d;
         locationID = l;
         dollarValue = val;
         category = cat;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getName() {
