@@ -68,10 +68,6 @@ public class EditItemActivity extends AppCompatActivity {
         newItemCategory.setAdapter(adapter);
 
         //set default value
-
-
-        //should item category be spinner?
-
         currentItem = CurrentItem.getInstance().getItem();
         if (currentItem != null) {
             itemName.setText(currentItem.getName());
@@ -82,6 +78,7 @@ public class EditItemActivity extends AppCompatActivity {
             newShortDescription.setText(currentItem.getShortDescript());
             newLongDescription.setText(currentItem.getLongDescript());
             newDollarValue.setText(Double.toString(currentItem.getDollarValue()));
+            newItemCategory.setSelection(Item.findItemTypePosition(currentItem.getCategory()));
             //set default for item category
             //set default for comments
             //newComments.setText(currentItem.getComments());
