@@ -34,14 +34,7 @@ public class VolunteerMainActivity extends MainActivity {
         });
 
         logoutButton = (Button) findViewById(R.id.logoutButton1);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                FirebaseUserHandler handler = new FirebaseUserHandler();
-                handler.signOutUser();
-                Intent intent = new Intent(VolunteerMainActivity.this, StartUpActivity.class);
-                startActivity(intent);
-            }
-        });
+        setLogoutButton( logoutButton );
 
 
         ArrayList<Location> locations = AllLocations.getInstance().getLocationArray();

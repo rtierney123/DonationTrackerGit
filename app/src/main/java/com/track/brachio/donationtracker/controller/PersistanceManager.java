@@ -11,6 +11,7 @@ import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
+import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
@@ -109,6 +110,13 @@ public class PersistanceManager {
 
     public static void setActive(boolean active){
         isActive = active;
+    }
+
+    public static void signOut(){
+        FirebaseUserHandler handler = new FirebaseUserHandler();
+        handler.signOutUser();
+        CurrentUser.getInstance().setUser(new User());
+        UserLocations.getInstance().setLocations(new ArrayList<Location>());
     }
 
 }
