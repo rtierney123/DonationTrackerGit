@@ -135,4 +135,7 @@ public class FirebaseItemHandler {
                 });
 
     }
+
+    public void deleteItem(Item item){}
+
 }

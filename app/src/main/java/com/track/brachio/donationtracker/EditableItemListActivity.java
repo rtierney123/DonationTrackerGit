@@ -43,16 +43,6 @@ public class EditableItemListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("ItemList", "Back");
-                //putting it to donator main activity for now
-                Intent intent = new Intent(EditableItemListActivity.this, DonatorMainActivity.class);
-                startActivity(intent);
-            }
-        });
-
         if (items == null) {
             FirebaseItemHandler handler = new FirebaseItemHandler();
             handler.getAllItems( this );
