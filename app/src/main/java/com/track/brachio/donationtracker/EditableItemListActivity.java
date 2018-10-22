@@ -159,7 +159,9 @@ public class EditableItemListActivity extends AppCompatActivity {
             holder.nameText.setText(items.get(position).getName());
             holder.dateText.setText(items.get(position).getDateCreated().toString());
             holder.valueText.setText(items.get(position).getDollarValue()+"");
-            holder.categoryText.setText(items.get(position).getCategory().toString());
+            if (items.get(position).getCategory() != null) {
+                holder.categoryText.setText(items.get(position).getCategory().toString());
+            }
             holder.bind(items.get(position), theItemListener);
 //            view.setOnClickListener(new View.OnClickListener() {
 //                @Override
