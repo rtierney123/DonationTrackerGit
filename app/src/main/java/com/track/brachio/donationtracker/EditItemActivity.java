@@ -38,6 +38,7 @@ public class EditItemActivity extends AppCompatActivity {
     private ImageView newimage;
     private Button cancelButton;
     private Button addButton;
+    private Button deleteButton;
 
     Item currentItem;
 
@@ -57,6 +58,7 @@ public class EditItemActivity extends AppCompatActivity {
         newimage = (ImageView) findViewById(R.id.editItemImageID);
         cancelButton = (Button) findViewById(R.id.editItemCancelButton);
         addButton = (Button) findViewById(R.id.editItemMakeChangesID);
+        deleteButton = (Button) findViewById(R.id.editItemDeleteButton);
 
 
         FirebaseLocationHandler handler = new FirebaseLocationHandler();
@@ -143,6 +145,17 @@ public class EditItemActivity extends AppCompatActivity {
             }
         });
 
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View view) {
+                Log.d("Edit Item", "Item deleted");
+                Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
+                startActivity(intent);
+            }
+
+         });
 
     }
 }
