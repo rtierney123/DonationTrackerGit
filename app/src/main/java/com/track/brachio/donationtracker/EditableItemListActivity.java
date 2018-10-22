@@ -19,10 +19,11 @@ import com.track.brachio.donationtracker.model.database.FirebaseItemHandler;
 import com.track.brachio.donationtracker.model.singleton.CurrentItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EditableItemListActivity extends AppCompatActivity {
     private ArrayList<Item> items;
-
+    private static HashMap<String, Item> itemMap;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -34,7 +35,6 @@ public class EditableItemListActivity extends AppCompatActivity {
         setContentView( R.layout.activity_item_list );
 
         recyclerView = findViewById(R.id.itemList);
-        backButton = findViewById(R.id.itemListBackButton);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
@@ -44,12 +44,36 @@ public class EditableItemListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         if (items == null) {
-            FirebaseItemHandler handler = new FirebaseItemHandler();
-            handler.getAllItems( this );
+            Bundle extra = getIntent().getExtras();
+            if (extra == null){
+                FirebaseItemHandler handler = new FirebaseItemHandler();
+                handler.getAllItems( this );
+
+            } else {
+                if (extra.getBoolean( "edited" ) == false) {
+                    FirebaseItemHandler handler = new FirebaseItemHandler();
+                    handler.getAllItems( this );
+                }
+            }
+
         }
 
 
     }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Bundle extra = getIntent().getExtras();
+        if (extra != null){
+            if (extra.getBoolean( "edited" ) == true) {
+                Log.d("Edit Item", "Item edited");
+                Item editedItem = CurrentItem.getInstance().getItem();
+                itemMap.put(editedItem.getKey(), editedItem);
+                populateRecycleView(itemMap);
+            }
+        }
+    }
+
     
     public void setItemArray(ArrayList<Item> array) {
         items = array;
@@ -59,8 +83,9 @@ public class EditableItemListActivity extends AppCompatActivity {
 
     }
 
-    public void populateRecycleView(ArrayList<Item> its) {
-        items = its;
+    public void populateRecycleView(HashMap<String, Item> its) {
+        itemMap = its;
+        items = new ArrayList(its.values());
 
         if (items != null) {
             // populate view based on items and adapter specifications

@@ -22,6 +22,7 @@ import com.google.api.core.ApiFutures;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class FirebaseItemHandler {
@@ -41,7 +42,7 @@ public class FirebaseItemHandler {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
+                        HashMap<String, Item> map = new LinkedHashMap<>(  );
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
 
@@ -59,10 +60,10 @@ public class FirebaseItemHandler {
                                 String longDescript = document.getString("longDescript");
                                 //TODO How to get comment array and picture?
 
-                                items.add(item);
+                                map.put(key, item);
 
                             }
-                            activity.populateRecycleView(items);
+                            activity.populateRecycleView(map);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }

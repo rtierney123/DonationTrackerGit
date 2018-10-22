@@ -110,8 +110,8 @@ public class EditItemActivity extends AppCompatActivity {
 
                 Toast.makeText( getApplicationContext(), "Item Edited", Toast.LENGTH_SHORT ).show();
 
-                Log.d("Edit Item", "Item edited");
                 Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
+                intent.putExtra( "edited", true );
                 startActivity(intent);
 
             }
