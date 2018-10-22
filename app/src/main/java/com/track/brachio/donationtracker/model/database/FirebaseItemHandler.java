@@ -22,6 +22,7 @@ import com.google.api.core.ApiFutures;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class FirebaseItemHandler {
@@ -41,27 +42,28 @@ public class FirebaseItemHandler {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
+                        HashMap<String, Item> map = new LinkedHashMap<>(  );
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 
+                                String key = document.getId();
                                 String name = document.getString("name");
                                 Date date = document.getDate("date");
                                 String locationID = document.getString("locationID");
                                 Double cost = document.getDouble( "cost" );
                                 String category = document.getString("category");
-                                Item item = new Item(name, date, locationID, cost, category);
+                                Item item = new Item(key, name, date, locationID, cost, category);
 
                                 String shortDescript = document.getString("shortDescript");
                                 String longDescript = document.getString("longDescript");
                                 //TODO How to get comment array and picture?
 
-                                items.add(item);
+                                map.put(key, item);
 
                             }
-                            activity.populateRecycleView(items);
+                            activity.populateRecycleView(map);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
@@ -83,12 +85,13 @@ public class FirebaseItemHandler {
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 
+                                String key = document.getId();
                                 String name = document.getString("name");
                                 Date date = document.getDate("date");
                                 String locationID = document.getString("locationID");
                                 Double cost = document.getDouble( "cost" );
                                 String category = document.getString("category");
-                                Item item = new Item(name, date, locationID, cost, category);
+                                Item item = new Item(key, name, date, locationID, cost, category);
 
                                 String shortDescript = document.getString("shortDescript");
                                 String longDescript = document.getString("longDescript");
@@ -133,4 +136,7 @@ public class FirebaseItemHandler {
                 });
 
     }
+
+    public void deleteItem(Item item){}
+
 }

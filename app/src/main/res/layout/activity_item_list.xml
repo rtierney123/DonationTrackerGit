@@ -6,14 +6,6 @@
     android:layout_height="match_parent">
 
 
-    <Button
-        android:id="@+id/itemListBackButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewItems"

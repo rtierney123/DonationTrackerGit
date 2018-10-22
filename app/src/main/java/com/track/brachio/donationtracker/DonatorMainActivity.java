@@ -42,14 +42,7 @@ public class DonatorMainActivity extends MainActivity {
         });
 
         donMainLogout = (Button) findViewById(R.id.donMainLogout);
-        donMainLogout.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                FirebaseUserHandler handler = new FirebaseUserHandler();
-                handler.signOutUser();
-                Intent intent = new Intent(DonatorMainActivity.this, StartUpActivity.class);
-                startActivity(intent);
-            }
-        });
+        setLogoutButton( donMainLogout );
 
         testEdit = (Button) findViewById(R.id.testEditableItem);
         testEdit.setOnClickListener(new View.OnClickListener() {

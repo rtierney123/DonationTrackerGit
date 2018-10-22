@@ -16,14 +16,7 @@ public class AdminMainActivity extends MainActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_admin_main );
         adminMainLogout = (Button) findViewById(R.id.adminMainLogout);
-        adminMainLogout.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                FirebaseUserHandler handler = new FirebaseUserHandler();
-                handler.signOutUser();
-                Intent intent = new Intent(AdminMainActivity.this, StartUpActivity.class);
-                startActivity(intent);
-            }
-        });
+        setLogoutButton( adminMainLogout );
     }
 
 }
