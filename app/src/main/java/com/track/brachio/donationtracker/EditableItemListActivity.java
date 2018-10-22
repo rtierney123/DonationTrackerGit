@@ -3,6 +3,7 @@ package com.track.brachio.donationtracker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,6 +28,7 @@ public class EditableItemListActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private Button backButton;
+    private FloatingActionButton editButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class EditableItemListActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.itemList);
         backButton = findViewById(R.id.itemListBackButton);
+        editButton= findViewById(R.id.editbutton);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
@@ -43,6 +46,15 @@ public class EditableItemListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        editButton.setOnClickListener (new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("ItemList", "Edit");
+                //putting it to donator main activity for now
+                Intent intent = new Intent(EditableItemListActivity.this, EditItemActivity.class);
+                startActivity(intent);
+            }
+        });
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
