@@ -78,7 +78,9 @@ public class EditItemActivity extends AppCompatActivity {
             newShortDescription.setText(currentItem.getShortDescript());
             newLongDescription.setText(currentItem.getLongDescript());
             newDollarValue.setText(Double.toString(currentItem.getDollarValue()));
-            newItemCategory.setSelection(Item.findItemTypePosition(currentItem.getCategory()));
+            if (currentItem.getCategory() != null) {
+                newItemCategory.setSelection(Item.findItemTypePosition(currentItem.getCategory()));
+            }
             //set default for item category
             //set default for comments
             //newComments.setText(currentItem.getComments());
