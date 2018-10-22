@@ -44,7 +44,6 @@ public class LocationListActivity extends AppCompatActivity {
         setContentView( R.layout.activity_location_list );
 
         recyclerView = findViewById(R.id.listOfLocations);
-        backButton = findViewById(R.id.locationListBackButton);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
@@ -54,16 +53,6 @@ public class LocationListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         populateRecycleView();
-
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("LocationList", "Back");
-                //putting it to donator main activity for now
-                Intent intent = new Intent(LocationListActivity.this, DonatorMainActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
     }
