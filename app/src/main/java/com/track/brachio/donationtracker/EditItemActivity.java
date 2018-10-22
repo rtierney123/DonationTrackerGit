@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ArrayAdapter;
 
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
@@ -23,6 +24,7 @@ import com.track.brachio.donationtracker.model.singleton.CurrentItem;
 import com.track.brachio.donationtracker.model.LocationType;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.Item;
+import com.track.brachio.donationtracker.model.ItemType;
 
 public class EditItemActivity extends AppCompatActivity {
     private TextView itemName;
@@ -36,6 +38,7 @@ public class EditItemActivity extends AppCompatActivity {
     private ImageView newimage;
     private Button cancelButton;
     private Button addButton;
+    private Button deleteButton;
 
     Item currentItem;
 
@@ -55,9 +58,17 @@ public class EditItemActivity extends AppCompatActivity {
         newimage = (ImageView) findViewById(R.id.editItemImageID);
         cancelButton = (Button) findViewById(R.id.editItemCancelButton);
         addButton = (Button) findViewById(R.id.editItemMakeChangesID);
+        deleteButton = (Button) findViewById(R.id.editItemDeleteButton);
 
 
         FirebaseLocationHandler handler = new FirebaseLocationHandler();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Item.getLegalItemTypes());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        newItemCategory.setAdapter(adapter);
+
+        //set default value
+
 
         //should item category be spinner?
 
@@ -86,6 +97,9 @@ public class EditItemActivity extends AppCompatActivity {
                 String longDescriptionEntered = newLongDescription.getText().toString();
                 String dollarValueEntered = newDollarValue.getText().toString();
                 String commentEntered = newComments.getText().toString();
+                ItemType itemTypeSelected = (ItemType) newItemCategory.getSelectedItem();
+
+
                 //spinner
                 //image
                 if (!locationEntered.isEmpty() && !locationEntered.equals(currentItem.getLocation())) {
@@ -108,6 +122,10 @@ public class EditItemActivity extends AppCompatActivity {
                     currentItem.addComment(commentEntered);
                 }
 
+                if (!itemTypeSelected.equals(currentItem.getCategory())) {
+                    currentItem.setCategory(itemTypeSelected);
+                }
+
                 Toast.makeText( getApplicationContext(), "Item Edited", Toast.LENGTH_SHORT ).show();
 
                 Log.d("Edit Item", "Item edited");
@@ -127,6 +145,17 @@ public class EditItemActivity extends AppCompatActivity {
             }
         });
 
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View view) {
+                Log.d("Edit Item", "Item deleted");
+                Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
+                startActivity(intent);
+            }
+
+         });
 
     }
 }
