@@ -39,10 +39,12 @@ public class Item {
     public static int findItemTypePosition(ItemType code) {
         int i = 0;
         while (i < legalItemTypes.size()) {
-            if (code.equals(legalItemTypes.get(i))) {
-                return i;
+            if (code != null) {
+                if (code.equals(legalItemTypes.get(i))) {
+                    return i;
+                }
+                i++;
             }
-            i++;
         }
         return 0;
     }
