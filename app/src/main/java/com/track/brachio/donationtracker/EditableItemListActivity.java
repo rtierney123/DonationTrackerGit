@@ -3,6 +3,7 @@ package com.track.brachio.donationtracker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,13 +29,16 @@ public class EditableItemListActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private Button backButton;
+    private FloatingActionButton editButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_item_list );
 
-        recyclerView = findViewById(R.id.itemList);
+        recyclerView = findViewById(R.id.itemList);;
+        editButton= findViewById(R.id.editbutton);
+
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
@@ -45,7 +49,7 @@ public class EditableItemListActivity extends AppCompatActivity {
 
         if (items == null) {
             Bundle extra = getIntent().getExtras();
-            if (extra == null){
+            if (extra == null) {
                 FirebaseItemHandler handler = new FirebaseItemHandler();
                 handler.getAllItems( this );
 
@@ -55,8 +59,18 @@ public class EditableItemListActivity extends AppCompatActivity {
                     handler.getAllItems( this );
                 }
             }
-
         }
+
+        editButton.setOnClickListener (new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("ItemList", "Edit");
+                //putting it to donator main activity for now
+                Intent intent = new Intent(EditableItemListActivity.this, EditItemActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
     }
@@ -174,7 +188,9 @@ public class EditableItemListActivity extends AppCompatActivity {
             holder.nameText.setText(items.get(position).getName());
             holder.dateText.setText(items.get(position).getDateCreated().toString());
             holder.valueText.setText(items.get(position).getDollarValue()+"");
-            holder.categoryText.setText(items.get(position).getCategory());
+            if (items.get(position).getCategory() != null) {
+                holder.categoryText.setText(items.get(position).getCategory().toString());
+            }
             holder.bind(items.get(position), theItemListener);
 //            view.setOnClickListener(new View.OnClickListener() {
 //                @Override

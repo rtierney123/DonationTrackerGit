@@ -134,12 +134,21 @@
                 android:id="@+id/editItemMakeChangesID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
                 android:text="Make Changes" />
+
+            <Button
+                android:id="@+id/editItemDeleteButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_red_dark"
+                android:text="Delete" />
 
             <Button
                 android:id="@+id/editItemCancelButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
                 android:text="Cancel" />
         </LinearLayout>
     </ScrollView>

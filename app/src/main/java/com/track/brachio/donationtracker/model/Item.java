@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Arrays;
 
 public class Item {
     private String key;
@@ -13,7 +15,8 @@ public class Item {
     private String shortDescript;
     private String longDescript;
     private double dollarValue;
-    private String category;
+    private ItemType category;
+    private static List<ItemType> legalItemTypes = Arrays.asList(ItemType.values());
     private ArrayList<String> comments;
     private Bitmap picture;
 
@@ -27,7 +30,24 @@ public class Item {
         dateCreated = d;
         locationID = l;
         dollarValue = val;
-        category = cat;
+        category = stringToItemType(cat);
+    }
+
+    public static List<ItemType> getLegalItemTypes() {
+        return legalItemTypes;
+    }
+
+    public static int findItemTypePosition(ItemType code) {
+        int i = 0;
+        while (i < legalItemTypes.size()) {
+            if (code != null) {
+                if (code.equals(legalItemTypes.get(i))) {
+                    return i;
+                }
+                i++;
+            }
+        }
+        return 0;
     }
 
     public String getKey() {
@@ -66,7 +86,7 @@ public class Item {
         this.dollarValue = dollarValue;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(ItemType category) {
         this.category = category;
     }
 
@@ -102,7 +122,7 @@ public class Item {
         return dollarValue;
     }
 
-    public String getCategory() {
+    public ItemType getCategory() {
         return category;
     }
 
@@ -112,6 +132,24 @@ public class Item {
 
     public Bitmap getPicture() {
         return picture;
+    }
+
+    private ItemType stringToItemType(String str) {
+        switch (str) {
+            case "Food":
+                return ItemType.Food;
+            case "Clothes":
+                return ItemType.Clothes;
+            case "Furniture":
+                return ItemType.Furniture;
+            case "Sport":
+                return ItemType.Sport;
+            case "Electronics":
+                return ItemType.Electronics;
+            case "Miscellaneous":
+                return ItemType.Miscellaneous;
+        }
+        return null;
     }
 
 }
