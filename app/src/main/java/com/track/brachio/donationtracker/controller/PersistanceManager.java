@@ -7,10 +7,13 @@ import com.track.brachio.donationtracker.AdminMainActivity;
 import com.track.brachio.donationtracker.DonatorMainActivity;
 import com.track.brachio.donationtracker.ManagerMainActivity;
 import com.track.brachio.donationtracker.VolunteerMainActivity;
+import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
+import com.track.brachio.donationtracker.model.database.FirebaseItemHandler;
 import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
+import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
@@ -109,6 +112,23 @@ public class PersistanceManager {
 
     public static void setActive(boolean active){
         isActive = active;
+    }
+
+    public static void signOut(){
+        FirebaseUserHandler handler = new FirebaseUserHandler();
+        handler.signOutUser();
+        CurrentUser.getInstance().setUser(new User());
+        UserLocations.getInstance().setLocations(new ArrayList<Location>());
+    }
+
+    public static void deleteItem(Item item){
+        FirebaseItemHandler db = new FirebaseItemHandler();
+        db.deleteItem( item );
+    }
+
+    public static void addItem(Item item){
+        FirebaseItemHandler db = new FirebaseItemHandler();
+        db.addItem(item);
     }
 
 }

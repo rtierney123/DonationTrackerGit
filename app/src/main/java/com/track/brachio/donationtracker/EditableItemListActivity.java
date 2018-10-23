@@ -20,10 +20,11 @@ import com.track.brachio.donationtracker.model.database.FirebaseItemHandler;
 import com.track.brachio.donationtracker.model.singleton.CurrentItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EditableItemListActivity extends AppCompatActivity {
     private ArrayList<Item> items;
-
+    private static HashMap<String, Item> itemMap;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -35,9 +36,9 @@ public class EditableItemListActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_item_list );
 
-        recyclerView = findViewById(R.id.itemList);
-        backButton = findViewById(R.id.itemListBackButton);
+        recyclerView = findViewById(R.id.itemList);;
         editButton= findViewById(R.id.editbutton);
+
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
@@ -45,6 +46,20 @@ public class EditableItemListActivity extends AppCompatActivity {
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        if (items == null) {
+            Bundle extra = getIntent().getExtras();
+            if (extra == null) {
+                FirebaseItemHandler handler = new FirebaseItemHandler();
+                handler.getAllItems( this );
+
+            } else {
+                if (extra.getBoolean( "edited" ) == false) {
+                    FirebaseItemHandler handler = new FirebaseItemHandler();
+                    handler.getAllItems( this );
+                }
+            }
+        }
 
         editButton.setOnClickListener (new View.OnClickListener() {
             @Override
@@ -55,23 +70,24 @@ public class EditableItemListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("ItemList", "Back");
-                //putting it to donator main activity for now
-                Intent intent = new Intent(EditableItemListActivity.this, DonatorMainActivity.class);
-                startActivity(intent);
-            }
-        });
 
-        if (items == null) {
-            FirebaseItemHandler handler = new FirebaseItemHandler();
-            handler.getAllItems( this );
-        }
 
 
     }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Bundle extra = getIntent().getExtras();
+        if (extra != null){
+            if (extra.getBoolean( "edited" ) == true) {
+                Log.d("Edit Item", "Item edited");
+                Item editedItem = CurrentItem.getInstance().getItem();
+                itemMap.put(editedItem.getKey(), editedItem);
+                populateRecycleView(itemMap);
+            }
+        }
+    }
+
     
     public void setItemArray(ArrayList<Item> array) {
         items = array;
@@ -81,8 +97,9 @@ public class EditableItemListActivity extends AppCompatActivity {
 
     }
 
-    public void populateRecycleView(ArrayList<Item> its) {
-        items = its;
+    public void populateRecycleView(HashMap<String, Item> its) {
+        itemMap = its;
+        items = new ArrayList(its.values());
 
         if (items != null) {
             // populate view based on items and adapter specifications

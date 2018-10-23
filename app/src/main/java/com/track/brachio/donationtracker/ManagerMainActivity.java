@@ -26,14 +26,7 @@ public class ManagerMainActivity extends MainActivity {
         });
 
         manMainLogout = (Button) findViewById(R.id.manMainLogout);
-        manMainLogout.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                FirebaseUserHandler handler = new FirebaseUserHandler();
-                handler.signOutUser();
-                Intent intent = new Intent(ManagerMainActivity.this, StartUpActivity.class);
-                startActivity(intent);
-            }
-        });
+        setLogoutButton( manMainLogout );
 
 
     }

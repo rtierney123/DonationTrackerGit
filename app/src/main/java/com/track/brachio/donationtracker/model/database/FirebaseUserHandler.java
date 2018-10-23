@@ -198,7 +198,6 @@ public class FirebaseUserHandler {
     //signOut of Firebase and set CurrentUser to null contents
     public void signOutUser(){
         FirebaseAuth.getInstance().signOut();
-        CurrentUser.getInstance().setUser(null);
     }
 
     public boolean isUserSignedIn(){

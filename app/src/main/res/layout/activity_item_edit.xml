@@ -111,12 +111,20 @@
                 android:text="Comments: " />
 
             <EditText
-                android:id="@+id/editItemCommentsID"
+                android:id="@+id/editItemAddCommentID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textMultiLine"
+                android:inputType="textPersonName"
+                android:text="Add Comment"
                 android:textSize="14sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/editItemCommentsID"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+            </android.support.v7.widget.RecyclerView>
 
             <TextView
                 android:id="@+id/textView23"
@@ -135,6 +143,7 @@
                 android:id="@+id/editItemMakeChangesID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
                 android:text="Make Changes" />
 
             <Button
@@ -148,6 +157,7 @@
                 android:id="@+id/editItemCancelButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
                 android:text="Cancel" />
         </LinearLayout>
     </ScrollView>
