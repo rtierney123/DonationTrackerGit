@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
+import android.provider.MediaStore;
+import android.graphics.Bitmap;
 
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
@@ -87,7 +89,26 @@ public class EditItemActivity extends AppCompatActivity {
             //newComments.setText(currentItem.getComments());
             //set default for image
         }
-
+//        newimage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int REQUEST_IMAGE_CAPTURE = 100;
+//                //private void dispatchTakePictureIntent(View view) {
+//                    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+//                        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+//                    }
+//                //}
+//                protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+//                    if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+//                        Bundle extras = data.getExtras();
+//                        Bitmap imageBitmap = (Bitmap) extras.get("data");
+//                        newimage.setImageBitmap(imageBitmap);
+//                    }
+//                }
+//
+//            }
+//        });
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

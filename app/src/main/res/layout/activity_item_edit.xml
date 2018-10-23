@@ -128,7 +128,8 @@
                 android:id="@+id/editItemImageID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="?attr/actionModeBackground" />
+                app:srcCompat="?attr/actionModeBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/editItemMakeChangesID"
