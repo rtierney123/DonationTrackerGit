@@ -17,7 +17,7 @@ public class Item {
     private double dollarValue;
     private ItemType category;
     private static List<ItemType> legalItemTypes = Arrays.asList(ItemType.values());
-    private ArrayList<String> comments;
+    private ArrayList<String> comments = new ArrayList();
     private Bitmap picture;
 
     public Item() {
