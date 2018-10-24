@@ -184,6 +184,7 @@ public class EditItemActivity extends AppCompatActivity {
 
             public void onClick(View view) {
                 Log.d("Edit Item", "Item deleted");
+                handler.deleteItem(currentItem);
                 Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
                 startActivity(intent);
             }
