@@ -115,7 +115,7 @@ public class FirebaseItemHandler {
         itemMap.put("date", item.getDateCreated());
         itemMap.put("locationID", item.getLocation());
         itemMap.put("cost", item.getDollarValue());
-        itemMap.put("category", item.getCategory());
+        itemMap.put("category", item.getCategory().toString());
         itemMap.put("shortDescript", item.getShortDescript());
         itemMap.put("longDescript", item.getLongDescript());
 

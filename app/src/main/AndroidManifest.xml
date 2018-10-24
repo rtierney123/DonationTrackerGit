@@ -47,6 +47,9 @@
         <activity
             android:name=".EditItemActivity"
             android:label=".EditItemActivity" />
+        <activity
+            android:name=".AddItemActivity"
+            android:label=".AddItemActivity" />
     </application>
 
 </manifest>

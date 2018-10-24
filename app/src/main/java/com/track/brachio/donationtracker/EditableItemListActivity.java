@@ -66,7 +66,7 @@ public class EditableItemListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("ItemList", "Edit");
                 //putting it to donator main activity for now
-                Intent intent = new Intent(EditableItemListActivity.this, EditItemActivity.class);
+                Intent intent = new Intent(EditableItemListActivity.this, AddItemActivity.class);
                 startActivity(intent);
             }
         });

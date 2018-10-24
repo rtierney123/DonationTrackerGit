@@ -18,7 +18,7 @@ import android.graphics.Bitmap;
 
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
-import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
+import com.track.brachio.donationtracker.model.database.FirebaseItemHandler;
 import com.track.brachio.donationtracker.model.singleton.CurrentLocation;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
@@ -79,7 +79,7 @@ public class EditItemActivity extends AppCompatActivity {
         newCommentsRecyclerView.setLayoutManager(layoutManager);
 
 
-        FirebaseLocationHandler handler = new FirebaseLocationHandler();
+        FirebaseItemHandler handler = new FirebaseItemHandler();
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Item.getLegalItemTypes());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
