@@ -122,23 +122,23 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/editItemCommentsID"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="93dp">
 
             </android.support.v7.widget.RecyclerView>
 
             <TextView
                 android:id="@+id/textView23"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Picture: " />
 
-            <ImageView
-                android:id="@+id/editItemImageID"
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/editItemImage"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="?attr/actionModeBackground"
-                android:clickable="true"/>
-
+                app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal_background"
+                tools:layout_editor_absoluteX="57dp"
+                tools:layout_editor_absoluteY="436dp" />
             <Button
                 android:id="@+id/editItemMakeChangesID"
                 android:layout_width="match_parent"
@@ -161,4 +161,5 @@
                 android:text="Cancel" />
         </LinearLayout>
     </ScrollView>
+
 </android.support.constraint.ConstraintLayout>
