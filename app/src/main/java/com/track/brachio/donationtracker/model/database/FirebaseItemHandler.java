@@ -63,7 +63,7 @@ public class FirebaseItemHandler {
                                 map.put(key, item);
 
                             }
-                            activity.populateRecycleView(map);
+                            activity.populateRecycleView(map, true);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class VolunteerMainActivity extends MainActivity {
     private Button volGoToLocationsButton;
     private Button logoutButton;
+    private Button volManagerItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState );
@@ -59,8 +60,12 @@ public class VolunteerMainActivity extends MainActivity {
         Spinner userSpinner = (Spinner) findViewById(R.id.view_location_spinner);
         populator.populateSpinner( userSpinner, spinnerArray , this);
 
-
-
-
+        volManagerItems = (Button) findViewById(R.id.volManagerItemsButton);
+        volManagerItems.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(VolunteerMainActivity.this, EditableItemListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

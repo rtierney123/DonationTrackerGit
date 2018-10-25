@@ -80,8 +80,10 @@ public class PersistanceManager {
                         User currentUser = CurrentUser.getInstance().getUser();
                         Intent intent = new Intent(activity, DonatorMainActivity.class);;
                         if (currentUser.getUserType() == UserType.Donator) {
+                            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
                             intent = new Intent(activity, DonatorMainActivity.class);
                         } else if (currentUser.getUserType() == UserType.Admin){
+                            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
                             intent = new Intent(activity, AdminMainActivity.class);
                         } else if (currentUser.getUserType() == UserType.Volunteer) {
                             User user = CurrentUser.getInstance().getUser();
@@ -94,6 +96,7 @@ public class PersistanceManager {
                             UserLocations.getInstance().setLocations(array);
                             intent = new Intent(activity, VolunteerMainActivity.class);
                         } else if (currentUser.getUserType() == UserType.Manager) {
+                            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
                             intent = new Intent(activity, ManagerMainActivity.class);
                         }
                         isActive = false;

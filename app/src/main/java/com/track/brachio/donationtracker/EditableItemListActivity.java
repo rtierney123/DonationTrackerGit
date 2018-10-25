@@ -11,26 +11,34 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.track.brachio.donationtracker.controller.UIPopulator;
 import com.track.brachio.donationtracker.model.Item;
+import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.database.FirebaseItemHandler;
 import com.track.brachio.donationtracker.model.singleton.CurrentItem;
+import com.track.brachio.donationtracker.model.singleton.UserLocations;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class EditableItemListActivity extends AppCompatActivity {
-    private ArrayList<Item> items;
+public class EditableItemListActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private ArrayList<Item> items = new ArrayList<>();
     private static HashMap<String, Item> itemMap;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private Button backButton;
     private FloatingActionButton editButton;
-
+    private Spinner locSpinner;
+    private int locIndex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -38,7 +46,7 @@ public class EditableItemListActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.itemList);;
         editButton= findViewById(R.id.editbutton);
-
+        locSpinner= findViewById(R.id.locSpinner);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
@@ -47,13 +55,13 @@ public class EditableItemListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        if (items == null) {
+        if (items.size() == 0 || items == null) {
             Bundle extra = getIntent().getExtras();
             if (extra == null) {
                 FirebaseItemHandler handler = new FirebaseItemHandler();
                 handler.getAllItems( this );
 
-            } 
+            }
         }
 
         editButton.setOnClickListener (new View.OnClickListener() {
@@ -66,9 +74,22 @@ public class EditableItemListActivity extends AppCompatActivity {
             }
         });
 
+        UIPopulator ui = new UIPopulator();
+        ArrayList<String> names = new ArrayList<>();
+        for(Location loc :  UserLocations.getInstance().getLocations()){
+            names.add(loc.getName());
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, names);
 
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        locSpinner.setOnItemSelectedListener(this);
+        locSpinner.setAdapter(adapter);
+        //ui.populateSpinner(locSpinner, names, this);
 
     }
+
     @Override
     protected void onResume(){
         super.onResume();
@@ -78,13 +99,13 @@ public class EditableItemListActivity extends AppCompatActivity {
                 Log.d("Edit Item", "Item edited");
                 Item editedItem = CurrentItem.getInstance().getItem();
                 itemMap.put(editedItem.getKey(), editedItem);
-                populateRecycleView(itemMap);
+                populateRecycleView(itemMap, false);
             } else if(extra.getBoolean( "remove" ) == true){
                 Log.d("Delete Item", "Item deleted");
                 Item current = CurrentItem.getInstance().getItem();
                 String key = current.getKey();
                 itemMap.remove(key);
-                populateRecycleView( itemMap );
+                populateRecycleView( itemMap, false);
             }
         }
     }
@@ -98,9 +119,23 @@ public class EditableItemListActivity extends AppCompatActivity {
 
     }
 
-    public void populateRecycleView(HashMap<String, Item> its) {
-        itemMap = its;
-        items = new ArrayList(its.values());
+    public void populateRecycleView(HashMap<String, Item> its, boolean firstLoad) {
+        if(firstLoad && itemMap == null){
+            itemMap = its;
+        }
+
+        if (its !=null){
+            ArrayList<Item> temp = new ArrayList(its.values());
+            items.clear();
+            ArrayList<Location> userLoc = UserLocations.getInstance().getLocations();
+            for (Item item : temp){
+                String currentLoc = userLoc.get(locIndex).getId();
+                String locID = item.getLocation();
+                if(locID.equals( currentLoc)){
+                    items.add(item);
+                }
+            }
+        }
 
         if (items != null) {
             // populate view based on items and adapter specifications
@@ -120,6 +155,21 @@ public class EditableItemListActivity extends AppCompatActivity {
 
 
         //TODO add junk here to take the item array an turn it into displayed list (probably with Recycle view and an adapter
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        locIndex = position;
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();
+        populateRecycleView( itemMap , false);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
 
