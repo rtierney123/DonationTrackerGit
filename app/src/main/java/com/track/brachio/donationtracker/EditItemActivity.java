@@ -24,6 +24,8 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.ImageButton;
+
+import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.database.FirebaseItemHandler;
@@ -58,7 +60,7 @@ public class EditItemActivity extends AppCompatActivity {
     private Button addButton;
     private Button deleteButton;
     private ArrayList<String> comments;
-
+    private PersistanceManager manager;
     Item currentItem;
 
     @Override
@@ -86,8 +88,7 @@ public class EditItemActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         newCommentsRecyclerView.setLayoutManager(layoutManager);
 
-
-        FirebaseItemHandler handler = new FirebaseItemHandler();
+        manager = new PersistanceManager( this );
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Item.getLegalItemTypes());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -148,7 +149,7 @@ public class EditItemActivity extends AppCompatActivity {
                 }
 
                 Toast.makeText( getApplicationContext(), "Item Edited", Toast.LENGTH_SHORT ).show();
-
+                manager.editItem( currentItem );
                 Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
                 intent.putExtra( "edited", true );
                 startActivity(intent);
@@ -173,7 +174,7 @@ public class EditItemActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("Edit Item", "Item deleted");
                 Toast.makeText( getApplicationContext(), "Item Deleted", Toast.LENGTH_SHORT ).show();
-                handler.deleteItem(currentItem);
+                manager.deleteItem(currentItem);
                 Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
                 intent.putExtra( "remove", true );
                 startActivity(intent);

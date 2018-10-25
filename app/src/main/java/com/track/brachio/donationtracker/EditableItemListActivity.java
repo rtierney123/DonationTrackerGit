@@ -120,7 +120,7 @@ public class EditableItemListActivity extends AppCompatActivity implements Adapt
     }
 
     public void populateRecycleView(HashMap<String, Item> its, boolean firstLoad) {
-        if(firstLoad && itemMap == null){
+        if(itemMap == null){
             itemMap = its;
         }
 

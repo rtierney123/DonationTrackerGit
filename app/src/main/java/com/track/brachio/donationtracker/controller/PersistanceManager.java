@@ -124,14 +124,19 @@ public class PersistanceManager {
         UserLocations.getInstance().setLocations(new ArrayList<Location>());
     }
 
-    public static void deleteItem(Item item){
+    public void deleteItem(Item item){
         FirebaseItemHandler db = new FirebaseItemHandler();
         db.deleteItem( item );
     }
 
-    public static void addItem(Item item){
+    public void addItem(Item item){
         FirebaseItemHandler db = new FirebaseItemHandler();
         db.addItem(item);
+    }
+
+    public void editItem(Item item) {
+        FirebaseItemHandler db = new FirebaseItemHandler();
+        db.editItem(item);
     }
 
 }

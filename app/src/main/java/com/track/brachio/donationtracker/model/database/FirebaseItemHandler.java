@@ -24,6 +24,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.lang.Object;
+
 
 public class FirebaseItemHandler {
     //TODO will complete change to handle item db
@@ -138,6 +140,22 @@ public class FirebaseItemHandler {
     }
 
     public void deleteItem(Item item) {
+        db.collection("items").document(item.getKey()).delete();
+    }
+
+    public void editItem(Item item){
+        DocumentReference doc = db.collection("items").document(item.getKey());
+        Map<String, Object> itemMap = new HashMap<>();
+        itemMap.put("name", item.getName());
+        itemMap.put("date", item.getDateCreated());
+        itemMap.put("locationID", item.getLocation());
+        itemMap.put("cost", item.getDollarValue());
+        itemMap.put("category", item.getCategory().toString());
+        itemMap.put("shortDescript", item.getShortDescript());
+        itemMap.put("longDescript", item.getLongDescript());
+
+        doc.set(itemMap);
+        doc = doc;
     }
 
 }
