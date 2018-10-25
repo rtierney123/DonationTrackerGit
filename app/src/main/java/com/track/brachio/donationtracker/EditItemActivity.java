@@ -184,8 +184,10 @@ public class EditItemActivity extends AppCompatActivity {
 
             public void onClick(View view) {
                 Log.d("Edit Item", "Item deleted");
+                Toast.makeText( getApplicationContext(), "Item Deleted", Toast.LENGTH_SHORT ).show();
                 handler.deleteItem(currentItem);
                 Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
+                intent.putExtra( "remove", true );
                 startActivity(intent);
             }
 

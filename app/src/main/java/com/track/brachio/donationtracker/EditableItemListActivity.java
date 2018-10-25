@@ -53,12 +53,7 @@ public class EditableItemListActivity extends AppCompatActivity {
                 FirebaseItemHandler handler = new FirebaseItemHandler();
                 handler.getAllItems( this );
 
-            } else {
-                if (extra.getBoolean( "edited" ) == false) {
-                    FirebaseItemHandler handler = new FirebaseItemHandler();
-                    handler.getAllItems( this );
-                }
-            }
+            } 
         }
 
         editButton.setOnClickListener (new View.OnClickListener() {
@@ -84,6 +79,12 @@ public class EditableItemListActivity extends AppCompatActivity {
                 Item editedItem = CurrentItem.getInstance().getItem();
                 itemMap.put(editedItem.getKey(), editedItem);
                 populateRecycleView(itemMap);
+            } else if(extra.getBoolean( "remove" ) == true){
+                Log.d("Delete Item", "Item deleted");
+                Item current = CurrentItem.getInstance().getItem();
+                String key = current.getKey();
+                itemMap.remove(key);
+                populateRecycleView( itemMap );
             }
         }
     }
