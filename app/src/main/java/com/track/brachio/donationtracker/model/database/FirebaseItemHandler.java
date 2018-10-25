@@ -137,6 +137,7 @@ public class FirebaseItemHandler {
 
     }
 
-    public void deleteItem(Item item){}
+    public void deleteItem(Item item) {
+    }
 
 }

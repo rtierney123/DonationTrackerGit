@@ -8,14 +8,22 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
+import android.Manifest;
+import java.io.File;
+import android.hardware.Camera;
+import android.content.pm.PackageManager;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.app.ActivityCompat;
+import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
-import android.graphics.Bitmap;
-
+import android.widget.ImageButton;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.database.FirebaseItemHandler;
@@ -45,7 +53,7 @@ public class EditItemActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private EditText newComments;
-    private ImageView newimage;
+    private ImageButton newimage;
     private Button cancelButton;
     private Button addButton;
     private Button deleteButton;
@@ -67,7 +75,7 @@ public class EditItemActivity extends AppCompatActivity {
         newItemCategory = (Spinner) findViewById(R.id.editItemCategoryID);
         newComments = (EditText) findViewById(R.id.editItemAddCommentID);
         newCommentsRecyclerView = (RecyclerView) findViewById(R.id.editItemCommentsID);
-        newimage = (ImageView) findViewById(R.id.editItemImageID);
+        newimage = (ImageButton) findViewById(R.id.editItemImage);
         cancelButton = (Button) findViewById(R.id.editItemCancelButton);
         addButton = (Button) findViewById(R.id.editItemMakeChangesID);
         deleteButton = (Button) findViewById(R.id.editItemDeleteButton);
@@ -103,26 +111,6 @@ public class EditItemActivity extends AppCompatActivity {
             //newComments.setText(currentItem.getComments());
             //set default for image
         }
-//        newimage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                int REQUEST_IMAGE_CAPTURE = 100;
-//                //private void dispatchTakePictureIntent(View view) {
-//                    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-//                        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-//                    }
-//                //}
-//                protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-//                    if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-//                        Bundle extras = data.getExtras();
-//                        Bitmap imageBitmap = (Bitmap) extras.get("data");
-//                        newimage.setImageBitmap(imageBitmap);
-//                    }
-//                }
-//
-//            }
-//        });
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -192,9 +180,54 @@ public class EditItemActivity extends AppCompatActivity {
             }
 
          });
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            newimage.setEnabled(false);
+            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
+        }
+        newimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                takePicture(view);
+            }
+        });
 
     }
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == 0) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                newimage.setEnabled(true);
+            }
+        }
+    }
+        Uri file;
+        public void takePicture(View view){
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            file = Uri.fromFile(getOutputMediaFile());
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
 
+            startActivityForResult(intent, 100);
+        }
+        @Override
+        protected void onActivityResult ( int requestCode, int resultCode, Intent data){
+            if (requestCode == 100) {
+                if (resultCode == RESULT_OK) {
+                    newimage.setImageURI(file);
+                }
+            }
+        }
+        private static File getOutputMediaFile () {
+            File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_PICTURES), "CameraDemo");
+
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                return null;
+            }
+        }
+        return new File(mediaStorageDir.getPath() + File.separator +
+                "IMG_" + ".jpg");
+    }
     public void setCommentsARray(ArrayList<String> array) {
         comments = array;
     }
