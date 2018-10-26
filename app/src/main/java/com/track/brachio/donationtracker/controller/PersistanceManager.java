@@ -132,6 +132,7 @@ public class PersistanceManager {
                             UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
                             intent = new Intent(activity, AdminMainActivity.class);
                         } else if (currentUser.getUserType() == UserType.Volunteer) {
+                            /*
                             User user = CurrentUser.getInstance().getUser();
                             HashMap<String, Location> map = AllLocations.getInstance().getLocationMap();
                             ArrayList<Location> array = new ArrayList<>();
@@ -139,7 +140,8 @@ public class PersistanceManager {
                             for (String id : ids) {
                                 array.add(map.get(id));
                             }
-                            UserLocations.getInstance().setLocations(array);
+                            */
+                            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
                             intent = new Intent(activity, VolunteerMainActivity.class);
                         } else if (currentUser.getUserType() == UserType.Manager) {
                             UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
