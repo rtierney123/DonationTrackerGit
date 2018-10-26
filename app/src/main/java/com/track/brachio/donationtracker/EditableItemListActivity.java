@@ -19,19 +19,23 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.controller.UIPopulator;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.database.FirebaseItemHandler;
 import com.track.brachio.donationtracker.model.singleton.CurrentItem;
+import com.track.brachio.donationtracker.model.singleton.SearchedItems;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class EditableItemListActivity extends AppCompatActivity{
     private ArrayList<Item> items = new ArrayList<>();
-    private static HashMap<String, Item> itemMap;
+    private static HashMap<String, Item> itemMap = new HashMap<String, Item>();
+    private static HashMap<String, HashMap<String, Item>> storeItems;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -39,7 +43,7 @@ public class EditableItemListActivity extends AppCompatActivity{
     private FloatingActionButton editButton;
     private Spinner locSpinner;
     private static int locIndex;
-    private static UIPopulator ui;
+    private UIPopulator ui;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,15 +61,6 @@ public class EditableItemListActivity extends AppCompatActivity{
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        if (items.size() == 0 || items == null) {
-            Bundle extra = getIntent().getExtras();
-            if (extra == null) {
-                locIndex = 0;
-                FirebaseItemHandler handler = new FirebaseItemHandler();
-                handler.getAllItems( this );
-            }
-        }
-
         editButton.setOnClickListener (new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +73,8 @@ public class EditableItemListActivity extends AppCompatActivity{
 
         ui = new UIPopulator();
         ArrayList<String> names = new ArrayList<>();
-        for(Location loc :  UserLocations.getInstance().getLocations()){
+        ArrayList<Location> array = UserLocations.getInstance().getLocations();
+        for(Location loc : array){
             names.add(loc.getName());
         }
 
@@ -87,7 +83,7 @@ public class EditableItemListActivity extends AppCompatActivity{
         locSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 locIndex = position;
-                populateRecycleView( itemMap, false );
+                populateRecycleView();
             }
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -97,21 +93,33 @@ public class EditableItemListActivity extends AppCompatActivity{
     @Override
     protected void onResume(){
         super.onResume();
+        /*
         Bundle extra = getIntent().getExtras();
         if (extra != null){
             if (extra.getBoolean( "edited" ) == true) {
                 Log.d("Edit Item", "Item edited");
                 Item editedItem = CurrentItem.getInstance().getItem();
+                if (itemMap == null){
+                    HashMap<String, Item> newMap = new LinkedHashMap<>(  );
+                    newMap.put(editedItem.getKey(), editedItem);
+                    storeItems.put(editedItem.getLocation(), newMap);
+                }
                 itemMap.put(editedItem.getKey(), editedItem);
-                populateRecycleView(itemMap, false);
+                populateRecycleView();
             } else if(extra.getBoolean( "remove" ) == true){
                 Log.d("Delete Item", "Item deleted");
                 Item current = CurrentItem.getInstance().getItem();
                 String key = current.getKey();
                 itemMap.remove(key);
-                populateRecycleView( itemMap, false);
+                populateRecycleView();
+            } else if(extra.getBoolean( "add" ) == true){
+                //Log.d("Add Item", "Item added");
+                //Item addedItem = CurrentItem.getInstance().getItem();
+                //itemMap.put(addedItem.getKey(), addedItem);
+                //populateRecycleView();
             }
         }
+        */
     }
 
     
@@ -123,23 +131,30 @@ public class EditableItemListActivity extends AppCompatActivity{
 
     }
 
-    public void populateRecycleView(HashMap<String, Item> its, boolean firstLoad) {
-        if(itemMap == null){
-            itemMap = its;
+    public String getCurrentLocationID(){
+        UserLocations locs = UserLocations.getInstance();
+        ArrayList<Location> array = locs.getLocations();
+        Location loc = array.get(locIndex);
+        return loc.getId();
+    }
+
+
+    public void populateRecycleView() {
+        String locID = getCurrentLocationID();
+
+        SearchedItems searched = SearchedItems.getInstance();
+        HashMap<String, HashMap<String, Item>> storeItems = searched.getSearchedMap();
+
+        if (!(storeItems==null)) {
+            itemMap = storeItems.get(locID);
         }
 
-        if (its !=null){
-            ArrayList<Item> temp = new ArrayList(its.values());
+        if(!(itemMap==null)) {
+            items = new ArrayList<>(itemMap.values());
+        } else {
             items.clear();
-            ArrayList<Location> userLoc = UserLocations.getInstance().getLocations();
-            for (Item item : temp){
-                String currentLoc = userLoc.get(locIndex).getId();
-                String locID = item.getLocation();
-                if(locID.equals( currentLoc)){
-                    items.add(item);
-                }
-            }
         }
+
 
         if (items != null) {
             // populate view based on items and adapter specifications
@@ -226,7 +241,9 @@ public class EditableItemListActivity extends AppCompatActivity{
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
             holder.nameText.setText(items.get(position).getName());
-            holder.dateText.setText(items.get(position).getDateCreated().toString());
+            if (items.get(position).getDateCreated() != null){
+                holder.dateText.setText(items.get(position).getDateCreated().toString());
+            }
             holder.valueText.setText(items.get(position).getDollarValue()+"");
             if (items.get(position).getCategory() != null) {
                 holder.categoryText.setText(items.get(position).getCategory().toString());

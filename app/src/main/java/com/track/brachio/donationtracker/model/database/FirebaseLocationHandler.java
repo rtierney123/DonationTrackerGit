@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 
 public class FirebaseLocationHandler {
@@ -72,11 +73,10 @@ public class FirebaseLocationHandler {
         return locationCallback;
     }
 
-    public void getAllLocations(PersistanceManager manager){
+    public Task getAllLocations(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        ThreadPoolExecutor executor = manager.getExecutor();
         Task task = db.collection( "location" )
-                .get().addOnSuccessListener(executor, new OnSuccessListener<QuerySnapshot>() {
+                .get().addOnSuccessListener( new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot documentSnapshots) {
                 if (documentSnapshots.isEmpty()) {
@@ -115,11 +115,10 @@ public class FirebaseLocationHandler {
                         locationMap.put(id, locationCallback);
                     }
                     AllLocations.getInstance().setLocationMap( locationMap );
-                    manager.startExecutor();
                 }
             }
         } );
-        PersistanceManager.setActive(true);
+        return task;
     }
     //TODO delete this once AllLocations is up and runnning
     //make sure to replace in LocationListActivity

@@ -1,5 +1,6 @@
 package com.track.brachio.donationtracker;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -61,6 +62,7 @@ public class EditItemActivity extends AppCompatActivity {
     private Button deleteButton;
     private ArrayList<String> comments;
     private PersistanceManager manager;
+    private Activity currentActivity = this;
     Item currentItem;
 
     @Override
@@ -149,10 +151,10 @@ public class EditItemActivity extends AppCompatActivity {
                 }
 
                 Toast.makeText( getApplicationContext(), "Item Edited", Toast.LENGTH_SHORT ).show();
-                manager.editItem( currentItem );
-                Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
-                intent.putExtra( "edited", true );
-                startActivity(intent);
+                manager.editItem( currentItem, currentActivity);
+                //Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
+                //intent.putExtra( "edited", true );
+                //startActivity(intent);
 
             }
         });
@@ -174,10 +176,10 @@ public class EditItemActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("Edit Item", "Item deleted");
                 Toast.makeText( getApplicationContext(), "Item Deleted", Toast.LENGTH_SHORT ).show();
-                manager.deleteItem(currentItem);
-                Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
-                intent.putExtra( "remove", true );
-                startActivity(intent);
+                manager.deleteItem(currentItem, currentActivity);
+                //Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
+                //intent.putExtra( "remove", true );
+                //startActivity(intent);
             }
 
          });

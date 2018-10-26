@@ -1,5 +1,6 @@
 package com.track.brachio.donationtracker;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.provider.MediaStore;
 import android.graphics.Bitmap;
 
+import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.database.FirebaseItemHandler;
@@ -45,7 +47,7 @@ public class AddItemActivity  extends AppCompatActivity {
     private EditText comment;
     private Button addButton;
     private Button cancelButton;
-
+    private Activity currentActivity = this;
     Item currentItem;
 
     @Override
@@ -63,7 +65,7 @@ public class AddItemActivity  extends AppCompatActivity {
         addButton = (Button) findViewById(R.id.addItemAddID);
         cancelButton = (Button) findViewById(R.id.addItemCancelButton);
 
-        FirebaseItemHandler handler = new FirebaseItemHandler();
+        PersistanceManager manager = new PersistanceManager( this );
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Item.getLegalItemTypes());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -97,15 +99,14 @@ public class AddItemActivity  extends AppCompatActivity {
                     if (!commentEntered.isEmpty()) {
                         newItem.addComment(commentEntered);
                     }
-                    handler.addItem(newItem);
+                    manager.addItem(newItem, currentActivity);
                     Toast.makeText( AddItemActivity.this, "Item Added", Toast.LENGTH_SHORT ).show();
-                    Intent intent = new Intent(AddItemActivity.this, EditableItemListActivity.class);
-                    startActivity(intent);
                 } else {
                     Toast.makeText( AddItemActivity.this, "Must fill in name, location, and amount", Toast.LENGTH_SHORT ).show();
                 }
             }
         });
+
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override

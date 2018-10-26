@@ -13,7 +13,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.track.brachio.donationtracker.EditableItemListActivity;
+import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.Item;
+import com.track.brachio.donationtracker.model.singleton.SearchedItems;
 /*
 import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutureCallback;
@@ -25,6 +27,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.lang.Object;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
 
 
 public class FirebaseItemHandler {
@@ -35,16 +39,16 @@ public class FirebaseItemHandler {
     private String TAG = "FirebaseItemHandler";
     private ArrayList<Item> items = new ArrayList<>();
 
-    public void getAllItems(EditableItemListActivity activity){
+    public Task getAllItems(){
         // Firestore
         mFirestore = FirebaseFirestore.getInstance();
         items.clear();
-        db.collection("items")
+        Task task = db.collection("items")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        HashMap<String, Item> map = new LinkedHashMap<>(  );
+                        HashMap<String, HashMap<String, Item>> map = new LinkedHashMap<>(  );
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
 
@@ -61,16 +65,24 @@ public class FirebaseItemHandler {
                                 String shortDescript = document.getString("shortDescript");
                                 String longDescript = document.getString("longDescript");
                                 //TODO How to get comment array and picture?
-
-                                map.put(key, item);
-
+                                HashMap<String, Item> items;
+                                if (map.get(locationID) == null){
+                                    items = new LinkedHashMap<>( );
+                                    items.put(key, item);
+                                    map.put(locationID, items);
+                                } else {
+                                    items = map.get(locationID);
+                                    items.put(key, item);
+                                }
                             }
-                            activity.populateRecycleView(map, true);
+                            SearchedItems searched = SearchedItems.getInstance();
+                            searched.setSearchedMap(map);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
+        return task;
     }
 
     public void getItembyLocation(Item item) {
@@ -110,7 +122,7 @@ public class FirebaseItemHandler {
     }
 
 
-    public void addItem(Item item){
+    public Task addItem(Item item, ExecutorService executor){
 
         Map<String, Object> itemMap = new HashMap<>();
         itemMap.put("name", item.getName());
@@ -122,9 +134,9 @@ public class FirebaseItemHandler {
         itemMap.put("longDescript", item.getLongDescript());
 
         // Add a new document with a generated ID
-        db.collection("items")
+        Task task = db.collection("items")
                 .add(itemMap)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                .addOnSuccessListener(executor, new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
@@ -136,14 +148,16 @@ public class FirebaseItemHandler {
                         Log.w(TAG, "Error adding user", e);
                     }
                 });
+        return task;
 
     }
 
-    public void deleteItem(Item item) {
-        db.collection("items").document(item.getKey()).delete();
+    public Task deleteItem(Item item) {
+        Task task = db.collection("items").document(item.getKey()).delete();
+        return task;
     }
 
-    public void editItem(Item item){
+    public Task editItem(Item item){
         DocumentReference doc = db.collection("items").document(item.getKey());
         Map<String, Object> itemMap = new HashMap<>();
         itemMap.put("name", item.getName());
@@ -154,7 +168,8 @@ public class FirebaseItemHandler {
         itemMap.put("shortDescript", item.getShortDescript());
         itemMap.put("longDescript", item.getLongDescript());
 
-        doc.set(itemMap);
+        Task task = doc.set(itemMap);
+        return task;
     }
 
 }
