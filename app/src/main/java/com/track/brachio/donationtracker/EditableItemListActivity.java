@@ -29,7 +29,7 @@ import com.track.brachio.donationtracker.model.singleton.UserLocations;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class EditableItemListActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class EditableItemListActivity extends AppCompatActivity{
     private ArrayList<Item> items = new ArrayList<>();
     private static HashMap<String, Item> itemMap;
     private RecyclerView recyclerView;
@@ -38,7 +38,9 @@ public class EditableItemListActivity extends AppCompatActivity implements Adapt
     private Button backButton;
     private FloatingActionButton editButton;
     private Spinner locSpinner;
-    private int locIndex;
+    private static int locIndex;
+    private static UIPopulator ui;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -58,9 +60,9 @@ public class EditableItemListActivity extends AppCompatActivity implements Adapt
         if (items.size() == 0 || items == null) {
             Bundle extra = getIntent().getExtras();
             if (extra == null) {
+                locIndex = 0;
                 FirebaseItemHandler handler = new FirebaseItemHandler();
                 handler.getAllItems( this );
-
             }
         }
 
@@ -74,20 +76,22 @@ public class EditableItemListActivity extends AppCompatActivity implements Adapt
             }
         });
 
-        UIPopulator ui = new UIPopulator();
+        ui = new UIPopulator();
         ArrayList<String> names = new ArrayList<>();
         for(Location loc :  UserLocations.getInstance().getLocations()){
             names.add(loc.getName());
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, names);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        locSpinner.setOnItemSelectedListener(this);
-        locSpinner.setAdapter(adapter);
-        //ui.populateSpinner(locSpinner, names, this);
-
+        ui.populateSpinner( locSpinner, names, this );
+        locSpinner.setSelection(locIndex);
+        locSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                locIndex = position;
+                populateRecycleView( itemMap, false );
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     @Override
@@ -155,21 +159,6 @@ public class EditableItemListActivity extends AppCompatActivity implements Adapt
 
 
         //TODO add junk here to take the item array an turn it into displayed list (probably with Recycle view and an adapter
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
-        locIndex = position;
-
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();
-        populateRecycleView( itemMap , false);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
 

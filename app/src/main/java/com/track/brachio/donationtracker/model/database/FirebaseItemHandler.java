@@ -155,7 +155,6 @@ public class FirebaseItemHandler {
         itemMap.put("longDescript", item.getLongDescript());
 
         doc.set(itemMap);
-        doc = doc;
     }
 
 }
