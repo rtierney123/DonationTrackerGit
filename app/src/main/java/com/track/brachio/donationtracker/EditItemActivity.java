@@ -2,6 +2,8 @@ package com.track.brachio.donationtracker;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +34,8 @@ import android.view.LayoutInflater;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.ItemType;
 import android.view.ViewGroup;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class EditItemActivity extends AppCompatActivity {
@@ -194,18 +198,32 @@ public class EditItemActivity extends AppCompatActivity {
         }
     }
         Uri file;
+        static final int REQUEST_IMAGE_CAPTURE = 1;
         public void takePicture(View view){
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             file = Uri.fromFile(getOutputMediaFile());
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
-
-            startActivityForResult(intent, 100);
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, file);
+            takePictureIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                startActivityForResult(takePictureIntent, 100);
+            }
         }
         @Override
         protected void onActivityResult ( int requestCode, int resultCode, Intent data){
             if (requestCode == 100) {
                 if (resultCode == RESULT_OK) {
                     newimage.setImageURI(file);
+                    Bitmap bitmap = null;
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), file);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    currentItem.setPicture( bitmap );
+                    String test ="";
                 }
             }
         }
