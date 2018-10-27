@@ -2,17 +2,10 @@ package com.track.brachio.donationtracker;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.type.Date;
 import com.track.brachio.donationtracker.controller.MainActivity;
-import com.track.brachio.donationtracker.model.Item;
-import com.track.brachio.donationtracker.model.database.FirebaseItemHandler;
-import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
-
-import java.util.Calendar;
 
 public class DonatorMainActivity extends MainActivity {
 
@@ -47,7 +40,7 @@ public class DonatorMainActivity extends MainActivity {
         testEdit = (Button) findViewById(R.id.testEditableItem);
         testEdit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(DonatorMainActivity.this, EditableItemListActivity.class);
+                Intent intent = new Intent(DonatorMainActivity.this, ItemListActivity.class);
                 startActivity(intent);
             }
         });

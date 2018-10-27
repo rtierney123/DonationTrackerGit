@@ -1,20 +1,16 @@
 package com.track.brachio.donationtracker.controller;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.track.brachio.donationtracker.AddItemActivity;
 import com.track.brachio.donationtracker.AdminMainActivity;
 import com.track.brachio.donationtracker.DonatorMainActivity;
-import com.track.brachio.donationtracker.EditableItemListActivity;
+import com.track.brachio.donationtracker.ItemListActivity;
 import com.track.brachio.donationtracker.ManagerMainActivity;
 import com.track.brachio.donationtracker.VolunteerMainActivity;
 import com.track.brachio.donationtracker.model.Item;
@@ -26,15 +22,10 @@ import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
-import com.track.brachio.donationtracker.model.singleton.SearchedItems;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -197,7 +188,7 @@ public class PersistanceManager {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             threadRunning = false;
-                            Intent intent = new Intent(currentActivity, EditableItemListActivity.class);
+                            Intent intent = new Intent(currentActivity, ItemListActivity.class);
                             currentActivity.startActivity(intent);
                         }
                     } );

@@ -2,7 +2,6 @@ package com.track.brachio.donationtracker;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,28 +10,26 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.controller.UIPopulator;
 import com.track.brachio.donationtracker.model.Item;
+import com.track.brachio.donationtracker.model.ItemType;
 import com.track.brachio.donationtracker.model.Location;
-import com.track.brachio.donationtracker.model.database.FirebaseItemHandler;
 import com.track.brachio.donationtracker.model.singleton.CurrentItem;
 import com.track.brachio.donationtracker.model.singleton.SearchedItems;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.stream.Stream;
 
-public class EditableItemListActivity extends AppCompatActivity{
+public class ItemListActivity extends AppCompatActivity{
     private ArrayList<Item> items = new ArrayList<>();
     private static HashMap<String, Item> itemMap = new HashMap<String, Item>();
     private static HashMap<String, HashMap<String, Item>> storeItems;
@@ -42,6 +39,7 @@ public class EditableItemListActivity extends AppCompatActivity{
     private Button backButton;
     private FloatingActionButton editButton;
     private Spinner locSpinner;
+    private Spinner categorySpinner;
     private static int locIndex;
     private UIPopulator ui;
 
@@ -53,6 +51,7 @@ public class EditableItemListActivity extends AppCompatActivity{
         recyclerView = findViewById(R.id.itemList);;
         editButton= findViewById(R.id.editbutton);
         locSpinner= findViewById(R.id.locSpinner);
+        categorySpinner= findViewById( R.id.categorySpinner );
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
@@ -66,7 +65,7 @@ public class EditableItemListActivity extends AppCompatActivity{
             public void onClick(View view) {
                 Log.d("ItemList", "Edit");
                 //putting it to donator main activity for now
-                Intent intent = new Intent(EditableItemListActivity.this, AddItemActivity.class);
+                Intent intent = new Intent(ItemListActivity.this, AddItemActivity.class);
                 startActivity(intent);
             }
         });
@@ -83,6 +82,17 @@ public class EditableItemListActivity extends AppCompatActivity{
         locSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 locIndex = position;
+                populateRecycleView();
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        ArrayList<String> categories = getArrayfromEnum( ItemType.class );
+        ui.populateSpinner( categorySpinner, categories, this );
+        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 populateRecycleView();
             }
             public void onNothingSelected(AdapterView<?> parent) {
@@ -159,11 +169,11 @@ public class EditableItemListActivity extends AppCompatActivity{
         if (items != null) {
             // populate view based on items and adapter specifications
             //TODO add on click to ItemEditActivity
-            adapter = new EditableItemListActivity.ItemListAdapter(items, new ItemListAdapter.OnItemClickListener() {
+            adapter = new ItemListActivity.ItemListAdapter(items, new ItemListAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(Item item) {
                     CurrentItem.getInstance().setItem(item);
-                    Intent intent = new Intent(EditableItemListActivity.this, EditItemActivity.class);
+                    Intent intent = new Intent(ItemListActivity.this, EditItemActivity.class);
                     startActivity(intent);
                 }
             });
@@ -176,8 +186,15 @@ public class EditableItemListActivity extends AppCompatActivity{
         //TODO add junk here to take the item array an turn it into displayed list (probably with Recycle view and an adapter
     }
 
+    private ArrayList<String> getArrayfromEnum(Class<? extends Enum<?>> e){
+        Stream s = Arrays.stream(e.getEnumConstants()).map(Enum::name);
+        String[] array = (String[])s.toArray(String[]::new);
+        ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList(array));
+        return arrayList;
+    }
 
-    private static class ItemListAdapter extends RecyclerView.Adapter<EditableItemListActivity.ItemListAdapter.ItemViewHolder>{
+
+    private static class ItemListAdapter extends RecyclerView.Adapter<ItemListActivity.ItemListAdapter.ItemViewHolder>{
         private ArrayList<Item> items;
         private View view;
         private final OnItemClickListener theItemListener;
@@ -224,20 +241,20 @@ public class EditableItemListActivity extends AppCompatActivity{
         // Create new views (invoked by the layout manager)
         // Create new views (invoked by the layout manager)
         @Override
-        public EditableItemListActivity.ItemListAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent,
-                                                                                          int viewType) {
+        public ItemListActivity.ItemListAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                                  int viewType) {
             // create a new view
             View v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.adapter_item_list, parent, false);
 
             view = v;
-            EditableItemListActivity.ItemListAdapter.ItemViewHolder vh = new EditableItemListActivity.ItemListAdapter.ItemViewHolder(v);
+            ItemListActivity.ItemListAdapter.ItemViewHolder vh = new ItemListActivity.ItemListAdapter.ItemViewHolder(v);
             return vh;
         }
 
         // Replace the contents of a view (invoked by the layout manager)
         @Override
-        public void onBindViewHolder(EditableItemListActivity.ItemListAdapter.ItemViewHolder holder, int position) {
+        public void onBindViewHolder(ItemListActivity.ItemListAdapter.ItemViewHolder holder, int position) {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
             holder.nameText.setText(items.get(position).getName());

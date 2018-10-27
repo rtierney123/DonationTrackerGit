@@ -2,7 +2,6 @@ package com.track.brachio.donationtracker;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,31 +10,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
 import android.Manifest;
 import java.io.File;
-import android.hardware.Camera;
+
 import android.content.pm.PackageManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.app.ActivityCompat;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.widget.ImageButton;
 
 import com.track.brachio.donationtracker.controller.PersistanceManager;
-import com.track.brachio.donationtracker.model.User;
-import com.track.brachio.donationtracker.model.UserType;
-import com.track.brachio.donationtracker.model.database.FirebaseItemHandler;
-import com.track.brachio.donationtracker.model.singleton.CurrentLocation;
-import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
-import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 import com.track.brachio.donationtracker.model.singleton.CurrentItem;
-import com.track.brachio.donationtracker.model.LocationType;
-import com.track.brachio.donationtracker.model.Location;
+
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -164,7 +154,7 @@ public class EditItemActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("Edit Item", "Edit Item Canceled");
 
-                Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
+                Intent intent = new Intent(EditItemActivity.this, ItemListActivity.class);
                 startActivity(intent);
             }
         });

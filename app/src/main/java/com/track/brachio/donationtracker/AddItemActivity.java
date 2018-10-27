@@ -2,40 +2,21 @@ package com.track.brachio.donationtracker;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
-import android.provider.MediaStore;
-import android.graphics.Bitmap;
 
 import com.track.brachio.donationtracker.controller.PersistanceManager;
-import com.track.brachio.donationtracker.model.User;
-import com.track.brachio.donationtracker.model.UserType;
-import com.track.brachio.donationtracker.model.database.FirebaseItemHandler;
-import com.track.brachio.donationtracker.model.singleton.CurrentLocation;
-import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
-import com.track.brachio.donationtracker.model.singleton.CurrentUser;
-import com.track.brachio.donationtracker.model.singleton.CurrentItem;
-import com.track.brachio.donationtracker.model.LocationType;
-import com.track.brachio.donationtracker.model.Location;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.ItemType;
-import android.view.ViewGroup;
+
 import java.util.Date;
-import java.util.ArrayList;
 
 public class AddItemActivity  extends AppCompatActivity {
     private EditText itemName;
@@ -112,7 +93,7 @@ public class AddItemActivity  extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("Add Item", "Add Item Canceled");
-                Intent intent = new Intent(AddItemActivity.this, EditableItemListActivity.class);
+                Intent intent = new Intent(AddItemActivity.this, ItemListActivity.class);
                 startActivity(intent);
             }
         });

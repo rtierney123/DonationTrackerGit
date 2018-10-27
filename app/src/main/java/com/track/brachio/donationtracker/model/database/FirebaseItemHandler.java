@@ -12,8 +12,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.track.brachio.donationtracker.EditableItemListActivity;
-import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.singleton.SearchedItems;
 /*
@@ -28,7 +26,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.lang.Object;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ThreadPoolExecutor;
 
 
 public class FirebaseItemHandler {

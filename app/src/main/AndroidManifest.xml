@@ -44,7 +44,7 @@
             android:name=".LocationActivity"
              android:label=".LocationActivity" />
         <activity
-            android:name=".EditableItemListActivity"
+            android:name=".ItemListActivity"
             android:label=".EditableItemListActivity" />
         <activity
             android:name=".EditItemActivity"
