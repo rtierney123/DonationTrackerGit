@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -41,9 +42,11 @@ public class ItemListActivity extends AppCompatActivity{
     private FloatingActionButton editButton;
     private Spinner locSpinner;
     private Spinner categorySpinner;
+    private SearchView searchView;
     private static int locIndex;
     private static int catIndex;
     private UIPopulator ui;
+    private String searchString = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,7 @@ public class ItemListActivity extends AppCompatActivity{
         editButton= findViewById(R.id.editbutton);
         locSpinner= findViewById(R.id.locSpinner);
         categorySpinner= findViewById( R.id.categorySpinner );
+        searchView = findViewById(R.id.nameSearchView);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
@@ -100,6 +104,25 @@ public class ItemListActivity extends AppCompatActivity{
                 populateRecycleView();
             }
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // Do something when user his enter on keyboard
+                searchString = query;
+                populateRecycleView();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Do something while user is entering text
+                searchString = newText;
+                populateRecycleView();
+                return false;
             }
         });
     }
@@ -172,8 +195,11 @@ public class ItemListActivity extends AppCompatActivity{
         ArrayList<Item> displayItems = new ArrayList();
         for(Item item : items){
             int itemCat = item.getCategory().ordinal();
+            String itemName = item.getName();
             if(catIndex == 0 || itemCat == catIndex-1){
-                displayItems.add(item);
+                if (searchString.isEmpty() || searchString.equals(itemName)){
+                    displayItems.add(item);
+                }
             }
         }
 
