@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.stream.Stream;
 
 public class ItemListActivity extends AppCompatActivity{
@@ -41,6 +42,7 @@ public class ItemListActivity extends AppCompatActivity{
     private Spinner locSpinner;
     private Spinner categorySpinner;
     private static int locIndex;
+    private static int catIndex;
     private UIPopulator ui;
 
     @Override
@@ -88,11 +90,13 @@ public class ItemListActivity extends AppCompatActivity{
             }
         });
 
-        ArrayList<String> categories = getArrayfromEnum( ItemType.class );
+        ArrayList<String> categories = ItemType.getArrayList();
+        categories.add(0,"All");
         ui.populateSpinner( categorySpinner, categories, this );
+        categorySpinner.setSelection(catIndex);
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                catIndex = position;
                 populateRecycleView();
             }
             public void onNothingSelected(AdapterView<?> parent) {
@@ -165,11 +169,19 @@ public class ItemListActivity extends AppCompatActivity{
             items.clear();
         }
 
+        ArrayList<Item> displayItems = new ArrayList();
+        for(Item item : items){
+            int itemCat = item.getCategory().ordinal();
+            if(catIndex == 0 || itemCat == catIndex-1){
+                displayItems.add(item);
+            }
+        }
 
-        if (items != null) {
+
+        if (displayItems != null) {
             // populate view based on items and adapter specifications
             //TODO add on click to ItemEditActivity
-            adapter = new ItemListActivity.ItemListAdapter(items, new ItemListAdapter.OnItemClickListener() {
+            adapter = new ItemListActivity.ItemListAdapter(displayItems, new ItemListAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(Item item) {
                     CurrentItem.getInstance().setItem(item);
@@ -186,13 +198,14 @@ public class ItemListActivity extends AppCompatActivity{
         //TODO add junk here to take the item array an turn it into displayed list (probably with Recycle view and an adapter
     }
 
+    /*
     private ArrayList<String> getArrayfromEnum(Class<? extends Enum<?>> e){
         Stream s = Arrays.stream(e.getEnumConstants()).map(Enum::name);
         String[] array = (String[])s.toArray(String[]::new);
         ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList(array));
         return arrayList;
     }
-
+    */
 
     private static class ItemListAdapter extends RecyclerView.Adapter<ItemListActivity.ItemListAdapter.ItemViewHolder>{
         private ArrayList<Item> items;
