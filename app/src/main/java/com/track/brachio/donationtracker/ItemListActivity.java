@@ -24,6 +24,7 @@ import com.track.brachio.donationtracker.model.singleton.CurrentItem;
 import com.track.brachio.donationtracker.model.singleton.SearchedItems;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -80,6 +81,7 @@ public class ItemListActivity extends AppCompatActivity{
 
         ui = new UIPopulator();
         ArrayList<String> names = new ArrayList<>();
+        names.add("All");
         ArrayList<Location> array = UserLocations.getInstance().getLocations();
         for(Location loc : array){
             names.add(loc.getName());
@@ -173,8 +175,24 @@ public class ItemListActivity extends AppCompatActivity{
     public String getCurrentLocationID(){
         UserLocations locs = UserLocations.getInstance();
         ArrayList<Location> array = locs.getLocations();
-        Location loc = array.get(locIndex);
-        return loc.getId();
+        if (locIndex != 0) {
+            Location loc = array.get(locIndex-1);
+            return loc.getId();
+        } else {
+            return null;
+        }
+
+    }
+
+    public ArrayList<String> getAllLocationIds(){
+        UserLocations locs = UserLocations.getInstance();
+        ArrayList<Location> array = locs.getLocations();
+        ArrayList<String> ids = new ArrayList<>();
+        for(Location loc : array){
+            String id = loc.getId();
+            ids.add(id);
+        }
+        return ids;
     }
 
 
@@ -184,15 +202,29 @@ public class ItemListActivity extends AppCompatActivity{
         SearchedItems searched = SearchedItems.getInstance();
         HashMap<String, HashMap<String, Item>> storeItems = searched.getSearchedMap();
 
-        if (!(storeItems==null)) {
-            itemMap = storeItems.get(locID);
-        }
+        if (storeItems != null){
+            if(locIndex == 0){
+                items.clear();
+                ArrayList<String> locIds = getAllLocationIds();
+                for(String location : locIds){
+                    itemMap = storeItems.get(location);
+                    if (itemMap != null){
+                        items.addAll(new ArrayList<>(itemMap.values()));
+                    }
+                }
 
-        if(!(itemMap==null)) {
-            items = new ArrayList<>(itemMap.values());
+            } else {
+                itemMap = storeItems.get(locID);
+
+                if(!(itemMap==null)) {
+                    items = new ArrayList<>(itemMap.values());
+                }
+            }
         } else {
             items.clear();
         }
+
+
 
         ArrayList<Item> displayItems = new ArrayList();
         for(Item item : items){
