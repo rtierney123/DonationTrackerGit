@@ -29,6 +29,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class ItemListActivity extends AppCompatActivity{
@@ -197,8 +199,14 @@ public class ItemListActivity extends AppCompatActivity{
             int itemCat = item.getCategory().ordinal();
             String itemName = item.getName();
             if(catIndex == 0 || itemCat == catIndex-1){
-                if (searchString.isEmpty() || searchString.equals(itemName)){
+                if (searchString.isEmpty()){
                     displayItems.add(item);
+                } else {
+                    Pattern p = Pattern.compile(searchString);
+                    Matcher m = p.matcher(itemName);
+                    if (m.find()){
+                        displayItems.add(item);
+                    }
                 }
             }
         }
