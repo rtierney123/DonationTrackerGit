@@ -1,6 +1,9 @@
 package com.track.brachio.donationtracker.model.database;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
+import android.util.Base64;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -19,6 +22,7 @@ import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutureCallback;
 import com.google.api.core.ApiFutures;
 */
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -59,9 +63,18 @@ public class FirebaseItemHandler {
                                 String category = document.getString("category");
                                 Item item = new Item(key, name, date, locationID, cost, category);
 
+                                //convert encoded string to bitmap
+                                String encodedImage = document.getString("picture");
+                                byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
+                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
                                 String shortDescript = document.getString("shortDescript");
                                 String longDescript = document.getString("longDescript");
-                                //TODO How to get comment array and picture?
+
+                                item.setPicture( decodedByte );
+                                item.setShortDescript( shortDescript );
+                                item.setLongDescript( longDescript );
+                                //TODO How to get comment array 
                                 HashMap<String, Item> items;
                                 if (map.get(locationID) == null){
                                     items = new LinkedHashMap<>( );
@@ -104,6 +117,7 @@ public class FirebaseItemHandler {
                                 String category = document.getString("category");
                                 Item item = new Item(key, name, date, locationID, cost, category);
 
+                                String encodedPic = document.getString("picture");
                                 String shortDescript = document.getString("shortDescript");
                                 String longDescript = document.getString("longDescript");
                                 //TODO How to get comment array and picture?
@@ -129,6 +143,14 @@ public class FirebaseItemHandler {
         itemMap.put("category", item.getCategory().toString());
         itemMap.put("shortDescript", item.getShortDescript());
         itemMap.put("longDescript", item.getLongDescript());
+
+        //convert bitmap into string to store in db
+        Bitmap bitmap = item.getPicture();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream .toByteArray();
+        String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        itemMap.put("picture", encoded);
 
         // Add a new document with a generated ID
         Task task = db.collection("items")

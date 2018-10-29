@@ -11,6 +11,7 @@ public class DonatorMainActivity extends MainActivity {
 
     private Button donGoToLocationsButton;
     private Button donMainLogout;
+    private Button doLocationMap;
     //TODO delete when EditItemListActivity
     private Button testEdit;
     @Override
@@ -30,6 +31,14 @@ public class DonatorMainActivity extends MainActivity {
         donGoToLocationsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(DonatorMainActivity.this, LocationListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        doLocationMap = (Button) findViewById(R.id.locationTestButtonID);
+        doLocationMap.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(DonatorMainActivity.this, MapsActivity.class);
                 startActivity(intent);
             }
         });
