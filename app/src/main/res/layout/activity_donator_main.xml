@@ -51,8 +51,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/donLocationButton" />
-
-<<<<<<< HEAD
     
     <Button
         android:id="@+id/locationTestButtonID"
@@ -67,7 +65,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/testEditableItem" />
 
-=======
->>>>>>> 58e7ab45a9c34934174dd596e898dfb70d9423b1
 
 </android.support.constraint.ConstraintLayout>
