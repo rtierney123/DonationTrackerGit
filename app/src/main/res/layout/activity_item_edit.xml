@@ -138,7 +138,9 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal_background"
                 tools:layout_editor_absoluteX="57dp"
-                tools:layout_editor_absoluteY="436dp" />
+                tools:layout_editor_absoluteY="436dp"
+                android:onClick="takePicture"/>
+
             <Button
                 android:id="@+id/editItemMakeChangesID"
                 android:layout_width="match_parent"

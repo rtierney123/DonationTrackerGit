@@ -222,7 +222,7 @@ public class EditItemActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    currentItem.setPicture( bitmap );
+                    newimage.setImageBitmap(bitmap);
                     String test ="";
                 }
             }
