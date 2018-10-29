@@ -65,11 +65,8 @@ public class FirebaseItemHandler {
 
                                 //convert encoded string to bitmap
                                 String encodedImage = document.getString("picture");
-                                if (encodedImage != null){
-                                    byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
-                                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                                    item.setPicture( decodedByte );
-                                }
+                                item.setPicture( encodedImage );
+
 
                                 String shortDescript = document.getString("shortDescript");
                                 String longDescript = document.getString("longDescript");
@@ -149,11 +146,10 @@ public class FirebaseItemHandler {
         //convert bitmap into string to store in db
         Bitmap bitmap = item.getPicture();
         if (bitmap != null){
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-            byte[] byteArray = byteArrayOutputStream .toByteArray();
-            String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+            String encoded = item.encodePic();
             itemMap.put("picture", encoded);
+        } else {
+            itemMap.put("picture", null);
         }
 
 
@@ -191,7 +187,7 @@ public class FirebaseItemHandler {
         itemMap.put("category", item.getCategory().toString());
         itemMap.put("shortDescript", item.getShortDescript());
         itemMap.put("longDescript", item.getLongDescript());
-
+        itemMap.put("picture", item.encodePic());
         Task task = doc.set(itemMap);
         return task;
     }

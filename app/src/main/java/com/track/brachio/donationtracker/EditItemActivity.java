@@ -223,7 +223,6 @@ public class EditItemActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     newimage.setImageBitmap(bitmap);
-                    String test ="";
                 }
             }
         }
