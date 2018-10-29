@@ -1,7 +1,10 @@
 package com.track.brachio.donationtracker.model;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -150,6 +153,26 @@ public class Item {
                 return ItemType.Miscellaneous;
         }
         return null;
+    }
+
+    public void setPicture(String encodedImage){
+        if(encodedImage != null){
+            byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
+            picture = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        }
+
+    }
+
+    public String encodePic(){
+        if (picture != null){
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            picture.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream .toByteArray();
+            String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+            return encoded;
+        } else {
+            return null;
+        }
     }
 
 }
