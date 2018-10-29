@@ -65,16 +65,18 @@ public class FirebaseItemHandler {
 
                                 //convert encoded string to bitmap
                                 String encodedImage = document.getString("picture");
-                                byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
-                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                                if (encodedImage != null){
+                                    byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
+                                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                                    item.setPicture( decodedByte );
+                                }
 
                                 String shortDescript = document.getString("shortDescript");
                                 String longDescript = document.getString("longDescript");
 
-                                item.setPicture( decodedByte );
                                 item.setShortDescript( shortDescript );
                                 item.setLongDescript( longDescript );
-                                //TODO How to get comment array 
+                                //TODO How to get comment array
                                 HashMap<String, Item> items;
                                 if (map.get(locationID) == null){
                                     items = new LinkedHashMap<>( );
@@ -146,11 +148,14 @@ public class FirebaseItemHandler {
 
         //convert bitmap into string to store in db
         Bitmap bitmap = item.getPicture();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-        byte[] byteArray = byteArrayOutputStream .toByteArray();
-        String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
-        itemMap.put("picture", encoded);
+        if (bitmap != null){
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream .toByteArray();
+            String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+            itemMap.put("picture", encoded);
+        }
+
 
         // Add a new document with a generated ID
         Task task = db.collection("items")
