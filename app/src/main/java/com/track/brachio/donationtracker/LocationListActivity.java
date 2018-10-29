@@ -52,11 +52,11 @@ public class LocationListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        mapButton = (Button) findViewById( R.id.mapButton );
+        mapButton = (Button) findViewById( R.id.mapButtonID );
         mapButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                //Intent intent = new Intent(LocationListActivity.this, MapActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(LocationListActivity.this, MapsActivity.class);
+                startActivity(intent);
             }
         });
 

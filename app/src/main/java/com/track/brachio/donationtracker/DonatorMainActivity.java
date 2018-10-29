@@ -35,13 +35,6 @@ public class DonatorMainActivity extends MainActivity {
             }
         });
 
-        doLocationMap = (Button) findViewById(R.id.locationTestButtonID);
-        doLocationMap.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(DonatorMainActivity.this, MapsActivity.class);
-                startActivity(intent);
-            }
-        });
 
         donMainLogout = (Button) findViewById(R.id.donMainLogout);
         setLogoutButton( donMainLogout );
