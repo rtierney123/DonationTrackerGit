@@ -34,11 +34,8 @@ import java.util.concurrent.TimeUnit;
 public class PersistanceManager {
 
     private static ThreadPoolExecutor executor;
-    private static boolean isActive = false;
     private Activity activity;
-    private static boolean threadRunning = false;
-    private static int threadCount = 0;
-    private List<Future<String>> futures;
+    private static boolean threadRunning;
 
     public PersistanceManager(Activity currentActivity) {
         activity = currentActivity;
@@ -48,7 +45,7 @@ public class PersistanceManager {
     public boolean loadAppOnStart(Activity activity) {
         User user = CurrentUser.getInstance().getUser();
         try {
-            gatherData( user );
+            gatherData();
         } catch (InterruptedException ex) {
 
         }
@@ -57,7 +54,7 @@ public class PersistanceManager {
     }
 
 
-    private void gatherData(User currentUser) throws InterruptedException {
+    private void gatherData() throws InterruptedException {
         //Get all locations from db so user can view all locations
         FirebaseLocationHandler locHandler = new FirebaseLocationHandler();
         Task task1 = locHandler.getAllLocations();
@@ -89,66 +86,6 @@ public class PersistanceManager {
         return executor;
     }
 
-    public void startExecutor() {
-
-        if (!threadRunning) {
-            threadRunning = true;
-            threadCount = 0;
-            Thread thread = new Thread( new StartThreadMonitor() );
-            thread.start();
-        }
-
-    }
-
-
-    public class StartThreadMonitor implements Runnable {
-        private volatile boolean running = true;
-
-        public void terminate() {
-            running = false;
-        }
-
-        public void run() {
-            while (running) {
-                try {
-                    if (threadCount == 2) {
-                        terminate();
-                        threadRunning = false;
-                        threadCount = 0;
-                        User currentUser = CurrentUser.getInstance().getUser();
-                        Intent intent = new Intent(activity, DonatorMainActivity.class);;
-                        if (currentUser.getUserType() == UserType.Donator) {
-                            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
-                            intent = new Intent(activity, DonatorMainActivity.class);
-                        } else if (currentUser.getUserType() == UserType.Admin){
-                            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
-                            intent = new Intent(activity, AdminMainActivity.class);
-                        } else if (currentUser.getUserType() == UserType.Volunteer) {
-                            /*
-                            User user = CurrentUser.getInstance().getUser();
-                            HashMap<String, Location> map = AllLocations.getInstance().getLocationMap();
-                            ArrayList<Location> array = new ArrayList<>();
-                            ArrayList<String> ids = user.getLocations();
-                            for (String id : ids) {
-                                array.add(map.get(id));
-                            }
-                            */
-                            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
-                            intent = new Intent(activity, VolunteerMainActivity.class);
-                        } else if (currentUser.getUserType() == UserType.Manager) {
-                            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
-                            intent = new Intent(activity, ManagerMainActivity.class);
-                        }
-                        activity.startActivity(intent);
-
-                    }
-                    Thread.sleep( (long) 200 );
-                } catch (InterruptedException e) {
-                    running = false;
-                }
-            }
-        }
-    }
 
     public void goToMainPage(){
         User currentUser = CurrentUser.getInstance().getUser();
