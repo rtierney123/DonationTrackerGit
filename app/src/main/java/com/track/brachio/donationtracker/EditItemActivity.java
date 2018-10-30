@@ -219,6 +219,7 @@ public class EditItemActivity extends AppCompatActivity {
                     Bitmap bitmap = null;
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), file);
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
