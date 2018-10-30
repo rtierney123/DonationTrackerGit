@@ -7,4 +7,24 @@
     <string name="title_activity_admin_main">AdminMainActivity</string>
     <string name="title_activity_manager_main">ManagerMainActivity</string>
     <string name="title_activity_maps">Map</string>
+    <string name="date_donated">Date Donated:</string>
+    <string name="name">Name</string>
+    <string name="date">Date</string>
+    <string name="location">Location:</string>
+    <string name="detail_locatio">Location</string>
+    <string name="short_description">Short Description:</string>
+    <string name="dollar_value">Dollar Value:</string>
+    <string name="long_description">Long Description:</string>
+    <string name="comments">Comments:</string>
+    <string name="item_category">Item Category:</string>
+    <string name="item_number">Item Number:</string>
+    <string name="short_description_detail">Short Description</string>
+    <string name="picture">Picture:</string>
+    <string name="long_description_detail">Long Description</string>
+    <string name="dollar_value_detail">Dollar Value</string>
+    <string name="item_category_category">Item Category</string>
+    <string name="comments_detail">Comments</string>
+    <string name="item_number_detail">Item Number</string>
+    <string name="item_category_detail">Item Category</string>
+    <string name="item_picture">item_picture</string>
 </resources>
