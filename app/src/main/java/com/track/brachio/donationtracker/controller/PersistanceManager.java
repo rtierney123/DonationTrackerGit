@@ -61,21 +61,22 @@ public class PersistanceManager {
         //Get all locations from db so user can view all locations
         FirebaseLocationHandler locHandler = new FirebaseLocationHandler();
         Task task1 = locHandler.getAllLocations();
-        FirebaseItemHandler itemHandler = new FirebaseItemHandler();
-        Task task2 = itemHandler.getAllItems();
+
         task1.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                threadCount++;
+                FirebaseItemHandler itemHandler = new FirebaseItemHandler();
+                Task task2 = itemHandler.getAllItems();
+                task2.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        goToMainPage();
+                    }
+                });
             }
         });
-        task2.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                threadCount++;
-            }
-        });
-        startExecutor();
+
+        //startExecutor();
     }
 
     private void initializeVariables() {
@@ -147,6 +148,34 @@ public class PersistanceManager {
                 }
             }
         }
+    }
+
+    public void goToMainPage(){
+        User currentUser = CurrentUser.getInstance().getUser();
+        Intent intent = new Intent(activity, DonatorMainActivity.class);;
+        if (currentUser.getUserType() == UserType.Donator) {
+            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
+            intent = new Intent(activity, DonatorMainActivity.class);
+        } else if (currentUser.getUserType() == UserType.Admin){
+            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
+            intent = new Intent(activity, AdminMainActivity.class);
+        } else if (currentUser.getUserType() == UserType.Volunteer) {
+                            /*
+                            User user = CurrentUser.getInstance().getUser();
+                            HashMap<String, Location> map = AllLocations.getInstance().getLocationMap();
+                            ArrayList<Location> array = new ArrayList<>();
+                            ArrayList<String> ids = user.getLocations();
+                            for (String id : ids) {
+                                array.add(map.get(id));
+                            }
+                            */
+            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
+            intent = new Intent(activity, VolunteerMainActivity.class);
+        } else if (currentUser.getUserType() == UserType.Manager) {
+            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
+            intent = new Intent(activity, ManagerMainActivity.class);
+        }
+        activity.startActivity(intent);
     }
 
 
