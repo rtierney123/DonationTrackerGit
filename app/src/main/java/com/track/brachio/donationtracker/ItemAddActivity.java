@@ -18,7 +18,7 @@ import com.track.brachio.donationtracker.model.ItemType;
 
 import java.util.Date;
 
-public class AddItemActivity  extends AppCompatActivity {
+public class ItemAddActivity extends AppCompatActivity {
     private EditText itemName;
     private EditText location;
     private EditText shortDescription;
@@ -81,9 +81,9 @@ public class AddItemActivity  extends AppCompatActivity {
                         newItem.addComment(commentEntered);
                     }
                     manager.addItem(newItem, currentActivity);
-                    Toast.makeText( AddItemActivity.this, "Item Added", Toast.LENGTH_SHORT ).show();
+                    Toast.makeText( ItemAddActivity.this, "Item Added", Toast.LENGTH_SHORT ).show();
                 } else {
-                    Toast.makeText( AddItemActivity.this, "Must fill in name, location, and amount", Toast.LENGTH_SHORT ).show();
+                    Toast.makeText( ItemAddActivity.this, "Must fill in name, location, and amount", Toast.LENGTH_SHORT ).show();
                 }
             }
         });
@@ -93,7 +93,7 @@ public class AddItemActivity  extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("Add Item", "Add Item Canceled");
-                Intent intent = new Intent(AddItemActivity.this, ItemListActivity.class);
+                Intent intent = new Intent(ItemAddActivity.this, ItemListActivity.class);
                 startActivity(intent);
             }
         });

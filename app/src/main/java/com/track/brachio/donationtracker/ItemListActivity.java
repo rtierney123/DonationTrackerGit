@@ -24,15 +24,10 @@ import com.track.brachio.donationtracker.model.singleton.CurrentItem;
 import com.track.brachio.donationtracker.model.singleton.SearchedItems;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 public class ItemListActivity extends AppCompatActivity{
     private ArrayList<Item> items = new ArrayList<>();
@@ -74,7 +69,7 @@ public class ItemListActivity extends AppCompatActivity{
             public void onClick(View view) {
                 Log.d("ItemList", "Edit");
                 //putting it to donator main activity for now
-                Intent intent = new Intent(ItemListActivity.this, AddItemActivity.class);
+                Intent intent = new Intent(ItemListActivity.this, ItemAddActivity.class);
                 startActivity(intent);
             }
         });
@@ -251,7 +246,7 @@ public class ItemListActivity extends AppCompatActivity{
                 @Override
                 public void onItemClick(Item item) {
                     CurrentItem.getInstance().setItem(item);
-                    Intent intent = new Intent(ItemListActivity.this, EditItemActivity.class);
+                    Intent intent = new Intent(ItemListActivity.this, ItemEditActivity.class);
                     startActivity(intent);
                 }
             });

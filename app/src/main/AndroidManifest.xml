@@ -58,10 +58,10 @@
             android:name=".ItemListActivity"
             android:label=".EditableItemListActivity" />
         <activity
-            android:name=".EditItemActivity"
+            android:name=".ItemEditActivity"
             android:label=".EditItemActivity" />
         <activity
-            android:name=".AddItemActivity"
+            android:name=".ItemAddActivity"
             android:label=".AddItemActivity" />
         <activity android:name=".ItemDetailActivity"></activity>
         <!--
