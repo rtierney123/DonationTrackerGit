@@ -222,6 +222,8 @@ public class EditItemActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    Item item = CurrentItem.getInstance().getItem();
+                    item.setPicture(bitmap);
                     newimage.setImageBitmap(bitmap);
                 }
             }
