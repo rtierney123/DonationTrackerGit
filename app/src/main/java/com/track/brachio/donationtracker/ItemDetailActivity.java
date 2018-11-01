@@ -1,11 +1,13 @@
 package com.track.brachio.donationtracker;
 
 import android.content.Intent;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.track.brachio.donationtracker.model.Item;
@@ -32,6 +34,8 @@ public class ItemDetailActivity extends AppCompatActivity {
         TextView longDescriptText = findViewById(R.id.long_description);
         TextView dollarText = findViewById(R.id.dollar_value);
         TextView categoryText = findViewById(R.id.item_category);
+        ImageView itemPic = findViewById(R.id.detail_image);
+
 
         nameText.setText(currentItem.getName());
         dateText.setText(currentItem.getDateCreated().toString());
@@ -52,6 +56,10 @@ public class ItemDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        if (currentItem.getPicture() != null){
+            itemPic.setImageBitmap( currentItem.getPicture() );
+        }
 
     }
 }
