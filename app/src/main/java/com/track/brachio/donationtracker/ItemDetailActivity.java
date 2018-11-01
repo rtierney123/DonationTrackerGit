@@ -1,7 +1,11 @@
 package com.track.brachio.donationtracker;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.track.brachio.donationtracker.model.Item;
@@ -36,6 +40,16 @@ public class ItemDetailActivity extends AppCompatActivity {
         shortDescriptText.setText(currentItem.getShortDescript());
         longDescriptText.setText(currentItem.getLongDescript());
         dollarText.setText(currentItem.getDollarValue() + "");
+
+        ImageButton editButton = findViewById( R.id.edti_item_button);
+        editButton.setOnClickListener (new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //putting it to donator main activity for now
+                Intent intent = new Intent(ItemDetailActivity.this, ItemEditActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

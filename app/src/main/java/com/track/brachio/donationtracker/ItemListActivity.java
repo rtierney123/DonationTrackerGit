@@ -247,8 +247,8 @@ public class ItemListActivity extends AppCompatActivity{
                 public void onItemClick(Item item) {
                     CurrentItem.getInstance().setItem(item);
                     //TODO make code go to detail once edit buttons all working
-                    //Intent intent = new Intent(ItemListActivity.this, ItemDetailActivity.class);
-                    Intent intent = new Intent(ItemListActivity.this, ItemEditActivity.class);
+                    Intent intent = new Intent(ItemListActivity.this, ItemDetailActivity.class);
+                    //Intent intent = new Intent(ItemListActivity.this, ItemEditActivity.class);
                     startActivity(intent);
                 }
             });
