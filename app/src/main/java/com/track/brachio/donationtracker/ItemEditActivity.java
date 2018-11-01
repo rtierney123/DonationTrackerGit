@@ -188,6 +188,8 @@ public class ItemEditActivity extends AppCompatActivity {
             }
         });
 
+        newimage.setImageBitmap( currentItem.getPicture() );
+
     }
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == 0) {
