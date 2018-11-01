@@ -11,11 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
         android:text="@string/name"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/item_image" />
 
     <ScrollView
         android:id="@+id/scrollView3"
@@ -154,39 +153,20 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/comments_detail" />
 
-            <TextView
-                android:id="@+id/number_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/item_number"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/item_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/item_number_detail" />
-
-            <TextView
-                android:id="@+id/picture_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/picture"
-                android:textStyle="bold" />
-
-            <ImageButton
-                android:id="@+id/item_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:contentDescription="@string/item_picture"
-                app:srcCompat="@android:color/background_light" />
-
         </LinearLayout>
     </ScrollView>
+
+    <ImageButton
+        android:id="@+id/item_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/item_picture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/background_light" />
 
 </android.support.constraint.ConstraintLayout>
