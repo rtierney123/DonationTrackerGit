@@ -22,7 +22,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:largeHeap="true">
         <activity android:name=".StartUpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,10 +59,10 @@
             android:name=".ItemListActivity"
             android:label=".EditableItemListActivity" />
         <activity
-            android:name=".EditItemActivity"
+            android:name=".ItemEditActivity"
             android:label=".EditItemActivity" />
         <activity
-            android:name=".AddItemActivity"
+            android:name=".ItemAddActivity"
             android:label=".AddItemActivity" />
         <activity android:name=".ItemDetailActivity"></activity>
         <!--

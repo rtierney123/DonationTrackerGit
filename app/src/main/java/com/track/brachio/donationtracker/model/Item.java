@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
@@ -102,7 +103,9 @@ public class Item {
     }
 
     public void setPicture(Bitmap picture) {
-        this.picture = picture;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        picture.compress(Bitmap.CompressFormat.PNG, 100, out);
+        this.picture = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray()));
     }
 
     public Date getDateCreated() {
@@ -167,7 +170,7 @@ public class Item {
         if (picture != null){
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             picture.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-            byte[] byteArray = byteArrayOutputStream .toByteArray();
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
             String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
             return encoded;
         } else {

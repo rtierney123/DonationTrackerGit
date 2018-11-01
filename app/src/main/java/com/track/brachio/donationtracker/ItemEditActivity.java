@@ -38,7 +38,7 @@ import android.view.ViewGroup;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class EditItemActivity extends AppCompatActivity {
+public class ItemEditActivity extends AppCompatActivity {
     private TextView itemName;
     private TextView dateCreated;
     private EditText newLocation;
@@ -158,7 +158,7 @@ public class EditItemActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("Edit Item", "Edit Item Canceled");
 
-                Intent intent = new Intent(EditItemActivity.this, ItemListActivity.class);
+                Intent intent = new Intent(ItemEditActivity.this, ItemListActivity.class);
                 startActivity(intent);
             }
         });
@@ -187,6 +187,8 @@ public class EditItemActivity extends AppCompatActivity {
                 takePicture(view);
             }
         });
+
+        newimage.setImageBitmap( currentItem.getPicture() );
 
     }
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -223,6 +225,8 @@ public class EditItemActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    Item item = CurrentItem.getInstance().getItem();
+                    item.setPicture(bitmap);
                     newimage.setImageBitmap(bitmap);
                 }
             }
@@ -251,14 +255,14 @@ public class EditItemActivity extends AppCompatActivity {
         comments = comm;
 
         if (comments != null) {
-            adapter = new EditItemActivity.CommentListAdapter(comments);
+            adapter = new ItemEditActivity.CommentListAdapter(comments);
             newCommentsRecyclerView.setAdapter(adapter);
         } else {
             Log.d("Comments", "Comments are null");
         }
     }
 
-    private static class CommentListAdapter extends RecyclerView.Adapter<EditItemActivity.CommentListAdapter.CommentViewHolder> {
+    private static class CommentListAdapter extends RecyclerView.Adapter<ItemEditActivity.CommentListAdapter.CommentViewHolder> {
         private ArrayList<String> theComments;
         private View view;
 
@@ -280,16 +284,16 @@ public class EditItemActivity extends AppCompatActivity {
         }
 
         @Override
-        public EditItemActivity.CommentListAdapter.CommentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public ItemEditActivity.CommentListAdapter.CommentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_comments_list, parent, false);
             view = v;
-            EditItemActivity.CommentListAdapter.CommentViewHolder vh = new EditItemActivity.CommentListAdapter.CommentViewHolder(v);
+            ItemEditActivity.CommentListAdapter.CommentViewHolder vh = new ItemEditActivity.CommentListAdapter.CommentViewHolder(v);
             return vh;
         }
 
         //idk if this is right
         @Override
-        public void onBindViewHolder(EditItemActivity.CommentListAdapter.CommentViewHolder holder, int position) {
+        public void onBindViewHolder(ItemEditActivity.CommentListAdapter.CommentViewHolder holder, int position) {
             holder.commentText.setText(theComments.get(position));
         }
 

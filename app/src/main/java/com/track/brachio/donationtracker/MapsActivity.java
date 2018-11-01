@@ -8,16 +8,36 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.track.brachio.donationtracker.controller.UIPopulator;
+import com.track.brachio.donationtracker.model.Location;
+import com.track.brachio.donationtracker.model.singleton.UserLocations;
+import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Spinner locationDisplayed;
+    private UIPopulator ui;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        locationDisplayed = (Spinner) findViewById(R.id.locationsOnMaps);
+        ui = new UIPopulator();
+        ArrayList<String> names = new ArrayList<>();
+        ArrayList<Location> array = UserLocations.getInstance().getLocations();
+        for (Location loc : array) {
+            names.add(loc.getName());
+        }
+
+        ui.populateSpinner(locationDisplayed, names, this);
+        //locationDisplayed.setSelection()
+        
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
