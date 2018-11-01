@@ -27,10 +27,11 @@ public class ItemDetailActivity extends AppCompatActivity {
 
         TextView nameText = findViewById(R.id.detail_name);
         TextView dateText = findViewById( R.id.detail_date );
-        TextView locationText = findViewById( R.id.location_title );
+        TextView locationText = findViewById( R.id.detail_location);
         TextView shortDescriptText = findViewById(R.id.short_description);
         TextView longDescriptText = findViewById(R.id.long_description);
         TextView dollarText = findViewById(R.id.dollar_value);
+        TextView categoryText = findViewById(R.id.item_category);
 
         nameText.setText(currentItem.getName());
         dateText.setText(currentItem.getDateCreated().toString());
@@ -40,6 +41,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         shortDescriptText.setText(currentItem.getShortDescript());
         longDescriptText.setText(currentItem.getLongDescript());
         dollarText.setText(currentItem.getDollarValue() + "");
+        categoryText.setText(currentItem.getCategory().toString());
 
         ImageButton editButton = findViewById( R.id.edti_item_button);
         editButton.setOnClickListener (new View.OnClickListener() {
