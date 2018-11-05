@@ -37,6 +37,7 @@ import android.view.ViewGroup;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ItemEditActivity extends AppCompatActivity {
     private TextView itemName;
@@ -263,7 +264,7 @@ public class ItemEditActivity extends AppCompatActivity {
     }
 
     private static class CommentListAdapter extends RecyclerView.Adapter<ItemEditActivity.CommentListAdapter.CommentViewHolder> {
-        private ArrayList<String> theComments;
+        private List<String> theComments;
         private View view;
 
         public static class CommentViewHolder extends RecyclerView.ViewHolder {

@@ -92,7 +92,7 @@ public class LocationListActivity extends AppCompatActivity {
 
 
     private static class LocationListAdapter extends RecyclerView.Adapter<LocationListAdapter.LocationViewHolder>{
-        private ArrayList<Location> locations;
+        private List<Location> locations;
         private View view;
         private final OnItemClickListener locationListener;
         // Provide a reference to the views for each data item

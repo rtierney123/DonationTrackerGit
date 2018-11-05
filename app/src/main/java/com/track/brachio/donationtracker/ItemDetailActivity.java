@@ -18,6 +18,7 @@ import com.track.brachio.donationtracker.model.singleton.CurrentItem;
 import org.w3c.dom.Text;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class ItemDetailActivity extends AppCompatActivity {
 
@@ -39,7 +40,7 @@ public class ItemDetailActivity extends AppCompatActivity {
 
         nameText.setText(currentItem.getName());
         dateText.setText(currentItem.getDateCreated().toString());
-        HashMap<String, Location> allLoc = AllLocations.getInstance().getLocationMap();
+        Map<String, Location> allLoc = AllLocations.getInstance().getLocationMap();
         Location loc = allLoc.get(currentItem.getLocation());
         locationText.setText(loc.getName());
         shortDescriptText.setText(currentItem.getShortDescript());

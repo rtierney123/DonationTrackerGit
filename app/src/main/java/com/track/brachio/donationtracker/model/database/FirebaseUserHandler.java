@@ -236,7 +236,7 @@ public class FirebaseUserHandler {
                         String lastName = "";
                         String email = "";
                         String userType = "";
-                        HashMap<String, Boolean> locationHash = new HashMap<>(  );
+                        Map<String, Boolean> locationHash = new HashMap<>(  );
                         for (DocumentSnapshot doc : retDocs) {
                             firstName = (String) doc.get( "firstname" );
                             lastName = (String) doc.get( "lastname" );

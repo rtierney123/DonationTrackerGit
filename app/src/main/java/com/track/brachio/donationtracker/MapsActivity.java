@@ -18,6 +18,8 @@ import com.track.brachio.donationtracker.controller.UIPopulator;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
 import java.util.ArrayList;
+import java.util.List;
+
 import android.widget.AdapterView;
 import android.util.Log;
 
@@ -34,8 +36,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         locationDisplayed = (Spinner) findViewById(R.id.locationsOnMaps);
         ui = new UIPopulator();
-        ArrayList<String> names = new ArrayList<>();
-        ArrayList<Location> array = UserLocations.getInstance().getLocations();
+        List<String> names = new ArrayList<>();
+        List<Location> array = UserLocations.getInstance().getLocations();
         for (Location loc : array) {
             names.add(loc.getName());
         }

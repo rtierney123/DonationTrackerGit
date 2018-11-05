@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.lang.Object;
 import java.util.concurrent.ExecutorService;
@@ -38,7 +39,7 @@ public class FirebaseItemHandler {
 
     private FirebaseFirestore mFirestore;
     private String TAG = "FirebaseItemHandler";
-    private ArrayList<Item> items = new ArrayList<>();
+    private List<Item> items = new ArrayList<Item>();
 
     public Task getAllItems(){
         // Firestore

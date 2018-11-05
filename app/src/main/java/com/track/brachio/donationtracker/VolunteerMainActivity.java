@@ -13,6 +13,7 @@ import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class VolunteerMainActivity extends MainActivity {
     private Button volGoToLocationsButton;
@@ -35,8 +36,8 @@ public class VolunteerMainActivity extends MainActivity {
         setLogoutButton( logoutButton );
 
 
-        ArrayList<Location> locations = AllLocations.getInstance().getLocationArray();
-        ArrayList<String> spinnerArray = new ArrayList<>();
+        List<Location> locations = AllLocations.getInstance().getLocationArray();
+        List<String> spinnerArray = new ArrayList<>();
         for(Location loc : locations) {
             spinnerArray.add(loc.getName());
         }

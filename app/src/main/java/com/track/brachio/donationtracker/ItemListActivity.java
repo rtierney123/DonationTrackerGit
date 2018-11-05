@@ -26,12 +26,14 @@ import com.track.brachio.donationtracker.model.singleton.UserLocations;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ItemListActivity extends AppCompatActivity{
-    private ArrayList<Item> items = new ArrayList<>();
-    private static HashMap<String, Item> itemMap = new HashMap<String, Item>();
+    private List<Item> items = new ArrayList<>();
+    private static Map<String, Item> itemMap = new HashMap<String, Item>();
     private static HashMap<String, HashMap<String, Item>> storeItems;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -75,9 +77,9 @@ public class ItemListActivity extends AppCompatActivity{
         });
 
         ui = new UIPopulator();
-        ArrayList<String> names = new ArrayList<>();
+        List<String> names = new ArrayList<>();
         names.add("All");
-        ArrayList<Location> array = UserLocations.getInstance().getLocations();
+        List<Location> array = UserLocations.getInstance().getLocations();
         for(Location loc : array){
             names.add(loc.getName());
         }
@@ -169,7 +171,7 @@ public class ItemListActivity extends AppCompatActivity{
 
     public String getCurrentLocationID(){
         UserLocations locs = UserLocations.getInstance();
-        ArrayList<Location> array = locs.getLocations();
+        List<Location> array = locs.getLocations();
         if (locIndex != 0) {
             Location loc = array.get(locIndex-1);
             return loc.getId();
@@ -179,10 +181,10 @@ public class ItemListActivity extends AppCompatActivity{
 
     }
 
-    public ArrayList<String> getAllLocationIds(){
+    public List<String> getAllLocationIds(){
         UserLocations locs = UserLocations.getInstance();
-        ArrayList<Location> array = locs.getLocations();
-        ArrayList<String> ids = new ArrayList<>();
+        List<Location> array = locs.getLocations();
+        List<String> ids = new ArrayList<>();
         for(Location loc : array){
             String id = loc.getId();
             ids.add(id);
@@ -195,12 +197,12 @@ public class ItemListActivity extends AppCompatActivity{
         String locID = getCurrentLocationID();
 
         SearchedItems searched = SearchedItems.getInstance();
-        HashMap<String, HashMap<String, Item>> storeItems = searched.getSearchedMap();
+        Map<String, HashMap<String, Item>> storeItems = searched.getSearchedMap();
 
         if (storeItems != null){
             if(locIndex == 0){
                 items.clear();
-                ArrayList<String> locIds = getAllLocationIds();
+                List<String> locIds = getAllLocationIds();
                 for(String location : locIds){
                     itemMap = storeItems.get(location);
                     if (itemMap != null){
@@ -271,7 +273,7 @@ public class ItemListActivity extends AppCompatActivity{
     */
 
     private static class ItemListAdapter extends RecyclerView.Adapter<ItemListActivity.ItemListAdapter.ItemViewHolder>{
-        private ArrayList<Item> items;
+        private List<Item> items;
         private View view;
         private final OnItemClickListener theItemListener;
         // Provide a reference to the views for each data item
