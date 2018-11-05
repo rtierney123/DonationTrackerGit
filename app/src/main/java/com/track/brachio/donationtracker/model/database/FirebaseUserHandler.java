@@ -112,7 +112,8 @@ public class FirebaseUserHandler {
     //use for registration page
     //will add user to Firebase, make this user CurrentUser for singleton
     //TODO create progress bar to be displayed
-    public void createNewUser(User appUser, String password, RegistrationActivity registration, Activity activity){
+    public void createNewUser(User appUser, String password,
+                              RegistrationActivity registration, Activity activity){
         // Write a message to the database
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -134,21 +135,27 @@ public class FirebaseUserHandler {
                                         Log.d(TAG, "Registered");
                                         FirebaseFirestore db = FirebaseFirestore.getInstance();
                                         if (auth.getUid() != null) {
-                                            db.collection("users").document(auth.getCurrentUser().getUid()).set(userMap)
-                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            db.collection("users")
+                                                    .document(auth.getCurrentUser().getUid())
+                                                    .set(userMap)
+                                                    .addOnSuccessListener(
+                                                            new OnSuccessListener<Void>() {
                                                         @Override
                                                         public void onSuccess(Void aVoid) {
                                                             Log.d(TAG, "Added extra data");
                                                         }
                                                     });
-                                            Intent intent = new Intent(activity, LoginActivity.class);
+                                            Intent intent =
+                                                    new Intent(activity, LoginActivity.class);
                                             registration.startActivity(intent);
                                         } else {
                                             Log.e(TAG, "Cannot access current user");
                                         }
                                     }else{
                                         Log.e(TAG, "Not registered");
-                                        Toast.makeText(activity, "User with email entered already exists.", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(activity,
+                                                "User with email entered already exists.",
+                                                Toast.LENGTH_LONG).show();
                                     }
                                 }catch (Exception e){
                                     e.printStackTrace();
@@ -176,17 +183,20 @@ public class FirebaseUserHandler {
                                 getSignedInUser(login);
                             } else {
                                 // If sign in fails, display a message to the user.
-                                //Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                //Toast.makeText(activity, "Username or password is incorrect.", Toast.LENGTH_LONG).show();
                                 try {
                                     throw task.getException();
                                 } catch(FirebaseAuthWeakPasswordException e) {
-                                    Toast.makeText(activity, e.getReason(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(activity, e.getReason(),
+                                            Toast.LENGTH_LONG).show();
                                 } catch (FirebaseAuthInvalidUserException e) {
-                                    Toast.makeText(activity, "User does not exist.", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(activity,
+                                            "User does not exist.",
+                                            Toast.LENGTH_LONG).show();
                                 }
                                 catch(Exception e) {
-                                    Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(activity,
+                                            e.getMessage(),
+                                            Toast.LENGTH_LONG).show();
                                 }
                             }
                         }
@@ -248,7 +258,8 @@ public class FirebaseUserHandler {
                         if (type == UserType.Volunteer) {
                             Set<String> keySet = locationHash.keySet();
                             ArrayList<String> listOfKeys = new ArrayList<String>(keySet);
-                            userCallback = new User(firstName, lastName, email, userType, listOfKeys);
+                            userCallback = new User(firstName, lastName,
+                                    email, userType, listOfKeys);
                         } else {
                             userCallback = new User( firstName, lastName, email, userType );
                         }

@@ -87,7 +87,8 @@ public class ItemEditActivity extends AppCompatActivity {
 
         manager = new PersistanceManager( this );
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Item.getLegalItemTypes());
+        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,
+                Item.getLegalItemTypes());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         newItemCategory.setAdapter(adapter);
 
@@ -121,15 +122,18 @@ public class ItemEditActivity extends AppCompatActivity {
                 ItemType itemTypeSelected = (ItemType) newItemCategory.getSelectedItem();
 
                 //image
-                if (!locationEntered.isEmpty() && !locationEntered.equals(currentItem.getLocation())) {
+                if (!locationEntered.isEmpty() &&
+                        !locationEntered.equals(currentItem.getLocation())) {
                     currentItem.setLocation(locationEntered);
                 }
 
-                if (!shortDescriptionEntered.isEmpty() && !shortDescriptionEntered.equals(currentItem.getShortDescript())) {
+                if (!shortDescriptionEntered.isEmpty() &&
+                        !shortDescriptionEntered.equals(currentItem.getShortDescript())) {
                     currentItem.setShortDescript(shortDescriptionEntered);
                 }
 
-                if (!longDescriptionEntered.isEmpty() && !longDescriptionEntered.equals(currentItem.getLongDescript())) {
+                if (!longDescriptionEntered.isEmpty() &&
+                        !longDescriptionEntered.equals(currentItem.getLongDescript())) {
                     currentItem.setLongDescript(longDescriptionEntered);
                 }
 
@@ -170,17 +174,21 @@ public class ItemEditActivity extends AppCompatActivity {
 
             public void onClick(View view) {
                 Log.d("Edit Item", "Item deleted");
-                Toast.makeText( getApplicationContext(), "Item Deleted", Toast.LENGTH_SHORT ).show();
+                Toast.makeText( getApplicationContext(),
+                        "Item Deleted",
+                        Toast.LENGTH_SHORT ).show();
                 manager.deleteItem(currentItem, currentActivity);
-                //Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
-                //intent.putExtra( "remove", true );
-                //startActivity(intent);
+
             }
 
          });
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA) !=
+                PackageManager.PERMISSION_GRANTED) {
             newimage.setEnabled(false);
-            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
+            ActivityCompat.requestPermissions(this,
+                    new String[] { Manifest.permission.CAMERA,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
         }
         newimage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,7 +200,9 @@ public class ItemEditActivity extends AppCompatActivity {
         newimage.setImageBitmap( currentItem.getPicture() );
 
     }
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions,
+                                           int[] grantResults) {
         if (requestCode == 0) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
                     && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
@@ -263,7 +273,9 @@ public class ItemEditActivity extends AppCompatActivity {
         }
     }
 
-    private static class CommentListAdapter extends RecyclerView.Adapter<ItemEditActivity.CommentListAdapter.CommentViewHolder> {
+    private static class CommentListAdapter extends
+            RecyclerView.Adapter<ItemEditActivity
+                    .CommentListAdapter.CommentViewHolder> {
         private List<String> theComments;
         private View view;
 
@@ -285,16 +297,22 @@ public class ItemEditActivity extends AppCompatActivity {
         }
 
         @Override
-        public ItemEditActivity.CommentListAdapter.CommentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_comments_list, parent, false);
+        public ItemEditActivity.CommentListAdapter.CommentViewHolder
+        onCreateViewHolder(ViewGroup parent, int viewType) {
+            View v = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.adapter_comments_list,
+                            parent, false);
             view = v;
-            ItemEditActivity.CommentListAdapter.CommentViewHolder vh = new ItemEditActivity.CommentListAdapter.CommentViewHolder(v);
+            ItemEditActivity.CommentListAdapter.CommentViewHolder vh = new
+                    ItemEditActivity.CommentListAdapter.CommentViewHolder(v);
             return vh;
         }
 
         //idk if this is right
         @Override
-        public void onBindViewHolder(ItemEditActivity.CommentListAdapter.CommentViewHolder holder, int position) {
+        public void onBindViewHolder(
+                ItemEditActivity.CommentListAdapter.CommentViewHolder holder,
+                int position) {
             holder.commentText.setText(theComments.get(position));
         }
 

@@ -63,7 +63,9 @@ public class ItemAddActivity extends AppCompatActivity {
 
         PersistanceManager manager = new PersistanceManager( this );
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Item.getLegalItemTypes());
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter(this,android.R.layout.simple_spinner_item,
+                        Item.getLegalItemTypes());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         itemCategory.setAdapter(adapter);
 
@@ -83,8 +85,12 @@ public class ItemAddActivity extends AppCompatActivity {
                 Date theDate = new Date();
                 //WHAT IS THE KEY
 
-                if (!nameEntered.isEmpty() && !locationEntered.isEmpty() && !dollarEntered.isEmpty()) {
-                    Item newItem = new Item(key, nameEntered, theDate, locationEntered, Double.parseDouble(dollarEntered),
+                if (!nameEntered.isEmpty() &&
+                        !locationEntered.isEmpty() &&
+                        !dollarEntered.isEmpty()) {
+                    Item newItem = new Item(key, nameEntered, theDate,
+                            locationEntered,
+                            Double.parseDouble(dollarEntered),
                             itemTypeSelected.toString());
                     if (!sDescriptionEntered.isEmpty()) {
                         newItem.setShortDescript(sDescriptionEntered);
@@ -98,7 +104,9 @@ public class ItemAddActivity extends AppCompatActivity {
                     manager.addItem(newItem, currentActivity);
                     Toast.makeText( ItemAddActivity.this, "Item Added", Toast.LENGTH_SHORT ).show();
                 } else {
-                    Toast.makeText( ItemAddActivity.this, "Must fill in name, location, and amount", Toast.LENGTH_SHORT ).show();
+                    Toast.makeText( ItemAddActivity.this,
+                            "Must fill in name, location, and amount",
+                            Toast.LENGTH_SHORT ).show();
                 }
             }
         });
@@ -113,9 +121,15 @@ public class ItemAddActivity extends AppCompatActivity {
             }
         });
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA) !=
+                PackageManager.PERMISSION_GRANTED) {
             newimage.setEnabled(false);
-            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
+            ActivityCompat.requestPermissions(this,
+                    new String[] {
+                            Manifest.permission.CAMERA,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE },
+                    0);
         }
         newimage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +140,9 @@ public class ItemAddActivity extends AppCompatActivity {
 
         newimage.setImageBitmap(currentItem.getPicture() );
     }
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions,
+                                           int[] grantResults) {
         if (requestCode == 0) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
                     && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
