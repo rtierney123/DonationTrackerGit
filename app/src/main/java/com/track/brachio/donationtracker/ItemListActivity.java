@@ -221,29 +221,24 @@ public class ItemListActivity extends AppCompatActivity{
         SearchedItems searched = SearchedItems.getInstance();
         Map<String, Map<String, Item>> storeItems = searched.getSearchedMap();
 
-        if (storeItems != null){
-            Map<String, Item> itemMap = new HashMap<String, Item>();
-            if(locIndex == 0){
-                items.clear();
-                List<String> locIds = getAllLocationIds();
-                for(String location : locIds){
-                    itemMap = storeItems.get(location);
-                    if (itemMap != null){
-                        items.addAll(new ArrayList<>(itemMap.values()));
-                    }
-                }
-
-            } else {
-                itemMap = storeItems.get(locID);
-
-                if(!(itemMap ==null)) {
-                    items = new ArrayList<>(itemMap.values());
+        Map<String, Item> itemMap = new HashMap<String, Item>();
+        if(locIndex == 0){
+            items.clear();
+            List<String> locIds = getAllLocationIds();
+            for(String location : locIds){
+                itemMap = storeItems.get(location);
+                if (itemMap != null){
+                    items.addAll(new ArrayList<>(itemMap.values()));
                 }
             }
-        } else {
-            items.clear();
-        }
 
+        } else {
+            itemMap = storeItems.get(locID);
+
+            if(!(itemMap ==null)) {
+                items = new ArrayList<>(itemMap.values());
+            }
+        }
 
 
         ArrayList<Item> displayItems = new ArrayList();

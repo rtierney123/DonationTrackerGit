@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Handler for Locations in Database
@@ -126,7 +127,7 @@ public class FirebaseLocationHandler {
                         locationCallback =
                                 new Location(id, name, longitude, latitude,
                                         type, phone, website, address);
-                        locationMap.put(id, locationCallback);
+                        locationMap.put(Objects.requireNonNull(id), locationCallback);
                     }
                     AllLocations.getInstance().setLocationMap( locationMap );
                 }

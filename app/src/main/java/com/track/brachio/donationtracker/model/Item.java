@@ -43,6 +43,7 @@ public class Item {
      * @param val dollarValue
      * @param cat category
      */
+    @SuppressWarnings("ConstructorWithTooManyParameters")
     public Item(String k, String n, Date d, String l, double val, String cat){
         key = k;
         name = n;

@@ -218,7 +218,12 @@ public class ItemEditActivity extends AppCompatActivity {
     }
         Uri file;
         static final int REQUEST_IMAGE_CAPTURE = 1;
-        public void takePicture(View view){
+
+    /**
+     * picture being taken
+     * @param view current view
+     */
+    public void takePicture(View view){
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             file = Uri.fromFile(getOutputMediaFile());
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, file);

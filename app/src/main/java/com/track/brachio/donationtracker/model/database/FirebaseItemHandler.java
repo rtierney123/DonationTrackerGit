@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -57,7 +58,7 @@ public class FirebaseItemHandler {
                         if (task.isSuccessful()) {
 
                             for (DocumentSnapshot document :
-                                    task.getResult()) //noinspection TodoComment
+                                    Objects.requireNonNull(task.getResult())) //noinspection TodoComment
                                 {
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());

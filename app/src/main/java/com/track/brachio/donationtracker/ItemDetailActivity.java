@@ -14,6 +14,7 @@ import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentItem;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Activity for the Details of the Item activity
@@ -41,7 +42,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         dateText.setText(currentItem.getDateCreated().toString());
         Map<String, Location> allLoc = AllLocations.getInstance().getLocationMap();
         Location loc = allLoc.get(currentItem.getLocation());
-        locationText.setText(loc.getName());
+        locationText.setText(Objects.requireNonNull(loc).getName());
         shortDescriptText.setText(currentItem.getShortDescription());
         longDescriptText.setText(currentItem.getLongDescription());
         dollarText.setText(currentItem.getDollarValue() + "");

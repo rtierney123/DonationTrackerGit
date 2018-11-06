@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -52,7 +53,7 @@ public class FirebaseUserHandler {
      */
     public String getCurrentUserName(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        return user.getDisplayName();
+        return Objects.requireNonNull(user).getDisplayName();
     }
 
     /**

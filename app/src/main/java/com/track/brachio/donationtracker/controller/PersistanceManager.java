@@ -65,7 +65,7 @@ public class PersistanceManager {
 
     /**
      * gather data
-     * @throws InterruptedException
+     * @throws InterruptedException ** throws Interrupted Exception**
      */
     private void gatherData() throws InterruptedException {
         //Get all locations from db so user can view all locations

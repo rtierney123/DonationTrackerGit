@@ -18,6 +18,7 @@ import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import android.widget.AdapterView;
 import android.util.Log;
@@ -49,7 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        Objects.requireNonNull(mapFragment).getMapAsync(this);
 
         locationDisplayed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
