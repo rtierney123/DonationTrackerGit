@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Button loginButton = (Button) findViewById(R.id.loginButton);
-        cancelButton = (Button) findViewById(R.id.cancelButton);
+        cancelButton = findViewById(R.id.cancelButton);
         usernameField = (EditText) findViewById(R.id.emailBox);
         passwordField = (EditText) findViewById(R.id.passwordBox);
 

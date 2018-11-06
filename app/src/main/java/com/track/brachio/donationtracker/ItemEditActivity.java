@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -69,7 +70,7 @@ public class ItemEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_edit);
 
         TextView itemName = (TextView) findViewById(R.id.editItemNameID);
-        dateCreated = (TextView) findViewById(R.id.editItemDateCreatedID);
+        dateCreated = findViewById(R.id.editItemDateCreatedID);
         newLocation = (EditText) findViewById(R.id.editItemLocationID);
         newShortDescription = (EditText) findViewById(R.id.editItemShortDescription);
         newLongDescription = (EditText) findViewById(R.id.editItemLongDescriptionID);
@@ -207,7 +208,7 @@ public class ItemEditActivity extends AppCompatActivity {
     }
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String[] permissions,
+                                           @NonNull String[] permissions,
                                            int[] grantResults) {
         if (requestCode == 0) {
             if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)

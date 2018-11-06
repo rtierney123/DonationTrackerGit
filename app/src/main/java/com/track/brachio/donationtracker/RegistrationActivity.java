@@ -33,7 +33,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView( R.layout.activity_registration);
 
         registerButton = (Button) findViewById(R.id.registerButton);
-        Button cancelButton = (Button) findViewById(R.id.cancelButtonR);
+        Button cancelButton = findViewById(R.id.cancelButtonR);
         firstNameField = (EditText) findViewById(R.id.first_nameR);
         lastNameField = (EditText) findViewById(R.id.last_nameR);
         emailField = (EditText) findViewById(R.id.emailBoxR);

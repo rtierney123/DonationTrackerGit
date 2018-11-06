@@ -37,7 +37,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        locationDisplayed = (Spinner) findViewById(R.id.locationsOnMaps);
+        locationDisplayed = findViewById(R.id.locationsOnMaps);
         UIPopulator ui = new UIPopulator();
         List<String> names = new ArrayList<>();
         List<Location> array = UserLocations.getInstance().getLocations();

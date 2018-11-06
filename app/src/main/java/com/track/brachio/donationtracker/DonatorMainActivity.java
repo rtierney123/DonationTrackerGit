@@ -40,7 +40,7 @@ public class DonatorMainActivity extends MainActivity {
         });
 
 
-        donMainLogout = (Button) findViewById(R.id.donMainLogout);
+        donMainLogout = findViewById(R.id.donMainLogout);
         setLogoutButton( donMainLogout );
 
         testEdit = (Button) findViewById(R.id.testEditableItem);

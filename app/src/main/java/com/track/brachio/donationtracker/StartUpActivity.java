@@ -21,7 +21,7 @@ public class StartUpActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_startup );
 
-        toGuestPageButton = (Button) findViewById(R.id.guestButton);
+        toGuestPageButton = findViewById(R.id.guestButton);
         toGuestPageButton.setOnClickListener((view) -> {
             PersistanceManager manager = new PersistanceManager(this);
             manager.loadAppOnStart( this );

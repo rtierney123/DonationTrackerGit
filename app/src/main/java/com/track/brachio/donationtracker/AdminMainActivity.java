@@ -14,7 +14,7 @@ public class AdminMainActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_admin_main );
-        Button adminMainLogout = (Button) findViewById(R.id.adminMainLogout);
+        Button adminMainLogout = findViewById(R.id.adminMainLogout);
         setLogoutButton(adminMainLogout);
     }
 

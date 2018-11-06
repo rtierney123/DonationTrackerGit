@@ -296,7 +296,6 @@ public class FirebaseUserHandler {
                 public void onSuccess(QuerySnapshot documentSnapshots) {
                     if (documentSnapshots.isEmpty()) {
                         Log.d( TAG, "onSuccess: LIST EMPTY" );
-                        return;
                     } else {
                         // Convert the whole Query Snapshot to a list
                         // of objects directly! No need to fetch each

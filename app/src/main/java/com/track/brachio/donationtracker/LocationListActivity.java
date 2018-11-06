@@ -1,6 +1,7 @@
 
 package com.track.brachio.donationtracker;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -113,7 +114,7 @@ public class LocationListActivity extends AppCompatActivity {
             LocationViewHolder(View v) {
                 super(v);
                 this.v = v;
-                nameText = (TextView) v.findViewById(R.id.location_name_adapter);
+                nameText = v.findViewById(R.id.location_name_adapter);
                 cityText = (TextView) v.findViewById(R.id.location_city_adapter);
             }
 
@@ -157,6 +158,7 @@ public class LocationListActivity extends AppCompatActivity {
 
         // Create new views (invoked by the layout manager)
         // Create new views (invoked by the layout manager)
+        @NonNull
         @Override
         public LocationListAdapter.LocationViewHolder onCreateViewHolder(ViewGroup parent,
                                                          int viewType) {

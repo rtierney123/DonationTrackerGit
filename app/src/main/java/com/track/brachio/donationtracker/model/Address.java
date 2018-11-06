@@ -1,5 +1,7 @@
 package com.track.brachio.donationtracker.model;
 
+import android.support.annotation.NonNull;
+
 /**
  * Information Holder for Address
  */
@@ -87,6 +89,7 @@ public class Address {
         this.zip = zip;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return streetAddress + ", " + city + ", " + state + " " + Double.toString(zip);

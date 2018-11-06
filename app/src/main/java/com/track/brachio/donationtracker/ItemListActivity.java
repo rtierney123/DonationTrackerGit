@@ -2,6 +2,7 @@ package com.track.brachio.donationtracker;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -311,7 +312,7 @@ public class ItemListActivity extends AppCompatActivity{
                 super(v);
                 this.v = v;
                 nameText = (TextView) v.findViewById(R.id.item_name_adapter);
-                dateText = (TextView) v.findViewById(R.id.item_date_adapter);
+                dateText = v.findViewById(R.id.item_date_adapter);
                 valueText = (TextView) v.findViewById(R.id.item_cost_adapter);
                 categoryText = (TextView) v.findViewById(R.id.item_category_adapter);
             }
@@ -367,7 +368,7 @@ public class ItemListActivity extends AppCompatActivity{
         // Replace the contents of a view (invoked by the layout manager)
         @Override
         public void onBindViewHolder(
-                ItemListActivity.ItemListAdapter.ItemViewHolder holder, int position) {
+                @NonNull ItemListActivity.ItemListAdapter.ItemViewHolder holder, int position) {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
             holder.nameText.setText(items.get(position).getName());

@@ -27,7 +27,7 @@ public class ManagerMainActivity extends MainActivity {
             }
         });
 
-        manMainLogout = (Button) findViewById(R.id.manMainLogout);
+        manMainLogout = findViewById(R.id.manMainLogout);
         setLogoutButton( manMainLogout );
 
         manManageItems = (Button) findViewById(R.id.manManageItemsButton);

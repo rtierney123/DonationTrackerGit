@@ -34,7 +34,7 @@ public class VolunteerMainActivity extends MainActivity {
             }
         });
 
-        logoutButton = (Button) findViewById(R.id.logoutButton1);
+        logoutButton = findViewById(R.id.logoutButton1);
         setLogoutButton( logoutButton );
 
 
