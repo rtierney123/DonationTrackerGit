@@ -25,6 +25,7 @@ import com.track.brachio.donationtracker.model.singleton.SearchedItems;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ItemListActivity extends AppCompatActivity{
-    private List<Item> items = new ArrayList<>();
+    private Collection<Item> items = new ArrayList<>();
     private static Map<String, Item> itemMap = new HashMap<String, Item>();
     private static HashMap<String, HashMap<String, Item>> storeItems;
     private RecyclerView recyclerView;

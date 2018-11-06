@@ -3,6 +3,7 @@ package com.track.brachio.donationtracker.model;
 import android.text.TextUtils;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class User {
     private @ServerTimestamp Date timestamp;
     private ArrayList<String> locationIDs;
 
-    public User(FirebaseUser user, UserType type){
+    public User(UserInfo user, UserType type){
         this.userId = user.getUid();
         this.email = user.getEmail();
         userType = type;

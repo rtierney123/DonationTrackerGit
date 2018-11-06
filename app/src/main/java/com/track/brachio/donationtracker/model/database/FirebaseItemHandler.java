@@ -21,6 +21,7 @@ import com.google.api.core.ApiFutureCallback;
 import com.google.api.core.ApiFutures;
 */
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -36,7 +37,7 @@ public class FirebaseItemHandler {
 
     private FirebaseFirestore mFirestore;
     private String TAG = "FirebaseItemHandler";
-    private List<Item> items = new ArrayList<Item>();
+    private Collection<Item> items = new ArrayList<Item>();
 
     public Task getAllItems(){
         // Firestore
