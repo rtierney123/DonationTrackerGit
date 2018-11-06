@@ -12,7 +12,7 @@ public final class SearchedItems {
     private static SearchedItems single_instance;
 
     // current User
-    private HashMap<String, HashMap<String, Item>> map;
+    private Map<String, Map<String, Item>> map;
 
     // private constructor restricted to this class itself
     private SearchedItems()
@@ -30,11 +30,11 @@ public final class SearchedItems {
         return single_instance;
     }
 
-    public Map<String, HashMap<String, Item>> getSearchedMap() {
+    public Map<String, Map<String, Item>> getSearchedMap() {
         return Collections.unmodifiableMap(map);
     }
 
-    public void setSearchedMap(HashMap<String, HashMap<String, Item>> m) {
+    public void setSearchedMap(Map<String, Map<String, Item>> m) {
         map = m;
     }
 

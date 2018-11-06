@@ -162,7 +162,7 @@ public class ItemListActivity extends AppCompatActivity{
     }
 
     
-    public void setItemArray(ArrayList<Item> array) {
+    public void setItemArray(List<Item> array) {
         items = array;
     }
 
@@ -198,7 +198,7 @@ public class ItemListActivity extends AppCompatActivity{
         String locID = getCurrentLocationID();
 
         SearchedItems searched = SearchedItems.getInstance();
-        Map<String, HashMap<String, Item>> storeItems = searched.getSearchedMap();
+        Map<String, Map<String, Item>> storeItems = searched.getSearchedMap();
 
         if (storeItems != null){
             Map<String, Item> itemMap = new HashMap<String, Item>();
@@ -304,7 +304,7 @@ public class ItemListActivity extends AppCompatActivity{
         }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public ItemListAdapter(ArrayList<Item> array, OnItemClickListener listener) {
+        public ItemListAdapter(List<Item> array, OnItemClickListener listener) {
             this.items = array;
             this.theItemListener = listener;
         }
