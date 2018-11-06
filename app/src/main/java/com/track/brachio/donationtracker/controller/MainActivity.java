@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
-import com.track.brachio.donationtracker.StartUpActivity;
+import com.track.brachio.donationtracker.LoginActivity;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 
 /**
@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 PersistanceManager manager = new PersistanceManager(MainActivity.this);
                 PersistanceManager.signOut();
-                Intent intent = new Intent(MainActivity.this, StartUpActivity.class);
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

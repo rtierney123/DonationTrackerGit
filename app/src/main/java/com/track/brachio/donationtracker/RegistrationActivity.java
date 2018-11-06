@@ -82,7 +82,7 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("Registration", "Registration Canceled");
-                Intent intent = new Intent(RegistrationActivity.this, StartUpActivity.class);
+                Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

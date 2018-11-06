@@ -10,38 +10,60 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.AppCompat.CompactMenu"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="match_parent"
             android:background="@color/colorPrimary"
             android:theme="@style/ToolbarTheme"
             app:popupTheme="@mipmap/ic_launcher">
 
-
-            <TextView
-                android:id="@+id/toolbar_title"
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/poppins"
-                android:text="Login "
-                android:textSize="24sp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp" />
+                android:layout_height="match_parent">
 
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="Login "
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <ImageButton
+                    android:id="@+id/login_option_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:background="@color/colorPrimary"
+                    android:scaleType="matrix"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/floating_toolbar"
+                    tools:srcCompat="@drawable/floating_toolbar" />
+            </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.Toolbar>
+
+
+
+
     </android.support.design.widget.AppBarLayout>
 
 
-
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="0dp"
         android:layout_height="246dp"
         android:layout_marginStart="8dp"
@@ -56,7 +78,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/cancelButton"
+            android:id="@+id/guestButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"

@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 
 import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.User;
@@ -19,7 +19,7 @@ import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
  * Activity for Login
  */
 public class LoginActivity extends AppCompatActivity {
-    private Button cancelButton;
+    private Button guestButton;
     private EditText usernameField;
     private EditText passwordField;
     private ImageButton optionButton;
@@ -33,9 +33,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Button loginButton = (Button) findViewById(R.id.loginButton);
-        cancelButton = findViewById(R.id.cancelButton);
+        guestButton = (Button) findViewById(R.id.guestButton);
         usernameField = findViewById(R.id.emailBox);
         passwordField = (EditText) findViewById(R.id.passwordBox);
+        optionButton = (ImageButton) findViewById(R.id.login_option_register);
 
         FirebaseUserHandler handler = new FirebaseUserHandler();
 
@@ -57,17 +58,36 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        cancelButton.setOnClickListener(new View.OnClickListener() {
+        guestButton.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("login", "canceled");
-                Intent intent = new Intent(LoginActivity.this, StartUpActivity.class);
-                startActivity(intent);
+                PersistanceManager manager = new PersistanceManager(LoginActivity.this);
+                manager.loadAppOnStart( LoginActivity.this );
             }
         });
 
+        optionButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Creating the instance of PopupMenu
+                PopupMenu popup = new PopupMenu( LoginActivity.this, optionButton );
+                //Inflating the Popup using xml file
+                popup.getMenuInflater()
+                        .inflate( R.menu.login_options_menu, popup.getMenu() );
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener( new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                        startActivity(intent);
+                        return true;
+                    }
 
+                } );
 
+                popup.show();
+            }
+        } );
     }
 
 
