@@ -5,7 +5,7 @@ import com.track.brachio.donationtracker.model.Location;
 
 import java.util.Date;
 
-public class CurrentItem {
+public final class CurrentItem {
 
     // static variable single_instance of type CurrentUser
     private static CurrentItem single_instance = null;

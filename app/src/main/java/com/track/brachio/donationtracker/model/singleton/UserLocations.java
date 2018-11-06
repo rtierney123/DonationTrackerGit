@@ -5,7 +5,7 @@ import com.track.brachio.donationtracker.model.Location;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserLocations {
+public final class UserLocations {
     // static variable single_instance of type AllLocations
     private static UserLocations single_instance = null;
 

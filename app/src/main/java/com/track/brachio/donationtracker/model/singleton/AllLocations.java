@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class AllLocations {
+public final class AllLocations {
     // static variable single_instance of type AllLocations
     private static AllLocations single_instance = null;
 

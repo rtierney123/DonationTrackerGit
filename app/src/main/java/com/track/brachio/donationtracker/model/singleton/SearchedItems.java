@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class SearchedItems {
+public final class SearchedItems {
     // static variable single_instance of type SearchedItems
     private static SearchedItems single_instance = null;
 
