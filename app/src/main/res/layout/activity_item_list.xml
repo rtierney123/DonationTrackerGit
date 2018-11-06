@@ -7,6 +7,36 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/item_list_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ToolbarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@mipmap/ic_launcher">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageButton
+                android:id="@+id/navigation_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@color/colorPrimary"
+                android:scaleType="matrix"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/floating_toolbar"
+                tools:srcCompat="@drawable/floating_toolbar" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.Toolbar>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/editbutton"
@@ -60,7 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/item_list_toolbar" />
 
     <TextView
         android:id="@+id/textView28"

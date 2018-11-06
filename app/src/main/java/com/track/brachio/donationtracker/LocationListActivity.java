@@ -172,7 +172,8 @@ public class LocationListActivity extends AppCompatActivity {
 
         // Replace the contents of a view (invoked by the layout manager)
         @Override
-        public void onBindViewHolder(@NonNull LocationListAdapter.LocationViewHolder holder, int position) {
+        public void onBindViewHolder(
+                @NonNull LocationListAdapter.LocationViewHolder holder, int position) {
             // - get element from your data set at this position
             // - replace the contents of the view with that element
             holder.nameText.setText(locations.get(position).getName());
