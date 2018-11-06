@@ -90,7 +90,7 @@ public class LocationListActivity extends AppCompatActivity {
         // you provide access to all the views for a data item in a view holder
         public static class LocationViewHolder extends RecyclerView.ViewHolder {
             // each data item is just a string in this case
-            private TextView nameText;
+            private final TextView nameText;
             private TextView cityText;
             private View v;
             LocationViewHolder(View v) {

@@ -25,7 +25,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class FirebaseLocationHandler {
     private final String TAG = "FirebaseLocationHandler";
     private Location locationCallback;
-    private HashMap<String, Location> locationMap = new LinkedHashMap<>(  );
+    private final HashMap<String, Location> locationMap = new LinkedHashMap<>(  );
     private ArrayList<Location> locationArray = new ArrayList<>();
 
     public Location getLocation(String locationID){
