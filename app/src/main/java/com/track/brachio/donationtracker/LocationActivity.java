@@ -17,7 +17,7 @@ import com.track.brachio.donationtracker.model.Location;
 //Displays specific location information
 
 
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({"SpellCheckingInspection", "FeatureEnvy"})
 public class LocationActivity extends AppCompatActivity {
     private TextView longitude;
     private TextView latitude;

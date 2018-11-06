@@ -15,6 +15,7 @@ import com.track.brachio.donationtracker.model.singleton.CurrentItem;
 
 import java.util.Map;
 
+@SuppressWarnings("FeatureEnvy")
 public class ItemDetailActivity extends AppCompatActivity {
 
     @Override

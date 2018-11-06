@@ -29,6 +29,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
 
+@SuppressWarnings("FeatureEnvy")
 public class FirebaseItemHandler {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 

@@ -19,7 +19,7 @@ import com.track.brachio.donationtracker.model.ItemType;
 
 import java.util.Date;
 
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({"SpellCheckingInspection", "FeatureEnvy"})
 public class ItemAddActivity extends AppCompatActivity {
     private EditText itemName;
     private EditText location;
