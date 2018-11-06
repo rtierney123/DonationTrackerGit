@@ -10,7 +10,6 @@ import com.track.brachio.donationtracker.controller.MainActivity;
 @SuppressWarnings("SpellCheckingInspection")
 public class DonatorMainActivity extends MainActivity {
 
-    private Button donGoToLocationsButton;
     private Button donMainLogout;
     private Button doLocationMap;
     //TODO delete when EditItemListActivity
@@ -28,7 +27,7 @@ public class DonatorMainActivity extends MainActivity {
         //handler.addItem(a);
         //handler.addItem(b);
 
-        donGoToLocationsButton = (Button) findViewById(R.id.donLocationButton);
+        Button donGoToLocationsButton = (Button) findViewById(R.id.donLocationButton);
         donGoToLocationsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(DonatorMainActivity.this, LocationListActivity.class);

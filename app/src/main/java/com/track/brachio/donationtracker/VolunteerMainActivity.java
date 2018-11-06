@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VolunteerMainActivity extends MainActivity {
-    private Button volGoToLocationsButton;
     private Button logoutButton;
     private Button volManagerItems;
     @Override
@@ -24,7 +23,7 @@ public class VolunteerMainActivity extends MainActivity {
         super.onCreate(savedInstanceState );
         setContentView(R.layout.activity_volunteer_main);
 
-        volGoToLocationsButton = (Button) findViewById(R.id.volLocationButton);
+        Button volGoToLocationsButton = (Button) findViewById(R.id.volLocationButton);
         volGoToLocationsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(VolunteerMainActivity.this, LocationListActivity.class);

@@ -27,7 +27,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private Spinner locationDisplayed;
-    private UIPopulator ui;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
 
         locationDisplayed = (Spinner) findViewById(R.id.locationsOnMaps);
-        ui = new UIPopulator();
+        UIPopulator ui = new UIPopulator();
         List<String> names = new ArrayList<>();
         List<Location> array = UserLocations.getInstance().getLocations();
         for (Location loc : array) {

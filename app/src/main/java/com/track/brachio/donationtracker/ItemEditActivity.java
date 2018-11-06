@@ -41,7 +41,6 @@ import java.util.List;
 
 @SuppressWarnings("SpellCheckingInspection")
 public class ItemEditActivity extends AppCompatActivity {
-    private TextView itemName;
     private TextView dateCreated;
     private EditText newLocation;
     private EditText newShortDescription;
@@ -66,7 +65,7 @@ public class ItemEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_edit);
 
-        itemName = (TextView) findViewById(R.id.editItemNameID);
+        TextView itemName = (TextView) findViewById(R.id.editItemNameID);
         dateCreated = (TextView) findViewById(R.id.editItemDateCreatedID);
         newLocation = (EditText) findViewById(R.id.editItemLocationID);
         newShortDescription = (EditText) findViewById(R.id.editItemShortDescription);

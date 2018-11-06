@@ -22,7 +22,6 @@ import java.util.List;
 
 
 public class LocationListActivity extends AppCompatActivity {
-    private ArrayList<Location> locations;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -65,7 +64,7 @@ public class LocationListActivity extends AppCompatActivity {
     }
 
     public void populateRecycleView() {
-       locations = AllLocations.getInstance().getLocationArray();
+        ArrayList<Location> locations = AllLocations.getInstance().getLocationArray();
 
         // populate view based on locations and adapter specifications
         adapter = new LocationListAdapter(locations, new LocationListAdapter.OnItemClickListener() {

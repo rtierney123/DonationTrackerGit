@@ -8,7 +8,6 @@ import android.widget.Button;
 import com.track.brachio.donationtracker.controller.MainActivity;
 
 public class ManagerMainActivity extends MainActivity {
-    private Button manGoToLocationsButton;
     private Button manMainLogout;
     private Button manManageItems;
     @Override
@@ -16,7 +15,7 @@ public class ManagerMainActivity extends MainActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_manager_main );
 
-        manGoToLocationsButton = (Button) findViewById(R.id.manLocationButton);
+        Button manGoToLocationsButton = (Button) findViewById(R.id.manLocationButton);
         manGoToLocationsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(ManagerMainActivity.this, LocationListActivity.class);

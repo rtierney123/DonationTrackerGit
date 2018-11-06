@@ -28,7 +28,6 @@ public class ItemAddActivity extends AppCompatActivity {
     private EditText dollarValue;
     private Spinner itemCategory;
     private EditText comment;
-    private Button addButton;
     private Button cancelButton;
     private ImageButton newimage;
 
@@ -47,7 +46,7 @@ public class ItemAddActivity extends AppCompatActivity {
         dollarValue = (EditText) findViewById(R.id.addItemDollarValue);
         itemCategory = (Spinner) findViewById(R.id.addItemCategoryID);
         comment = (EditText) findViewById(R.id.addItemCommentID);
-        addButton = (Button) findViewById(R.id.addItemAddID);
+        Button addButton = (Button) findViewById(R.id.addItemAddID);
         cancelButton = (Button) findViewById(R.id.addItemCancelButton);
         newimage = (ImageButton) findViewById(R.id.addItemImage);
 

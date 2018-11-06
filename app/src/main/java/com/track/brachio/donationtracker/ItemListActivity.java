@@ -34,7 +34,6 @@ import java.util.regex.Pattern;
 
 public class ItemListActivity extends AppCompatActivity{
     private Collection<Item> items = new ArrayList<>();
-    private static Map<String, Item> itemMap = new HashMap<String, Item>();
     private static HashMap<String, HashMap<String, Item>> storeItems;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -201,6 +200,7 @@ public class ItemListActivity extends AppCompatActivity{
         Map<String, HashMap<String, Item>> storeItems = searched.getSearchedMap();
 
         if (storeItems != null){
+            Map<String, Item> itemMap = new HashMap<String, Item>();
             if(locIndex == 0){
                 items.clear();
                 List<String> locIds = getAllLocationIds();
@@ -214,7 +214,7 @@ public class ItemListActivity extends AppCompatActivity{
             } else {
                 itemMap = storeItems.get(locID);
 
-                if(!(itemMap==null)) {
+                if(!(itemMap ==null)) {
                     items = new ArrayList<>(itemMap.values());
                 }
             }

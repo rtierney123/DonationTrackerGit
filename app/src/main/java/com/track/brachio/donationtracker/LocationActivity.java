@@ -26,7 +26,6 @@ import com.track.brachio.donationtracker.model.Location;
 
 @SuppressWarnings("SpellCheckingInspection")
 public class LocationActivity extends AppCompatActivity {
-    private TextView locationName;
     private TextView longitude;
     private TextView latitude;
     private TextView address;
@@ -42,7 +41,7 @@ public class LocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
-        locationName = (TextView) findViewById(R.id.locationNameID);
+        TextView locationName = (TextView) findViewById(R.id.locationNameID);
         longitude = (TextView) findViewById(R.id.longitudeID);
         latitude = (TextView) findViewById(R.id.latitudeID);
         address = (TextView) findViewById(R.id.addressID);

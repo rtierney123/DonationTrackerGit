@@ -18,7 +18,6 @@ import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
 
 public class LoginActivity extends AppCompatActivity {
-    private Button loginButton;
     private Button cancelButton;
     private EditText usernameField;
     private EditText passwordField;
@@ -31,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView(R.layout.activity_login);
 
-        loginButton = (Button) findViewById(R.id.loginButton);
+        Button loginButton = (Button) findViewById(R.id.loginButton);
         cancelButton = (Button) findViewById(R.id.cancelButton);
         usernameField = (EditText) findViewById(R.id.emailBox);
         passwordField = (EditText) findViewById(R.id.passwordBox);
