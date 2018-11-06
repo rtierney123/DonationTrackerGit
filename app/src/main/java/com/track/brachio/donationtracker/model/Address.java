@@ -1,11 +1,21 @@
 package com.track.brachio.donationtracker.model;
 
+/**
+ * Information Holder for Address
+ */
 public class Address {
     private String streetAddress;
     private String city;
     private String state;
     private double zip;
 
+    /**
+     * Constructor for Address
+     * @param address address inputed
+     * @param c city
+     * @param s state
+     * @param z zip
+     */
     public Address(String address, String c, String s, double z){
         streetAddress = address;
         city = c;
