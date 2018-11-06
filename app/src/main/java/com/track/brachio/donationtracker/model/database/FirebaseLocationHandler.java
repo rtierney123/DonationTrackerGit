@@ -18,6 +18,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Handler for Locations in Database
+ */
 @SuppressWarnings({"SpellCheckingInspection", "FeatureEnvy"})
 public class FirebaseLocationHandler {
     private final String TAG = "FirebaseLocationHandler";
@@ -25,6 +28,11 @@ public class FirebaseLocationHandler {
     private final Map<String, Location> locationMap = new LinkedHashMap<>(  );
     private ArrayList<Location> locationArray = new ArrayList<>();
 
+    /**
+     * returns locations
+     * @param locationID id for the specific location
+     * @return the Location being searched for
+     */
     public Location getLocation(String locationID){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -73,6 +81,10 @@ public class FirebaseLocationHandler {
         return locationCallback;
     }
 
+    /**
+     * returns all locations
+     * @return current Task
+     */
     public Task getAllLocations(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         return db.collection( "location" )
@@ -122,6 +134,11 @@ public class FirebaseLocationHandler {
         } );
     }
     //make sure to replace in LocationListActivity
+
+    /**
+     * returns locations
+     * @param locListAct list of locations
+     */
     public void getLocations(LocationListActivity locListAct){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -172,6 +189,10 @@ public class FirebaseLocationHandler {
         } );
     }
 
+    /**
+     * add locations to database
+     * @param location location being added
+     */
     public void addLocation(Location location)  {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> locMap = new HashMap<>();
