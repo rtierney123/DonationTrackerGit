@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.User;
@@ -19,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button cancelButton;
     private EditText usernameField;
     private EditText passwordField;
+    private ImageButton optionButton;
 
     //user logging in if successful
     private User _currentUser;
@@ -63,7 +67,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+
     }
+
+
 
     /**
      * goes to the correct location for user type

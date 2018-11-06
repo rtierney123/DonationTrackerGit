@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DonationTracker</string>
+    <string name="app_name">Donation Tracker</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>

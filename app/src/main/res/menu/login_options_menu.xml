@@ -1,0 +1,5 @@
+<menu xmlns:android2="http://schemas.android.com/apk/res/android">
+    <item
+        android2:id="@+id/login_option_register"
+        android2:title="Register" />
+</menu>
