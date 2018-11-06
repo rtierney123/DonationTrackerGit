@@ -78,11 +78,11 @@ public class LocationListActivity extends AppCompatActivity {
         });
         recyclerView.setAdapter(adapter);
 
-        //TODO add junk here to take the location array an turn it into displayed list (probably with Recycle view and an adapter
     }
 
 
-    private static class LocationListAdapter extends RecyclerView.Adapter<LocationListAdapter.LocationViewHolder>{
+    private static class LocationListAdapter extends
+            RecyclerView.Adapter<LocationListAdapter.LocationViewHolder>{
         private List<Location> locations;
         private View view;
         private final OnItemClickListener locationListener;
@@ -149,12 +149,6 @@ public class LocationListActivity extends AppCompatActivity {
             holder.cityText.setText(locations.get(position).getAddress().getCity());
             holder.bind(locations.get(position), locationListener);
 
-//            view.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    //TODO add intent to next page
-//                }
-//            });
 
         }
 

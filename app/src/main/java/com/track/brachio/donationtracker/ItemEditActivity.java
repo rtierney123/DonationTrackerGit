@@ -139,7 +139,8 @@ public class ItemEditActivity extends AppCompatActivity {
                     currentItem.setLongDescription(longDescriptionEntered);
                 }
 
-                if (!dollarValueEntered.isEmpty() && !(Double.parseDouble(dollarValueEntered) == currentItem.getDollarValue())) {
+                if (!dollarValueEntered.isEmpty() &&
+                        !(Double.parseDouble(dollarValueEntered) == currentItem.getDollarValue())) {
                     currentItem.setDollarValue(Double.parseDouble(dollarValueEntered));
                 }
 

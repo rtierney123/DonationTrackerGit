@@ -99,7 +99,8 @@ public class PersistanceManager {
         } else if (currentUser.getUserType() == UserType.Volunteer) {
                             /*
                             User user = CurrentUser.getInstance().getUser();
-                            HashMap<String, Location> map = AllLocations.getInstance().getLocationMap();
+                            HashMap<String, Location> map =
+                            AllLocations.getInstance().getLocationMap();
                             ArrayList<Location> array = new ArrayList<>();
                             ArrayList<String> ids = user.getLocations();
                             for (String id : ids) {

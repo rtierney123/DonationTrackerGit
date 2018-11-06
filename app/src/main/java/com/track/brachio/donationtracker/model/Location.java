@@ -15,7 +15,8 @@ public class Location {
 
     }
 
-    public Location (String i, String n, double lat, double lon, String t, String ph, String web, Address add){
+    public Location (String i, String n, double lat, double lon,
+                     String t, String ph, String web, Address add){
         id = i;
         name = n;
         latitude = lat;

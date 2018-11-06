@@ -125,7 +125,6 @@ public class FirebaseLocationHandler {
         } );
         return task;
     }
-    //TODO delete this once AllLocations is up and running
     //make sure to replace in LocationListActivity
     public void getLocations(LocationListActivity locListAct){
         FirebaseFirestore db = FirebaseFirestore.getInstance();

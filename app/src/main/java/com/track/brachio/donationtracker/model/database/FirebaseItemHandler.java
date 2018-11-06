@@ -31,7 +31,6 @@ import java.util.concurrent.ExecutorService;
 
 
 public class FirebaseItemHandler {
-    //TODO will complete change to handle item db
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private FirebaseFirestore mFirestore;
@@ -49,7 +48,9 @@ public class FirebaseItemHandler {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         HashMap<String, HashMap<String, Item>> map = new LinkedHashMap<>(  );
                         if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
+                            for (DocumentSnapshot document :
+                                    task.getResult()) //noinspection TodoComment
+                            {
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 
@@ -102,7 +103,9 @@ public class FirebaseItemHandler {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
                         if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
+                            for (DocumentSnapshot document :
+                                    task.getResult()) //noinspection TodoComment
+                            {
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 
