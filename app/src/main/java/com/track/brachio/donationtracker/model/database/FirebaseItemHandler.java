@@ -48,6 +48,7 @@ public class FirebaseItemHandler {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         Map<String, Map<String, Item>> map = new LinkedHashMap<>(  );
                         if (task.isSuccessful()) {
+
                             for (DocumentSnapshot document :
                                     task.getResult()) //noinspection TodoComment
                                 {
