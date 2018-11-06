@@ -20,6 +20,7 @@ public class MainActivity extends Activity {
 
     protected void setLogoutButton(Button button){
         button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 PersistanceManager manager = new PersistanceManager(MainActivity.this);
                 PersistanceManager.signOut();

@@ -29,6 +29,7 @@ public class DonatorMainActivity extends MainActivity {
 
         Button donGoToLocationsButton = (Button) findViewById(R.id.donLocationButton);
         donGoToLocationsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DonatorMainActivity.this, LocationListActivity.class);
                 startActivity(intent);

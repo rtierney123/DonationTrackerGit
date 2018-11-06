@@ -91,6 +91,7 @@ public class ItemListActivity extends AppCompatActivity{
                 locIndex = position;
                 populateRecycleView();
             }
+            @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });

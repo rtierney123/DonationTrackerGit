@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUserHandler handler = new FirebaseUserHandler();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 Log.d("login", "clicked");
                 //Log.d stuff? to console??

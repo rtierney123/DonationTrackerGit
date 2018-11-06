@@ -44,6 +44,7 @@ public class RegistrationActivity extends AppCompatActivity {
         userTypeSpinner.setAdapter(adapter);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 String firstNameEntered;
                 String lastNameEntered;
