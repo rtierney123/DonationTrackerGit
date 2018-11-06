@@ -7,9 +7,11 @@ import android.widget.Button;
 
 import com.track.brachio.donationtracker.controller.MainActivity;
 
+/**
+ * Activity for the Main Donator Page
+ */
 @SuppressWarnings("SpellCheckingInspection")
 public class DonatorMainActivity extends MainActivity {
-
     private Button donMainLogout;
     private Button doLocationMap;
     //9TODO delete when EditItemListActivity
