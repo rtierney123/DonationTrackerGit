@@ -27,7 +27,7 @@ public class StartUpActivity extends AppCompatActivity {
             manager.loadAppOnStart( this );
         });
 
-        toLoginPageButton = (Button) findViewById(R.id.loginButton);
+        toLoginPageButton = findViewById(R.id.loginButton);
         toLoginPageButton.setOnClickListener((view) -> {
             Intent intent = new Intent(StartUpActivity.this, LoginActivity.class);
             startActivity(intent);

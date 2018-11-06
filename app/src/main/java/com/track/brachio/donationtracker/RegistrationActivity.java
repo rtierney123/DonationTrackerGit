@@ -32,7 +32,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_registration);
 
-        registerButton = (Button) findViewById(R.id.registerButton);
+        registerButton = findViewById(R.id.registerButton);
         Button cancelButton = findViewById(R.id.cancelButtonR);
         firstNameField = (EditText) findViewById(R.id.first_nameR);
         lastNameField = (EditText) findViewById(R.id.last_nameR);

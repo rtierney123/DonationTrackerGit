@@ -43,7 +43,7 @@ public class DonatorMainActivity extends MainActivity {
         donMainLogout = findViewById(R.id.donMainLogout);
         setLogoutButton( donMainLogout );
 
-        testEdit = (Button) findViewById(R.id.testEditableItem);
+        testEdit = findViewById(R.id.testEditableItem);
         testEdit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(DonatorMainActivity.this, ItemListActivity.class);

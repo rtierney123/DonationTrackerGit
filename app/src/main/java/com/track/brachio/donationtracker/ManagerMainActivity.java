@@ -30,7 +30,7 @@ public class ManagerMainActivity extends MainActivity {
         manMainLogout = findViewById(R.id.manMainLogout);
         setLogoutButton( manMainLogout );
 
-        manManageItems = (Button) findViewById(R.id.manManageItemsButton);
+        manManageItems = findViewById(R.id.manManageItemsButton);
         manManageItems.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(ManagerMainActivity.this, ItemListActivity.class);

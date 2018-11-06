@@ -94,7 +94,7 @@ public class FirebaseUserHandler {
                 .setDisplayName(newUserName)
                 .build();
 
-        user.updateProfile(profileUpdates)
+        Objects.requireNonNull(user).updateProfile(profileUpdates)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

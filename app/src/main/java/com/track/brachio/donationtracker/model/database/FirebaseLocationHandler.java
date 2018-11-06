@@ -148,7 +148,6 @@ public class FirebaseLocationHandler {
             public void onSuccess(QuerySnapshot documentSnapshots) {
                 if (documentSnapshots.isEmpty()) {
                     Log.d( TAG, "onSuccess: LIST EMPTY" );
-                    return;
                 } else {
                     List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
                     String id = "";
@@ -157,7 +156,7 @@ public class FirebaseLocationHandler {
                     double latitude = 0;
                     String type = "";
                     String phone = "";
-                    String website = "";
+                    String website;
                     String streetAddress = "";
                     String city = "";
                     String state = "";
@@ -181,7 +180,7 @@ public class FirebaseLocationHandler {
                         locationCallback =
                                 new Location(id, name, longitude, latitude,
                                         type, phone, website, address);
-                        locationMap.put(id, locationCallback);
+                        locationMap.put(Objects.requireNonNull(id), locationCallback);
                     }
                     AllLocations.getInstance().setLocationMap( locationMap );
                 }

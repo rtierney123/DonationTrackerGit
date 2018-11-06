@@ -40,7 +40,7 @@ public class LocationActivity extends AppCompatActivity {
         longitude = (TextView) findViewById(R.id.longitudeID);
         latitude = findViewById(R.id.latitudeID);
         address = (TextView) findViewById(R.id.addressID);
-        phone = (TextView) findViewById(R.id.phoneID);
+        phone = findViewById(R.id.phoneID);
         website = (TextView) findViewById(R.id.websiteID);
         locationType = (TextView) findViewById(R.id.locationTypeID);
         backButton = (Button) findViewById(R.id.backButtonID);

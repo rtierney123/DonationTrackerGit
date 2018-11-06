@@ -57,7 +57,7 @@ public class VolunteerMainActivity extends MainActivity {
             }
         }
 
-        Spinner userSpinner = (Spinner) findViewById(R.id.view_location_spinner);
+        Spinner userSpinner = findViewById(R.id.view_location_spinner);
         populator.populateSpinner( userSpinner, spinnerArray , this);
 
         volManagerItems = (Button) findViewById(R.id.volManagerItemsButton);

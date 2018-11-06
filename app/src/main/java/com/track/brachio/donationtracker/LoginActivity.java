@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Button loginButton = (Button) findViewById(R.id.loginButton);
         cancelButton = findViewById(R.id.cancelButton);
-        usernameField = (EditText) findViewById(R.id.emailBox);
+        usernameField = findViewById(R.id.emailBox);
         passwordField = (EditText) findViewById(R.id.passwordBox);
 
         FirebaseUserHandler handler = new FirebaseUserHandler();

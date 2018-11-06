@@ -72,7 +72,7 @@ public class ItemEditActivity extends AppCompatActivity {
         TextView itemName = (TextView) findViewById(R.id.editItemNameID);
         dateCreated = findViewById(R.id.editItemDateCreatedID);
         newLocation = (EditText) findViewById(R.id.editItemLocationID);
-        newShortDescription = (EditText) findViewById(R.id.editItemShortDescription);
+        newShortDescription = findViewById(R.id.editItemShortDescription);
         newLongDescription = (EditText) findViewById(R.id.editItemLongDescriptionID);
         newDollarValue = (EditText) findViewById(R.id.editItemValueID);
         newItemCategory = (Spinner) findViewById(R.id.editItemCategoryID);
@@ -209,7 +209,7 @@ public class ItemEditActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
-                                           int[] grantResults) {
+                                           @NonNull int[] grantResults) {
         if (requestCode == 0) {
             if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)
                     && (grantResults[1] == PackageManager.PERMISSION_GRANTED)) {

@@ -222,7 +222,7 @@ public class ItemListActivity extends AppCompatActivity{
         SearchedItems searched = SearchedItems.getInstance();
         Map<String, Map<String, Item>> storeItems = searched.getSearchedMap();
 
-        Map<String, Item> itemMap = new HashMap<String, Item>();
+        Map<String, Item> itemMap;
         if(locIndex == 0){
             items.clear();
             List<String> locIds = getAllLocationIds();
@@ -260,21 +260,17 @@ public class ItemListActivity extends AppCompatActivity{
         }
 
 
-        if (displayItems != null) {
-            // populate view based on items and adapter specifications
-            adapter = new ItemListActivity.ItemListAdapter(displayItems,
-                    new ItemListAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(Item item) {
-                    CurrentItem.getInstance().setItem(item);
-                    Intent intent = new Intent(ItemListActivity.this, ItemDetailActivity.class);
-                    startActivity(intent);
-                }
-            });
-            recyclerView.setAdapter( adapter );
-        } else {
-            Log.d("ItemEdit", "item is null");
-        }
+        // populate view based on items and adapter specifications
+        adapter = new ItemListAdapter(displayItems,
+                new ItemListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Item item) {
+                CurrentItem.getInstance().setItem(item);
+                Intent intent = new Intent(ItemListActivity.this, ItemDetailActivity.class);
+                startActivity(intent);
+            }
+        });
+        recyclerView.setAdapter( adapter );
 
 
     }
@@ -311,7 +307,7 @@ public class ItemListActivity extends AppCompatActivity{
             public ItemViewHolder(View v) {
                 super(v);
                 this.v = v;
-                nameText = (TextView) v.findViewById(R.id.item_name_adapter);
+                nameText = v.findViewById(R.id.item_name_adapter);
                 dateText = v.findViewById(R.id.item_date_adapter);
                 valueText = (TextView) v.findViewById(R.id.item_cost_adapter);
                 categoryText = (TextView) v.findViewById(R.id.item_category_adapter);
@@ -390,7 +386,7 @@ public class ItemListActivity extends AppCompatActivity{
         }
 
         @Override
-        public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
             super.onAttachedToRecyclerView(recyclerView);
         }
 
