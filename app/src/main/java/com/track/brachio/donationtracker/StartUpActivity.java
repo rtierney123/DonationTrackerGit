@@ -7,6 +7,9 @@ import android.widget.Button;
 
 import com.track.brachio.donationtracker.controller.PersistanceManager;
 
+/**
+ * Activity for Startup
+ */
 @SuppressWarnings("SpellCheckingInspection")
 public class StartUpActivity extends AppCompatActivity {
     private Button toLoginPageButton;

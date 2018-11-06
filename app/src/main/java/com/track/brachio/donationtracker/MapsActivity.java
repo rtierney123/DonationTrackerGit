@@ -22,6 +22,9 @@ import java.util.List;
 import android.widget.AdapterView;
 import android.util.Log;
 
+/**
+ * Activity for Google Maps
+ */
 @SuppressWarnings("FeatureEnvy")
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 

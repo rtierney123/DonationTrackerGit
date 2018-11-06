@@ -12,7 +12,9 @@ import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 
-
+/**
+ * Activity for Login
+ */
 public class LoginActivity extends AppCompatActivity {
     private Button cancelButton;
     private EditText usernameField;
@@ -63,6 +65,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * goes to the correct location for user type
+     */
     public void goToCorrectActivity(){
         PersistanceManager manager = new PersistanceManager(this);
         manager.loadAppOnStart( this );

@@ -6,8 +6,18 @@ import android.widget.Spinner;
 
 import java.util.List;
 
+/**
+ * Populates the Spinner
+ */
 public class UIPopulator {
     public int selected;
+
+    /**
+     * populates the spinner
+     * @param spinner spinner being populated
+     * @param array array populating the spinner
+     * @param activity current activity
+     */
     public void populateSpinner(Spinner spinner, List<String> array, Activity activity) {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 activity, android.R.layout.simple_spinner_item, array);

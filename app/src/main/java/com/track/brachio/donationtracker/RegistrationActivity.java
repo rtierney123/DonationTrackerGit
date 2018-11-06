@@ -15,6 +15,9 @@ import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 
+/**
+ * Activity for registration
+ */
 @SuppressWarnings("SpellCheckingInspection")
 public class RegistrationActivity extends AppCompatActivity {
     private Button registerButton;

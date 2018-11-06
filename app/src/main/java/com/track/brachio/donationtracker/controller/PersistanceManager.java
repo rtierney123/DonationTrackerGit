@@ -29,6 +29,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Manages Persistance
+ */
 @SuppressWarnings("FeatureEnvy")
 public class PersistanceManager {
 
@@ -36,11 +39,19 @@ public class PersistanceManager {
     private final Activity activity;
     private static boolean threadRunning;
 
+    /**
+     * Constructor for Persistance Manager
+     * @param currentActivity current activity
+     */
     public PersistanceManager(Activity currentActivity) {
         activity = currentActivity;
         initializeVariables();
     }
 
+    /**
+     * loads app on start
+     * @param activity current activity
+     */
     public void loadAppOnStart(Activity activity) {
         User user = CurrentUser.getInstance().getUser();
         try {
@@ -52,6 +63,10 @@ public class PersistanceManager {
     }
 
 
+    /**
+     * gather data
+     * @throws InterruptedException
+     */
     private void gatherData() throws InterruptedException {
         //Get all locations from db so user can view all locations
         FirebaseLocationHandler locHandler = new FirebaseLocationHandler();
@@ -74,17 +89,27 @@ public class PersistanceManager {
         //startExecutor();
     }
 
+    /**
+     * initializes variables
+     */
     private void initializeVariables() {
         int numCores = Runtime.getRuntime().availableProcessors();
         executor = new ThreadPoolExecutor( numCores * 2, numCores * 2,
                 60L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>() );
     }
 
+    /**
+     * returns executor
+     * @return current executer
+     */
     public ThreadPoolExecutor getExecutor() {
         return executor;
     }
 
 
+    /**
+     * goes to main page
+     */
     public void goToMainPage(){
         User currentUser = CurrentUser.getInstance().getUser();
         Intent intent = new Intent(activity, DonatorMainActivity.class);
@@ -115,6 +140,9 @@ public class PersistanceManager {
     }
 
 
+    /**
+     * sign out user
+     */
     public static void signOut() {
         FirebaseUserHandler handler = new FirebaseUserHandler();
         handler.signOutUser();
@@ -122,24 +150,44 @@ public class PersistanceManager {
         UserLocations.getInstance().setLocations( new ArrayList<Location>() );
     }
 
+    /**
+     * deletes item
+     * @param item item being deleted
+     * @param activity current activity
+     */
     public void deleteItem(Item item, Activity activity) {
         FirebaseItemHandler db = new FirebaseItemHandler();
         Task task = db.deleteItem( item );
         startUpdate(task, activity);
     }
 
+    /**
+     * adds item
+     * @param item item being added
+     * @param activity current activity
+     */
     public void addItem(Item item, Activity activity) {
         FirebaseItemHandler db = new FirebaseItemHandler();
         Task task = db.addItem( item, executor );
         startUpdate(task, activity);
     }
 
+    /**
+     * edits item
+     * @param item item being edited
+     * @param activity current activity
+     */
     public void editItem(Item item, Activity activity) {
         FirebaseItemHandler db = new FirebaseItemHandler();
         Task task = db.editItem( item);
         startUpdate(task, activity);
     }
 
+    /**
+     * starts update
+     * @param editItemTask task being updated
+     * @param currentActivity current activity
+     */
     private void startUpdate(Task editItemTask, Activity currentActivity) {
 
         if (!threadRunning) {
@@ -164,12 +212,19 @@ public class PersistanceManager {
 
     }
 
+    /**
+     * returns all items
+     * @return task with items
+     */
     public Task getAllItems() {
         FirebaseItemHandler itemHandler = new FirebaseItemHandler();
         return itemHandler.getAllItems();
     }
 
-
+    /**
+     * gets thread running
+     * @return true if thread is running
+     */
     public static boolean getThreadRunning() {
         return threadRunning;
     }

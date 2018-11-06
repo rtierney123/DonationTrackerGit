@@ -15,6 +15,9 @@ import com.track.brachio.donationtracker.model.singleton.UserLocations;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activity for Volunteer Main
+ */
 public class VolunteerMainActivity extends MainActivity {
     private Button logoutButton;
     private Button volManagerItems;

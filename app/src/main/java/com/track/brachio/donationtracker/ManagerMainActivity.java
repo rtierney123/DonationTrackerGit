@@ -7,6 +7,9 @@ import android.widget.Button;
 
 import com.track.brachio.donationtracker.controller.MainActivity;
 
+/**
+ * Activity for the Manager
+ */
 public class ManagerMainActivity extends MainActivity {
     private Button manMainLogout;
     private Button manManageItems;

@@ -8,6 +8,9 @@ import android.widget.Button;
 import com.track.brachio.donationtracker.StartUpActivity;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 
+/**
+ * Activity for the main page
+ */
 @SuppressWarnings("SpellCheckingInspection")
 public class MainActivity extends Activity {
     @Override
@@ -18,6 +21,10 @@ public class MainActivity extends Activity {
         }
     }
 
+    /**
+     * sets listener on logout button
+     * @param button button for the logout button
+     */
     protected void setLogoutButton(Button button){
         button.setOnClickListener(new View.OnClickListener() {
             @Override
