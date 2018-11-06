@@ -169,7 +169,7 @@ public class ItemListActivity extends AppCompatActivity{
 
     }
 
-    public String getCurrentLocationID(){
+    private String getCurrentLocationID(){
         UserLocations locs = UserLocations.getInstance();
         List<Location> array = locs.getLocations();
         if (locIndex != 0) {

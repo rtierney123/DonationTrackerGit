@@ -141,7 +141,7 @@ public class PersistanceManager {
         startUpdate(task, activity);
     }
 
-    public void startUpdate(Task editItemTask, Activity currentActivity) {
+    private void startUpdate(Task editItemTask, Activity currentActivity) {
 
         if (!threadRunning) {
             threadRunning = true;

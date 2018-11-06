@@ -10,7 +10,7 @@ import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
 
 @SuppressWarnings("SpellCheckingInspection")
 public class StartUpActivity extends AppCompatActivity {
-    Button toLoginPageButton;
+    private Button toLoginPageButton;
     Button toRegisterPageButton;
     Button toGuestPageButton;
 

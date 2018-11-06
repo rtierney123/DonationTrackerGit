@@ -58,7 +58,7 @@ public class ItemEditActivity extends AppCompatActivity {
     private ArrayList<String> comments;
     private PersistanceManager manager;
     private Activity currentActivity = this;
-    Item currentItem;
+    private Item currentItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

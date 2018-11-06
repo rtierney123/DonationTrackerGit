@@ -93,7 +93,7 @@ public class LocationListActivity extends AppCompatActivity {
             private TextView nameText;
             private TextView cityText;
             private View v;
-            public LocationViewHolder(View v) {
+            LocationViewHolder(View v) {
                 super(v);
                 this.v = v;
                 nameText = (TextView) v.findViewById(R.id.location_name_adapter);

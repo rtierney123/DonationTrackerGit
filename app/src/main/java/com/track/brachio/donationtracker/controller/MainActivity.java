@@ -20,11 +20,11 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void setLogoutButton(Button button){
+    protected void setLogoutButton(Button button){
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 PersistanceManager manager = new PersistanceManager(MainActivity.this);
-                manager.signOut();
+                PersistanceManager.signOut();
                 Intent intent = new Intent(MainActivity.this, StartUpActivity.class);
                 startActivity(intent);
             }

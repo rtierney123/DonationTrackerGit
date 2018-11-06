@@ -34,7 +34,7 @@ public class LocationActivity extends AppCompatActivity {
     private TextView locationType;
     private Button backButton;
     //How do we incorporate the singleton?
-    Location currentLocation;
+    private Location currentLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
