@@ -39,7 +39,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({"SpellCheckingInspection", "FeatureEnvy"})
 public class ItemEditActivity extends AppCompatActivity {
     private TextView dateCreated;
     private EditText newLocation;

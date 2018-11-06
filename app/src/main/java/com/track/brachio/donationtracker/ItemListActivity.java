@@ -245,7 +245,8 @@ public class ItemListActivity extends AppCompatActivity{
 
         if (displayItems != null) {
             // populate view based on items and adapter specifications
-            adapter = new ItemListActivity.ItemListAdapter(displayItems, new ItemListAdapter.OnItemClickListener() {
+            adapter = new ItemListActivity.ItemListAdapter(displayItems,
+                    new ItemListAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(Item item) {
                     CurrentItem.getInstance().setItem(item);
@@ -262,7 +263,9 @@ public class ItemListActivity extends AppCompatActivity{
     }
 
 
-    private static class ItemListAdapter extends RecyclerView.Adapter<ItemListActivity.ItemListAdapter.ItemViewHolder>{
+    @SuppressWarnings("FeatureEnvy")
+    private static class ItemListAdapter extends
+            RecyclerView.Adapter<ItemListActivity.ItemListAdapter.ItemViewHolder>{
         private List<Item> items;
         private View view;
         private final OnItemClickListener theItemListener;
