@@ -11,7 +11,7 @@ public final class UserLocations {
     private static UserLocations single_instance;
 
     // current User
-    private ArrayList<Location> locations;
+    private List<Location> locations;
 
     // private constructor restricted to this class itself
     private UserLocations()
@@ -33,7 +33,7 @@ public final class UserLocations {
         return Collections.unmodifiableList(locations);
     }
 
-    public void setLocations(ArrayList<Location> locations) {
+    public void setLocations(List<Location> locations) {
         this.locations = locations;
     }
 }

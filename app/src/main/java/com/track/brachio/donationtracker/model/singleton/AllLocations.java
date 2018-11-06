@@ -16,7 +16,7 @@ public final class AllLocations {
     // static variable single_instance of type AllLocations
     private static AllLocations single_instance;
 
-    private HashMap<String, Location> locMap;
+    private Map<String, Location> locMap;
     // private constructor restricted to this class itself
 
     /**
@@ -54,7 +54,7 @@ public final class AllLocations {
      * setter for locationMap
      * @param map map being inputted
      */
-    public void setLocationMap(HashMap<String, Location> map){
+    public void setLocationMap(Map<String, Location> map){
         locMap = map;
     }
 

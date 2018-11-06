@@ -1,6 +1,7 @@
 package com.track.brachio.donationtracker.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public enum ItemType {
     Food,
@@ -10,9 +11,9 @@ public enum ItemType {
     Electronics,
     Miscellaneous;
 
-    public static ArrayList<String> getArrayList(){
+    public static List<String> getArrayList(){
         ItemType[] types = ItemType.values();
-        ArrayList<String> names = new ArrayList();
+        List<String> names = new ArrayList();
         for(ItemType s : types){
             names.add(s.toString());
         }

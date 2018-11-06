@@ -46,7 +46,7 @@ public class FirebaseItemHandler {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        HashMap<String, HashMap<String, Item>> map = new LinkedHashMap<>(  );
+                        Map<String, Map<String, Item>> map = new LinkedHashMap<>(  );
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document :
                                     task.getResult()) //noinspection TodoComment
@@ -73,7 +73,7 @@ public class FirebaseItemHandler {
                                 item.setShortDescription( shortDescription );
                                 item.setLongDescription( longDescription );
                                 //TODO How to get comment array
-                                HashMap<String, Item> items;
+                                Map<String, Item> items;
                                 if (map.get(locationID) == null){
                                     items = new LinkedHashMap<>( );
                                     items.put(key, item);
