@@ -95,7 +95,7 @@ public class ItemListActivity extends AppCompatActivity{
             }
         });
 
-        ArrayList<String> categories = ItemType.getArrayList();
+        List<String> categories = ItemType.getArrayList();
         categories.add(0,"All");
         ui.populateSpinner( categorySpinner, categories, this );
         categorySpinner.setSelection(catIndex);

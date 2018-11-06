@@ -294,7 +294,7 @@ public class ItemEditActivity extends AppCompatActivity {
 
         }
 
-        public CommentListAdapter(ArrayList<String> array) {
+        public CommentListAdapter(List<String> array) {
             this.theComments = array;
         }
 

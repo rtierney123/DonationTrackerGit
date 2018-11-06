@@ -117,7 +117,7 @@ public class LocationListActivity extends AppCompatActivity {
         }
 
 
-        public LocationListAdapter(ArrayList<Location> array, OnItemClickListener listener) {
+        public LocationListAdapter(List<Location> array, OnItemClickListener listener) {
             locations = array;
             locationListener = listener;
         }

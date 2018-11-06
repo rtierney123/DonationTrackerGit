@@ -6,6 +6,7 @@ import com.track.brachio.donationtracker.model.Location;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class SearchedItems {
     // static variable single_instance of type SearchedItems
@@ -29,7 +30,7 @@ public class SearchedItems {
         return single_instance;
     }
 
-    public HashMap<String, HashMap<String, Item>> getSearchedMap() {
+    public Map<String, HashMap<String, Item>> getSearchedMap() {
         return map;
     }
 

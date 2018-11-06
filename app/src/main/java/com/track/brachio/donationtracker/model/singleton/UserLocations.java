@@ -3,6 +3,7 @@ package com.track.brachio.donationtracker.model.singleton;
 import com.track.brachio.donationtracker.model.Location;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserLocations {
     // static variable single_instance of type AllLocations
@@ -26,7 +27,7 @@ public class UserLocations {
         return single_instance;
     }
 
-    public ArrayList<Location> getLocations() {
+    public List<Location> getLocations() {
         return locations;
     }
 

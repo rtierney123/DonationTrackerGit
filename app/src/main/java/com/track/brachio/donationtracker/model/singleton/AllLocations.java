@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class AllLocations {
     // static variable single_instance of type AllLocations
@@ -28,7 +29,7 @@ public class AllLocations {
     }
 
 
-    public HashMap<String, Location> getLocationMap(){
+    public Map<String, Location> getLocationMap(){
         return locMap;
     }
 
