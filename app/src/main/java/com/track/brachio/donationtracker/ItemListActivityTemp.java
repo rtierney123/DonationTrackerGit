@@ -4,20 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -41,8 +33,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ItemListActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+/**
+ * Activity to list activities
+ */
+public class ItemListActivityTemp extends AppCompatActivity{
     private Collection<Item> items = new ArrayList<>();
     private static HashMap<String, HashMap<String, Item>> storeItems;
     private RecyclerView recyclerView;
@@ -57,21 +51,11 @@ public class ItemListActivity extends AppCompatActivity
     private static int catIndex;
     private UIPopulator ui;
     private String searchString = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_item_list );
-        Toolbar toolbar = (Toolbar) findViewById( R.id.toolbar );
-        setSupportActionBar( toolbar );
-
-        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
-        drawer.addDrawerListener( toggle );
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById( R.id.nav_view );
-        navigationView.setNavigationItemSelectedListener( this );
+        setContentView( R.layout.activity_item_list_temp );
 
         recyclerView = findViewById(R.id.itemList);
         editButton= findViewById(R.id.editbutton);
@@ -91,7 +75,7 @@ public class ItemListActivity extends AppCompatActivity
             public void onClick(View view) {
                 Log.d("ItemList", "Edit");
                 //putting it to donator main activity for now
-                Intent intent = new Intent(ItemListActivity.this, ItemAddActivity.class);
+                Intent intent = new Intent(ItemListActivityTemp.this, ItemAddActivity.class);
                 startActivity(intent);
             }
         });
@@ -149,6 +133,56 @@ public class ItemListActivity extends AppCompatActivity
         });
     }
 
+
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        /*
+        Bundle extra = getIntent().getExtras();
+        if (extra != null){
+            if (extra.getBoolean( "edited" ) == true) {
+                Log.d("Edit Item", "Item edited");
+                Item editedItem = CurrentItem.getInstance().getItem();
+                if (itemMap == null){
+                    HashMap<String, Item> newMap = new LinkedHashMap<>(  );
+                    newMap.put(editedItem.getKey(), editedItem);
+                    storeItems.put(editedItem.getLocation(), newMap);
+                }
+                itemMap.put(editedItem.getKey(), editedItem);
+                populateRecycleView();
+            } else if(extra.getBoolean( "remove" ) == true){
+                Log.d("Delete Item", "Item deleted");
+                Item current = CurrentItem.getInstance().getItem();
+                String key = current.getKey();
+                itemMap.remove(key);
+                populateRecycleView();
+            } else if(extra.getBoolean( "add" ) == true){
+                //Log.d("Add Item", "Item added");
+                //Item addedItem = CurrentItem.getInstance().getItem();
+                //itemMap.put(addedItem.getKey(), addedItem);
+                //populateRecycleView();
+            }
+        }
+        */
+    }
+
+    /**
+     * sets the Item Array
+     * @param array array being set
+     */
+    public void setItemArray(List<Item> array) {
+        items = array;
+    }
+
+    /**
+     * sets up recycler view
+     * @param view current view
+     */
+    private void setupRecyclerView(RecyclerView view) {
+
+    }
+
     /**
      * returns current location Id
      * @return id
@@ -179,6 +213,7 @@ public class ItemListActivity extends AppCompatActivity
         }
         return ids;
     }
+
 
     /**
      * populates the recycler view
@@ -228,15 +263,15 @@ public class ItemListActivity extends AppCompatActivity
 
 
         // populate view based on items and adapter specifications
-        adapter = new ItemListActivityTemp.ItemListAdapter(displayItems,
-                new ItemListActivityTemp.ItemListAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Item item) {
-                        CurrentItem.getInstance().setItem(item);
-                        Intent intent = new Intent(ItemListActivity.this, ItemDetailActivity.class);
-                        startActivity(intent);
-                    }
-                });
+        adapter = new ItemListAdapter(displayItems,
+                new ItemListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Item item) {
+                CurrentItem.getInstance().setItem(item);
+                Intent intent = new Intent(ItemListActivityTemp.this, ItemDetailActivity.class);
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter( adapter );
 
 
@@ -247,11 +282,11 @@ public class ItemListActivity extends AppCompatActivity
      * Adapter for ItemList
      */
     @SuppressWarnings("FeatureEnvy")
-    private static class ItemListAdapter extends
+    public static class ItemListAdapter extends
             RecyclerView.Adapter<ItemListActivityTemp.ItemListAdapter.ItemViewHolder>{
         private List<Item> items;
         private View view;
-        private final ItemListActivityTemp.ItemListAdapter.OnItemClickListener theItemListener;
+        private final OnItemClickListener theItemListener;
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
         // you provide access to all the views for a data item in a view holder
@@ -265,7 +300,7 @@ public class ItemListActivity extends AppCompatActivity
             public TextView dateText;
             public TextView valueText;
             public TextView categoryText;
-            public View v;
+            private View v;
 
             /**
              * Constructor for ItemViewHolder
@@ -285,7 +320,7 @@ public class ItemListActivity extends AppCompatActivity
              * @param theItem item being binded
              * @param listener listeneer on the list
              */
-            public void bind(final Item theItem, final ItemListActivityTemp.ItemListAdapter.OnItemClickListener listener) {
+            public void bind(final Item theItem, final OnItemClickListener listener) {
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -309,7 +344,7 @@ public class ItemListActivity extends AppCompatActivity
          * @param listener current listener
          */
         // Provide a suitable constructor (depends on the kind of dataset)
-        public ItemListAdapter(List<Item> array, ItemListActivityTemp.ItemListAdapter.OnItemClickListener listener) {
+        public ItemListAdapter(List<Item> array, OnItemClickListener listener) {
             this.items = array;
             this.theItemListener = listener;
         }
@@ -324,7 +359,7 @@ public class ItemListActivity extends AppCompatActivity
                     .inflate(R.layout.adapter_item_list, parent, false);
 
             view = v;
-            return new ItemListActivityTemp.ItemListAdapter.ItemViewHolder(v);
+            return new ItemViewHolder(v);
 
         }
 
@@ -357,62 +392,5 @@ public class ItemListActivity extends AppCompatActivity
             super.onAttachedToRecyclerView(recyclerView);
         }
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
-        if (drawer.isDrawerOpen( GravityCompat.START )) {
-            drawer.closeDrawer( GravityCompat.START );
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate( R.menu.item_list_activity2, menu );
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected( item );
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
-        drawer.closeDrawer( GravityCompat.START );
-        return true;
     }
 }

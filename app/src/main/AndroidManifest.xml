@@ -16,15 +16,15 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <!--suppress LongLine -->
+    <!-- suppress LongLine -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label=""
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:largeHeap="true">
+        android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,7 +54,7 @@
             android:name=".LocationActivity"
             android:label=".LocationActivity" />
         <activity
-            android:name=".ItemListActivity"
+            android:name=".ItemListActivityTemp"
             android:label=".EditableItemListActivity" />
         <activity
             android:name=".ItemEditActivity"
@@ -62,7 +62,7 @@
         <activity
             android:name=".ItemAddActivity"
             android:label=".AddItemActivity" />
-        <activity android:name=".ItemDetailActivity"></activity>
+        <activity android:name=".ItemDetailActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -77,8 +77,10 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
-
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".ItemListActivity"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

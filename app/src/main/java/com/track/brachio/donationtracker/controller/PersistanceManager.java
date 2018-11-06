@@ -10,7 +10,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.track.brachio.donationtracker.AdminMainActivity;
 import com.track.brachio.donationtracker.DonatorMainActivity;
-import com.track.brachio.donationtracker.ItemListActivity;
+import com.track.brachio.donationtracker.ItemListActivityTemp;
 import com.track.brachio.donationtracker.ManagerMainActivity;
 import com.track.brachio.donationtracker.VolunteerMainActivity;
 import com.track.brachio.donationtracker.model.Item;
@@ -201,7 +201,7 @@ public class PersistanceManager {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             threadRunning = false;
-                            Intent intent = new Intent(currentActivity, ItemListActivity.class);
+                            Intent intent = new Intent(currentActivity, ItemListActivityTemp.class);
                             currentActivity.startActivity(intent);
                         }
                     } );

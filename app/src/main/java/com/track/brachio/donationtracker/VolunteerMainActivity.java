@@ -64,7 +64,7 @@ public class VolunteerMainActivity extends MainActivity {
         volManagerItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VolunteerMainActivity.this, ItemListActivity.class);
+                Intent intent = new Intent(VolunteerMainActivity.this, ItemListActivityTemp.class);
                 startActivity(intent);
             }
         });
