@@ -75,7 +75,7 @@ public class ItemEditActivity extends AppCompatActivity {
         newItemCategory = (Spinner) findViewById(R.id.editItemCategoryID);
         newComments = (EditText) findViewById(R.id.editItemAddCommentID);
         newCommentsRecyclerView = (RecyclerView) findViewById(R.id.editItemCommentsID);
-        newimage = (ImageButton) findViewById(R.id.editItemImage);
+        newImage = (ImageButton) findViewById(R.id.editItemImage);
         cancelButton = (Button) findViewById(R.id.editItemCancelButton);
         addButton = (Button) findViewById(R.id.editItemMakeChangesID);
         deleteButton = (Button) findViewById(R.id.editItemDeleteButton);
@@ -128,23 +128,15 @@ public class ItemEditActivity extends AppCompatActivity {
                     currentItem.setLocation(locationEntered);
                 }
 
-<<<<<<< HEAD
-                if (!shortDescriptionEntered.isEmpty() && !shortDescriptionEntered.equals(currentItem.getShortDescription())) {
+
+                if (!shortDescriptionEntered.isEmpty() &&
+                        !shortDescriptionEntered.equals(currentItem.getShortDescription())) {
                     currentItem.setShortDescription(shortDescriptionEntered);
                 }
 
-                if (!longDescriptionEntered.isEmpty() && !longDescriptionEntered.equals(currentItem.getLongDescription())) {
-                    currentItem.setLongDescription(longDescriptionEntered);
-=======
-                if (!shortDescriptionEntered.isEmpty() &&
-                        !shortDescriptionEntered.equals(currentItem.getShortDescript())) {
-                    currentItem.setShortDescript(shortDescriptionEntered);
-                }
-
                 if (!longDescriptionEntered.isEmpty() &&
-                        !longDescriptionEntered.equals(currentItem.getLongDescript())) {
-                    currentItem.setLongDescript(longDescriptionEntered);
->>>>>>> ac04376f5c9909cb283bbc0c6f707bc4867e951a
+                        !longDescriptionEntered.equals(currentItem.getLongDescription())) {
+                    currentItem.setLongDescription(longDescriptionEntered);
                 }
 
                 if (!dollarValueEntered.isEmpty() && !(Double.parseDouble(dollarValueEntered) == currentItem.getDollarValue())) {
@@ -195,19 +187,19 @@ public class ItemEditActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA) !=
                 PackageManager.PERMISSION_GRANTED) {
-            newimage.setEnabled(false);
+            newImage.setEnabled(false);
             ActivityCompat.requestPermissions(this,
                     new String[] { Manifest.permission.CAMERA,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
         }
-        newimage.setOnClickListener(new View.OnClickListener() {
+        newImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 takePicture(view);
             }
         });
 
-        newimage.setImageBitmap( currentItem.getPicture() );
+        newImage.setImageBitmap( currentItem.getPicture() );
 
     }
     public void onRequestPermissionsResult(int requestCode,
@@ -216,7 +208,7 @@ public class ItemEditActivity extends AppCompatActivity {
         if (requestCode == 0) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
                     && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                newimage.setEnabled(true);
+                newImage.setEnabled(true);
             }
         }
     }
@@ -238,7 +230,7 @@ public class ItemEditActivity extends AppCompatActivity {
         protected void onActivityResult ( int requestCode, int resultCode, Intent data){
             if (requestCode == 100) {
                 if (resultCode == RESULT_OK) {
-                    newimage.setImageURI(file);
+                    newImage.setImageURI(file);
                     Bitmap bitmap = null;
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), file);
@@ -248,7 +240,7 @@ public class ItemEditActivity extends AppCompatActivity {
                     }
                     Item item = CurrentItem.getInstance().getItem();
                     item.setPicture(bitmap);
-                    newimage.setImageBitmap(bitmap);
+                    newImage.setImageBitmap(bitmap);
                 }
             }
         }

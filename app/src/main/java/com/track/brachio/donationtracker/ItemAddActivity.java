@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
@@ -29,11 +30,8 @@ public class ItemAddActivity extends AppCompatActivity {
     private EditText comment;
     private Button addButton;
     private Button cancelButton;
-<<<<<<< HEAD
-    //private ImageButton newImage;
-=======
     private ImageButton newimage;
->>>>>>> ac04376f5c9909cb283bbc0c6f707bc4867e951a
+
     private Activity currentActivity = this;
     Item currentItem;
 
@@ -51,11 +49,7 @@ public class ItemAddActivity extends AppCompatActivity {
         comment = (EditText) findViewById(R.id.addItemCommentID);
         addButton = (Button) findViewById(R.id.addItemAddID);
         cancelButton = (Button) findViewById(R.id.addItemCancelButton);
-<<<<<<< HEAD
-        //newImage = (ImageButton) findViewById(R.id.addItemImage);
-=======
         newimage = (ImageButton) findViewById(R.id.addItemImage);
->>>>>>> ac04376f5c9909cb283bbc0c6f707bc4867e951a
 
         PersistanceManager manager = new PersistanceManager( this );
 
@@ -117,7 +111,6 @@ public class ItemAddActivity extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
 //        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
 //            newImage.setEnabled(false);
 //            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
@@ -183,79 +176,5 @@ public class ItemAddActivity extends AppCompatActivity {
 //        return new File(mediaStorageDir.getPath() + File.separator +
 //                "IMG_" + ".jpg");
 //    }
-=======
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.CAMERA) !=
-                PackageManager.PERMISSION_GRANTED) {
-            newimage.setEnabled(false);
-            ActivityCompat.requestPermissions(this,
-                    new String[] {
-                            Manifest.permission.CAMERA,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE },
-                    0);
-        }
-        newimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                takePicture(view);
-            }
-        });
 
-        newimage.setImageBitmap(currentItem.getPicture() );
-    }
-    public void onRequestPermissionsResult(int requestCode,
-                                           String[] permissions,
-                                           int[] grantResults) {
-        if (requestCode == 0) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                newimage.setEnabled(true);
-            }
-        }
-    }
-    Uri file;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-    public void takePicture(View view){
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        file = Uri.fromFile(getOutputMediaFile());
-        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, file);
-        takePictureIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-        StrictMode.setVmPolicy(builder.build());
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, 100);
-        }
-    }
-    @Override
-    protected void onActivityResult ( int requestCode, int resultCode, Intent data){
-        if (requestCode == 100) {
-            if (resultCode == RESULT_OK) {
-                newimage.setImageURI(file);
-                Bitmap bitmap = null;
-                try {
-                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), file);
-                    //bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Item item = CurrentItem.getInstance().getItem();
-                item.setPicture(bitmap);
-                newimage.setImageBitmap(bitmap);
-            }
-        }
-    }
-    private static File getOutputMediaFile () {
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "CameraDemo");
-
-        if (!mediaStorageDir.exists()) {
-            if (!mediaStorageDir.mkdirs()) {
-                return null;
-            }
-        }
-        return new File(mediaStorageDir.getPath() + File.separator +
-                "IMG_" + ".jpg");
-    }
->>>>>>> ac04376f5c9909cb283bbc0c6f707bc4867e951a
 }

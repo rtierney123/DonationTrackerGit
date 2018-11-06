@@ -18,8 +18,7 @@ import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentLocation;
 
 import java.util.ArrayList;
-
-
+import java.util.List;
 
 
 public class LocationListActivity extends AppCompatActivity {
