@@ -11,6 +11,7 @@ import java.util.List;
 
 import java.util.Date;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class User {
     //Should probably add first and last name
     private String userId;
@@ -106,7 +107,7 @@ public class User {
         this.timestamp = timestamp;
     }
 
-    public String getFirstname() {
+    public String getFirstName() {
         return firstName;
     }
 
@@ -114,7 +115,7 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getLastname() {
+    public String getLastName() {
         return lastName;
     }
 

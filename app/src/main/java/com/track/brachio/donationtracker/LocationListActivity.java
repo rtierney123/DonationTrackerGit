@@ -1,7 +1,6 @@
 
 package com.track.brachio.donationtracker;
 
-import android.content.Context;
 import android.util.Log;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -13,15 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.Toast;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
 
 import com.track.brachio.donationtracker.model.Location;
-import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentLocation;
 
@@ -107,7 +99,7 @@ public class LocationListActivity extends AppCompatActivity {
                 super(v);
                 this.v = v;
                 nameText = (TextView) v.findViewById(R.id.location_name_adapter);
-                cityText = (TextView) v.findViewById(R.id.locaton_city_adapter);
+                cityText = (TextView) v.findViewById(R.id.location_city_adapter);
             }
 
             public void bind(final Location item, final OnItemClickListener listener) {
@@ -130,7 +122,7 @@ public class LocationListActivity extends AppCompatActivity {
             locations = array;
             locationListener = listener;
         }
-        // Provide a suitable constructor (depends on the kind of dataset)
+        // Provide a suitable constructor (depends on the kind of data set)
 //        public LocationListAdapter(ArrayList<Location> array) {
 //            locations = array;
 //        }
@@ -152,7 +144,7 @@ public class LocationListActivity extends AppCompatActivity {
         // Replace the contents of a view (invoked by the layout manager)
         @Override
         public void onBindViewHolder(LocationListAdapter.LocationViewHolder holder, int position) {
-            // - get element from your dataset at this position
+            // - get element from your data set at this position
             // - replace the contents of the view with that element
             holder.nameText.setText(locations.get(position).getName());
             holder.cityText.setText(locations.get(position).getAddress().getCity());
@@ -167,7 +159,7 @@ public class LocationListActivity extends AppCompatActivity {
 
         }
 
-        // Return the size of your dataset (invoked by the layout manager)
+        // Return the size of your data set (invoked by the layout manager)
         @Override
         public int getItemCount() {
             return locations.size();

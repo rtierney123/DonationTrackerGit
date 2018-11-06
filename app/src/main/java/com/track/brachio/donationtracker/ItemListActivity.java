@@ -262,7 +262,7 @@ public class ItemListActivity extends AppCompatActivity{
     }
 
     /*
-    private ArrayList<String> getArrayfromEnum(Class<? extends Enum<?>> e){
+    private ArrayList<String> getArrayFromEnum(Class<? extends Enum<?>> e){
         Stream s = Arrays.stream(e.getEnumConstants()).map(Enum::name);
         String[] array = (String[])s.toArray(String[]::new);
         ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList(array));

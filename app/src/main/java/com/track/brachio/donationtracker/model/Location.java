@@ -20,7 +20,7 @@ public class Location {
         name = n;
         latitude = lat;
         longitude = lon;
-        type = getTypebyString( t );
+        type = getTypeByString( t );
         stringLocationType = t;
         phone = ph;
         website = web;
@@ -94,7 +94,7 @@ public class Location {
         this.website = website;
     }
 
-    private LocationType getTypebyString(String str){
+    private LocationType getTypeByString(String str){
         switch (str) {
             case "DropOff" : return LocationType.DropOff;
             case "Store" : return LocationType.Store;

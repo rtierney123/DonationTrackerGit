@@ -1,23 +1,13 @@
 package com.track.brachio.donationtracker;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Environment;
-import android.os.StrictMode;
-import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
@@ -25,12 +15,10 @@ import android.widget.ArrayAdapter;
 import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.ItemType;
-import com.track.brachio.donationtracker.model.singleton.CurrentItem;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class ItemAddActivity extends AppCompatActivity {
     private EditText itemName;
     private EditText location;
@@ -41,7 +29,7 @@ public class ItemAddActivity extends AppCompatActivity {
     private EditText comment;
     private Button addButton;
     private Button cancelButton;
-    //private ImageButton newimage;
+    //private ImageButton newImage;
     private Activity currentActivity = this;
     Item currentItem;
 
@@ -59,7 +47,7 @@ public class ItemAddActivity extends AppCompatActivity {
         comment = (EditText) findViewById(R.id.addItemCommentID);
         addButton = (Button) findViewById(R.id.addItemAddID);
         cancelButton = (Button) findViewById(R.id.addItemCancelButton);
-        //newimage = (ImageButton) findViewById(R.id.addItemImage);
+        //newImage = (ImageButton) findViewById(R.id.addItemImage);
 
         PersistanceManager manager = new PersistanceManager( this );
 
@@ -87,10 +75,10 @@ public class ItemAddActivity extends AppCompatActivity {
                     Item newItem = new Item(key, nameEntered, theDate, locationEntered, Double.parseDouble(dollarEntered),
                             itemTypeSelected.toString());
                     if (!sDescriptionEntered.isEmpty()) {
-                        newItem.setShortDescript(sDescriptionEntered);
+                        newItem.setShortDescription(sDescriptionEntered);
                     }
                     if (!lDescriptionEntered.isEmpty()) {
-                        newItem.setLongDescript(lDescriptionEntered);
+                        newItem.setLongDescription(lDescriptionEntered);
                     }
                     if (!commentEntered.isEmpty()) {
                         newItem.addComment(commentEntered);
@@ -114,23 +102,23 @@ public class ItemAddActivity extends AppCompatActivity {
         });
 
 //        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-//            newimage.setEnabled(false);
+//            newImage.setEnabled(false);
 //            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
 //        }
-//        newimage.setOnClickListener(new View.OnClickListener() {
+//        newImage.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
 //                takePicture(view);
 //            }
 //        });
 //
-//        newimage.setImageBitmap(currentItem.getPicture() );
+//        newImage.setImageBitmap(currentItem.getPicture() );
     }
 //    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 //        if (requestCode == 0) {
 //            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
 //                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-//                newimage.setEnabled(true);
+//                newImage.setEnabled(true);
 //            }
 //        }
 //    }
@@ -152,7 +140,7 @@ public class ItemAddActivity extends AppCompatActivity {
 //    protected void onActivityResult ( int requestCode, int resultCode, Intent data){
 //        if (requestCode == 100) {
 //            if (resultCode == RESULT_OK) {
-//                newimage.setImageURI(file);
+//                newImage.setImageURI(file);
 //                Bitmap bitmap = null;
 //                try {
 //                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), file);
@@ -162,7 +150,7 @@ public class ItemAddActivity extends AppCompatActivity {
 //                }
 //                Item item = CurrentItem.getInstance().getItem();
 //                item.setPicture(bitmap);
-//                newimage.setImageBitmap(bitmap);
+//                newImage.setImageBitmap(bitmap);
 //            }
 //        }
 //    }

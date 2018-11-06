@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class FirebaseLocationHandler {
     private String TAG = "FirebaseLocationHandler";
     private Location locationCallback;
@@ -50,7 +51,7 @@ public class FirebaseLocationHandler {
                     String city = "";
                     String state = "";
                     long zip = 0;
-                    Log.d(TAG, "onSucccess: Got Location");
+                    Log.d(TAG, "onSuccess: Got Location");
 
                     for (DocumentSnapshot doc : retDocs) {
                         id = (String) doc.get("locationID");
@@ -95,7 +96,7 @@ public class FirebaseLocationHandler {
                     String city = "";
                     String state = "";
                     long zip = 0;
-                    Log.d(TAG, "onSucccess: Got Locations");
+                    Log.d(TAG, "onSuccess: Got Locations");
 
                     locationMap.clear();
                     for (DocumentSnapshot doc : retDocs) {
@@ -120,7 +121,7 @@ public class FirebaseLocationHandler {
         } );
         return task;
     }
-    //TODO delete this once AllLocations is up and runnning
+    //TODO delete this once AllLocations is up and running
     //make sure to replace in LocationListActivity
     public void getLocations(LocationListActivity locListAct){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -145,7 +146,7 @@ public class FirebaseLocationHandler {
                     String city = "";
                     String state = "";
                     long zip = 0;
-                    Log.d(TAG, "onSucccess: Got Locations");
+                    Log.d(TAG, "onSuccess: Got Locations");
 
                     locationMap.clear();
                     for (DocumentSnapshot doc : retDocs) {

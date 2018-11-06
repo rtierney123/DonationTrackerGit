@@ -1,10 +1,8 @@
 package com.track.brachio.donationtracker;
 
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -14,8 +12,6 @@ import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentItem;
-
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 
@@ -42,8 +38,8 @@ public class ItemDetailActivity extends AppCompatActivity {
         HashMap<String, Location> allLoc = AllLocations.getInstance().getLocationMap();
         Location loc = allLoc.get(currentItem.getLocation());
         locationText.setText(loc.getName());
-        shortDescriptText.setText(currentItem.getShortDescript());
-        longDescriptText.setText(currentItem.getLongDescript());
+        shortDescriptText.setText(currentItem.getShortDescription());
+        longDescriptText.setText(currentItem.getLongDescription());
         dollarText.setText(currentItem.getDollarValue() + "");
         categoryText.setText(currentItem.getCategory().toString());
 

@@ -38,6 +38,7 @@ import android.view.ViewGroup;
 import java.io.IOException;
 import java.util.ArrayList;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class ItemEditActivity extends AppCompatActivity {
     private TextView itemName;
     private TextView dateCreated;
@@ -50,7 +51,7 @@ public class ItemEditActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private EditText newComments;
-    private ImageButton newimage;
+    private ImageButton newImage;
     private Button cancelButton;
     private Button addButton;
     private Button deleteButton;
@@ -98,8 +99,8 @@ public class ItemEditActivity extends AppCompatActivity {
                 dateCreated.setText(currentItem.getDateCreated().toString());
             }
             newLocation.setText(currentItem.getLocation());
-            newShortDescription.setText(currentItem.getShortDescript());
-            newLongDescription.setText(currentItem.getLongDescript());
+            newShortDescription.setText(currentItem.getShortDescription());
+            newLongDescription.setText(currentItem.getLongDescription());
             newDollarValue.setText(Double.toString(currentItem.getDollarValue()));
             if (currentItem.getCategory() != null) {
                 newItemCategory.setSelection(Item.findItemTypePosition(currentItem.getCategory()));
@@ -124,12 +125,12 @@ public class ItemEditActivity extends AppCompatActivity {
                     currentItem.setLocation(locationEntered);
                 }
 
-                if (!shortDescriptionEntered.isEmpty() && !shortDescriptionEntered.equals(currentItem.getShortDescript())) {
-                    currentItem.setShortDescript(shortDescriptionEntered);
+                if (!shortDescriptionEntered.isEmpty() && !shortDescriptionEntered.equals(currentItem.getShortDescription())) {
+                    currentItem.setShortDescription(shortDescriptionEntered);
                 }
 
-                if (!longDescriptionEntered.isEmpty() && !longDescriptionEntered.equals(currentItem.getLongDescript())) {
-                    currentItem.setLongDescript(longDescriptionEntered);
+                if (!longDescriptionEntered.isEmpty() && !longDescriptionEntered.equals(currentItem.getLongDescription())) {
+                    currentItem.setLongDescription(longDescriptionEntered);
                 }
 
                 if (!dollarValueEntered.isEmpty() && !(Double.parseDouble(dollarValueEntered) == currentItem.getDollarValue())) {

@@ -10,6 +10,7 @@ import com.track.brachio.donationtracker.ManagerMainActivity;
 import com.track.brachio.donationtracker.StartUpActivity;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class MainActivity extends Activity {
     @Override
     public void onBackPressed() {

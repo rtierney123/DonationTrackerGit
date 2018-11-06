@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class FirebaseUserHandler {
     private String TAG = "FirebaseUserHandler";
     private User userCallback;
@@ -119,8 +120,8 @@ public class FirebaseUserHandler {
 
         Map<String, Object> userMap = new HashMap<>();
         if(!appUser.isNull() && !password.isEmpty()) {
-            userMap.put("firstname", appUser.getFirstname());
-            userMap.put("lastname", appUser.getLastname());
+            userMap.put("firstname", appUser.getFirstName());
+            userMap.put("lastname", appUser.getLastName());
             userMap.put("email", appUser.getEmail());
             userMap.put("usertype", appUser.getUserType().name());
             userMap.put("date created", appUser.getTimestamp());

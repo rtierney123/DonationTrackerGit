@@ -119,7 +119,7 @@
                 android:id="@+id/textView21"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Item Categroy: " />
+                android:text="Item Category:" />
 
             <Spinner
                 android:id="@+id/editItemCategoryID"

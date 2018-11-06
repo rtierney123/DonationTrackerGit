@@ -16,8 +16,8 @@ public class Item {
     private String name;
     private Date dateCreated;
     private String locationID;
-    private String shortDescript;
-    private String longDescript;
+    private String shortDescription;
+    private String longDescription;
     private double dollarValue;
     private ItemType category;
     private static List<ItemType> legalItemTypes = Arrays.asList(ItemType.values());
@@ -78,12 +78,12 @@ public class Item {
         this.locationID = locationID;
     }
 
-    public void setShortDescript(String shortDescript) {
-        this.shortDescript = shortDescript;
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 
-    public void setLongDescript(String longDescript) {
-        this.longDescript = longDescript;
+    public void setLongDescription(String longDescription) {
+        this.longDescription = longDescription;
     }
 
     public void setDollarValue(double dollarValue) {
@@ -116,12 +116,12 @@ public class Item {
         return locationID;
     }
 
-    public String getShortDescript() {
-        return shortDescript;
+    public String getShortDescription() {
+        return shortDescription;
     }
 
-    public String getLongDescript() {
-        return longDescript;
+    public String getLongDescription() {
+        return longDescription;
     }
 
     public double getDollarValue() {
