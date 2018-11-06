@@ -67,7 +67,9 @@ public class FirebaseLocationHandler {
                         zip = (Long) doc.get("zip");
                     }
                     Address address = new Address(streetAddress, city, state, zip);
-                    locationCallback = new Location(id, name, longitude, latitude, type, phone, website, address);
+                    locationCallback =
+                            new Location(id, name, longitude, latitude,
+                                    type, phone, website, address);
                 }
             }
         } );
@@ -112,7 +114,9 @@ public class FirebaseLocationHandler {
                         state = (String) doc.get("state");
                         zip = (Long) doc.get("zip");
                         Address address = new Address(streetAddress, city, state, zip);
-                        locationCallback = new Location(id, name, longitude, latitude, type, phone, website, address);
+                        locationCallback =
+                                new Location(id, name, longitude, latitude,
+                                        type, phone, website, address);
                         locationMap.put(id, locationCallback);
                     }
                     AllLocations.getInstance().setLocationMap( locationMap );
@@ -162,7 +166,9 @@ public class FirebaseLocationHandler {
                         state = (String) doc.get("state");
                         zip = (Long) doc.get("zip");
                         Address address = new Address(streetAddress, city, state, zip);
-                        locationCallback = new Location(id, name, longitude, latitude, type, phone, website, address);
+                        locationCallback =
+                                new Location(id, name, longitude, latitude,
+                                        type, phone, website, address);
                         locationMap.put(id, locationCallback);
                     }
                     AllLocations.getInstance().setLocationMap( locationMap );

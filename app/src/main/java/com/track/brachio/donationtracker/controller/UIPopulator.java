@@ -9,10 +9,11 @@ import android.widget.Spinner;
 import com.track.brachio.donationtracker.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UIPopulator {
     public int selected;
-    public void populateSpinner(Spinner spinner, ArrayList<String> array, Activity activity) {
+    public void populateSpinner(Spinner spinner, List<String> array, Activity activity) {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 activity, android.R.layout.simple_spinner_item, array);
 

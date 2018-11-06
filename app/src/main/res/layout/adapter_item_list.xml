@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="@drawable/border"
+android:orientation="vertical">
+
+
+<TextView
+    android:id="@+id/item_name_adapter"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/border"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="10dp"
+    android:text="name"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
+<TextView
+    android:id="@+id/item_date_adapter"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="10dp"
+    android:text="date"
+    app:layout_constraintStart_toStartOf="@+id/item_name_adapter"
+    app:layout_constraintTop_toBottomOf="@+id/item_name_adapter" />
 
-    <TextView
-        android:id="@+id/item_name_adapter"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:text="name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<TextView
+    android:id="@+id/item_cost_adapter"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="10dp"
+    android:text="cost"
+    app:layout_constraintStart_toStartOf="@+id/item_date_adapter"
+    app:layout_constraintTop_toBottomOf="@+id/item_date_adapter" />
 
-    <TextView
-        android:id="@+id/item_date_adapter"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:text="date"
-        app:layout_constraintStart_toStartOf="@+id/item_name_adapter"
-        app:layout_constraintTop_toBottomOf="@+id/item_name_adapter" />
-
-    <TextView
-        android:id="@+id/item_cost_adapter"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:text="cost"
-        app:layout_constraintStart_toStartOf="@+id/item_date_adapter"
-        app:layout_constraintTop_toBottomOf="@+id/item_date_adapter" />
 
     <TextView
         android:id="@+id/item_category_adapter"
@@ -57,4 +58,5 @@
         android:text="category"
         app:layout_constraintStart_toStartOf="@+id/item_cost_adapter"
         app:layout_constraintTop_toBottomOf="@+id/item_cost_adapter" />
+
 </LinearLayout>
