@@ -11,10 +11,10 @@ import static org.junit.Assert.*;
  */
 @SuppressWarnings("JavaDoc")
 public class ExampleUnitTest {
-    @Test
     /**
      * checking the basics of testing
      */
+    @Test
     public void addition_isCorrect() {
         assertEquals( 4, 2 + 2 );
     }
