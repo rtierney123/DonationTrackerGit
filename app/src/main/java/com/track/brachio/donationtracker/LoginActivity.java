@@ -1,7 +1,6 @@
 package com.track.brachio.donationtracker;
 
 import android.content.Intent;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,10 +10,7 @@ import android.widget.EditText;
 
 import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.User;
-import com.track.brachio.donationtracker.model.UserType;
-import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
-import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
 
 public class LoginActivity extends AppCompatActivity {

@@ -1,13 +1,12 @@
 package com.track.brachio.donationtracker.model;
 
-import android.text.TextUtils;
-
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import java.util.Date;
@@ -64,7 +63,7 @@ public class User {
     }
 
     public static List<UserType> getLegalUserTypes() {
-        return legalUserTypes;
+        return Collections.unmodifiableList(legalUserTypes);
     }
     public static int findUserTypePosition(UserType code) {
         int i = 0;
@@ -121,7 +120,7 @@ public class User {
         return lastName;
     }
 
-    public void setLastName(String lastNameName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 

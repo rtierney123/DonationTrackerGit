@@ -4,6 +4,7 @@ import com.track.brachio.donationtracker.model.Location;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -31,7 +32,7 @@ public final class AllLocations {
 
 
     public Map<String, Location> getLocationMap(){
-        return locMap;
+        return Collections.unmodifiableMap(locMap);
     }
 
     public void setLocationMap(HashMap<String, Location> map){

@@ -3,6 +3,7 @@ package com.track.brachio.donationtracker.model.singleton;
 import com.track.brachio.donationtracker.model.Location;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public final class UserLocations {
@@ -29,7 +30,7 @@ public final class UserLocations {
     }
 
     public List<Location> getLocations() {
-        return locations;
+        return Collections.unmodifiableList(locations);
     }
 
     public void setLocations(ArrayList<Location> locations) {

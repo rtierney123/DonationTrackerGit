@@ -31,7 +31,7 @@ public class Item {
     public Item(String k, String n, Date d, String l, double val, String cat){
         key = k;
         name = n;
-        dateCreated = d;
+        dateCreated = (Date) d.clone();
         locationID = l;
         dollarValue = val;
         category = stringToItemType(cat);
