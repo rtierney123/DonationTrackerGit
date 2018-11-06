@@ -32,6 +32,9 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Activity to list activities
+ */
 public class ItemListActivity extends AppCompatActivity{
     private Collection<Item> items = new ArrayList<>();
     private static HashMap<String, HashMap<String, Item>> storeItems;
@@ -161,15 +164,26 @@ public class ItemListActivity extends AppCompatActivity{
         */
     }
 
-    
+    /**
+     * sets the Item Array
+     * @param array array being set
+     */
     public void setItemArray(List<Item> array) {
         items = array;
     }
 
+    /**
+     * sets up recycler view
+     * @param view current view
+     */
     private void setupRecyclerView(RecyclerView view) {
 
     }
 
+    /**
+     * returns current location Id
+     * @return id
+     */
     private String getCurrentLocationID(){
         UserLocations locs = UserLocations.getInstance();
         List<Location> array = locs.getLocations();
@@ -182,6 +196,10 @@ public class ItemListActivity extends AppCompatActivity{
 
     }
 
+    /**
+     * returns all of the locaitons id
+     * @return list of ids
+     */
     public List<String> getAllLocationIds(){
         UserLocations locs = UserLocations.getInstance();
         List<Location> array = locs.getLocations();
@@ -194,6 +212,9 @@ public class ItemListActivity extends AppCompatActivity{
     }
 
 
+    /**
+     * populates the recycler view
+     */
     public void populateRecycleView() {
         String locID = getCurrentLocationID();
 
@@ -263,6 +284,9 @@ public class ItemListActivity extends AppCompatActivity{
     }
 
 
+    /**
+     * Adapter for ItemList
+     */
     @SuppressWarnings("FeatureEnvy")
     private static class ItemListAdapter extends
             RecyclerView.Adapter<ItemListActivity.ItemListAdapter.ItemViewHolder>{
@@ -272,6 +296,10 @@ public class ItemListActivity extends AppCompatActivity{
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
         // you provide access to all the views for a data item in a view holder
+
+        /**
+         * Holder for Item View
+         */
         public static class ItemViewHolder extends RecyclerView.ViewHolder {
             // each data item is just a string in this case
             private final TextView nameText;
@@ -279,6 +307,11 @@ public class ItemListActivity extends AppCompatActivity{
             private TextView valueText;
             private TextView categoryText;
             private View v;
+
+            /**
+             * Constructor for ItemViewHolder
+             * @param v view being passed in
+             */
             public ItemViewHolder(View v) {
                 super(v);
                 this.v = v;
@@ -288,6 +321,11 @@ public class ItemListActivity extends AppCompatActivity{
                 categoryText = (TextView) v.findViewById(R.id.item_category_adapter);
             }
 
+            /**
+             * binds for the itme view holder
+             * @param theItem item being binded
+             * @param listener listeneer on the list
+             */
             public void bind(final Item theItem, final OnItemClickListener listener) {
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -299,10 +337,18 @@ public class ItemListActivity extends AppCompatActivity{
             }
         }
 
+        /**
+         * Listener for the recycler view
+         */
         public interface OnItemClickListener {
             void onItemClick(Item item);
         }
 
+        /**
+         * constructor for ItemListAdapter
+         * @param array array being assigned
+         * @param listener current listener
+         */
         // Provide a suitable constructor (depends on the kind of dataset)
         public ItemListAdapter(List<Item> array, OnItemClickListener listener) {
             this.items = array;

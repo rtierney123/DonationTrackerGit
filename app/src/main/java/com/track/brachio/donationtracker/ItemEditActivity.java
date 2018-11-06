@@ -39,6 +39,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activity for Editing Items
+ */
 @SuppressWarnings({"SpellCheckingInspection", "FeatureEnvy"})
 public class ItemEditActivity extends AppCompatActivity {
     private TextView dateCreated;
@@ -245,7 +248,12 @@ public class ItemEditActivity extends AppCompatActivity {
                 }
             }
         }
-        private static File getOutputMediaFile () {
+
+    /**
+     * returns outPutMediaFile
+     * @return the OutputMediaFile
+     */
+    private static File getOutputMediaFile () {
             File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_PICTURES), "CameraDemo");
 
@@ -257,14 +265,27 @@ public class ItemEditActivity extends AppCompatActivity {
         return new File(mediaStorageDir.getPath() + File.separator +
                 "IMG_" + ".jpg");
     }
-    public void setCommentsARray(ArrayList<String> array) {
+
+    /**
+     * sets comments for array
+     * @param array array being set
+     */
+    public void setCommentsArray(ArrayList<String> array) {
         comments = array;
     }
 
+    /**
+     * sets up Recycle view
+     * @param view current view
+     */
     public void setUpRecyclerView(RecyclerView view) {
 
     }
 
+    /**
+     * populates the recyclerview
+     * @param comm what is populating the recycler view
+     */
     public void populateRecycleView(ArrayList<String> comm) {
         comments = comm;
 
@@ -276,12 +297,18 @@ public class ItemEditActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Adapter for Comment List
+     */
     private static class CommentListAdapter extends
             RecyclerView.Adapter<ItemEditActivity
                     .CommentListAdapter.CommentViewHolder> {
         private final List<String> theComments;
         private View view;
 
+        /**
+         * Holder for Comment View
+         */
         public static class CommentViewHolder extends RecyclerView.ViewHolder {
             private TextView commentText;
             private View v;
@@ -295,6 +322,10 @@ public class ItemEditActivity extends AppCompatActivity {
 
         }
 
+        /**
+         * Adapter for comment list
+         * @param array array being displayed
+         */
         public CommentListAdapter(List<String> array) {
             this.theComments = array;
         }
