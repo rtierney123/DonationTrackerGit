@@ -171,8 +171,7 @@ public class Item {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             picture.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
             byte[] byteArray = byteArrayOutputStream.toByteArray();
-            String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
-            return encoded;
+            return Base64.encodeToString(byteArray, Base64.DEFAULT);
         } else {
             return null;
         }

@@ -135,8 +135,7 @@ public class LocationListActivity extends AppCompatActivity {
                     .inflate(R.layout.adapter_location_list, parent, false);
 
             view = v;
-            LocationViewHolder vh = new LocationViewHolder(v);
-            return vh;
+            return new LocationViewHolder(v);
         }
 
         // Replace the contents of a view (invoked by the layout manager)

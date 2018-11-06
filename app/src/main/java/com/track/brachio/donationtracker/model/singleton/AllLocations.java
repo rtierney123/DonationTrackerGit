@@ -40,7 +40,6 @@ public final class AllLocations {
 
     public ArrayList<Location> getLocationArray(){
         Collection<Location> collect = locMap.values();
-        ArrayList<Location> listOfValues = new ArrayList<Location>(collect);
-        return listOfValues;
+        return new ArrayList<Location>(collect);
     }
 }

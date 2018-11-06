@@ -304,9 +304,8 @@ public class ItemEditActivity extends AppCompatActivity {
                     .inflate(R.layout.adapter_comments_list,
                             parent, false);
             view = v;
-            ItemEditActivity.CommentListAdapter.CommentViewHolder vh = new
-                    ItemEditActivity.CommentListAdapter.CommentViewHolder(v);
-            return vh;
+            return new
+                    CommentViewHolder(v);
         }
 
         //idk if this is right

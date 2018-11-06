@@ -43,14 +43,14 @@ public class FirebaseItemHandler {
         // Firestore
         mFirestore = FirebaseFirestore.getInstance();
         items.clear();
-        Task task = db.collection("items")
+        return db.collection("items")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    public void onComplete(@NonNull Task<QuerySnapshot> task1) {
                         HashMap<String, HashMap<String, Item>> map = new LinkedHashMap<>(  );
-                        if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
+                        if (task1.isSuccessful()) {
+                            for (DocumentSnapshot document : task1.getResult()) {
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 
@@ -73,24 +73,23 @@ public class FirebaseItemHandler {
                                 item.setShortDescription( shortDescription );
                                 item.setLongDescription( longDescription );
                                 //TODO How to get comment array
-                                HashMap<String, Item> items;
+                                HashMap<String, Item> items1;
                                 if (map.get(locationID) == null){
-                                    items = new LinkedHashMap<>( );
-                                    items.put(key, item);
-                                    map.put(locationID, items);
+                                    items1 = new LinkedHashMap<>( );
+                                    items1.put(key, item);
+                                    map.put(locationID, items1);
                                 } else {
-                                    items = map.get(locationID);
-                                    items.put(key, item);
+                                    items1 = map.get(locationID);
+                                    items1.put(key, item);
                                 }
                             }
                             SearchedItems searched = SearchedItems.getInstance();
                             searched.setSearchedMap(map);
                         } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
+                            Log.w(TAG, "Error getting documents.", task1.getException());
                         }
                     }
                 });
-        return task;
     }
 
     public void getItemByLocation(Item item) {

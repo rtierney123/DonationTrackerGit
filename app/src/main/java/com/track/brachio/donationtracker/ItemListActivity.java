@@ -327,8 +327,7 @@ public class ItemListActivity extends AppCompatActivity{
                     .inflate(R.layout.adapter_item_list, parent, false);
 
             view = v;
-            ItemListActivity.ItemListAdapter.ItemViewHolder vh = new ItemListActivity.ItemListAdapter.ItemViewHolder(v);
-            return vh;
+            return new ItemViewHolder(v);
         }
 
         // Replace the contents of a view (invoked by the layout manager)

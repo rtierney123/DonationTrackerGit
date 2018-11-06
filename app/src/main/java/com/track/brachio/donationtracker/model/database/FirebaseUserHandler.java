@@ -36,8 +36,7 @@ public class FirebaseUserHandler {
     private User userCallback;
 
     public FirebaseUser getCurrentUser(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        return user;
+        return FirebaseAuth.getInstance().getCurrentUser();
     }
 
     public String getCurrentUserName(){
@@ -213,11 +212,7 @@ public class FirebaseUserHandler {
 
     public boolean isUserSignedIn(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return user != null;
     }
 
     //sets CurrentUser information to the logged in user

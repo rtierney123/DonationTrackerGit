@@ -78,7 +78,7 @@ public class FirebaseLocationHandler {
 
     public Task getAllLocations(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Task task = db.collection( "location" )
+        return db.collection( "location" )
                 .get().addOnSuccessListener( new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot documentSnapshots) {
@@ -123,7 +123,6 @@ public class FirebaseLocationHandler {
                 }
             }
         } );
-        return task;
     }
     //TODO delete this once AllLocations is up and running
     //make sure to replace in LocationListActivity
