@@ -3,7 +3,6 @@ package com.track.brachio.donationtracker;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -12,7 +11,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import android.view.View;
 import android.widget.Spinner;
-import android.widget.ArrayAdapter;
+
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.track.brachio.donationtracker.controller.UIPopulator;
 import com.track.brachio.donationtracker.model.Location;
@@ -50,6 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         locationDisplayed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
+            @Override
             public void onItemSelected(AdapterView<?> arg0, View v, int position, long id)
             {
                 Log.e("Drop Down", locationDisplayed.getSelectedItem() + " ");

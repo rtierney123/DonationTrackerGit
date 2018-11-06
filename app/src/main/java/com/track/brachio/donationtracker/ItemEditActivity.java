@@ -202,6 +202,7 @@ public class ItemEditActivity extends AppCompatActivity {
         newImage.setImageBitmap( currentItem.getPicture() );
 
     }
+    @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions,
                                            int[] grantResults) {

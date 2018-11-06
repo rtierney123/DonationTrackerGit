@@ -45,6 +45,7 @@ public class LocationListActivity extends AppCompatActivity {
 
         mapButton = (Button) findViewById( R.id.mapButtonID );
         mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LocationListActivity.this, MapsActivity.class);
                 startActivity(intent);

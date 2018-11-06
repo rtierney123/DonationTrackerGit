@@ -17,6 +17,7 @@ public class ManagerMainActivity extends MainActivity {
 
         Button manGoToLocationsButton = (Button) findViewById(R.id.manLocationButton);
         manGoToLocationsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ManagerMainActivity.this, LocationListActivity.class);
                 startActivity(intent);

@@ -1,7 +1,6 @@
 package com.track.brachio.donationtracker.model.singleton;
 
 import com.track.brachio.donationtracker.model.Location;
-import com.track.brachio.donationtracker.model.User;
 
 public final class CurrentLocation {
     // static variable single_instance of type CurrentUser

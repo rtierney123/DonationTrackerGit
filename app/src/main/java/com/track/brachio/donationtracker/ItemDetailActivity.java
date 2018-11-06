@@ -13,7 +13,6 @@ import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentItem;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class ItemDetailActivity extends AppCompatActivity {

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.track.brachio.donationtracker.controller.PersistanceManager;
-import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
 
 @SuppressWarnings("SpellCheckingInspection")
 public class StartUpActivity extends AppCompatActivity {

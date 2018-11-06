@@ -1,9 +1,8 @@
 package com.track.brachio.donationtracker.model.singleton;
 
 import com.track.brachio.donationtracker.model.Item;
-import com.track.brachio.donationtracker.model.Location;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -32,7 +31,7 @@ public final class SearchedItems {
     }
 
     public Map<String, HashMap<String, Item>> getSearchedMap() {
-        return map;
+        return Collections.unmodifiableMap(map);
     }
 
     public void setSearchedMap(HashMap<String, HashMap<String, Item>> m) {

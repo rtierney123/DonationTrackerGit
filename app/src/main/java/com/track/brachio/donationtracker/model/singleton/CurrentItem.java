@@ -1,9 +1,6 @@
 package com.track.brachio.donationtracker.model.singleton;
 
 import com.track.brachio.donationtracker.model.Item;
-import com.track.brachio.donationtracker.model.Location;
-
-import java.util.Date;
 
 public final class CurrentItem {
 

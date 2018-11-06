@@ -11,15 +11,12 @@ import com.track.brachio.donationtracker.LocationListActivity;
 import com.track.brachio.donationtracker.model.Address;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
-import com.track.brachio.donationtracker.controller.PersistanceManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ThreadPoolExecutor;
 
 @SuppressWarnings("SpellCheckingInspection")
 public class FirebaseLocationHandler {
