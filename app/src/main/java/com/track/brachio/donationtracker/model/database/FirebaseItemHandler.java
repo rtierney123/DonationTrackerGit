@@ -28,7 +28,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
-
+/**
+ * Handler for Items
+ */
 @SuppressWarnings("FeatureEnvy")
 public class FirebaseItemHandler {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -37,6 +39,10 @@ public class FirebaseItemHandler {
     private String TAG = "FirebaseItemHandler";
     private List<Item> items = new ArrayList<Item>();
 
+    /**
+     * returns all of the items in Items database
+     * @return all Items
+     */
     public Task getAllItems(){
         // Firestore
         mFirestore = FirebaseFirestore.getInstance();
@@ -93,6 +99,10 @@ public class FirebaseItemHandler {
         return task;
     }
 
+    /**
+     * gets Item through location
+     * @param item item being searched for
+     */
     public void getItemByLocation(Item item) {
         mFirestore = FirebaseFirestore.getInstance();
         db.collection("items")
@@ -132,7 +142,12 @@ public class FirebaseItemHandler {
                 });
     }
 
-
+    /**
+     * item being added to database
+     * @param item item being added
+     * @param executor executor for database
+     * @return task being done
+     */
     public Task addItem(Item item, ExecutorService executor){
 
         Map<String, Object> itemMap = new HashMap<>();
@@ -173,11 +188,21 @@ public class FirebaseItemHandler {
 
     }
 
+    /**
+     * deletes item from database
+     * @param item item being deleted
+     * @return task being returned
+     */
     public Task deleteItem(Item item) {
         Task task = db.collection("items").document(item.getKey()).delete();
         return task;
     }
 
+    /**
+     * edit item in database
+     * @param item item being edited
+     * @return current task
+     */
     public Task editItem(Item item){
         DocumentReference doc = db.collection("items").document(item.getKey());
         Map<String, Object> itemMap = new HashMap<>();

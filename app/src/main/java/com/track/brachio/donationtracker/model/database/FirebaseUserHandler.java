@@ -30,35 +30,62 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Handler for User
+ */
 @SuppressWarnings({"SpellCheckingInspection", "FeatureEnvy"})
 public class FirebaseUserHandler {
     private final String TAG = "FirebaseUserHandler";
     private User userCallback;
 
+    /**
+     * returns current user
+     * @return current user
+     */
     public FirebaseUser getCurrentUser(){
         return FirebaseAuth.getInstance().getCurrentUser();
     }
 
+    /**
+     * returns name of current user
+     * @return name of current user
+     */
     public String getCurrentUserName(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         return user.getDisplayName();
     }
 
+    /**
+     * returns email of current user
+     * @return email of current user
+     */
     public String getCurrentUserEmail(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         return user.getEmail();
     }
 
+    /**
+     * reutrns whether or not they are verified
+     * @return true or false
+     */
     public boolean isCurrentUserEmailVerified(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         return user.isEmailVerified();
     }
 
+    /**
+     * returns id of current user
+     * @return id
+     */
     public String getCurrentUserID(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         return user.getUid();
     }
 
+    /**
+     * updates the users name
+     * @param newUserName new name
+     */
     public void updateUserName(String newUserName){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -77,6 +104,10 @@ public class FirebaseUserHandler {
                 });
     }
 
+    /**
+     * updates email of current user
+     * @param newEmail new email
+     */
     public void updateEmail(String newEmail){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -95,6 +126,10 @@ public class FirebaseUserHandler {
                 });
     }
 
+    /**
+     * updates password of current user
+     * @param newPassword new password
+     */
     public void updatePassword(String newPassword){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -111,6 +146,14 @@ public class FirebaseUserHandler {
 
     //use for registration page
     //will add user to Firebase, make this user CurrentUser for singleton
+
+    /**
+     * creates new user
+     * @param appUser new user
+     * @param password passowrd of new user
+     * @param registration type of user
+     * @param activity current activity
+     */
     //TODO create progress bar to be displayed
     @SuppressWarnings("TodoComment")
     public void createNewUser(User appUser, String password,
@@ -171,6 +214,14 @@ public class FirebaseUserHandler {
 
     //use for sign in
     //make sign in user the CurrentUser
+
+    /**
+     * signs in user
+     * @param email email entered
+     * @param password password entered
+     * @param login login activity
+     * @param activity current activity
+     */
     public void signInUser(String email, String password, LoginActivity login, Activity activity){
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (!email.isEmpty() && !password.isEmpty()){
@@ -207,10 +258,18 @@ public class FirebaseUserHandler {
 
     //use for logout
     //signOut of Firebase and set CurrentUser to null contents
+
+    /**
+     * signs out the user
+     */
     public void signOutUser(){
         FirebaseAuth.getInstance().signOut();
     }
 
+    /**
+     * says whether or not user is signed in
+     * @return true or false
+     */
     public boolean isUserSignedIn(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         return user != null;
@@ -218,6 +277,11 @@ public class FirebaseUserHandler {
 
     //sets CurrentUser information to the logged in user
     //causes login screen to go to correct screen when complete
+
+    /**
+     * returns signed in user
+     * @param login login activity
+     */
     private void getSignedInUser(LoginActivity login) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -268,6 +332,10 @@ public class FirebaseUserHandler {
         }
     }
 
+    /**
+     * returns locations
+     * @param user user being passed in to find locations
+     */
     private void getLocations(User user){
         if (user.getUserType() == UserType.Volunteer){
 
@@ -277,6 +345,11 @@ public class FirebaseUserHandler {
 
     }
 
+    /**
+     * converts string user to usertype user
+     * @param str string user
+     * @return UserType user
+     */
     private UserType stringToUserType(String str){
         switch(str){
             case "Donator" : return UserType.Donator;
