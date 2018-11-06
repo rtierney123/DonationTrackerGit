@@ -5,6 +5,9 @@ import android.widget.Button;
 
 import com.track.brachio.donationtracker.controller.MainActivity;
 
+/**
+ * Class to redirect to activity_admin_main
+ */
 public class AdminMainActivity extends MainActivity {
 
     @Override
