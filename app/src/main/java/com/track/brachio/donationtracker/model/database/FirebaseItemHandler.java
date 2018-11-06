@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.track.brachio.donationtracker.model.Item;
+import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.singleton.SearchedItems;
 /*
 import com.google.api.core.ApiFuture;
@@ -30,6 +31,9 @@ import java.util.concurrent.ExecutorService;
 
 
 @SuppressWarnings("FeatureEnvy")
+/**
+  Makes database calls relating to items
+ **/
 public class FirebaseItemHandler {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -37,6 +41,10 @@ public class FirebaseItemHandler {
     private String TAG = "FirebaseItemHandler";
     private List<Item> items = new ArrayList<Item>();
 
+    /**
+     * stores all items in database into singleton SearchedItems
+     * @return task of query to database
+     */
     public Task getAllItems(){
         // Firestore
         mFirestore = FirebaseFirestore.getInstance();
@@ -94,10 +102,14 @@ public class FirebaseItemHandler {
         return task;
     }
 
-    public void getItemByLocation(Item item) {
+    /**
+     * stores items from location specified into SerachItems
+     * @param location location to find item from
+     */
+    public void getItemByLocation(Location location) {
         mFirestore = FirebaseFirestore.getInstance();
         db.collection("items")
-                .whereEqualTo( "locationID", item.getLocation() )
+                .whereEqualTo( "locationID", location )
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -133,6 +145,14 @@ public class FirebaseItemHandler {
                 });
     }
 
+    /**
+     * addes item to database
+     *
+     * @param item Item to add to database.
+     * @param executor Monitors thread adding item.
+     *
+     * @return task adding item to database
+     */
 
     public Task addItem(Item item, ExecutorService executor){
 
@@ -174,11 +194,21 @@ public class FirebaseItemHandler {
 
     }
 
+    /**
+     * Deletes item from database
+     * @param item Item to delete from database
+     * @return Return task deleting item.
+     */
     public Task deleteItem(Item item) {
         Task task = db.collection("items").document(item.getKey()).delete();
         return task;
     }
 
+    /**
+     * Edits item in database
+     * @param item Item to edit, with changes.
+     * @return Task to get item.
+     */
     public Task editItem(Item item){
         DocumentReference doc = db.collection("items").document(item.getKey());
         Map<String, Object> itemMap = new HashMap<>();
