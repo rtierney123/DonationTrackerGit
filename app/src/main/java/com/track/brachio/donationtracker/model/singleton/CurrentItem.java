@@ -8,7 +8,7 @@ import java.util.Date;
 public final class CurrentItem {
 
     // static variable single_instance of type CurrentUser
-    private static CurrentItem single_instance = null;
+    private static CurrentItem single_instance;
 
     // current User
     private Item item;
@@ -22,8 +22,9 @@ public final class CurrentItem {
     // static method to create instance of CurrentUser class
     public static CurrentItem getInstance()
     {
-        if (single_instance == null)
+        if (single_instance == null) {
             single_instance = new CurrentItem();
+        }
 
         return single_instance;
     }

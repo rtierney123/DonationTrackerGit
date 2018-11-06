@@ -205,8 +205,8 @@ public class ItemEditActivity extends AppCompatActivity {
                                            String[] permissions,
                                            int[] grantResults) {
         if (requestCode == 0) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+            if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    && (grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
                 newImage.setEnabled(true);
             }
         }
@@ -277,7 +277,7 @@ public class ItemEditActivity extends AppCompatActivity {
     private static class CommentListAdapter extends
             RecyclerView.Adapter<ItemEditActivity
                     .CommentListAdapter.CommentViewHolder> {
-        private List<String> theComments;
+        private final List<String> theComments;
         private View view;
 
         public static class CommentViewHolder extends RecyclerView.ViewHolder {

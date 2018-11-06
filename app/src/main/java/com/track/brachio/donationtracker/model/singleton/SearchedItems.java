@@ -10,7 +10,7 @@ import java.util.Map;
 
 public final class SearchedItems {
     // static variable single_instance of type SearchedItems
-    private static SearchedItems single_instance = null;
+    private static SearchedItems single_instance;
 
     // current User
     private HashMap<String, HashMap<String, Item>> map;
@@ -24,8 +24,9 @@ public final class SearchedItems {
     // static method to create instance of AllLocations class
     public static SearchedItems getInstance()
     {
-        if (single_instance == null)
+        if (single_instance == null) {
             single_instance = new SearchedItems();
+        }
 
         return single_instance;
     }

@@ -23,7 +23,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 @SuppressWarnings("SpellCheckingInspection")
 public class FirebaseLocationHandler {
-    private String TAG = "FirebaseLocationHandler";
+    private final String TAG = "FirebaseLocationHandler";
     private Location locationCallback;
     private HashMap<String, Location> locationMap = new LinkedHashMap<>(  );
     private ArrayList<Location> locationArray = new ArrayList<>();

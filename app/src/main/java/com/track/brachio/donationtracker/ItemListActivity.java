@@ -53,7 +53,7 @@ public class ItemListActivity extends AppCompatActivity{
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_item_list );
 
-        recyclerView = findViewById(R.id.itemList);;
+        recyclerView = findViewById(R.id.itemList);
         editButton= findViewById(R.id.editbutton);
         locSpinner= findViewById(R.id.locSpinner);
         categorySpinner= findViewById( R.id.categorySpinner );
@@ -228,7 +228,7 @@ public class ItemListActivity extends AppCompatActivity{
         for(Item item : items){
             int itemCat = item.getCategory().ordinal();
             String itemName = item.getName();
-            if(catIndex == 0 || itemCat == catIndex-1){
+            if((catIndex == 0) || (itemCat == (catIndex - 1))){
                 if (searchString.isEmpty()){
                     displayItems.add(item);
                 } else {
@@ -282,7 +282,7 @@ public class ItemListActivity extends AppCompatActivity{
         // you provide access to all the views for a data item in a view holder
         public static class ItemViewHolder extends RecyclerView.ViewHolder {
             // each data item is just a string in this case
-            private TextView nameText;
+            private final TextView nameText;
             private TextView dateText;
             private TextView valueText;
             private TextView categoryText;

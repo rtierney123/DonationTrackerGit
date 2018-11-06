@@ -33,7 +33,7 @@ import java.util.concurrent.ExecutorService;
 
 public class FirebaseItemHandler {
     //TODO will complete change to handle item db
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private FirebaseFirestore mFirestore;
     private String TAG = "FirebaseItemHandler";

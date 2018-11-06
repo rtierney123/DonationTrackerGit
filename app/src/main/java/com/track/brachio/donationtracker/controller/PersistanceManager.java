@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
 public class PersistanceManager {
 
     private static ThreadPoolExecutor executor;
-    private Activity activity;
+    private final Activity activity;
     private static boolean threadRunning;
 
     public PersistanceManager(Activity currentActivity) {
@@ -89,7 +89,7 @@ public class PersistanceManager {
 
     public void goToMainPage(){
         User currentUser = CurrentUser.getInstance().getUser();
-        Intent intent = new Intent(activity, DonatorMainActivity.class);;
+        Intent intent = new Intent(activity, DonatorMainActivity.class);
         if (currentUser.getUserType() == UserType.Donator) {
             UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
             intent = new Intent(activity, DonatorMainActivity.class);

@@ -7,7 +7,7 @@ import java.util.List;
 
 public final class UserLocations {
     // static variable single_instance of type AllLocations
-    private static UserLocations single_instance = null;
+    private static UserLocations single_instance;
 
     // current User
     private ArrayList<Location> locations;
@@ -21,8 +21,9 @@ public final class UserLocations {
     // static method to create instance of AllLocations class
     public static UserLocations getInstance()
     {
-        if (single_instance == null)
+        if (single_instance == null) {
             single_instance = new UserLocations();
+        }
 
         return single_instance;
     }

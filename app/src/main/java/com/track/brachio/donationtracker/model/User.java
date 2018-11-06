@@ -20,8 +20,9 @@ public class User {
     private String lastName;
     private String email;
     private UserType userType;
-    private static List<UserType> legalUserTypes = Arrays.asList(UserType.values());
-    private @ServerTimestamp Date timestamp;
+    private static final List<UserType> legalUserTypes = Arrays.asList(UserType.values());
+    @ServerTimestamp
+    private Date timestamp;
     private ArrayList<String> locationIDs;
 
     public User(UserInfo user, UserType type){
@@ -135,6 +136,6 @@ public class User {
     }
 
     public boolean isNull() {
-        return (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || userType == null);
+        return (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || (userType == null));
     }
 }

@@ -32,7 +32,7 @@ import java.util.Set;
 
 @SuppressWarnings("SpellCheckingInspection")
 public class FirebaseUserHandler {
-    private String TAG = "FirebaseUserHandler";
+    private final String TAG = "FirebaseUserHandler";
     private User userCallback;
 
     public FirebaseUser getCurrentUser(){

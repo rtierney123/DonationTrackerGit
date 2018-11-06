@@ -20,7 +20,7 @@ public class Item {
     private String longDescription;
     private double dollarValue;
     private ItemType category;
-    private static List<ItemType> legalItemTypes = Arrays.asList(ItemType.values());
+    private static final List<ItemType> legalItemTypes = Arrays.asList(ItemType.values());
     private ArrayList<String> comments = new ArrayList();
     private Bitmap picture;
 

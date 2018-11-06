@@ -10,7 +10,7 @@ import java.util.Map;
 
 public final class AllLocations {
     // static variable single_instance of type AllLocations
-    private static AllLocations single_instance = null;
+    private static AllLocations single_instance;
 
     private HashMap<String, Location> locMap;
     // private constructor restricted to this class itself
@@ -22,8 +22,9 @@ public final class AllLocations {
     // static method to create instance of AllLocations class
     public static AllLocations getInstance()
     {
-        if (single_instance == null)
+        if (single_instance == null) {
             single_instance = new AllLocations();
+        }
 
         return single_instance;
     }

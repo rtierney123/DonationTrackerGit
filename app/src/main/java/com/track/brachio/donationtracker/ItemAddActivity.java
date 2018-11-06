@@ -31,7 +31,7 @@ public class ItemAddActivity extends AppCompatActivity {
     private Button cancelButton;
     private ImageButton newimage;
 
-    private Activity currentActivity = this;
+    private final Activity currentActivity = this;
     Item currentItem;
 
     @Override
