@@ -112,6 +112,7 @@ public class FirebaseUserHandler {
     //use for registration page
     //will add user to Firebase, make this user CurrentUser for singleton
     //TODO create progress bar to be displayed
+    @SuppressWarnings("TodoComment")
     public void createNewUser(User appUser, String password,
                               RegistrationActivity registration, Activity activity){
         // Write a message to the database

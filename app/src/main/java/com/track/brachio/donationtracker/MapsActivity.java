@@ -54,8 +54,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             {
                 Log.e("Drop Down", locationDisplayed.getSelectedItem() + " ");
                 Log.e("Test", array.get(position).toString() + "");
-                LatLng loc = new LatLng(array.get(position).getLongitude(), array.get(position).getLatitude());
-                mMap.addMarker(new MarkerOptions().position(loc).title(array.get(position).getName()));
+                LatLng loc = new LatLng(
+                        array.get(position).getLongitude(), array.get(position).getLatitude());
+                mMap.addMarker(
+                        new MarkerOptions().position(loc).title(array.get(position).getName()));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 12.0f));
             }
 

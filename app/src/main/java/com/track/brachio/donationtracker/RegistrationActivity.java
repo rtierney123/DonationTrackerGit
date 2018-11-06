@@ -40,7 +40,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
         FirebaseUserHandler handler = new FirebaseUserHandler();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, User.getLegalUserTypes());
+        ArrayAdapter<String> adapter = new ArrayAdapter(
+                this,android.R.layout.simple_spinner_item, User.getLegalUserTypes());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         userTypeSpinner.setAdapter(adapter);
 
@@ -59,12 +60,16 @@ public class RegistrationActivity extends AppCompatActivity {
                 passwordEntered = passwordField.getText().toString();
                 userTypeSelected = (UserType) userTypeSpinner.getSelectedItem();
                 //add a default Spinner value
-                if (!firstNameEntered.isEmpty() && !lastNameEntered.isEmpty() && !emailEntered.isEmpty()
+                if (!firstNameEntered.isEmpty() &&
+                        !lastNameEntered.isEmpty() && !emailEntered.isEmpty()
                         && !passwordEntered.isEmpty()) {
-                    User newUser = new User(firstNameEntered, lastNameEntered, emailEntered, userTypeSelected);
-                    handler.createNewUser(newUser, passwordEntered, RegistrationActivity.this, RegistrationActivity.this);
+                    User newUser = new User(firstNameEntered, lastNameEntered,
+                            emailEntered, userTypeSelected);
+                    handler.createNewUser(newUser, passwordEntered,
+                            RegistrationActivity.this, RegistrationActivity.this);
                 } else {
-                    Toast.makeText( RegistrationActivity.this, "Must fill in all info boxes.", Toast.LENGTH_SHORT ).show();
+                    Toast.makeText( RegistrationActivity.this,
+                            "Must fill in all info boxes.", Toast.LENGTH_SHORT ).show();
                 }
 
             }

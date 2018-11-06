@@ -12,7 +12,8 @@ public class DonatorMainActivity extends MainActivity {
 
     private Button donMainLogout;
     private Button doLocationMap;
-    //TODO delete when EditItemListActivity
+    //9TODO delete when EditItemListActivity
+    @SuppressWarnings("TodoComment")
     private Button testEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

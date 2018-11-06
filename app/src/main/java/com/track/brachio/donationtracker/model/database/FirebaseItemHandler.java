@@ -21,7 +21,6 @@ import com.google.api.core.ApiFutureCallback;
 import com.google.api.core.ApiFutures;
 */
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -32,25 +31,26 @@ import java.util.concurrent.ExecutorService;
 
 
 public class FirebaseItemHandler {
-    //TODO will complete change to handle item db
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private FirebaseFirestore mFirestore;
     private String TAG = "FirebaseItemHandler";
-    private Collection<Item> items = new ArrayList<Item>();
+    private List<Item> items = new ArrayList<Item>();
 
     public Task getAllItems(){
         // Firestore
         mFirestore = FirebaseFirestore.getInstance();
         items.clear();
-        return db.collection("items")
+        Task task = db.collection("items")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task1) {
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         HashMap<String, HashMap<String, Item>> map = new LinkedHashMap<>(  );
-                        if (task1.isSuccessful()) {
-                            for (DocumentSnapshot document : task1.getResult()) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document :
+                                    task.getResult()) //noinspection TodoComment
+                                {
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 
@@ -73,23 +73,24 @@ public class FirebaseItemHandler {
                                 item.setShortDescription( shortDescription );
                                 item.setLongDescription( longDescription );
                                 //TODO How to get comment array
-                                HashMap<String, Item> items1;
+                                HashMap<String, Item> items;
                                 if (map.get(locationID) == null){
-                                    items1 = new LinkedHashMap<>( );
-                                    items1.put(key, item);
-                                    map.put(locationID, items1);
+                                    items = new LinkedHashMap<>( );
+                                    items.put(key, item);
+                                    map.put(locationID, items);
                                 } else {
-                                    items1 = map.get(locationID);
-                                    items1.put(key, item);
+                                    items = map.get(locationID);
+                                    items.put(key, item);
                                 }
                             }
                             SearchedItems searched = SearchedItems.getInstance();
                             searched.setSearchedMap(map);
                         } else {
-                            Log.w(TAG, "Error getting documents.", task1.getException());
+                            Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
+        return task;
     }
 
     public void getItemByLocation(Item item) {
@@ -102,7 +103,9 @@ public class FirebaseItemHandler {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
                         if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
+                            for (DocumentSnapshot document :
+                                    task.getResult()) //noinspection TodoComment
+                            {
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 

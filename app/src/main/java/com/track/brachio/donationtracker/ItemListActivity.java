@@ -244,14 +244,11 @@ public class ItemListActivity extends AppCompatActivity{
 
         if (displayItems != null) {
             // populate view based on items and adapter specifications
-            //TODO add on click to ItemEditActivity
             adapter = new ItemListActivity.ItemListAdapter(displayItems, new ItemListAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(Item item) {
                     CurrentItem.getInstance().setItem(item);
-                    //TODO make code go to detail once edit buttons all working
                     Intent intent = new Intent(ItemListActivity.this, ItemDetailActivity.class);
-                    //Intent intent = new Intent(ItemListActivity.this, ItemEditActivity.class);
                     startActivity(intent);
                 }
             });
@@ -261,17 +258,8 @@ public class ItemListActivity extends AppCompatActivity{
         }
 
 
-        //TODO add junk here to take the item array an turn it into displayed list (probably with Recycle view and an adapter
     }
 
-    /*
-    private ArrayList<String> getArrayFromEnum(Class<? extends Enum<?>> e){
-        Stream s = Arrays.stream(e.getEnumConstants()).map(Enum::name);
-        String[] array = (String[])s.toArray(String[]::new);
-        ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList(array));
-        return arrayList;
-    }
-    */
 
     private static class ItemListAdapter extends RecyclerView.Adapter<ItemListActivity.ItemListAdapter.ItemViewHolder>{
         private List<Item> items;
@@ -328,11 +316,13 @@ public class ItemListActivity extends AppCompatActivity{
 
             view = v;
             return new ItemViewHolder(v);
+
         }
 
         // Replace the contents of a view (invoked by the layout manager)
         @Override
-        public void onBindViewHolder(ItemListActivity.ItemListAdapter.ItemViewHolder holder, int position) {
+        public void onBindViewHolder(
+                ItemListActivity.ItemListAdapter.ItemViewHolder holder, int position) {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
             holder.nameText.setText(items.get(position).getName());
@@ -344,12 +334,6 @@ public class ItemListActivity extends AppCompatActivity{
                 holder.categoryText.setText(items.get(position).getCategory().toString());
             }
             holder.bind(items.get(position), theItemListener);
-//            view.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    //TODO add intent to next page
-//                }
-//            });
 
         }
 
