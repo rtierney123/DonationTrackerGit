@@ -20,7 +20,6 @@ import java.util.List;
 public class ItemListAdapter extends
         RecyclerView.Adapter<ItemListAdapter.ItemViewHolder>{
     private final List<Item> items;
-    private View view;
     private final OnItemClickListener theItemListener;
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -97,7 +96,6 @@ public class ItemListAdapter extends
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.adapter_item_list, parent, false);
 
-        view = v;
         return new ItemViewHolder(v);
 
     }

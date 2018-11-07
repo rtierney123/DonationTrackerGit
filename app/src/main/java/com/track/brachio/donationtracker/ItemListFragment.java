@@ -49,17 +49,10 @@ public class ItemListFragment extends Fragment {
     private Collection<Item> items = new ArrayList<>();
     private static HashMap<String, HashMap<String, Item>> storeItems;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private Button backButton;
-    private FloatingActionButton editButton;
-    private Spinner locSpinner;
-    private Spinner categorySpinner;
-    private SearchView searchView;
     private static int locIndex;
     private static int catIndex;
     private Activity containerActivity;
-    private UIPopulator ui;
+
     private String searchString = "";
 
     // TODO: Rename parameter arguments, choose names that match
@@ -67,9 +60,6 @@ public class ItemListFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -99,8 +89,7 @@ public class ItemListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         if (getArguments() != null) {
-            mParam1 = getArguments().getString( ARG_PARAM1 );
-            mParam2 = getArguments().getString( ARG_PARAM2 );
+
         }
 
         containerActivity = this.getActivity();
@@ -118,12 +107,12 @@ public class ItemListFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this.getContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
-        editButton= view.findViewById(R.id.editButton);
-        locSpinner= view.findViewById(R.id.locSpinner);
-        categorySpinner= view.findViewById( R.id.categorySpinner );
-        searchView = view.findViewById(R.id.nameSearchView);
+        Button editButton= view.findViewById(R.id.editButton);
+        Spinner locSpinner= view.findViewById(R.id.locSpinner);
+        Spinner categorySpinner= view.findViewById( R.id.categorySpinner );
+        SearchView searchView = view.findViewById(R.id.nameSearchView);
         editButton.setOnClickListener (new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,7 +123,7 @@ public class ItemListFragment extends Fragment {
             }
         });
 
-        ui = new UIPopulator();
+        UIPopulator ui = new UIPopulator();
         List<String> names = new ArrayList<>();
         names.add("All");
         List<Location> array = UserLocations.getInstance().getLocations();
@@ -306,7 +295,7 @@ public class ItemListFragment extends Fragment {
 
 
         // populate view based on items and adapter specifications
-        adapter =  new ItemListAdapter( displayItems, new ItemListAdapter.OnItemClickListener() {
+        RecyclerView.Adapter adapter =  new ItemListAdapter( displayItems, new ItemListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Item item) {
                 CurrentItem.getInstance().setItem(item);

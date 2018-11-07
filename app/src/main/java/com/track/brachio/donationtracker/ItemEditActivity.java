@@ -51,12 +51,8 @@ public class ItemEditActivity extends AppCompatActivity {
     private EditText newDollarValue;
     private Spinner newItemCategory;
     private RecyclerView newCommentsRecyclerView;
-    private RecyclerView.Adapter adapter;
     private EditText newComments;
     private ImageButton newImage;
-    private Button cancelButton;
-    private Button addButton;
-    private Button deleteButton;
     private ArrayList<String> comments;
     private PersistanceManager manager;
     private final Activity currentActivity = this;
@@ -77,9 +73,9 @@ public class ItemEditActivity extends AppCompatActivity {
         newComments = findViewById(R.id.editItemAddCommentID);
         newCommentsRecyclerView = findViewById(R.id.editItemCommentsID);
         newImage = findViewById(R.id.editItemImage);
-        cancelButton = findViewById(R.id.editItemCancelButton);
-        addButton = findViewById(R.id.editItemMakeChangesID);
-        deleteButton = findViewById(R.id.editItemDeleteButton);
+        Button cancelButton = findViewById(R.id.editItemCancelButton);
+        Button addButton = findViewById(R.id.editItemMakeChangesID);
+        Button deleteButton = findViewById(R.id.editItemDeleteButton);
 
         //DO WE NEED??
         newCommentsRecyclerView.setHasFixedSize(true);
@@ -291,7 +287,7 @@ public class ItemEditActivity extends AppCompatActivity {
         comments = comm;
 
         if (comments != null) {
-            adapter = new ItemEditActivity.CommentListAdapter(comments);
+            RecyclerView.Adapter adapter = new ItemEditActivity.CommentListAdapter(comments);
             newCommentsRecyclerView.setAdapter(adapter);
         } else {
             Log.d("Comments", "Comments are null");
