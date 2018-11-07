@@ -21,12 +21,7 @@ import com.track.brachio.donationtracker.model.Location;
  */
 @SuppressWarnings({"SpellCheckingInspection", "FeatureEnvy"})
 public class LocationActivity extends AppCompatActivity {
-    private TextView longitude;
-    private TextView phone;
-    private TextView website;
-    private TextView locationType;
-    private Button backButton;
-    //How do we incorporate the singleton?
+
     private Location currentLocation;
 
     @Override
@@ -35,13 +30,13 @@ public class LocationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_location);
 
         TextView locationName = findViewById(R.id.locationNameID);
-        longitude = findViewById(R.id.longitudeID);
+        TextView longitude = findViewById(R.id.longitudeID);
         TextView latitude = findViewById(R.id.latitudeID);
         TextView address = findViewById(R.id.addressID);
-        phone = findViewById(R.id.phoneID);
-        website = findViewById(R.id.websiteID);
-        locationType = findViewById(R.id.locationTypeID);
-        backButton = findViewById(R.id.backButtonID);
+        TextView phone = findViewById(R.id.phoneID);
+        TextView website = findViewById(R.id.websiteID);
+        TextView locationType = findViewById(R.id.locationTypeID);
+        TextView backButton = findViewById(R.id.backButtonID);
 
         FirebaseLocationHandler handler = new FirebaseLocationHandler();
 

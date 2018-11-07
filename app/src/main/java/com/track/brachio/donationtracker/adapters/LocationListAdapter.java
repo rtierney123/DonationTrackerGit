@@ -19,7 +19,7 @@ import java.util.List;
 public class LocationListAdapter extends
         RecyclerView.Adapter<LocationListAdapter.LocationViewHolder>{
     private final List<Location> locations;
-    private View view;
+
     private final OnItemClickListener locationListener;
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -89,7 +89,6 @@ public class LocationListAdapter extends
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.adapter_location_list, parent, false);
 
-        view = v;
         return new LocationViewHolder(v);
     }
 

@@ -32,15 +32,11 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class LocationListFragment extends Fragment {
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private Button mapButton;
     private Activity containerActivity;
+    private RecyclerView recyclerView;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+
 
     @Nullable
     private OnFragmentInteractionListener mListener;
@@ -61,8 +57,7 @@ public class LocationListFragment extends Fragment {
     public static LocationListFragment newInstance(String param1, String param2) {
         LocationListFragment fragment = new LocationListFragment();
         Bundle args = new Bundle();
-        args.putString( ARG_PARAM1, param1 );
-        args.putString( ARG_PARAM2, param2 );
+
         fragment.setArguments( args );
         return fragment;
     }
@@ -71,9 +66,7 @@ public class LocationListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         if (getArguments() != null) {
-            // TODO: Rename and change types of parameters
-            String mParam1 = getArguments().getString(ARG_PARAM1);
-            String mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
         containerActivity = this.getActivity();
     }
@@ -83,16 +76,16 @@ public class LocationListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate( R.layout.fragment_location_list, container, false );
-        recyclerView = view.findViewById(R.id.listOfLocations);
+        recyclerView  = view.findViewById(R.id.listOfLocations);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        layoutManager = new LinearLayoutManager(containerActivity);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(containerActivity);
         recyclerView.setLayoutManager(layoutManager);
 
-        mapButton = view.findViewById( R.id.mapButtonID );
+        Button mapButton = view.findViewById( R.id.mapButtonID );
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,7 +107,7 @@ public class LocationListFragment extends Fragment {
         ArrayList<Location> locations = AllLocations.getInstance().getLocationArray();
 
         // populate view based on locations and adapter specifications
-        adapter = new LocationListAdapter(locations, new LocationListAdapter.OnItemClickListener() {
+        RecyclerView.Adapter adapter = new LocationListAdapter(locations, new LocationListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Location item) {
                 CurrentLocation.getInstance().setLocation(item);
