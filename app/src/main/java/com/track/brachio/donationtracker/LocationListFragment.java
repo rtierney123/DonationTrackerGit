@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.track.brachio.donationtracker.adapters.LocationListAdapter;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentLocation;
@@ -113,7 +114,7 @@ public class LocationListFragment extends Fragment {
         ArrayList<Location> locations = AllLocations.getInstance().getLocationArray();
 
         // populate view based on locations and adapter specifications
-        adapter = new LocationListActivity.LocationListAdapter(locations, new LocationListActivity.LocationListAdapter.OnItemClickListener() {
+        adapter = new LocationListAdapter(locations, new LocationListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Location item) {
                 CurrentLocation.getInstance().setLocation(item);

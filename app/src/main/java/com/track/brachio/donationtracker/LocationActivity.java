@@ -65,7 +65,7 @@ public class LocationActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("Location", "Location page canceled");
                 //IDK where this should go, put it to LocationListActivity for now
-                Intent intent = new Intent(LocationActivity.this, LocationListActivity.class);
+                Intent intent = new Intent(LocationActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
