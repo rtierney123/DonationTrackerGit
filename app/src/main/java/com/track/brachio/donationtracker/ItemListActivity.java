@@ -51,7 +51,6 @@ public class ItemListActivity extends AppCompatActivity
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private Button backButton;
-    private FloatingActionButton editButton;
     private Spinner locSpinner;
     private Spinner categorySpinner;
     private SearchView searchView;
@@ -76,7 +75,7 @@ public class ItemListActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener( this );
 
         recyclerView = findViewById(R.id.itemList);
-        editButton= findViewById(R.id.editbutton);
+        FloatingActionButton editButton = findViewById(R.id.editbutton);
         locSpinner= findViewById(R.id.locSpinner);
         categorySpinner= findViewById( R.id.categorySpinner );
         searchView = findViewById(R.id.nameSearchView);

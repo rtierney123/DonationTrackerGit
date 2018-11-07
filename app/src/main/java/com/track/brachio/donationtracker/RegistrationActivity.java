@@ -20,7 +20,6 @@ import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
  */
 @SuppressWarnings("SpellCheckingInspection")
 public class RegistrationActivity extends AppCompatActivity {
-    private Button registerButton;
     private EditText firstNameField;
     private EditText lastNameField;
     private EditText emailField;
@@ -32,7 +31,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_registration);
 
-        registerButton = findViewById(R.id.registerButton);
+        Button registerButton = findViewById(R.id.registerButton);
         Button cancelButton = findViewById(R.id.cancelButtonR);
         firstNameField = findViewById(R.id.first_nameR);
         lastNameField = (EditText) findViewById(R.id.last_nameR);

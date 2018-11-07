@@ -19,7 +19,6 @@ import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
  * Activity for Login
  */
 public class LoginActivity extends AppCompatActivity {
-    private Button guestButton;
     private EditText usernameField;
     private EditText passwordField;
     private ImageButton optionButton;
@@ -33,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Button loginButton = findViewById(R.id.loginButton);
-        guestButton = (Button) findViewById(R.id.guestButton);
+        Button guestButton = (Button) findViewById(R.id.guestButton);
         usernameField = findViewById(R.id.emailBox);
         passwordField = (EditText) findViewById(R.id.passwordBox);
         optionButton = (ImageButton) findViewById(R.id.login_option_register);
@@ -58,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        guestButton.setOnClickListener( new View.OnClickListener() {
+        guestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PersistanceManager manager = new PersistanceManager(LoginActivity.this);

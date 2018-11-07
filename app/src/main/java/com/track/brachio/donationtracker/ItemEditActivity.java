@@ -53,7 +53,6 @@ public class ItemEditActivity extends AppCompatActivity {
     private Spinner newItemCategory;
     private RecyclerView newCommentsRecyclerView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private EditText newComments;
     private ImageButton newImage;
     private Button cancelButton;
@@ -86,7 +85,7 @@ public class ItemEditActivity extends AppCompatActivity {
         //DO WE NEED??
         newCommentsRecyclerView.setHasFixedSize(true);
 
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         newCommentsRecyclerView.setLayoutManager(layoutManager);
 
         manager = new PersistanceManager( this );

@@ -29,7 +29,6 @@ public class LocationListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private Button mapButton;
     private int thePosition;
 
     @Override
@@ -46,7 +45,7 @@ public class LocationListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        mapButton = findViewById( R.id.mapButtonID );
+        Button mapButton = findViewById(R.id.mapButtonID);
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -11,6 +11,7 @@ import java.util.Map;
 /**
  * AllLocation to put into HashMap
  */
+@SuppressWarnings("ALL")
 public final class AllLocations {
 
     private Map<String, Location> locMap;
@@ -26,6 +27,7 @@ public final class AllLocations {
 
     // static method to create instance of AllLocations class
 
+    @SuppressWarnings("UtilityClass")
     private static class Single_instanceHolder {
         private static final AllLocations single_instance = new AllLocations();
     }

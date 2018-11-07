@@ -22,6 +22,7 @@ public final class CurrentItem {
 
     // static method to create instance of CurrentUser class
 
+    @SuppressWarnings("UtilityClass")
     private static class Single_instanceHolder {
         private static final CurrentItem single_instance = new CurrentItem();
     }

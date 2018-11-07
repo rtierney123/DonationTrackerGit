@@ -26,6 +26,7 @@ public final class SearchedItems {
 
     // static method to create instance of AllLocations class
 
+    @SuppressWarnings("UtilityClass")
     private static class Single_instanceHolder {
         private static final SearchedItems single_instance = new SearchedItems();
     }

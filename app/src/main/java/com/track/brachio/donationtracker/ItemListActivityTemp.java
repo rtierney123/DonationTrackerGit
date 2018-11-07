@@ -41,7 +41,6 @@ public class ItemListActivityTemp extends AppCompatActivity{
     private static HashMap<String, HashMap<String, Item>> storeItems;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private Button backButton;
     private FloatingActionButton editButton;
     private Spinner locSpinner;
@@ -67,7 +66,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
         recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         editButton.setOnClickListener (new View.OnClickListener() {

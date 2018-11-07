@@ -22,6 +22,7 @@ public final class CurrentLocation {
 
     // static method to create instance of CurrentUser class
 
+    @SuppressWarnings("UtilityClass")
     private static class Single_instanceHolder {
         private static final CurrentLocation single_instance = new CurrentLocation();
     }
