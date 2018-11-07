@@ -41,13 +41,14 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal_background" />
+                app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal_background"
+                android:contentDescription="@string/todo" />
 
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Item Name:" />
+                android:text="@string/item_name" />
 
             <EditText
                 android:id="@+id/addItemNameID"
@@ -55,14 +56,14 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Item Name"
+                android:text="@string/add_item_name"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Location: " />
+                android:text="@string/location" />
 
             <EditText
                 android:id="@+id/addItemLocationID"
@@ -70,14 +71,14 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Location"
+                android:text="@string/add_location"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView17"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Short Description:" />
+                android:text="@string/short_description" />
 
             <EditText
                 android:id="@+id/addItemShortDescID"
@@ -91,7 +92,7 @@
                 android:id="@+id/textView24"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Long Description:" />
+                android:text="@string/long_description" />
 
             <EditText
                 android:id="@+id/addItemLongDescID"
@@ -105,7 +106,7 @@
                 android:id="@+id/textView25"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Dollar Value:" />
+                android:text="@string/dollar_value" />
 
             <EditText
                 android:id="@+id/addItemDollarValue"
@@ -119,7 +120,7 @@
                 android:id="@+id/textView26"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Item Category:" />
+                android:text="@string/item_category" />
 
             <Spinner
                 android:id="@+id/addItemCategoryID"
@@ -130,7 +131,7 @@
                 android:id="@+id/addItemTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add Comment:" />
+                android:text="@string/add_comment" />
 
             <EditText
                 android:id="@+id/addItemCommentID"
@@ -145,14 +146,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/darker_gray"
-                android:text="Add Item" />
+                android:text="@string/add_item" />
 
             <Button
                 android:id="@+id/addItemCancelButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/darker_gray"
-                android:text="Cancel" />
+                android:text="@string/cancel" />
         </LinearLayout>
     </ScrollView>
 

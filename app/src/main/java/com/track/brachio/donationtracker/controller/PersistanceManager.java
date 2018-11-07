@@ -96,7 +96,7 @@ public class PersistanceManager {
     private void initializeVariables() {
         int numCores = Runtime.getRuntime().availableProcessors();
         executor = new ThreadPoolExecutor( numCores * 2, numCores * 2,
-                60L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>() );
+                60L, TimeUnit.SECONDS, new LinkedBlockingQueue<>() );
     }
 
     /**
@@ -148,7 +148,7 @@ public class PersistanceManager {
         FirebaseUserHandler handler = new FirebaseUserHandler();
         handler.signOutUser();
         CurrentUser.getInstance().setUser( new User() );
-        UserLocations.getInstance().setLocations( new ArrayList<Location>() );
+        UserLocations.getInstance().setLocations( new ArrayList<>() );
     }
 
     /**

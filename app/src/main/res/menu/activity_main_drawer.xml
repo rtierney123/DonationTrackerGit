@@ -3,5 +3,5 @@
     <item
         android:id="@+id/nav_menu"
         android:icon="@drawable/floating_toolbar"
-        android:title="Navigation Menu" />;
+        android:title="@string/navigation_menu" />;
 </menu>

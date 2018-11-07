@@ -107,6 +107,7 @@ public class ItemListActivity extends AppCompatActivity
         ui.populateSpinner( locSpinner, names, this );
         locSpinner.setSelection(locIndex);
         locSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 locIndex = position;
                 populateRecycleView();
@@ -126,6 +127,7 @@ public class ItemListActivity extends AppCompatActivity
                 catIndex = position;
                 populateRecycleView();
             }
+            @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });

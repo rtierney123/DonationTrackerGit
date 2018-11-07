@@ -21,7 +21,7 @@ public final class UserLocations {
      */
     private UserLocations()
     {
-        locations = new ArrayList<Location>();
+        locations = new ArrayList<>();
     }
 
     // static method to create instance of AllLocations class

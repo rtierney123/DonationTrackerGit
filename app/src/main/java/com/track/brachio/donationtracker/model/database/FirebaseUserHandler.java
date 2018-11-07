@@ -318,7 +318,7 @@ public class FirebaseUserHandler {
                         UserType type = stringToUserType( userType );
                         if (type == UserType.Volunteer) {
                             Set<String> keySet = locationHash.keySet();
-                            ArrayList<String> listOfKeys = new ArrayList<String>(keySet);
+                            ArrayList<String> listOfKeys = new ArrayList<>(keySet);
                             userCallback = new User(firstName, lastName,
                                     email, userType, listOfKeys);
                         } else {

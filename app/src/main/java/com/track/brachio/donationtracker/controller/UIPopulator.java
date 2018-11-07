@@ -19,7 +19,7 @@ public class UIPopulator {
      * @param activity current activity
      */
     public void populateSpinner(Spinner spinner, List<String> array, Activity activity) {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 activity, android.R.layout.simple_spinner_item, array);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
