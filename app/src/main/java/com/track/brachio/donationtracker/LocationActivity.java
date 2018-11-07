@@ -22,8 +22,6 @@ import com.track.brachio.donationtracker.model.Location;
 @SuppressWarnings({"SpellCheckingInspection", "FeatureEnvy"})
 public class LocationActivity extends AppCompatActivity {
 
-    private Location currentLocation;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +37,7 @@ public class LocationActivity extends AppCompatActivity {
         TextView backButton = findViewById(R.id.backButtonID);
 
         FirebaseLocationHandler handler = new FirebaseLocationHandler();
-
+        Location currentLocation;
         currentLocation = CurrentLocation.getInstance().getLocation();
         if (currentLocation != null) {
             locationName.setText(currentLocation.getName());

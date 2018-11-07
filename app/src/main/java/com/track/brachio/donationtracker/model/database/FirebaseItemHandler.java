@@ -48,7 +48,7 @@ public class FirebaseItemHandler {
         // Firestore
         mFirestore = FirebaseFirestore.getInstance();
         items.clear();
-        Task task = db.collection("items")
+        return db.collection("items")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -99,7 +99,6 @@ public class FirebaseItemHandler {
                         }
                     }
                 });
-        return task;
     }
 
     /**
@@ -196,8 +195,7 @@ public class FirebaseItemHandler {
      * @return task being returned
      */
     public Task deleteItem(Item item) {
-        Task task = db.collection("items").document(item.getKey()).delete();
-        return task;
+        return db.collection("items").document(item.getKey()).delete();
     }
 
     /**
@@ -216,8 +214,8 @@ public class FirebaseItemHandler {
         itemMap.put("shortDescription", item.getShortDescription());
         itemMap.put("longDescription", item.getLongDescription());
         itemMap.put("picture", item.encodePic());
-        Task task = doc.set(itemMap);
-        return task;
+        return doc.set(itemMap);
+
     }
 
 }
