@@ -115,7 +115,7 @@ public class LocationListActivity extends AppCompatActivity {
                 super(v);
                 this.v = v;
                 nameText = v.findViewById(R.id.location_name_adapter);
-                cityText = (TextView) v.findViewById(R.id.location_city_adapter);
+                cityText = v.findViewById(R.id.location_city_adapter);
             }
 
             /**
@@ -160,8 +160,8 @@ public class LocationListActivity extends AppCompatActivity {
         // Create new views (invoked by the layout manager)
         @NonNull
         @Override
-        public LocationListAdapter.LocationViewHolder onCreateViewHolder(ViewGroup parent,
-                                                         int viewType) {
+        public LocationListAdapter.LocationViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
+                                                                         int viewType) {
             // create a new view
             View v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.adapter_location_list, parent, false);

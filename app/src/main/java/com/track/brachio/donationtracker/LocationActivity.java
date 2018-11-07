@@ -37,7 +37,7 @@ public class LocationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_location);
 
         TextView locationName = (TextView) findViewById(R.id.locationNameID);
-        longitude = (TextView) findViewById(R.id.longitudeID);
+        longitude = findViewById(R.id.longitudeID);
         latitude = findViewById(R.id.latitudeID);
         address = (TextView) findViewById(R.id.addressID);
         phone = findViewById(R.id.phoneID);

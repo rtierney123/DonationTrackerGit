@@ -70,7 +70,7 @@ public class FirebaseItemHandler {
                                 String locationID = document.getString("locationID");
                                 Double cost = document.getDouble( "cost" );
                                 String category = document.getString("category");
-                                Item item = new Item(key, name, date, locationID, cost, category);
+                                Item item = new Item(key, name, Objects.requireNonNull(date), locationID, cost, category);
 
                                 //convert encoded string to bitmap
                                 String encodedImage = document.getString("picture");

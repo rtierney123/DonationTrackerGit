@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView(R.layout.activity_login);
 
-        Button loginButton = (Button) findViewById(R.id.loginButton);
+        Button loginButton = findViewById(R.id.loginButton);
         guestButton = (Button) findViewById(R.id.guestButton);
         usernameField = findViewById(R.id.emailBox);
         passwordField = (EditText) findViewById(R.id.passwordBox);

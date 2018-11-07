@@ -18,7 +18,7 @@ public class ManagerMainActivity extends MainActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_manager_main );
 
-        Button manGoToLocationsButton = (Button) findViewById(R.id.manLocationButton);
+        Button manGoToLocationsButton = findViewById(R.id.manLocationButton);
         manGoToLocationsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

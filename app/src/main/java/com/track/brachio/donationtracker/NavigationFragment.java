@@ -3,6 +3,7 @@ package com.track.brachio.donationtracker;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,9 @@ public class NavigationFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private View view;
 
+    /**
+     * Constructor for NavigationFragmen
+     */
     public NavigationFragment() {
         // Required empty public constructor
     }
@@ -62,7 +66,7 @@ public class NavigationFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate( R.layout.fragment_navigation, container, false );
@@ -70,6 +74,11 @@ public class NavigationFragment extends Fragment {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
+
+    /**
+     * handles when button pressed
+     * @param uri parameter
+     */
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction( uri );
@@ -105,6 +114,11 @@ public class NavigationFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
+
+        /**
+         * handles fragment interaction
+         * @param uri parameter
+         */
         void onFragmentInteraction(Uri uri);
     }
 }

@@ -41,6 +41,9 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Activity for Item List
+ */
 public class ItemListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Collection<Item> items = new ArrayList<>();
@@ -70,7 +73,7 @@ public class ItemListActivity extends AppCompatActivity
         drawer.addDrawerListener( toggle );
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById( R.id.nav_view );
+        NavigationView navigationView = findViewById( R.id.nav_view );
         navigationView.setNavigationItemSelectedListener( this );
 
         recyclerView = findViewById(R.id.itemList);
@@ -316,6 +319,7 @@ public class ItemListActivity extends AppCompatActivity
 
         // Create new views (invoked by the layout manager)
         // Create new views (invoked by the layout manager)
+        @NonNull
         @Override
         public ItemListActivityTemp.ItemListAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent,
                                                                                       int viewType) {

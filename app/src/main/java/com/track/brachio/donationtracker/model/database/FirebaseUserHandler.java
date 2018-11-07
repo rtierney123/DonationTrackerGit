@@ -134,7 +134,7 @@ public class FirebaseUserHandler {
     public void updatePassword(String newPassword){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        user.updatePassword(newPassword)
+        Objects.requireNonNull(user).updatePassword(newPassword)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -336,6 +336,7 @@ public class FirebaseUserHandler {
      * returns locations
      * @param user user being passed in to find locations
      */
+    @SuppressWarnings("StatementWithEmptyBody")
     private void getLocations(User user){
         if (user.getUserType() == UserType.Volunteer){
 

@@ -312,7 +312,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
                 nameText = v.findViewById(R.id.item_name_adapter);
                 dateText = v.findViewById(R.id.item_date_adapter);
                 valueText = (TextView) v.findViewById(R.id.item_cost_adapter);
-                categoryText = (TextView) v.findViewById(R.id.item_category_adapter);
+                categoryText = v.findViewById(R.id.item_category_adapter);
             }
 
             /**
@@ -335,6 +335,10 @@ public class ItemListActivityTemp extends AppCompatActivity{
          * Listener for the recycler view
          */
         public interface OnItemClickListener {
+            /**
+             * handles what happens on click
+             * @param item item being clicked
+             */
             void onItemClick(Item item);
         }
 
@@ -352,7 +356,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
         // Create new views (invoked by the layout manager)
         // Create new views (invoked by the layout manager)
         @Override
-        public ItemListActivityTemp.ItemListAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent,
+        public ItemListActivityTemp.ItemListAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
                                                                                       int viewType) {
             // create a new view
             View v = LayoutInflater.from(parent.getContext())

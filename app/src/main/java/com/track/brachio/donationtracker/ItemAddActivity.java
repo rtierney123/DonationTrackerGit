@@ -45,7 +45,7 @@ public class ItemAddActivity extends AppCompatActivity {
         itemName = (EditText) findViewById(R.id.addItemNameID);
         location = (EditText) findViewById(R.id.addItemLocationID);
         shortDescription = findViewById(R.id.addItemShortDescID);
-        longDescription = (EditText) findViewById(R.id.addItemLongDescID);
+        longDescription = findViewById(R.id.addItemLongDescID);
         dollarValue = findViewById(R.id.addItemDollarValue);
         itemCategory = (Spinner) findViewById(R.id.addItemCategoryID);
         comment = (EditText) findViewById(R.id.addItemCommentID);

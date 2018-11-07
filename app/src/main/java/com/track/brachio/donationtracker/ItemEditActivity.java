@@ -71,7 +71,7 @@ public class ItemEditActivity extends AppCompatActivity {
 
         TextView itemName = (TextView) findViewById(R.id.editItemNameID);
         dateCreated = findViewById(R.id.editItemDateCreatedID);
-        newLocation = (EditText) findViewById(R.id.editItemLocationID);
+        newLocation = findViewById(R.id.editItemLocationID);
         newShortDescription = findViewById(R.id.editItemShortDescription);
         newLongDescription = (EditText) findViewById(R.id.editItemLongDescriptionID);
         newDollarValue = (EditText) findViewById(R.id.editItemValueID);
@@ -157,9 +157,6 @@ public class ItemEditActivity extends AppCompatActivity {
 
                 Toast.makeText( getApplicationContext(), "Item Edited", Toast.LENGTH_SHORT ).show();
                 manager.editItem( currentItem, currentActivity);
-                //Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
-                //intent.putExtra( "edited", true );
-                //startActivity(intent);
 
             }
         });
@@ -338,7 +335,7 @@ public class ItemEditActivity extends AppCompatActivity {
 
         @Override
         public ItemEditActivity.CommentListAdapter.CommentViewHolder
-        onCreateViewHolder(ViewGroup parent, int viewType) {
+        onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.adapter_comments_list,
                             parent, false);

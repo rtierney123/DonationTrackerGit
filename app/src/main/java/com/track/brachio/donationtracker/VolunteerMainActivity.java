@@ -44,7 +44,7 @@ public class VolunteerMainActivity extends MainActivity {
             spinnerArray.add(loc.getName());
         }
 
-        Spinner allLocSpinner = (Spinner) findViewById(R.id.add_location_spinner);
+        Spinner allLocSpinner = findViewById(R.id.add_location_spinner);
 
         UIPopulator populator = new UIPopulator();
         populator.populateSpinner( allLocSpinner, spinnerArray , this);

@@ -93,7 +93,6 @@ public class FirebaseLocationHandler {
             public void onSuccess(QuerySnapshot documentSnapshots) {
                 if (documentSnapshots.isEmpty()) {
                     Log.d( TAG, "onSuccess: LIST EMPTY" );
-                    return;
                 } else {
                     List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
                     String id;
@@ -101,7 +100,7 @@ public class FirebaseLocationHandler {
                     double longitude = 0;
                     double latitude = 0;
                     String type = "";
-                    String phone = "";
+                    String phone;
                     String website = "";
                     String streetAddress = "";
                     String city = "";
