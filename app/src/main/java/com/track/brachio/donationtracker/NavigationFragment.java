@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,17 +25,9 @@ public class NavigationFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private String mParam2;
-
+    @Nullable
     private OnFragmentInteractionListener mListener;
     private View view;
-
-    /**
-     * Constructor for NavigationFragmen
-     */
-    public NavigationFragment() {
-        // Required empty public constructor
-    }
 
     /**
      * Use this factory method to create a new instance of
@@ -60,7 +53,7 @@ public class NavigationFragment extends Fragment {
         if (getArguments() != null) {
             // TODO: Rename and change types of parameters
             String mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString( ARG_PARAM2 );
+            String mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 

@@ -13,9 +13,7 @@ import com.track.brachio.donationtracker.controller.MainActivity;
 @SuppressWarnings("SpellCheckingInspection")
 public class DonatorMainActivity extends MainActivity {
     private Button doLocationMap;
-    //9TODO delete when EditItemListActivity
-    @SuppressWarnings("TodoComment")
-    private Button testEdit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -42,7 +40,8 @@ public class DonatorMainActivity extends MainActivity {
         Button donMainLogout = findViewById(R.id.donMainLogout);
         setLogoutButton(donMainLogout);
 
-        testEdit = findViewById(R.id.testEditableItem);
+        //9TODO delete when EditItemListActivity
+        Button testEdit = findViewById(R.id.testEditableItem);
         testEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

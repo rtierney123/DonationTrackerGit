@@ -19,7 +19,6 @@ import java.util.List;
  * Activity for Volunteer Main
  */
 public class VolunteerMainActivity extends MainActivity {
-    private Button logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +34,8 @@ public class VolunteerMainActivity extends MainActivity {
             }
         });
 
-        logoutButton = findViewById(R.id.logoutButton1);
-        setLogoutButton( logoutButton );
+        Button logoutButton = findViewById(R.id.logoutButton1);
+        setLogoutButton(logoutButton);
 
 
         List<Location> locations = AllLocations.getInstance().getLocationArray();

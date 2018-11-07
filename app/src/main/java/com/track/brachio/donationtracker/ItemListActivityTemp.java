@@ -42,7 +42,6 @@ public class ItemListActivityTemp extends AppCompatActivity{
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private Button backButton;
-    private FloatingActionButton editButton;
     private Spinner locSpinner;
     private Spinner categorySpinner;
     private SearchView searchView;
@@ -57,7 +56,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
         setContentView( R.layout.activity_item_list_temp );
 
         recyclerView = findViewById(R.id.itemList);
-        editButton= findViewById(R.id.editbutton);
+        FloatingActionButton editButton = findViewById(R.id.editbutton);
         locSpinner= findViewById(R.id.locSpinner);
         categorySpinner= findViewById( R.id.categorySpinner );
         searchView = findViewById(R.id.nameSearchView);
@@ -171,7 +170,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
      * sets the Item Array
      * @param array array being set
      */
-    public void setItemArray(List<Item> array) {
+    public void setItemArray(Collection<Item> array) {
         items = array;
     }
 
@@ -300,7 +299,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
             public TextView dateText;
             public TextView valueText;
             public TextView categoryText;
-            private View v;
+            private final View v;
 
             /**
              * Constructor for ItemViewHolder

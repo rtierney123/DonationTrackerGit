@@ -21,6 +21,7 @@ import com.google.api.core.ApiFutureCallback;
 import com.google.api.core.ApiFutures;
 */
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -37,8 +38,8 @@ public class FirebaseItemHandler {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private FirebaseFirestore mFirestore;
-    private String TAG = "FirebaseItemHandler";
-    private List<Item> items = new ArrayList<Item>();
+    private final String TAG = "FirebaseItemHandler";
+    private Collection<Item> items = new ArrayList<Item>();
 
     /**
      * returns all of the items in Items database
@@ -117,8 +118,7 @@ public class FirebaseItemHandler {
 
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document :
-                                    task.getResult()) //noinspection TodoComment
-                            {
+                                    task.getResult()) {
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 

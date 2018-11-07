@@ -11,7 +11,6 @@ import com.track.brachio.donationtracker.controller.MainActivity;
  * Activity for the Manager
  */
 public class ManagerMainActivity extends MainActivity {
-    private Button manManageItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -29,7 +28,7 @@ public class ManagerMainActivity extends MainActivity {
         Button manMainLogout = findViewById(R.id.manMainLogout);
         setLogoutButton(manMainLogout);
 
-        manManageItems = findViewById(R.id.manManageItemsButton);
+        Button manManageItems = findViewById(R.id.manManageItemsButton);
         manManageItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

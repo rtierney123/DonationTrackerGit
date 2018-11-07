@@ -49,7 +49,6 @@ public class ItemListActivity extends AppCompatActivity
     private static HashMap<String, HashMap<String, Item>> storeItems;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private Button backButton;
     private Spinner locSpinner;
     private Spinner categorySpinner;
@@ -84,7 +83,7 @@ public class ItemListActivity extends AppCompatActivity
         recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         editButton.setOnClickListener (new View.OnClickListener() {
@@ -251,7 +250,7 @@ public class ItemListActivity extends AppCompatActivity
     @SuppressWarnings("FeatureEnvy")
     private static class ItemListAdapter extends
             RecyclerView.Adapter<ItemListActivityTemp.ItemListAdapter.ItemViewHolder>{
-        private List<Item> items;
+        private final List<Item> items;
         private View view;
         private final ItemListActivityTemp.ItemListAdapter.OnItemClickListener theItemListener;
         // Provide a reference to the views for each data item

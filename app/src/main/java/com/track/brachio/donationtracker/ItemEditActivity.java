@@ -45,7 +45,6 @@ import java.util.List;
  */
 @SuppressWarnings({"SpellCheckingInspection", "FeatureEnvy"})
 public class ItemEditActivity extends AppCompatActivity {
-    private TextView dateCreated;
     private EditText newLocation;
     private EditText newShortDescription;
     private EditText newLongDescription;
@@ -60,7 +59,7 @@ public class ItemEditActivity extends AppCompatActivity {
     private Button deleteButton;
     private ArrayList<String> comments;
     private PersistanceManager manager;
-    private Activity currentActivity = this;
+    private final Activity currentActivity = this;
     private Item currentItem;
 
     @Override
@@ -69,7 +68,7 @@ public class ItemEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_edit);
 
         TextView itemName = (TextView) findViewById(R.id.editItemNameID);
-        dateCreated = findViewById(R.id.editItemDateCreatedID);
+        TextView dateCreated = findViewById(R.id.editItemDateCreatedID);
         newLocation = findViewById(R.id.editItemLocationID);
         newShortDescription = findViewById(R.id.editItemShortDescription);
         newLongDescription = (EditText) findViewById(R.id.editItemLongDescriptionID);

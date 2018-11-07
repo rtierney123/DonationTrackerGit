@@ -31,7 +31,6 @@ public class ItemAddActivity extends AppCompatActivity {
     private EditText dollarValue;
     private Spinner itemCategory;
     private EditText comment;
-    private ImageButton newimage;
 
     private final Activity currentActivity = this;
     Item currentItem;
@@ -50,7 +49,7 @@ public class ItemAddActivity extends AppCompatActivity {
         comment = (EditText) findViewById(R.id.addItemCommentID);
         Button addButton = (Button) findViewById(R.id.addItemAddID);
         Button cancelButton = (Button) findViewById(R.id.addItemCancelButton);
-        newimage = (ImageButton) findViewById(R.id.addItemImage);
+        ImageButton newimage = (ImageButton) findViewById(R.id.addItemImage);
 
         PersistanceManager manager = new PersistanceManager( this );
 

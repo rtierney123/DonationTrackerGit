@@ -27,7 +27,7 @@ public class FirebaseLocationHandler {
     private final String TAG = "FirebaseLocationHandler";
     private Location locationCallback;
     private final Map<String, Location> locationMap = new LinkedHashMap<>(  );
-    private ArrayList<Location> locationArray = new ArrayList<>();
+    private final ArrayList<Location> locationArray = new ArrayList<>();
 
     /**
      * returns locations

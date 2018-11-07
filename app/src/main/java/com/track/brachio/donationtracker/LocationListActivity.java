@@ -28,7 +28,6 @@ public class LocationListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private int thePosition;
 
     @Override
@@ -42,7 +41,7 @@ public class LocationListActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         Button mapButton = findViewById(R.id.mapButtonID);
@@ -103,7 +102,7 @@ public class LocationListActivity extends AppCompatActivity {
         public static class LocationViewHolder extends RecyclerView.ViewHolder {
             // each data item is just a string in this case
             private final TextView nameText;
-            private TextView cityText;
+            private final TextView cityText;
             private View v;
 
             /**
