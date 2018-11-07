@@ -283,7 +283,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
     @SuppressWarnings("FeatureEnvy")
     public static class ItemListAdapter extends
             RecyclerView.Adapter<ItemListActivityTemp.ItemListAdapter.ItemViewHolder>{
-        private List<Item> items;
+        private final List<Item> items;
         private View view;
         private final OnItemClickListener theItemListener;
         // Provide a reference to the views for each data item

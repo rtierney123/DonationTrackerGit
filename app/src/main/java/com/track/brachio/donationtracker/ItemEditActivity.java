@@ -311,8 +311,8 @@ public class ItemEditActivity extends AppCompatActivity {
          * Holder for Comment View
          */
         public static class CommentViewHolder extends RecyclerView.ViewHolder {
-            private TextView commentText;
-            private View v;
+            private final TextView commentText;
+            private final View v;
             public CommentViewHolder(View v) {
                 super(v);
                 this.v = v;

@@ -93,7 +93,7 @@ public class LocationListActivity extends AppCompatActivity {
      */
     private static class LocationListAdapter extends
             RecyclerView.Adapter<LocationListAdapter.LocationViewHolder>{
-        private List<Location> locations;
+        private final List<Location> locations;
         private View view;
         private final OnItemClickListener locationListener;
         // Provide a reference to the views for each data item
@@ -103,7 +103,7 @@ public class LocationListActivity extends AppCompatActivity {
             // each data item is just a string in this case
             private final TextView nameText;
             private final TextView cityText;
-            private View v;
+            private final View v;
 
             /**
              * constructor for LocationViewHolder

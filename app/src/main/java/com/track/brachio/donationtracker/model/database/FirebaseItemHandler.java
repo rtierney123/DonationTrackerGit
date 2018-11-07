@@ -35,11 +35,11 @@ import java.util.concurrent.ExecutorService;
  */
 @SuppressWarnings("FeatureEnvy")
 public class FirebaseItemHandler {
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private FirebaseFirestore mFirestore;
     private final String TAG = "FirebaseItemHandler";
-    private Collection<Item> items = new ArrayList<Item>();
+    private final Collection<Item> items = new ArrayList<Item>();
 
     /**
      * returns all of the items in Items database
@@ -174,7 +174,7 @@ public class FirebaseItemHandler {
 
 
         // Add a new document with a generated ID
-        Task task = db.collection("items")
+        return db.collection("items")
                 .add(itemMap)
                 .addOnSuccessListener(executor, new OnSuccessListener<DocumentReference>() {
                     @Override
@@ -188,7 +188,6 @@ public class FirebaseItemHandler {
                         Log.w(TAG, "Error adding user", e);
                     }
                 });
-        return task;
 
     }
 
