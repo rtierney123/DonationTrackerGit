@@ -39,15 +39,6 @@
             android:name=".VolunteerMainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".DonatorMainActivity"
-            android:label="@string/title_activity_donator_main" />
-        <activity
-            android:name=".AdminMainActivity"
-            android:label="@string/title_activity_admin_main" />
-        <activity
-            android:name=".ManagerMainActivity"
-            android:label="@string/title_activity_manager_main" />
-        <activity
             android:name=".LocationListActivity"
             android:label="LocationListActivity" />
         <activity

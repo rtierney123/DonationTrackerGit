@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,6 +26,7 @@ import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.controller.UIPopulator;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.ItemType;
@@ -41,7 +43,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MainActivity extends com.track.brachio.donationtracker.controller.MainActivity
+public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ItemListFragment.OnFragmentInteractionListener,  LocationListFragment.OnFragmentInteractionListener{
 
     @Override
@@ -69,7 +71,7 @@ public class MainActivity extends com.track.brachio.donationtracker.controller.M
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
-            super.onBackPressed();
+            logOut();
         }
     }
 
@@ -126,5 +128,12 @@ public class MainActivity extends com.track.brachio.donationtracker.controller.M
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    public void logOut(){
+        PersistanceManager manager = new PersistanceManager( this);
+        PersistanceManager.signOut();
+        Intent intent = new Intent( this, LoginActivity.class);
+        startActivity(intent);
     }
 }
