@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.track.brachio.donationtracker.controller.MainActivity;
-
 /**
  * Activity for the Main Donator Page
  */
 @SuppressWarnings("SpellCheckingInspection")
-public class DonatorMainActivity extends MainActivity {
+public class DonatorMainActivity extends com.track.brachio.donationtracker.controller.MainActivity {
     private Button donMainLogout;
     private Button doLocationMap;
     //9TODO delete when EditItemListActivity
@@ -46,7 +44,7 @@ public class DonatorMainActivity extends MainActivity {
         testEdit = findViewById(R.id.testEditableItem);
         testEdit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(DonatorMainActivity.this, ItemListActivity.class);
+                Intent intent = new Intent(DonatorMainActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

@@ -79,7 +79,7 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".ItemListActivity"
+            android:name=".MainActivity"
             android:theme="@style/AppTheme"></activity>
     </application>
 
