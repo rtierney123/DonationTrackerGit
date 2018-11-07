@@ -93,7 +93,7 @@ public class LocationListActivity extends AppCompatActivity {
     /**
      * Adapter for list of locations
      */
-    private static class LocationListAdapter extends
+    public static class LocationListAdapter extends
             RecyclerView.Adapter<LocationListAdapter.LocationViewHolder>{
         private List<Location> locations;
         private View view;

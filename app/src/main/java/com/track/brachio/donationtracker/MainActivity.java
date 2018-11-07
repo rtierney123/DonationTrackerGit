@@ -42,7 +42,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends com.track.brachio.donationtracker.controller.MainActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ItemListFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ItemListFragment.OnFragmentInteractionListener,  LocationListFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,8 +104,9 @@ public class MainActivity extends com.track.brachio.donationtracker.controller.M
         FragmentManager fragmentManager = getSupportFragmentManager();
         Intent intent;
         if (id == R.id.nav_location) {
-            intent = new Intent(MainActivity.this, LocationListActivity.class);
-            startActivity(intent);
+            fragmentManager.beginTransaction().
+                    replace(R.id.main_frame_layout, new LocationListFragment())
+                    .commit();
         } else if (id == R.id.nav_item) {
             fragmentManager.beginTransaction().
                     replace(R.id.main_frame_layout, new ItemListFragment())
