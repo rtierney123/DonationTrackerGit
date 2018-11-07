@@ -23,6 +23,7 @@ import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -57,7 +58,7 @@ public class PersistanceManager {
         try {
             gatherData();
         } catch (InterruptedException ex) {
-
+            Log.e("Soemthing", "Happened");
         }
 
     }

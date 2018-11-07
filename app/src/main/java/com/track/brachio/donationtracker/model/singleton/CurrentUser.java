@@ -6,8 +6,6 @@ import com.track.brachio.donationtracker.model.User;
  * Singleton for User
  */
 public final class CurrentUser {
-    // static variable single_instance of type CurrentUser
-    private static CurrentUser single_instance;
 
     // current User
     private User user;
@@ -24,17 +22,18 @@ public final class CurrentUser {
 
     // static method to create instance of CurrentUser class
 
+    private static class Single_instanceHolder {
+        private static final CurrentUser single_instance = new CurrentUser();
+    }
+
     /**
      * returns instance of user
      * @return instance being returned
      */
     public static CurrentUser getInstance()
     {
-        if (single_instance == null) {
-            single_instance = new CurrentUser();
-        }
 
-        return single_instance;
+        return Single_instanceHolder.single_instance;
     }
 
     /**

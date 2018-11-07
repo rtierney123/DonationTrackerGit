@@ -28,6 +28,7 @@ public class VolunteerMainActivity extends MainActivity {
 
         Button volGoToLocationsButton = (Button) findViewById(R.id.volLocationButton);
         volGoToLocationsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 Intent intent = new Intent(VolunteerMainActivity.this, LocationListActivity.class);
                 startActivity(intent);

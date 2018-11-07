@@ -45,6 +45,7 @@ public class DonatorMainActivity extends MainActivity {
 
         testEdit = findViewById(R.id.testEditableItem);
         testEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DonatorMainActivity.this, ItemListActivity.class);
                 startActivity(intent);

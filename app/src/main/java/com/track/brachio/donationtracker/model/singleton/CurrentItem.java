@@ -7,9 +7,6 @@ import com.track.brachio.donationtracker.model.Item;
  */
 public final class CurrentItem {
 
-    // static variable single_instance of type CurrentUser
-    private static CurrentItem single_instance;
-
     // current User
     private Item item;
 
@@ -25,17 +22,18 @@ public final class CurrentItem {
 
     // static method to create instance of CurrentUser class
 
+    private static class Single_instanceHolder {
+        private static final CurrentItem single_instance = new CurrentItem();
+    }
+
     /**
      * returns currentInstance being used
      * @return current instance of Item
      */
     public static CurrentItem getInstance()
     {
-        if (single_instance == null) {
-            single_instance = new CurrentItem();
-        }
 
-        return single_instance;
+        return Single_instanceHolder.single_instance;
     }
 
     /**

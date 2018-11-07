@@ -105,6 +105,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
         ui.populateSpinner( categorySpinner, categories, this );
         categorySpinner.setSelection(catIndex);
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 catIndex = position;
                 populateRecycleView();

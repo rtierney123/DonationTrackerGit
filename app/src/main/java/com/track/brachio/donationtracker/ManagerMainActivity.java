@@ -32,6 +32,7 @@ public class ManagerMainActivity extends MainActivity {
 
         manManageItems = findViewById(R.id.manManageItemsButton);
         manManageItems.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ManagerMainActivity.this, ItemListActivityTemp.class);
                 startActivity(intent);

@@ -10,8 +10,6 @@ import java.util.List;
  * Information holder for user locations
  */
 public final class UserLocations {
-    // static variable single_instance of type AllLocations
-    private static UserLocations single_instance;
 
     // current User
     private List<Location> locations;
@@ -28,17 +26,18 @@ public final class UserLocations {
 
     // static method to create instance of AllLocations class
 
+    private static class Single_instanceHolder {
+        private static final UserLocations single_instance = new UserLocations();
+    }
+
     /**
      * returns the current instance
      * @return current instance
      */
     public static UserLocations getInstance()
     {
-        if (single_instance == null) {
-            single_instance = new UserLocations();
-        }
 
-        return single_instance;
+        return Single_instanceHolder.single_instance;
     }
 
     /**
