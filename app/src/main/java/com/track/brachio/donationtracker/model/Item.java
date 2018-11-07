@@ -154,7 +154,7 @@ public class Item {
 
     /**
      * setter - category
-     * @param category categroy being set
+     * @param category category being set
      */
     public void setCategory(ItemType category) {
         this.category = category;

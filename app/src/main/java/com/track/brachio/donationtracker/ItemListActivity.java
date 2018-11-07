@@ -155,8 +155,8 @@ public class ItemListActivity extends AppCompatActivity
      * @return id
      */
     private String getCurrentLocationID(){
-        UserLocations locs = UserLocations.getInstance();
-        List<Location> array = locs.getLocations();
+        UserLocations locations = UserLocations.getInstance();
+        List<Location> array = locations.getLocations();
         if (locIndex != 0) {
             Location loc = array.get(locIndex-1);
             return loc.getId();
@@ -167,12 +167,12 @@ public class ItemListActivity extends AppCompatActivity
     }
 
     /**
-     * returns all of the locaitons id
+     * returns all of the locations id
      * @return list of ids
      */
     public List<String> getAllLocationIds(){
-        UserLocations locs = UserLocations.getInstance();
-        List<Location> array = locs.getLocations();
+        UserLocations locations = UserLocations.getInstance();
+        List<Location> array = locations.getLocations();
         List<String> ids = new ArrayList<>();
         for(Location loc : array){
             String id = loc.getId();
@@ -282,9 +282,9 @@ public class ItemListActivity extends AppCompatActivity
             }
 
             /**
-             * binds for the itme view holder
-             * @param theItem item being binded
-             * @param listener listeneer on the list
+             * binds for the item view holder
+             * @param theItem item being bound
+             * @param listener listener on the list
              */
             public void bind(final Item theItem, final ItemListActivityTemp.ItemListAdapter.OnItemClickListener listener) {
                 v.setOnClickListener(new View.OnClickListener() {
@@ -309,7 +309,7 @@ public class ItemListActivity extends AppCompatActivity
          * @param array array being assigned
          * @param listener current listener
          */
-        // Provide a suitable constructor (depends on the kind of dataset)
+        // Provide a suitable constructor (depends on the kind of data set)
         public ItemListAdapter(List<Item> array, ItemListActivityTemp.ItemListAdapter.OnItemClickListener listener) {
             this.items = array;
             this.theItemListener = listener;
@@ -334,7 +334,7 @@ public class ItemListActivity extends AppCompatActivity
         @Override
         public void onBindViewHolder(
                 @NonNull ItemListActivityTemp.ItemListAdapter.ItemViewHolder holder, int position) {
-            // - get element from your dataset at this position
+            // - get element from your data set at this position
             // - replace the contents of the view with that element
             holder.nameText.setText(items.get(position).getName());
             if (items.get(position).getDateCreated() != null){
@@ -348,7 +348,7 @@ public class ItemListActivity extends AppCompatActivity
 
         }
 
-        // Return the size of your dataset (invoked by the layout manager)
+        // Return the size of your data set (invoked by the layout manager)
         @Override
         public int getItemCount() {
             return items.size();

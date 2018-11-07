@@ -11,7 +11,7 @@
     <string name="name">Name</string>
     <string name="date">Date</string>
     <string name="location">Location:</string>
-    <string name="detail_locatio">Location</string>
+    <string name="detail_location">Location</string>
     <string name="short_description">Short Description:</string>
     <string name="dollar_value">Dollar Value:</string>
     <string name="long_description">Long Description:</string>

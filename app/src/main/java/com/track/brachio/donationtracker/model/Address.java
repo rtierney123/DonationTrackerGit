@@ -13,7 +13,7 @@ public class Address {
 
     /**
      * Constructor for Address
-     * @param address address inputed
+     * @param address address input
      * @param c city
      * @param s state
      * @param z zip

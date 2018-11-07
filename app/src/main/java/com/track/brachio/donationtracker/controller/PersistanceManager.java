@@ -58,7 +58,7 @@ public class PersistanceManager {
         try {
             gatherData();
         } catch (InterruptedException ex) {
-            Log.e("Soemthing", "Happened");
+            Log.e("Something", "Happened");
         }
 
     }
@@ -101,7 +101,7 @@ public class PersistanceManager {
 
     /**
      * returns executor
-     * @return current executer
+     * @return current executor
      */
     public ThreadPoolExecutor getExecutor() {
         return executor;

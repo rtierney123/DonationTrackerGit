@@ -118,7 +118,7 @@ public class LocationListActivity extends AppCompatActivity {
 
             /**
              * binds
-             * @param item current item being binded
+             * @param item current item being bound
              * @param listener current listener
              */
             public void bind(final Location item, final OnItemClickListener listener) {

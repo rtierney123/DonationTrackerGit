@@ -31,8 +31,8 @@ public class ItemDetailActivity extends AppCompatActivity {
         TextView nameText = findViewById(R.id.detail_name);
         TextView dateText = findViewById( R.id.detail_date );
         TextView locationText = findViewById( R.id.detail_location);
-        TextView shortDescriptText = findViewById(R.id.short_description);
-        TextView longDescriptText = findViewById(R.id.long_description);
+        TextView shortDescriptionText = findViewById(R.id.short_description);
+        TextView longDescriptionText = findViewById(R.id.long_description);
         TextView dollarText = findViewById(R.id.dollar_value);
         TextView categoryText = findViewById(R.id.item_category);
         ImageView itemPic = findViewById(R.id.detail_image);
@@ -43,8 +43,8 @@ public class ItemDetailActivity extends AppCompatActivity {
         Map<String, Location> allLoc = AllLocations.getInstance().getLocationMap();
         Location loc = allLoc.get(currentItem.getLocation());
         locationText.setText(Objects.requireNonNull(loc).getName());
-        shortDescriptText.setText(currentItem.getShortDescription());
-        longDescriptText.setText(currentItem.getLongDescription());
+        shortDescriptionText.setText(currentItem.getShortDescription());
+        longDescriptionText.setText(currentItem.getLongDescription());
         dollarText.setText(currentItem.getDollarValue() + "");
         categoryText.setText(currentItem.getCategory().toString());
 
