@@ -10,8 +10,6 @@ import java.util.List;
  * Populates the Spinner
  */
 public class UIPopulator {
-    public int selected;
-
     /**
      * populates the spinner
      * @param spinner spinner being populated

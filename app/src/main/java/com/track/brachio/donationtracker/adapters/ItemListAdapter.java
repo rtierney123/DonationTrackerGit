@@ -124,9 +124,6 @@ public class ItemListAdapter extends
         return items.size();
     }
 
-    @Override
-    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-    }
+
 
 }

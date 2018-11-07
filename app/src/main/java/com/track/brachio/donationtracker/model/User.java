@@ -101,21 +101,6 @@ public class User {
         return Collections.unmodifiableList(legalUserTypes);
     }
 
-    /**
-     * finds the user by type position
-     * @param code code being searched for
-     * @return position of the item
-     */
-    public static int findUserTypePosition(UserType code) {
-        int i = 0;
-        while (i < legalUserTypes.size()) {
-            if (code.equals(legalUserTypes.get(i))) {
-                return i;
-            }
-            ++i;
-        }
-        return 0;
-    }
 
     /**
      * getter - locations

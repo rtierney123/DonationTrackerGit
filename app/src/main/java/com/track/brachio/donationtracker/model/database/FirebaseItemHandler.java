@@ -89,7 +89,10 @@ public class FirebaseItemHandler {
                                     map.put(locationID, items);
                                 } else {
                                     items = map.get(locationID);
-                                    items.put(key, item);
+                                    if (items != null){
+                                        items.put(key, item);
+                                    }
+
                                 }
                             }
                             SearchedItems searched = SearchedItems.getInstance();
@@ -114,7 +117,7 @@ public class FirebaseItemHandler {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-                        if (task.isSuccessful()) {
+                        if (task.isSuccessful() && task != null) {
                             for (DocumentSnapshot document :
                                     task.getResult()) {
 
@@ -133,7 +136,9 @@ public class FirebaseItemHandler {
                                 String shortDescription = document.getString("shortDescription");
                                 String longDescription = document.getString("longDescription");
                                 //TODO How to get comment array and picture?
-
+                                item.setPicture( encodedPic );
+                                item.setShortDescription( shortDescription );
+                                item.setLongDescription( longDescription );
                                 items.add(item);
 
                             }

@@ -10,7 +10,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.track.brachio.donationtracker.MainActivity;
 import com.track.brachio.donationtracker.model.Item;
-import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.database.FirebaseItemHandler;
@@ -82,8 +81,6 @@ public class PersistanceManager {
                 });
             }
         });
-
-        //startExecutor();
     }
 
     /**

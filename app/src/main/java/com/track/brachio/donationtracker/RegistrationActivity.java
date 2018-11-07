@@ -54,7 +54,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 String emailEntered;
                 String passwordEntered;
                 UserType userTypeSelected;
-                Boolean registrationSuccessful;
 
                 firstNameEntered = firstNameField.getText().toString();
                 lastNameEntered = lastNameField.getText().toString();
