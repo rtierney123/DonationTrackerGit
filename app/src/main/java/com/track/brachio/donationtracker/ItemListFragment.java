@@ -1,0 +1,322 @@
+package com.track.brachio.donationtracker;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.SearchView;
+import android.widget.Spinner;
+
+import com.track.brachio.donationtracker.adapters.ItemListAdapter;
+import com.track.brachio.donationtracker.controller.UIPopulator;
+import com.track.brachio.donationtracker.model.Item;
+import com.track.brachio.donationtracker.model.ItemType;
+import com.track.brachio.donationtracker.model.Location;
+import com.track.brachio.donationtracker.model.singleton.CurrentItem;
+import com.track.brachio.donationtracker.model.singleton.SearchedItems;
+import com.track.brachio.donationtracker.model.singleton.UserLocations;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link ItemListFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link ItemListFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class ItemListFragment extends Fragment {
+
+    private Collection<Item> items = new ArrayList<>();
+    private static HashMap<String, HashMap<String, Item>> storeItems;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private Button backButton;
+    private FloatingActionButton editButton;
+    private Spinner locSpinner;
+    private Spinner categorySpinner;
+    private SearchView searchView;
+    private static int locIndex;
+    private static int catIndex;
+    private Activity containerActivity;
+    private UIPopulator ui;
+    private String searchString = "";
+
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    private OnFragmentInteractionListener mListener;
+
+    public ItemListFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment ItemListFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static ItemListFragment newInstance(String param1, String param2) {
+        ItemListFragment fragment = new ItemListFragment();
+        Bundle args = new Bundle();
+        args.putString( ARG_PARAM1, param1 );
+        args.putString( ARG_PARAM2, param2 );
+        fragment.setArguments( args );
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate( savedInstanceState );
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString( ARG_PARAM1 );
+            mParam2 = getArguments().getString( ARG_PARAM2 );
+        }
+
+        containerActivity = this.getActivity();
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate( R.layout.fragment_item_list, container, false );
+        recyclerView = view.findViewById(R.id.itemList);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(this.getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        editButton= view.findViewById(R.id.editButton);
+        locSpinner= view.findViewById(R.id.locSpinner);
+        categorySpinner= view.findViewById( R.id.categorySpinner );
+        searchView = view.findViewById(R.id.nameSearchView);
+        editButton.setOnClickListener (new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("ItemList", "Edit");
+                //putting it to donator main activity for now
+                Intent intent = new Intent(containerActivity, ItemAddActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ui = new UIPopulator();
+        List<String> names = new ArrayList<>();
+        names.add("All");
+        List<Location> array = UserLocations.getInstance().getLocations();
+        for(Location loc : array){
+            names.add(loc.getName());
+        }
+
+        ui.populateSpinner( locSpinner, names, this.getActivity() );
+        locSpinner.setSelection(locIndex);
+        locSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                locIndex = position;
+                populateRecycleView();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        List<String> categories = ItemType.getArrayList();
+        categories.add(0,"All");
+        ui.populateSpinner( categorySpinner, categories, containerActivity);
+        categorySpinner.setSelection(catIndex);
+        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                catIndex = position;
+                populateRecycleView();
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // Do something when user his enter on keyboard
+                searchString = query;
+                populateRecycleView();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Do something while user is entering text
+                searchString = newText;
+                populateRecycleView();
+                return false;
+            }
+        });
+        return view;
+    }
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction( uri );
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach( context );
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException( context.toString()
+                    + " must implement OnFragmentInteractionListener" );
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
+
+    /**
+     * returns current location Id
+     * @return id
+     */
+    private String getCurrentLocationID(){
+        UserLocations locs = UserLocations.getInstance();
+        List<Location> array = locs.getLocations();
+        if (locIndex != 0) {
+            Location loc = array.get(locIndex-1);
+            return loc.getId();
+        } else {
+            return null;
+        }
+
+    }
+
+    /**
+     * returns all of the locaitons id
+     * @return list of ids
+     */
+    public List<String> getAllLocationIds(){
+        UserLocations locs = UserLocations.getInstance();
+        List<Location> array = locs.getLocations();
+        List<String> ids = new ArrayList<>();
+        for(Location loc : array){
+            String id = loc.getId();
+            ids.add(id);
+        }
+        return ids;
+    }
+
+    /**
+     * populates the recycler view
+     */
+    public void populateRecycleView() {
+        String locID = getCurrentLocationID();
+
+        SearchedItems searched = SearchedItems.getInstance();
+        Map<String, Map<String, Item>> storeItems = searched.getSearchedMap();
+
+        Map<String, Item> itemMap;
+        if(locIndex == 0){
+            items.clear();
+            List<String> locIds = getAllLocationIds();
+            for(String location : locIds){
+                itemMap = storeItems.get(location);
+                if (itemMap != null){
+                    items.addAll(new ArrayList<>(itemMap.values()));
+                }
+            }
+
+        } else {
+            itemMap = storeItems.get(locID);
+
+            if(!(itemMap ==null)) {
+                items = new ArrayList<>(itemMap.values());
+            }
+        }
+
+
+        ArrayList<Item> displayItems = new ArrayList();
+        for(Item item : items){
+            int itemCat = item.getCategory().ordinal();
+            String itemName = item.getName();
+            if((catIndex == 0) || (itemCat == (catIndex - 1))){
+                if (searchString.isEmpty()){
+                    displayItems.add(item);
+                } else {
+                    Pattern p = Pattern.compile(searchString);
+                    Matcher m = p.matcher(itemName);
+                    if (m.find()){
+                        displayItems.add(item);
+                    }
+                }
+            }
+        }
+
+
+        // populate view based on items and adapter specifications
+        adapter =  new ItemListAdapter( displayItems, new ItemListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Item item) {
+                CurrentItem.getInstance().setItem(item);
+                Intent intent = new Intent(containerActivity, ItemDetailActivity.class);
+                startActivity(intent);
+            }
+        });
+        recyclerView.setAdapter( adapter );
+
+
+    }
+
+}

@@ -8,11 +8,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.track.brachio.donationtracker.AdminMainActivity;
-import com.track.brachio.donationtracker.DonatorMainActivity;
-import com.track.brachio.donationtracker.ItemListActivityTemp;
-import com.track.brachio.donationtracker.ManagerMainActivity;
-import com.track.brachio.donationtracker.VolunteerMainActivity;
+import com.track.brachio.donationtracker.MainActivity;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.User;
@@ -113,30 +109,19 @@ public class PersistanceManager {
      */
     public void goToMainPage(){
         User currentUser = CurrentUser.getInstance().getUser();
-        Intent intent = new Intent(activity, DonatorMainActivity.class);
+
+        //set what locations user can edit items
         if (currentUser.getUserType() == UserType.Donator) {
             UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
-            intent = new Intent(activity, DonatorMainActivity.class);
         } else if (currentUser.getUserType() == UserType.Admin){
             UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
-            intent = new Intent(activity, AdminMainActivity.class);
         } else if (currentUser.getUserType() == UserType.Volunteer) {
-                            /*
-                            User user = CurrentUser.getInstance().getUser();
-                            HashMap<String, Location> map =
-                            AllLocations.getInstance().getLocationMap();
-                            ArrayList<Location> array = new ArrayList<>();
-                            ArrayList<String> ids = user.getLocations();
-                            for (String id : ids) {
-                                array.add(map.get(id));
-                            }
-                            */
             UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
-            intent = new Intent(activity, VolunteerMainActivity.class);
         } else if (currentUser.getUserType() == UserType.Manager) {
             UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
-            intent = new Intent(activity, ManagerMainActivity.class);
+
         }
+        Intent intent = new Intent(activity, MainActivity.class );
         activity.startActivity(intent);
     }
 
@@ -202,7 +187,7 @@ public class PersistanceManager {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             threadRunning = false;
-                            Intent intent = new Intent(currentActivity, ItemListActivityTemp.class);
+                            Intent intent = new Intent(currentActivity, MainActivity.class);
                             currentActivity.startActivity(intent);
                         }
                     } );

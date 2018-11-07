@@ -7,7 +7,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.track.brachio.donationtracker.LocationListActivity;
 import com.track.brachio.donationtracker.model.Address;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
@@ -134,58 +133,7 @@ public class FirebaseLocationHandler {
     }
     //make sure to replace in LocationListActivity
 
-    /**
-     * returns locations
-     * @param locListAct list of locations
-     */
-    public void getLocations(LocationListActivity locListAct){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        db.collection( "location" )
-                .get().addOnSuccessListener( new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot documentSnapshots) {
-                if (documentSnapshots.isEmpty()) {
-                    Log.d( TAG, "onSuccess: LIST EMPTY" );
-                } else {
-                    List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
-                    String id = "";
-                    String name = "";
-                    double longitude = 0;
-                    double latitude = 0;
-                    String type = "";
-                    String phone = "";
-                    String website;
-                    String streetAddress = "";
-                    String city = "";
-                    String state = "";
-                    long zip = 0;
-                    Log.d(TAG, "onSuccess: Got Locations");
-
-                    locationMap.clear();
-                    for (DocumentSnapshot doc : retDocs) {
-                        id = (String) doc.get("locationID");
-                        name  = (String) doc.get( "name" );
-                        longitude = (Double) doc.get( "longitude" );
-                        latitude  = (Double) doc.get( "latitude" );
-                        type = (String) doc.get( "type" );
-                        phone = (String) doc.get("phone");
-                        website = (String) doc.get("website");
-                        streetAddress = (String) doc.get("address");
-                        city = (String) doc.get("city");
-                        state = (String) doc.get("state");
-                        zip = (Long) doc.get("zip");
-                        Address address = new Address(streetAddress, city, state, zip);
-                        locationCallback =
-                                new Location(id, name, longitude, latitude,
-                                        type, phone, website, address);
-                        locationMap.put(Objects.requireNonNull(id), locationCallback);
-                    }
-                    AllLocations.getInstance().setLocationMap( locationMap );
-                }
-            }
-        } );
-    }
+    
 
     /**
      * add locations to database

@@ -48,7 +48,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         dollarText.setText(currentItem.getDollarValue() + "");
         categoryText.setText(currentItem.getCategory().toString());
 
-        ImageButton editButton = findViewById( R.id.edti_item_button);
+        ImageButton editButton = findViewById( R.id.edit_item_button);
         editButton.setOnClickListener (new View.OnClickListener() {
             @Override
             public void onClick(View view) {
