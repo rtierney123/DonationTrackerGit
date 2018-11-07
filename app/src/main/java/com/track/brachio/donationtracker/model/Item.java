@@ -7,6 +7,7 @@ import android.util.Base64;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Arrays;
@@ -58,7 +59,7 @@ public class Item {
      * @return list of legal user types
      */
     public static List<ItemType> getLegalItemTypes() {
-        return legalItemTypes;
+        return Collections.unmodifiableList(legalItemTypes);
     }
 
     /**

@@ -5,16 +5,14 @@ import com.track.brachio.donationtracker.model.Location;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
  * AllLocation to put into HashMap
  */
+@SuppressWarnings("ALL")
 public final class AllLocations {
-    // static variable single_instance of type AllLocations
-    private static AllLocations single_instance;
 
     private Map<String, Location> locMap;
     // private constructor restricted to this class itself
@@ -29,17 +27,19 @@ public final class AllLocations {
 
     // static method to create instance of AllLocations class
 
+    @SuppressWarnings("UtilityClass")
+    private static class Single_instanceHolder {
+        private static final AllLocations single_instance = new AllLocations();
+    }
+
     /**
      * returns instance
      * @return the instance of the location
      */
     public static AllLocations getInstance()
     {
-        if (single_instance == null) {
-            single_instance = new AllLocations();
-        }
 
-        return single_instance;
+        return Single_instanceHolder.single_instance;
     }
 
     /**

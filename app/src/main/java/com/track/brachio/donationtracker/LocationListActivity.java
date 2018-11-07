@@ -28,8 +28,6 @@ public class LocationListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private Button mapButton;
     private int thePosition;
 
     @Override
@@ -43,10 +41,10 @@ public class LocationListActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        mapButton = findViewById( R.id.mapButtonID );
+        Button mapButton = findViewById(R.id.mapButtonID);
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +93,7 @@ public class LocationListActivity extends AppCompatActivity {
      */
     public static class LocationListAdapter extends
             RecyclerView.Adapter<LocationListAdapter.LocationViewHolder>{
-        private List<Location> locations;
+        private final List<Location> locations;
         private View view;
         private final OnItemClickListener locationListener;
         // Provide a reference to the views for each data item
@@ -104,8 +102,8 @@ public class LocationListActivity extends AppCompatActivity {
         public static class LocationViewHolder extends RecyclerView.ViewHolder {
             // each data item is just a string in this case
             private final TextView nameText;
-            private TextView cityText;
-            private View v;
+            private final TextView cityText;
+            private final View v;
 
             /**
              * constructor for LocationViewHolder
@@ -115,7 +113,7 @@ public class LocationListActivity extends AppCompatActivity {
                 super(v);
                 this.v = v;
                 nameText = v.findViewById(R.id.location_name_adapter);
-                cityText = (TextView) v.findViewById(R.id.location_city_adapter);
+                cityText = v.findViewById(R.id.location_city_adapter);
             }
 
             /**
@@ -160,8 +158,8 @@ public class LocationListActivity extends AppCompatActivity {
         // Create new views (invoked by the layout manager)
         @NonNull
         @Override
-        public LocationListAdapter.LocationViewHolder onCreateViewHolder(ViewGroup parent,
-                                                         int viewType) {
+        public LocationListAdapter.LocationViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
+                                                                         int viewType) {
             // create a new view
             View v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.adapter_location_list, parent, false);

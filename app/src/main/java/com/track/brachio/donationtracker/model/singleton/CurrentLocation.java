@@ -6,8 +6,6 @@ import com.track.brachio.donationtracker.model.Location;
  * Singleton for Location
  */
 public final class CurrentLocation {
-    // static variable single_instance of type CurrentUser
-    private static CurrentLocation single_instance;
 
     // current User
     private Location location;
@@ -24,17 +22,19 @@ public final class CurrentLocation {
 
     // static method to create instance of CurrentUser class
 
+    @SuppressWarnings("UtilityClass")
+    private static class Single_instanceHolder {
+        private static final CurrentLocation single_instance = new CurrentLocation();
+    }
+
     /**
      * Returns the instance of CurrentLocation
      * @return the current instance
      */
     public static CurrentLocation getInstance()
     {
-        if (single_instance == null) {
-            single_instance = new CurrentLocation();
-        }
 
-        return single_instance;
+        return Single_instanceHolder.single_instance;
     }
 
     /**

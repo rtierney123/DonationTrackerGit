@@ -66,6 +66,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 12.0f));
             }
 
+            @Override
             public void onNothingSelected(AdapterView<?> arg0)
             {
                 //Log.v("routes", "nothing selected");

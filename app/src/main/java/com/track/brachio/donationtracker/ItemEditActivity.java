@@ -45,7 +45,6 @@ import java.util.List;
  */
 @SuppressWarnings({"SpellCheckingInspection", "FeatureEnvy"})
 public class ItemEditActivity extends AppCompatActivity {
-    private TextView dateCreated;
     private EditText newLocation;
     private EditText newShortDescription;
     private EditText newLongDescription;
@@ -53,7 +52,6 @@ public class ItemEditActivity extends AppCompatActivity {
     private Spinner newItemCategory;
     private RecyclerView newCommentsRecyclerView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private EditText newComments;
     private ImageButton newImage;
     private Button cancelButton;
@@ -61,7 +59,7 @@ public class ItemEditActivity extends AppCompatActivity {
     private Button deleteButton;
     private ArrayList<String> comments;
     private PersistanceManager manager;
-    private Activity currentActivity = this;
+    private final Activity currentActivity = this;
     private Item currentItem;
 
     @Override
@@ -70,8 +68,8 @@ public class ItemEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_edit);
 
         TextView itemName = (TextView) findViewById(R.id.editItemNameID);
-        dateCreated = findViewById(R.id.editItemDateCreatedID);
-        newLocation = (EditText) findViewById(R.id.editItemLocationID);
+        TextView dateCreated = findViewById(R.id.editItemDateCreatedID);
+        newLocation = findViewById(R.id.editItemLocationID);
         newShortDescription = findViewById(R.id.editItemShortDescription);
         newLongDescription = (EditText) findViewById(R.id.editItemLongDescriptionID);
         newDollarValue = (EditText) findViewById(R.id.editItemValueID);
@@ -86,7 +84,7 @@ public class ItemEditActivity extends AppCompatActivity {
         //DO WE NEED??
         newCommentsRecyclerView.setHasFixedSize(true);
 
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         newCommentsRecyclerView.setLayoutManager(layoutManager);
 
         manager = new PersistanceManager( this );
@@ -157,9 +155,6 @@ public class ItemEditActivity extends AppCompatActivity {
 
                 Toast.makeText( getApplicationContext(), "Item Edited", Toast.LENGTH_SHORT ).show();
                 manager.editItem( currentItem, currentActivity);
-                //Intent intent = new Intent(EditItemActivity.this, EditableItemListActivity.class);
-                //intent.putExtra( "edited", true );
-                //startActivity(intent);
 
             }
         });
@@ -316,8 +311,8 @@ public class ItemEditActivity extends AppCompatActivity {
          * Holder for Comment View
          */
         public static class CommentViewHolder extends RecyclerView.ViewHolder {
-            private TextView commentText;
-            private View v;
+            private final TextView commentText;
+            private final View v;
             public CommentViewHolder(View v) {
                 super(v);
                 this.v = v;
@@ -338,7 +333,7 @@ public class ItemEditActivity extends AppCompatActivity {
 
         @Override
         public ItemEditActivity.CommentListAdapter.CommentViewHolder
-        onCreateViewHolder(ViewGroup parent, int viewType) {
+        onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.adapter_comments_list,
                             parent, false);

@@ -9,12 +9,11 @@ import android.widget.Button;
  * Activity for the Main Donator Page
  */
 @SuppressWarnings("SpellCheckingInspection")
-public class DonatorMainActivity extends com.track.brachio.donationtracker.controller.MainActivity {
-    private Button donMainLogout;
+
+public class DonatorMainActivity extends MainActivity {
+
     private Button doLocationMap;
-    //9TODO delete when EditItemListActivity
-    @SuppressWarnings("TodoComment")
-    private Button testEdit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -28,7 +27,7 @@ public class DonatorMainActivity extends com.track.brachio.donationtracker.contr
         //handler.addItem(a);
         //handler.addItem(b);
 
-        Button donGoToLocationsButton = (Button) findViewById(R.id.donLocationButton);
+        Button donGoToLocationsButton = findViewById(R.id.donLocationButton);
         donGoToLocationsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,11 +37,13 @@ public class DonatorMainActivity extends com.track.brachio.donationtracker.contr
         });
 
 
-        donMainLogout = findViewById(R.id.donMainLogout);
-        setLogoutButton( donMainLogout );
+        Button donMainLogout = findViewById(R.id.donMainLogout);
+        setLogoutButton(donMainLogout);
 
-        testEdit = findViewById(R.id.testEditableItem);
+        //9TODO delete when EditItemListActivity
+        Button testEdit = findViewById(R.id.testEditableItem);
         testEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DonatorMainActivity.this, MainActivity.class);
                 startActivity(intent);

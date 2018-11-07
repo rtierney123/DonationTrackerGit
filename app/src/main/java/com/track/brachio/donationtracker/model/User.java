@@ -1,6 +1,5 @@
 package com.track.brachio.donationtracker.model;
 
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.ServerTimestamp;
 
@@ -171,7 +170,7 @@ public class User {
      * @return timestamp
      */
     public Date getTimestamp() {
-        return timestamp;
+        return (Date) timestamp.clone();
     }
 
     /**

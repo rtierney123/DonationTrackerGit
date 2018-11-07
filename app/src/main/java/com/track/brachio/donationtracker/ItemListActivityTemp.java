@@ -41,9 +41,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
     private static HashMap<String, HashMap<String, Item>> storeItems;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private Button backButton;
-    private FloatingActionButton editButton;
     private Spinner locSpinner;
     private Spinner categorySpinner;
     private SearchView searchView;
@@ -58,7 +56,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
         setContentView( R.layout.activity_item_list_temp );
 
         recyclerView = findViewById(R.id.itemList);
-        editButton= findViewById(R.id.editbutton);
+        FloatingActionButton editButton = findViewById(R.id.editbutton);
         locSpinner= findViewById(R.id.locSpinner);
         categorySpinner= findViewById( R.id.categorySpinner );
         searchView = findViewById(R.id.nameSearchView);
@@ -67,7 +65,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
         recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         editButton.setOnClickListener (new View.OnClickListener() {
@@ -105,6 +103,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
         ui.populateSpinner( categorySpinner, categories, this );
         categorySpinner.setSelection(catIndex);
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 catIndex = position;
                 populateRecycleView();
@@ -171,7 +170,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
      * sets the Item Array
      * @param array array being set
      */
-    public void setItemArray(List<Item> array) {
+    public void setItemArray(Collection<Item> array) {
         items = array;
     }
 
@@ -284,7 +283,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
     @SuppressWarnings("FeatureEnvy")
     public static class ItemListAdapter extends
             RecyclerView.Adapter<ItemListActivityTemp.ItemListAdapter.ItemViewHolder>{
-        private List<Item> items;
+        private final List<Item> items;
         private View view;
         private final OnItemClickListener theItemListener;
         // Provide a reference to the views for each data item
@@ -300,7 +299,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
             public TextView dateText;
             public TextView valueText;
             public TextView categoryText;
-            private View v;
+            private final View v;
 
             /**
              * Constructor for ItemViewHolder
@@ -312,7 +311,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
                 nameText = v.findViewById(R.id.item_name_adapter);
                 dateText = v.findViewById(R.id.item_date_adapter);
                 valueText = (TextView) v.findViewById(R.id.item_cost_adapter);
-                categoryText = (TextView) v.findViewById(R.id.item_category_adapter);
+                categoryText = v.findViewById(R.id.item_category_adapter);
             }
 
             /**
@@ -335,6 +334,10 @@ public class ItemListActivityTemp extends AppCompatActivity{
          * Listener for the recycler view
          */
         public interface OnItemClickListener {
+            /**
+             * handles what happens on click
+             * @param item item being clicked
+             */
             void onItemClick(Item item);
         }
 
@@ -352,7 +355,7 @@ public class ItemListActivityTemp extends AppCompatActivity{
         // Create new views (invoked by the layout manager)
         // Create new views (invoked by the layout manager)
         @Override
-        public ItemListActivityTemp.ItemListAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent,
+        public ItemListActivityTemp.ItemListAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
                                                                                       int viewType) {
             // create a new view
             View v = LayoutInflater.from(parent.getContext())

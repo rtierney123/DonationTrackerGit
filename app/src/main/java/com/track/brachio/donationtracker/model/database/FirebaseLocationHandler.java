@@ -27,7 +27,7 @@ public class FirebaseLocationHandler {
     private final String TAG = "FirebaseLocationHandler";
     private Location locationCallback;
     private final Map<String, Location> locationMap = new LinkedHashMap<>(  );
-    private ArrayList<Location> locationArray = new ArrayList<>();
+    private final ArrayList<Location> locationArray = new ArrayList<>();
 
     /**
      * returns locations
@@ -93,7 +93,6 @@ public class FirebaseLocationHandler {
             public void onSuccess(QuerySnapshot documentSnapshots) {
                 if (documentSnapshots.isEmpty()) {
                     Log.d( TAG, "onSuccess: LIST EMPTY" );
-                    return;
                 } else {
                     List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
                     String id;
@@ -101,7 +100,7 @@ public class FirebaseLocationHandler {
                     double longitude = 0;
                     double latitude = 0;
                     String type = "";
-                    String phone = "";
+                    String phone;
                     String website = "";
                     String streetAddress = "";
                     String city = "";

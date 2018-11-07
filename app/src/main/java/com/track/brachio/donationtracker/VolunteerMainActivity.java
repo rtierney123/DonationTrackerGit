@@ -19,8 +19,7 @@ import java.util.List;
  * Activity for Volunteer Main
  */
 public class VolunteerMainActivity extends MainActivity {
-    private Button logoutButton;
-    private Button volManagerItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState );
@@ -28,14 +27,15 @@ public class VolunteerMainActivity extends MainActivity {
 
         Button volGoToLocationsButton = (Button) findViewById(R.id.volLocationButton);
         volGoToLocationsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 Intent intent = new Intent(VolunteerMainActivity.this, LocationListActivity.class);
                 startActivity(intent);
             }
         });
 
-        logoutButton = findViewById(R.id.logoutButton1);
-        setLogoutButton( logoutButton );
+        Button logoutButton = findViewById(R.id.logoutButton1);
+        setLogoutButton(logoutButton);
 
 
         List<Location> locations = AllLocations.getInstance().getLocationArray();
@@ -44,7 +44,7 @@ public class VolunteerMainActivity extends MainActivity {
             spinnerArray.add(loc.getName());
         }
 
-        Spinner allLocSpinner = (Spinner) findViewById(R.id.add_location_spinner);
+        Spinner allLocSpinner = findViewById(R.id.add_location_spinner);
 
         UIPopulator populator = new UIPopulator();
         populator.populateSpinner( allLocSpinner, spinnerArray , this);
@@ -60,7 +60,7 @@ public class VolunteerMainActivity extends MainActivity {
         Spinner userSpinner = findViewById(R.id.view_location_spinner);
         populator.populateSpinner( userSpinner, spinnerArray , this);
 
-        volManagerItems = (Button) findViewById(R.id.volManagerItemsButton);
+        Button volManagerItems = (Button) findViewById(R.id.volManagerItemsButton);
         volManagerItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

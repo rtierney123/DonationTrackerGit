@@ -14,7 +14,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.track.brachio.donationtracker.model.Item;
-import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.singleton.SearchedItems;
 /*
 import com.google.api.core.ApiFuture;
@@ -22,6 +21,7 @@ import com.google.api.core.ApiFutureCallback;
 import com.google.api.core.ApiFutures;
 */
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -35,11 +35,11 @@ import java.util.concurrent.ExecutorService;
  */
 @SuppressWarnings("FeatureEnvy")
 public class FirebaseItemHandler {
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private FirebaseFirestore mFirestore;
-    private String TAG = "FirebaseItemHandler";
-    private List<Item> items = new ArrayList<Item>();
+    private final String TAG = "FirebaseItemHandler";
+    private final Collection<Item> items = new ArrayList<Item>();
 
     /**
      * returns all of the items in Items database
@@ -70,7 +70,7 @@ public class FirebaseItemHandler {
                                 String locationID = document.getString("locationID");
                                 Double cost = document.getDouble( "cost" );
                                 String category = document.getString("category");
-                                Item item = new Item(key, name, date, locationID, cost, category);
+                                Item item = new Item(key, name, Objects.requireNonNull(date), locationID, cost, category);
 
                                 //convert encoded string to bitmap
                                 String encodedImage = document.getString("picture");
@@ -118,8 +118,7 @@ public class FirebaseItemHandler {
 
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document :
-                                    task.getResult()) //noinspection TodoComment
-                            {
+                                    task.getResult()) {
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 
@@ -175,7 +174,7 @@ public class FirebaseItemHandler {
 
 
         // Add a new document with a generated ID
-        Task task = db.collection("items")
+        return db.collection("items")
                 .add(itemMap)
                 .addOnSuccessListener(executor, new OnSuccessListener<DocumentReference>() {
                     @Override
@@ -189,7 +188,6 @@ public class FirebaseItemHandler {
                         Log.w(TAG, "Error adding user", e);
                     }
                 });
-        return task;
 
     }
 

@@ -11,14 +11,12 @@ import com.track.brachio.donationtracker.controller.MainActivity;
  * Activity for the Manager
  */
 public class ManagerMainActivity extends MainActivity {
-    private Button manMainLogout;
-    private Button manManageItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_manager_main );
 
-        Button manGoToLocationsButton = (Button) findViewById(R.id.manLocationButton);
+        Button manGoToLocationsButton = findViewById(R.id.manLocationButton);
         manGoToLocationsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -27,11 +25,12 @@ public class ManagerMainActivity extends MainActivity {
             }
         });
 
-        manMainLogout = findViewById(R.id.manMainLogout);
-        setLogoutButton( manMainLogout );
+        Button manMainLogout = findViewById(R.id.manMainLogout);
+        setLogoutButton(manMainLogout);
 
-        manManageItems = findViewById(R.id.manManageItemsButton);
+        Button manManageItems = findViewById(R.id.manManageItemsButton);
         manManageItems.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ManagerMainActivity.this, ItemListActivityTemp.class);
                 startActivity(intent);
