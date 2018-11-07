@@ -30,17 +30,17 @@ public class ItemListAdapter extends
      */
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public final TextView nameText;
-        public TextView dateText;
-        public TextView valueText;
-        public TextView categoryText;
+        private final TextView nameText;
+        private final TextView dateText;
+        private final TextView valueText;
+        private final TextView categoryText;
         private final View v;
 
         /**
          * Constructor for ItemViewHolder
          * @param v view being passed in
          */
-        public ItemViewHolder(View v) {
+        private ItemViewHolder(View v) {
             super(v);
             this.v = v;
             nameText = v.findViewById(R.id.item_name_adapter);
@@ -54,7 +54,7 @@ public class ItemListAdapter extends
          * @param theItem item being binded
          * @param listener listeneer on the list
          */
-        public void bind(final Item theItem, final OnItemClickListener listener) {
+        private void bind(final Item theItem, final OnItemClickListener listener) {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

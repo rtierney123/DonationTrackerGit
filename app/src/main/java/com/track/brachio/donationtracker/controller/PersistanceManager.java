@@ -107,7 +107,7 @@ public class PersistanceManager {
     /**
      * goes to main page
      */
-    public void goToMainPage(){
+    private void goToMainPage(){
         User currentUser = CurrentUser.getInstance().getUser();
 
         //set what locations user can edit items
@@ -202,7 +202,7 @@ public class PersistanceManager {
      * returns all items
      * @return task with items
      */
-    public Task getAllItems() {
+    private Task getAllItems() {
         FirebaseItemHandler itemHandler = new FirebaseItemHandler();
         return itemHandler.getAllItems();
     }

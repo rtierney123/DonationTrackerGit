@@ -109,7 +109,7 @@ public class ItemListFragment extends Fragment {
         // use a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
-        Button editButton= view.findViewById(R.id.editButton);
+        FloatingActionButton editButton= view.findViewById(R.id.editButton);
         Spinner locSpinner= view.findViewById(R.id.locSpinner);
         Spinner categorySpinner= view.findViewById( R.id.categorySpinner );
         SearchView searchView = view.findViewById(R.id.nameSearchView);
@@ -236,7 +236,7 @@ public class ItemListFragment extends Fragment {
      * returns all of the locaitons id
      * @return list of ids
      */
-    public List<String> getAllLocationIds(){
+    private List<String> getAllLocationIds(){
         UserLocations locs = UserLocations.getInstance();
         List<Location> array = locs.getLocations();
         List<String> ids = new ArrayList<>();
@@ -250,7 +250,7 @@ public class ItemListFragment extends Fragment {
     /**
      * populates the recycler view
      */
-    public void populateRecycleView() {
+    private void populateRecycleView() {
         String locID = getCurrentLocationID();
 
         SearchedItems searched = SearchedItems.getInstance();

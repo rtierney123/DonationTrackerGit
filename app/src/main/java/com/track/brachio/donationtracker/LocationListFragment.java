@@ -103,7 +103,7 @@ public class LocationListFragment extends Fragment {
     /**
      * populates recycler view
      */
-    public void populateRecycleView() {
+    private void populateRecycleView() {
         ArrayList<Location> locations = AllLocations.getInstance().getLocationArray();
 
         // populate view based on locations and adapter specifications

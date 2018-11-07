@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void logOut(){
+    private void logOut(){
         PersistanceManager manager = new PersistanceManager( this);
         PersistanceManager.signOut();
         Intent intent = new Intent( this, LoginActivity.class);

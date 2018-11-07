@@ -272,13 +272,6 @@ public class ItemEditActivity extends AppCompatActivity {
         comments = array;
     }
 
-    /**
-     * sets up Recycle view
-     * @param view current view
-     */
-    public void setUpRecyclerView(RecyclerView view) {
-
-    }
 
     /**
      * populates the recyclerview
@@ -310,7 +303,7 @@ public class ItemEditActivity extends AppCompatActivity {
         public static class CommentViewHolder extends RecyclerView.ViewHolder {
             private final TextView commentText;
             private final View v;
-            public CommentViewHolder(View v) {
+            private CommentViewHolder(View v) {
                 super(v);
                 this.v = v;
                 commentText = v.findViewById(R.id.textView14);
@@ -324,7 +317,7 @@ public class ItemEditActivity extends AppCompatActivity {
          * Adapter for comment list
          * @param array array being displayed
          */
-        public CommentListAdapter(List<String> array) {
+        private CommentListAdapter(List<String> array) {
             this.theComments = array;
         }
 
@@ -352,9 +345,6 @@ public class ItemEditActivity extends AppCompatActivity {
             return theComments.size();
         }
 
-        @Override
-        public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-            super.onAttachedToRecyclerView(recyclerView);
-        }
+
     }
 }

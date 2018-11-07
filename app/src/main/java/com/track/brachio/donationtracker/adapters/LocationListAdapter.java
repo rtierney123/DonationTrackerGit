@@ -46,7 +46,7 @@ public class LocationListAdapter extends
          * @param item current item being binded
          * @param listener current listener
          */
-        public void bind(final Location item, final OnItemClickListener listener) {
+        private void bind(final Location item, final OnItemClickListener listener) {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
