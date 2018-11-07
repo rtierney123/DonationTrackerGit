@@ -40,16 +40,16 @@ public class ItemAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
 
-        itemName = (EditText) findViewById(R.id.addItemNameID);
-        location = (EditText) findViewById(R.id.addItemLocationID);
+        itemName = findViewById(R.id.addItemNameID);
+        location = findViewById(R.id.addItemLocationID);
         shortDescription = findViewById(R.id.addItemShortDescID);
         longDescription = findViewById(R.id.addItemLongDescID);
         dollarValue = findViewById(R.id.addItemDollarValue);
-        itemCategory = (Spinner) findViewById(R.id.addItemCategoryID);
-        comment = (EditText) findViewById(R.id.addItemCommentID);
-        Button addButton = (Button) findViewById(R.id.addItemAddID);
-        Button cancelButton = (Button) findViewById(R.id.addItemCancelButton);
-        ImageButton newimage = (ImageButton) findViewById(R.id.addItemImage);
+        itemCategory = findViewById(R.id.addItemCategoryID);
+        comment = findViewById(R.id.addItemCommentID);
+        Button addButton = findViewById(R.id.addItemAddID);
+        Button cancelButton = findViewById(R.id.addItemCancelButton);
+        ImageButton newimage = findViewById(R.id.addItemImage);
 
         PersistanceManager manager = new PersistanceManager( this );
 

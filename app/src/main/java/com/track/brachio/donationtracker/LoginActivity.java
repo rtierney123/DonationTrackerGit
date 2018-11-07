@@ -32,10 +32,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Button loginButton = findViewById(R.id.loginButton);
-        Button guestButton = (Button) findViewById(R.id.guestButton);
+        Button guestButton = findViewById(R.id.guestButton);
         usernameField = findViewById(R.id.emailBox);
-        passwordField = (EditText) findViewById(R.id.passwordBox);
-        optionButton = (ImageButton) findViewById(R.id.login_option_register);
+        passwordField = findViewById(R.id.passwordBox);
+        optionButton = findViewById(R.id.login_option_register);
 
         FirebaseUserHandler handler = new FirebaseUserHandler();
 

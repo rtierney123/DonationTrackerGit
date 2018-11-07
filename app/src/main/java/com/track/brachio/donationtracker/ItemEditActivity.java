@@ -67,19 +67,19 @@ public class ItemEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_edit);
 
-        TextView itemName = (TextView) findViewById(R.id.editItemNameID);
+        TextView itemName = findViewById(R.id.editItemNameID);
         TextView dateCreated = findViewById(R.id.editItemDateCreatedID);
         newLocation = findViewById(R.id.editItemLocationID);
         newShortDescription = findViewById(R.id.editItemShortDescription);
-        newLongDescription = (EditText) findViewById(R.id.editItemLongDescriptionID);
-        newDollarValue = (EditText) findViewById(R.id.editItemValueID);
-        newItemCategory = (Spinner) findViewById(R.id.editItemCategoryID);
-        newComments = (EditText) findViewById(R.id.editItemAddCommentID);
-        newCommentsRecyclerView = (RecyclerView) findViewById(R.id.editItemCommentsID);
-        newImage = (ImageButton) findViewById(R.id.editItemImage);
-        cancelButton = (Button) findViewById(R.id.editItemCancelButton);
-        addButton = (Button) findViewById(R.id.editItemMakeChangesID);
-        deleteButton = (Button) findViewById(R.id.editItemDeleteButton);
+        newLongDescription = findViewById(R.id.editItemLongDescriptionID);
+        newDollarValue = findViewById(R.id.editItemValueID);
+        newItemCategory = findViewById(R.id.editItemCategoryID);
+        newComments = findViewById(R.id.editItemAddCommentID);
+        newCommentsRecyclerView = findViewById(R.id.editItemCommentsID);
+        newImage = findViewById(R.id.editItemImage);
+        cancelButton = findViewById(R.id.editItemCancelButton);
+        addButton = findViewById(R.id.editItemMakeChangesID);
+        deleteButton = findViewById(R.id.editItemDeleteButton);
 
         //DO WE NEED??
         newCommentsRecyclerView.setHasFixedSize(true);
@@ -316,7 +316,7 @@ public class ItemEditActivity extends AppCompatActivity {
             public CommentViewHolder(View v) {
                 super(v);
                 this.v = v;
-                commentText = (TextView) v.findViewById(R.id.textView14);
+                commentText = v.findViewById(R.id.textView14);
             }
 
             //do I need Bind?

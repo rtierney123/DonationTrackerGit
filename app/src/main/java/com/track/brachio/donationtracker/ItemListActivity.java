@@ -61,10 +61,10 @@ public class ItemListActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_item_list );
-        Toolbar toolbar = (Toolbar) findViewById( R.id.toolbar );
+        Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
 
-        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_layout );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
@@ -277,8 +277,8 @@ public class ItemListActivity extends AppCompatActivity
                 this.v = v;
                 nameText = v.findViewById(R.id.item_name_adapter);
                 dateText = v.findViewById(R.id.item_date_adapter);
-                valueText = (TextView) v.findViewById(R.id.item_cost_adapter);
-                categoryText = (TextView) v.findViewById(R.id.item_category_adapter);
+                valueText = v.findViewById(R.id.item_cost_adapter);
+                categoryText = v.findViewById(R.id.item_category_adapter);
             }
 
             /**
@@ -363,7 +363,7 @@ public class ItemListActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_layout );
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
@@ -413,7 +413,7 @@ public class ItemListActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_layout );
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }

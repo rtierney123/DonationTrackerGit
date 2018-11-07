@@ -34,14 +34,14 @@ public class LocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
-        TextView locationName = (TextView) findViewById(R.id.locationNameID);
+        TextView locationName = findViewById(R.id.locationNameID);
         longitude = findViewById(R.id.longitudeID);
         TextView latitude = findViewById(R.id.latitudeID);
-        TextView address = (TextView) findViewById(R.id.addressID);
+        TextView address = findViewById(R.id.addressID);
         phone = findViewById(R.id.phoneID);
-        website = (TextView) findViewById(R.id.websiteID);
-        locationType = (TextView) findViewById(R.id.locationTypeID);
-        backButton = (Button) findViewById(R.id.backButtonID);
+        website = findViewById(R.id.websiteID);
+        locationType = findViewById(R.id.locationTypeID);
+        backButton = findViewById(R.id.backButtonID);
 
         FirebaseLocationHandler handler = new FirebaseLocationHandler();
 

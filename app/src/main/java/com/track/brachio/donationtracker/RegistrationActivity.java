@@ -34,10 +34,10 @@ public class RegistrationActivity extends AppCompatActivity {
         Button registerButton = findViewById(R.id.registerButton);
         Button cancelButton = findViewById(R.id.cancelButtonR);
         firstNameField = findViewById(R.id.first_nameR);
-        lastNameField = (EditText) findViewById(R.id.last_nameR);
-        emailField = (EditText) findViewById(R.id.emailBoxR);
-        passwordField = (EditText) findViewById(R.id.passwordBoxR);
-        userTypeSpinner = (Spinner) findViewById(R.id.userType);
+        lastNameField = findViewById(R.id.last_nameR);
+        emailField = findViewById(R.id.emailBoxR);
+        passwordField = findViewById(R.id.passwordBoxR);
+        userTypeSpinner = findViewById(R.id.userType);
 
         FirebaseUserHandler handler = new FirebaseUserHandler();
 

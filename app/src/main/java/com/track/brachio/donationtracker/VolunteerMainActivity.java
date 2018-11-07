@@ -25,7 +25,7 @@ public class VolunteerMainActivity extends MainActivity {
         super.onCreate(savedInstanceState );
         setContentView(R.layout.activity_volunteer_main);
 
-        Button volGoToLocationsButton = (Button) findViewById(R.id.volLocationButton);
+        Button volGoToLocationsButton = findViewById(R.id.volLocationButton);
         volGoToLocationsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,7 +60,7 @@ public class VolunteerMainActivity extends MainActivity {
         Spinner userSpinner = findViewById(R.id.view_location_spinner);
         populator.populateSpinner( userSpinner, spinnerArray , this);
 
-        Button volManagerItems = (Button) findViewById(R.id.volManagerItemsButton);
+        Button volManagerItems = findViewById(R.id.volManagerItemsButton);
         volManagerItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
