@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
+import com.track.brachio.donationtracker.adapters.ItemListAdapter;
 import com.track.brachio.donationtracker.controller.UIPopulator;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.ItemType;
@@ -305,15 +306,14 @@ public class ItemListFragment extends Fragment {
 
 
         // populate view based on items and adapter specifications
-        adapter = new ItemListActivityTemp.ItemListAdapter(displayItems,
-                new ItemListActivityTemp.ItemListAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Item item) {
-                        CurrentItem.getInstance().setItem(item);
-                        Intent intent = new Intent(containerActivity, ItemDetailActivity.class);
-                        startActivity(intent);
-                    }
-                });
+        adapter =  new ItemListAdapter( displayItems, new ItemListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Item item) {
+                CurrentItem.getInstance().setItem(item);
+                Intent intent = new Intent(containerActivity, ItemDetailActivity.class);
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter( adapter );
 
 

@@ -106,7 +106,7 @@ public class ItemAddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("Add Item", "Add Item Canceled");
-                Intent intent = new Intent(ItemAddActivity.this, ItemListActivityTemp.class);
+                Intent intent = new Intent(ItemAddActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

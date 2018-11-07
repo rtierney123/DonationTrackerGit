@@ -45,9 +45,6 @@
             android:name=".LocationActivity"
             android:label=".LocationActivity" />
         <activity
-            android:name=".ItemListActivityTemp"
-            android:label=".EditableItemListActivity" />
-        <activity
             android:name=".ItemEditActivity"
             android:label=".EditItemActivity" />
         <activity

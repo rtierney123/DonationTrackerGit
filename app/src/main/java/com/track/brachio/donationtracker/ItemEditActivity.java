@@ -164,7 +164,7 @@ public class ItemEditActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("Edit Item", "Edit Item Canceled");
 
-                Intent intent = new Intent(ItemEditActivity.this, ItemListActivityTemp.class);
+                Intent intent = new Intent(ItemEditActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
