@@ -63,6 +63,9 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme"></activity>
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
 </manifest>
