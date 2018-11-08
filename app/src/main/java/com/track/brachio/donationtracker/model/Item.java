@@ -74,8 +74,8 @@ public class Item {
                 if (code.equals(legalItemTypes.get(i))) {
                     return i;
                 }
-                i++;
             }
+            i++;
         }
         return 0;
     }
