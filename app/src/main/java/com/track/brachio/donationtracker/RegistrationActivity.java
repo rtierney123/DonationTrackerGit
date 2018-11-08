@@ -15,6 +15,9 @@ import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Activity for registration
  */
@@ -66,6 +69,9 @@ public class RegistrationActivity extends AppCompatActivity {
                         && !passwordEntered.isEmpty()) {
                     User newUser = new User(firstNameEntered, lastNameEntered,
                             emailEntered, userTypeSelected);
+                    Calendar cal = Calendar.getInstance();
+                    Date today = cal.getTime();
+                    newUser.setTimestamp( today );
                     handler.createNewUser(newUser, passwordEntered,
                             RegistrationActivity.this, RegistrationActivity.this);
                 } else {
