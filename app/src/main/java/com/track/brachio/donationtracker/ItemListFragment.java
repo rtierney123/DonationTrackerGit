@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.SearchView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.track.brachio.donationtracker.adapters.ItemListAdapter;
 import com.track.brachio.donationtracker.controller.UIPopulator;
@@ -275,6 +276,7 @@ public class ItemListFragment extends Fragment {
             } else {
                 //clear items for location without items
                 items.clear();
+
             }
         }
 
@@ -294,6 +296,11 @@ public class ItemListFragment extends Fragment {
                     }
                 }
             }
+        }
+
+        //show that no items were found
+        if (displayItems.size() == 0){
+            Toast.makeText(this.getActivity(), "No items found for this criteria.",  Toast.LENGTH_LONG).show();
         }
 
 

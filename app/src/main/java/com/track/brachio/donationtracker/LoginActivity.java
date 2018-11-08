@@ -23,9 +23,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passwordField;
     private ImageButton optionButton;
 
-    //user logging in if successful
-    private User _currentUser;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -42,8 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("login", "clicked");
-                //Log.d stuff? to console??
                 String enteredPassword;
                 String enteredEmail;
 
