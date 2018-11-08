@@ -255,6 +255,7 @@ public class ItemListFragment extends Fragment {
         SearchedItems searched = SearchedItems.getInstance();
         Map<String, Map<String, Item>> storeItems = searched.getSearchedMap();
 
+
         Map<String, Item> itemMap;
         if(locIndex == 0){
             items.clear();
@@ -271,6 +272,9 @@ public class ItemListFragment extends Fragment {
 
             if(!(itemMap ==null)) {
                 items = new ArrayList<>(itemMap.values());
+            } else {
+                //clear items for location without items
+                items.clear();
             }
         }
 
