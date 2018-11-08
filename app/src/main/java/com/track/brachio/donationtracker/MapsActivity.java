@@ -31,7 +31,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private Spinner locationDisplayed;
-
+    private List<Location> locations;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +40,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationDisplayed = findViewById(R.id.locationsOnMaps);
         UIPopulator ui = new UIPopulator();
         List<String> names = new ArrayList<>();
-        List<Location> array = UserLocations.getInstance().getLocations();
-        for (Location loc : array) {
-            names.add(loc.getName());
+        locations = UserLocations.getInstance().getLocations();
+
+        for (Location location : locations){
+            names.add(location.getName());
         }
 
         ui.populateSpinner(locationDisplayed, names, this);
@@ -52,19 +53,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         Objects.requireNonNull(mapFragment).getMapAsync(this);
 
+
         locationDisplayed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View v, int position, long id)
             {
-                Log.e("Drop Down", locationDisplayed.getSelectedItem() + " ");
-                Log.e("Test", array.get(position).toString() + "");
                 LatLng loc = new LatLng(
-                        array.get(position).getLongitude(), array.get(position).getLatitude());
-                mMap.addMarker(
-                        new MarkerOptions().position(loc).title("ID: " + array.get(position).getId()
-                                + " Name: " + array.get(position).getName()
-                                + "\n Phone Number: " + array.get(position).getPhone()));
+                        locations.get(position).getLongitude(), locations.get(position).getLatitude());
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 12.0f));
             }
 
@@ -89,13 +85,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        addMarkers();
+    }
 
-        // Add a marker in Sydney and move the camera
-        LatLng AFDStation4 = new LatLng(33.75416, -84.37742);
-        mMap.addMarker(new MarkerOptions().position(AFDStation4).title("ID: 1 Name: AFD Station 4"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(AFDStation4, 12.0f));
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    private void addMarkers(){
+
+        for(int i = 0; i < locations.size(); i++){
+            LatLng loc = new LatLng(
+                    locations.get(i).getLongitude(), locations.get(i).getLatitude());
+            mMap.addMarker(
+                    new MarkerOptions().position(loc).title(locations.get(i).getName())
+                            .snippet(locations.get(i).getPhone()));
+        }
+
     }
 }
