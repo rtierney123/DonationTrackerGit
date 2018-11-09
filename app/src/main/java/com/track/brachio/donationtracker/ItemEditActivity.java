@@ -291,7 +291,7 @@ public class ItemEditActivity extends AppCompatActivity {
     /**
      * Adapter for Comment List
      */
-    private static class CommentListAdapter extends
+    private static final class CommentListAdapter extends
             RecyclerView.Adapter<ItemEditActivity
                     .CommentListAdapter.CommentViewHolder> {
         private final List<String> theComments;
@@ -300,7 +300,7 @@ public class ItemEditActivity extends AppCompatActivity {
         /**
          * Holder for Comment View
          */
-        public static class CommentViewHolder extends RecyclerView.ViewHolder {
+        public static final class CommentViewHolder extends RecyclerView.ViewHolder {
             private final TextView commentText;
             private final View v;
             private CommentViewHolder(View v) {
