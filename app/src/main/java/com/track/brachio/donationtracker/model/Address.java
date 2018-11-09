@@ -65,13 +65,15 @@ public class Address {
         this.streetAddress = streetAddress;
     }
 
-    /**
-     * setter - city
-     * @param city city location
-     */
-    public void setCity(String city) {
-        this.city = city;
-    }
+// --Commented out by Inspection START (11/9/18, 1:41 PM):
+//    /**
+//     * setter - city
+//     * @param city city location
+//     */
+//    public void setCity(String city) {
+//        this.city = city;
+//    }
+// --Commented out by Inspection STOP (11/9/18, 1:41 PM)
 
     /**
      * setter
