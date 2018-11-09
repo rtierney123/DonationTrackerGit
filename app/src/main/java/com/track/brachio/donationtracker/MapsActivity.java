@@ -30,14 +30,13 @@ import android.util.Log;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Spinner locationDisplayed;
     private List<Location> locations;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        locationDisplayed = findViewById(R.id.locationsOnMaps);
+        Spinner locationDisplayed = findViewById(R.id.locationsOnMaps);
         UIPopulator ui = new UIPopulator();
         List<String> names = new ArrayList<>();
         locations = UserLocations.getInstance().getLocations();
