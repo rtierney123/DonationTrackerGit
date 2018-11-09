@@ -117,7 +117,7 @@ public class FirebaseItemHandler {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-                        if (task.isSuccessful() && task != null) {
+                        if (task.isSuccessful() && (task != null)) {
                             for (DocumentSnapshot document :
                                     task.getResult()) {
 
