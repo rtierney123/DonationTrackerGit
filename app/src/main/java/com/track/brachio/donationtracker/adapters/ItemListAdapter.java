@@ -1,6 +1,10 @@
 package com.track.brachio.donationtracker.adapters;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,6 +39,7 @@ public class ItemListAdapter extends
         private final TextView valueText;
         private final TextView categoryText;
         private final View v;
+
 
         /**
          * Constructor for ItemViewHolder
@@ -95,6 +100,7 @@ public class ItemListAdapter extends
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.adapter_item_list, parent, false);
+        Context context = v.getContext();
 
         return new ItemViewHolder(v);
 
@@ -107,6 +113,7 @@ public class ItemListAdapter extends
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.nameText.setText(items.get(position).getName());
+
         if (items.get(position).getDateCreated() != null){
             holder.dateText.setText(items.get(position).getDateCreated().toString());
         }
