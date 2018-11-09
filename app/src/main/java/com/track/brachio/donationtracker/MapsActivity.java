@@ -59,9 +59,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onItemSelected(AdapterView<?> arg0, View v, int position, long id)
             {
+                float zoomFactor = 12.0f;
                 LatLng loc = new LatLng(
                         locations.get(position).getLongitude(), locations.get(position).getLatitude());
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 12.0f));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, zoomFactor));
             }
 
             @Override
