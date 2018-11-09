@@ -30,14 +30,13 @@ import android.util.Log;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Spinner locationDisplayed;
     private List<Location> locations;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        locationDisplayed = findViewById(R.id.locationsOnMaps);
+        Spinner locationDisplayed = findViewById(R.id.locationsOnMaps);
         UIPopulator ui = new UIPopulator();
         List<String> names = new ArrayList<>();
         locations = UserLocations.getInstance().getLocations();
@@ -59,9 +58,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onItemSelected(AdapterView<?> arg0, View v, int position, long id)
             {
+                float zoomFactor = 12.0f;
                 LatLng loc = new LatLng(
                         locations.get(position).getLongitude(), locations.get(position).getLatitude());
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 12.0f));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, zoomFactor));
             }
 
             @Override

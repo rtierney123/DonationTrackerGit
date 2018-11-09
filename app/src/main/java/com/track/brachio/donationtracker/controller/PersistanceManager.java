@@ -88,8 +88,9 @@ public class PersistanceManager {
      */
     private void initializeVariables() {
         int numCores = Runtime.getRuntime().availableProcessors();
+        long aliveTime = 60L;
         executor = new ThreadPoolExecutor( numCores * 2, numCores * 2,
-                60L, TimeUnit.SECONDS, new LinkedBlockingQueue<>() );
+                aliveTime, TimeUnit.SECONDS, new LinkedBlockingQueue<>() );
     }
 
     /**

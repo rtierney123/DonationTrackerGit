@@ -32,7 +32,7 @@ public class ItemListAdapter extends
     /**
      * Holder for Item View
      */
-    public static class ItemViewHolder extends RecyclerView.ViewHolder {
+    public static final class ItemViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         private final TextView nameText;
         private final TextView dateText;
