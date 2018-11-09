@@ -64,13 +64,6 @@ public class ItemListFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     /**
-     * Constructor for ItemListFragment
-     */
-    public ItemListFragment() {
-        // Required empty public constructor
-    }
-
-    /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
@@ -312,7 +305,7 @@ public class ItemListFragment extends Fragment {
         }
 
         //show that no items were found
-        if (displayItems.size() == 0){
+        if (displayItems.isEmpty()){
             Toast.makeText(this.getActivity(), "No items found for this criteria.",  Toast.LENGTH_LONG).show();
         }
 
