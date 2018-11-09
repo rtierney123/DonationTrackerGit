@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
  */
 public class Address {
     private String streetAddress;
-    private String city;
+    private final String city;
     private String state;
     private double zip;
 
@@ -57,13 +57,15 @@ public class Address {
         return zip;
     }
 
-    /**
-     * setter - address
-     * @param streetAddress street address
-     */
-    public void setStreetAddress(String streetAddress) {
-        this.streetAddress = streetAddress;
-    }
+// --Commented out by Inspection START (11/9/18, 1:43 PM):
+//    /**
+//     * setter - address
+//     * @param streetAddress street address
+//     */
+//    public void setStreetAddress(String streetAddress) {
+//        this.streetAddress = streetAddress;
+//    }
+// --Commented out by Inspection STOP (11/9/18, 1:43 PM)
 
 // --Commented out by Inspection START (11/9/18, 1:41 PM):
 //    /**
@@ -75,13 +77,17 @@ public class Address {
 //    }
 // --Commented out by Inspection STOP (11/9/18, 1:41 PM)
 
-    /**
-     * setter
-     * @param state state location
-     */
-    public void setState(String state) {
-        this.state = state;
-    }
+// --Commented out by Inspection START (11/9/18, 1:43 PM):
+//// --Commented out by Inspection START (11/9/18, 1:43 PM):
+////    /**
+////     * setter
+////     * @param state state location
+////     */
+////    public void setState(String state) {
+// --Commented out by Inspection STOP (11/9/18, 1:43 PM)
+//        this.state = state;
+//    }
+// --Commented out by Inspection STOP (11/9/18, 1:43 PM)
 
     /**
      * setter - cip
