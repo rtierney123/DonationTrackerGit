@@ -41,6 +41,9 @@ public class LocationListFragment extends Fragment {
     @Nullable
     private OnFragmentInteractionListener mListener;
 
+    /**
+     * Constructor for LocationListFragment
+     */
     public LocationListFragment() {
         // Required empty public constructor
     }

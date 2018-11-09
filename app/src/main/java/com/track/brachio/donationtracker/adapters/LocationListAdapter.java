@@ -61,6 +61,10 @@ public class LocationListAdapter extends
      * listener for clicking of list item
      */
     public interface OnItemClickListener {
+        /**
+         * abstract listener for onClick
+         * @param item item being clicked
+         */
         void onItemClick(Location item);
     }
 

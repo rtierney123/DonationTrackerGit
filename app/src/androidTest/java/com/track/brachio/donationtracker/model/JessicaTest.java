@@ -8,9 +8,15 @@ import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
+/**
+ * Jessica JUnit test
+ */
 public class JessicaTest {
     private static final List<ItemType> legalItemTypes = Arrays.asList(ItemType.values());
 
+    /**
+     * Tests if input is null
+     */
     @Test
     public void testNullInput() {
         //legalItemTypes is constant
@@ -25,6 +31,9 @@ public class JessicaTest {
 //        assertEquals("Invalid Item type should return 0", 0, Item.findItemTypePosition());
 //    }
 
+    /**
+     * Tests if the code input is valid
+     */
     @Test
     public void testValidCodeInputs() {
         int i = 0;

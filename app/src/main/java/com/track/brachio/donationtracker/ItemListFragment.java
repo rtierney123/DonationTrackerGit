@@ -63,6 +63,9 @@ public class ItemListFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    /**
+     * Constructor for ItemListFragment
+     */
     public ItemListFragment() {
         // Required empty public constructor
     }
@@ -178,6 +181,11 @@ public class ItemListFragment extends Fragment {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
+
+    /**
+     * handler for button press
+     * @param uri parameter
+     */
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction( uri );
@@ -213,6 +221,11 @@ public class ItemListFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
+
+        /**
+         * abstract handler for fragment interaction
+         * @param uri parameter
+         */
         void onFragmentInteraction(Uri uri);
     }
 

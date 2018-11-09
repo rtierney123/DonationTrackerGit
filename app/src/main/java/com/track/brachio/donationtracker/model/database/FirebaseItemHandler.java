@@ -86,7 +86,7 @@ public class FirebaseItemHandler {
                                 if (map.get(locationID) == null){
                                     items = new LinkedHashMap<>( );
                                     items.put(key, item);
-                                    map.put(locationID, items);
+                                    map.put(Objects.requireNonNull(locationID), items);
                                 } else {
                                     items = map.get(locationID);
                                     if (items != null){

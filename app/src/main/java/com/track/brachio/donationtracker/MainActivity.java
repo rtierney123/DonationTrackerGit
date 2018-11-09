@@ -14,7 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.track.brachio.donationtracker.controller.PersistanceManager;
 
-
+/**
+ * Activity for Main page
+ */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ItemListFragment.OnFragmentInteractionListener,  LocationListFragment.OnFragmentInteractionListener{
 
