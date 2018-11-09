@@ -33,7 +33,6 @@ public class LocationActivity extends AppCompatActivity {
         TextView phone = findViewById(R.id.phoneID);
         TextView website = findViewById(R.id.websiteID);
         TextView locationType = findViewById(R.id.locationTypeID);
-        TextView backButton = findViewById(R.id.backButtonID);
 
         FirebaseLocationHandler handler = new FirebaseLocationHandler();
         Location currentLocation;
@@ -47,20 +46,7 @@ public class LocationActivity extends AppCompatActivity {
             website.setText(currentLocation.getWebsite());
             locationType.setText(currentLocation.getStringLocationType());
         }
-
-
-
-
-
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("Location", "Location page canceled");
-                //IDK where this should go, put it to LocationListActivity for now
-                Intent intent = new Intent(LocationActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+        
 
 
     }
