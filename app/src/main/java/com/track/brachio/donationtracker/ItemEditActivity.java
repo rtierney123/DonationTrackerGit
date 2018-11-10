@@ -8,10 +8,12 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,6 +80,7 @@ public class ItemEditActivity extends AppCompatActivity {
         Button cancelButton = findViewById(R.id.editItemCancelButton);
         Button addButton = findViewById(R.id.editItemMakeChangesID);
         Button deleteButton = findViewById(R.id.editItemDeleteButton);
+        ImageButton optionButton = findViewById(R.id.item_edit_options);
 
         //DO WE NEED??
         newCommentsRecyclerView.setHasFixedSize(true);
@@ -157,30 +160,6 @@ public class ItemEditActivity extends AppCompatActivity {
             }
         });
 
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("Edit Item", "Edit Item Canceled");
-
-                Intent intent = new Intent(ItemEditActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-
-            public void onClick(View view) {
-                Log.d("Edit Item", "Item deleted");
-                Toast.makeText( getApplicationContext(),
-                        "Item Deleted",
-                        Toast.LENGTH_SHORT ).show();
-                manager.deleteItem(currentItem, currentActivity);
-
-            }
-
-         });
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA) !=
                 PackageManager.PERMISSION_GRANTED) {
@@ -197,6 +176,41 @@ public class ItemEditActivity extends AppCompatActivity {
         });
 
         newImage.setImageBitmap( currentItem.getPicture() );
+
+        optionButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Creating the instance of PopupMenu
+                PopupMenu popup = new PopupMenu( ItemEditActivity.this, optionButton );
+                //Inflating the Popup using xml file
+                popup.getMenuInflater()
+                        .inflate( R.menu.activity_edit_item_draw, popup.getMenu() );
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener( new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        int id = item.getItemId();
+                        switch (id) {
+                            case R.id.nav_delete_item:
+                                Log.d( "Edit Item", "Item deleted" );
+                                Toast.makeText( getApplicationContext(),
+                                        "Item Deleted",
+                                        Toast.LENGTH_SHORT ).show();
+                                manager.deleteItem( currentItem, currentActivity );
+                                return true;
+                            case R.id.nav_cancel_item:
+                                Log.d( "Edit Item", "Edit Item Canceled" );
+                                Intent intent = new Intent( ItemEditActivity.this, ItemDetailActivity.class );
+                                startActivity( intent );
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                } );
+                popup.show();
+            }
+        } );
 
     }
     @Override
