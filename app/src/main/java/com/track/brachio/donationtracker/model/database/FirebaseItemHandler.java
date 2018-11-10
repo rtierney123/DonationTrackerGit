@@ -1,5 +1,6 @@
 package com.track.brachio.donationtracker.model.database;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -44,7 +45,7 @@ public class FirebaseItemHandler {
      * returns all of the items in Items database
      * @return all Items
      */
-    public Task getAllItems(){
+    public Task getAllItems(Context context){
         // Firestore
         mFirestore = FirebaseFirestore.getInstance();
         items.clear();
@@ -73,7 +74,7 @@ public class FirebaseItemHandler {
 
                                 //convert encoded string to bitmap
                                 String encodedImage = document.getString("picture");
-                                item.setPicture( encodedImage );
+                                //item.setPicture(encodedImage, context);
 
 
                                 String shortDescription = document.getString("shortDescription");
@@ -108,7 +109,7 @@ public class FirebaseItemHandler {
      * gets Item through location
      * @param item item being searched for
      */
-    public void getItemByLocation(Item item) {
+    public void getItemByLocation(Item item, Context context) {
         mFirestore = FirebaseFirestore.getInstance();
         db.collection("items")
                 .whereEqualTo( "locationID", item.getLocation() )
@@ -136,7 +137,7 @@ public class FirebaseItemHandler {
                                 String shortDescription = document.getString("shortDescription");
                                 String longDescription = document.getString("longDescription");
                                 //TODO How to get comment array and picture?
-                                item.setPicture( encodedPic );
+                                item.setPicture( encodedPic, context);
                                 item.setShortDescription( shortDescription );
                                 item.setLongDescription( longDescription );
                                 items.add(item);

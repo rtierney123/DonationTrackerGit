@@ -77,9 +77,7 @@ public class ItemEditActivity extends AppCompatActivity {
         newComments = findViewById(R.id.editItemAddCommentID);
         newCommentsRecyclerView = findViewById(R.id.editItemCommentsID);
         newImage = findViewById(R.id.editItemImage);
-        Button cancelButton = findViewById(R.id.editItemCancelButton);
         Button addButton = findViewById(R.id.editItemMakeChangesID);
-        Button deleteButton = findViewById(R.id.editItemDeleteButton);
         ImageButton optionButton = findViewById(R.id.item_edit_options);
 
         //DO WE NEED??
@@ -175,7 +173,10 @@ public class ItemEditActivity extends AppCompatActivity {
             }
         });
 
-        newImage.setImageBitmap( currentItem.getPicture() );
+        Bitmap picture = currentItem.getPicture();
+        if (picture != null){
+            newImage.setImageBitmap( currentItem.getPicture() );
+        }
 
         optionButton.setOnClickListener( new View.OnClickListener() {
             @Override

@@ -50,6 +50,7 @@
 
     <ImageButton
         android:id="@+id/editItemImage"
+        style="@style/Widget.AppCompat.ImageButton"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="8dp"
@@ -60,39 +61,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal_background" />
+        app:srcCompat="@drawable/ic_menu_camera" />
 
     <TextView
         android:id="@+id/editItemNameID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-condensed"
         android:text="@string/itemname"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editItemImage" />
 
     <ScrollView
         android:id="@+id/scrollView4"
-        android:layout_width="0dp"
+        android:layout_width="368dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/user_enter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editItemImage"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/editItemNameID"
+        tools:layout_editor_absoluteX="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -105,14 +98,15 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
                 android:text="@string/datecreated"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/editItemLocationTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@string/location" />
+                android:text="@string/location"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editItemLocationID"
@@ -127,7 +121,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@string/short_description" />
+                android:text="@string/short_description"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editItemShortDescription"
@@ -142,7 +137,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@string/long_description" />
+                android:text="@string/long_description"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editItemLongDescriptionID"
@@ -157,7 +153,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@string/dollar_value" />
+                android:text="@string/dollar_value"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editItemValueID"
@@ -172,7 +169,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@string/item_category" />
+                android:text="@string/item_category"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/editItemCategoryID"
@@ -184,7 +182,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@string/comments" />
+                android:text="@string/comments"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editItemAddCommentID"
