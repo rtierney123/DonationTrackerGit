@@ -46,7 +46,7 @@ public class LocationActivity extends AppCompatActivity {
             website.setText(currentLocation.getWebsite());
             locationType.setText(currentLocation.getStringLocationType());
         }
-        
+
 
 
     }

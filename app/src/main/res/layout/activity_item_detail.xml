@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-condensed"
         android:text="@string/name"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -27,6 +28,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/item_display"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/date_donated"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/scrollView3"
@@ -54,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/date"
                 app:layout_constraintStart_toStartOf="@+id/textView30"
                 app:layout_constraintTop_toBottomOf="@+id/textView30" />
@@ -62,7 +66,9 @@
                 android:id="@+id/location_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/location"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="@+id/detail_date"
@@ -74,6 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/detail_location"
                 app:layout_constraintTop_toBottomOf="@+id/location_title" />
 
@@ -81,7 +88,9 @@
                 android:id="@+id/short_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/short_description"
                 android:textStyle="bold" />
 
@@ -91,6 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/short_description_detail"
                 android:textStyle="normal" />
 
@@ -98,7 +108,9 @@
                 android:id="@+id/long_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/long_description"
                 android:textStyle="bold" />
 
@@ -108,13 +120,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/long_description_detail" />
 
             <TextView
                 android:id="@+id/value_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/dollar_value"
                 android:textStyle="bold" />
 
@@ -124,13 +139,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/dollar_value_detail" />
 
             <TextView
                 android:id="@+id/category_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/item_category"
                 android:textStyle="bold" />
 
@@ -140,13 +158,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/item_category_detail" />
 
             <TextView
                 android:id="@+id/comment_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/comments"
                 android:textStyle="bold" />
 
@@ -156,6 +177,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/comments_detail" />
 
         </LinearLayout>
