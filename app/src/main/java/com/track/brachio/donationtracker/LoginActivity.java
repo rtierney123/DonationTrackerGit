@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         usernameField = findViewById(R.id.emailBox);
         passwordField = findViewById(R.id.passwordBox);
         optionButton = findViewById(R.id.login_option_register);
+        findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 
         FirebaseUserHandler handler = new FirebaseUserHandler();
 
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                 enteredEmail = usernameField.getText().toString();
 
                 if (!enteredPassword.isEmpty() && !enteredEmail.isEmpty()){
+                    findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
                     handler.signInUser( enteredEmail, enteredPassword,
                             LoginActivity.this, LoginActivity.this);
                 }
@@ -55,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         guestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
                 PersistanceManager manager = new PersistanceManager(LoginActivity.this);
                 manager.loadAppOnStart( LoginActivity.this );
             }

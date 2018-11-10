@@ -79,6 +79,7 @@ public class ItemEditActivity extends AppCompatActivity {
         newImage = findViewById(R.id.editItemImage);
         Button addButton = findViewById(R.id.editItemMakeChangesID);
         ImageButton optionButton = findViewById(R.id.item_edit_options);
+        findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 
         //DO WE NEED??
         newCommentsRecyclerView.setHasFixedSize(true);
@@ -114,6 +115,7 @@ public class ItemEditActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
                 Log.d("Edit Item", "Change Made");
                 String locationEntered = newLocation.getText().toString();
                 String shortDescriptionEntered = newShortDescription.getText().toString();
@@ -198,6 +200,7 @@ public class ItemEditActivity extends AppCompatActivity {
                                         "Item Deleted",
                                         Toast.LENGTH_SHORT ).show();
                                 manager.deleteItem( currentItem, currentActivity );
+                                findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
                                 return true;
                             case R.id.nav_cancel_item:
                                 Log.d( "Edit Item", "Edit Item Canceled" );
@@ -242,25 +245,26 @@ public class ItemEditActivity extends AppCompatActivity {
             if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                 startActivityForResult(takePictureIntent, 100);
             }
-        }
-        @Override
-        protected void onActivityResult ( int requestCode, int resultCode, Intent data){
-            if (requestCode == 100) {
-                if (resultCode == RESULT_OK) {
-                    newImage.setImageURI(file);
-                    Bitmap bitmap = null;
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), file);
-                        //bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Item item = CurrentItem.getInstance().getItem();
-                    item.setPicture(bitmap);
-                    newImage.setImageBitmap(bitmap);
+    }
+
+    @Override
+    protected void onActivityResult ( int requestCode, int resultCode, Intent data){
+        if (requestCode == 100) {
+            if (resultCode == RESULT_OK) {
+                newImage.setImageURI(file);
+                Bitmap bitmap = null;
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), file);
+                    //bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+                Item item = CurrentItem.getInstance().getItem();
+                item.setPicture(bitmap);
+                newImage.setImageBitmap(bitmap);
             }
         }
+    }
 
     /**
      * returns outPutMediaFile
