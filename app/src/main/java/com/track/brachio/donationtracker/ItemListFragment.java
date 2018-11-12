@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.SearchView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.track.brachio.donationtracker.adapters.ItemListAdapter;
 import com.track.brachio.donationtracker.controller.UIPopulator;
@@ -60,12 +62,25 @@ public class ItemListFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
 
+    @Nullable
     private OnFragmentInteractionListener mListener;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    /**
+     * This is a required and empty public constructor
+     */
     public ItemListFragment() {
         // Required empty public constructor
     }
 
+=======
+>>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
+=======
+>>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
+=======
+>>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -177,6 +192,11 @@ public class ItemListFragment extends Fragment {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
+
+    /**
+     * handler for button press
+     * @param uri parameter
+     */
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction( uri );
@@ -212,6 +232,11 @@ public class ItemListFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
+
+        /**
+         * abstract handler for fragment interaction
+         * @param uri parameter
+         */
         void onFragmentInteraction(Uri uri);
     }
 
@@ -220,8 +245,8 @@ public class ItemListFragment extends Fragment {
      * @return id
      */
     private String getCurrentLocationID(){
-        UserLocations locs = UserLocations.getInstance();
-        List<Location> array = locs.getLocations();
+        UserLocations locations = UserLocations.getInstance();
+        List<Location> array = locations.getLocations();
         if (locIndex != 0) {
             Location loc = array.get(locIndex-1);
             return loc.getId();
@@ -232,12 +257,12 @@ public class ItemListFragment extends Fragment {
     }
 
     /**
-     * returns all of the locaitons id
+     * returns all of the locations id
      * @return list of ids
      */
     private List<String> getAllLocationIds(){
-        UserLocations locs = UserLocations.getInstance();
-        List<Location> array = locs.getLocations();
+        UserLocations locations = UserLocations.getInstance();
+        List<Location> array = locations.getLocations();
         List<String> ids = new ArrayList<>();
         for(Location loc : array){
             String id = loc.getId();
@@ -255,6 +280,7 @@ public class ItemListFragment extends Fragment {
         SearchedItems searched = SearchedItems.getInstance();
         Map<String, Map<String, Item>> storeItems = searched.getSearchedMap();
 
+
         Map<String, Item> itemMap;
         if(locIndex == 0){
             items.clear();
@@ -271,6 +297,10 @@ public class ItemListFragment extends Fragment {
 
             if(!(itemMap ==null)) {
                 items = new ArrayList<>(itemMap.values());
+            } else {
+                //clear items for location without items
+                items.clear();
+
             }
         }
 
@@ -292,9 +322,15 @@ public class ItemListFragment extends Fragment {
             }
         }
 
+        //show that no items were found
+        if (displayItems.isEmpty()){
+            Toast.makeText(this.getActivity(), "No items found for this criteria.",  Toast.LENGTH_LONG).show();
+        }
+
 
         // populate view based on items and adapter specifications
-        RecyclerView.Adapter adapter =  new ItemListAdapter( displayItems, new ItemListAdapter.OnItemClickListener() {
+        RecyclerView.Adapter adapter =  new ItemListAdapter( displayItems,
+                new ItemListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Item item) {
                 CurrentItem.getInstance().setItem(item);

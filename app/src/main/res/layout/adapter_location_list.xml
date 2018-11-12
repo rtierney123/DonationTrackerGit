@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/border"
+    android:background="@drawable/item_display"
     android:orientation="vertical">
 
     <TextView
@@ -12,13 +12,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/background_light"
+        android:fontFamily="sans-serif-condensed"
         android:text="@string/textview"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/location_city_adapter"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/background_light"
-        android:text="@string/textview" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/location_city_adapter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@android:color/background_light"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/textview"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
 </LinearLayout>

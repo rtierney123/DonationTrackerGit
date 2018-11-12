@@ -62,7 +62,7 @@
     <string name="datecreated">dateCreated</string>
 
     <string name="edit_add_comment">Add Comment</string>
-    <string name="make_changes">Make Changes</string>
+    <string name="make_changes">Save</string>
     <string name="delete">Delete</string>
 
     <string name="categories">Categories</string>

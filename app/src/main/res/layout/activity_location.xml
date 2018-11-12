@@ -6,19 +6,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:theme="@style/ToolbarTheme"
+            app:popupTheme="@mipmap/ic_launcher">
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:id="@+id/locationNameID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/locationname"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/item_display"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/locationNameID"
+        tools:background="@drawable/item_display">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,38 +62,15 @@
             tools:layout_editor_absoluteY="29dp">
 
             <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="22dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:text="@string/location"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/locationNameID"
-                app:layout_constraintHorizontal_bias="0.021"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="437dp" />
-
-            <TextView
-                android:id="@+id/locationNameID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="18dp"
-                android:layout_marginTop="34dp"
-                android:text="@string/locationname"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toTopOf="@+id/locationTypeID"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                tools:layout_editor_absoluteX="78dp" />
-
-            <TextView
                 android:id="@+id/textView11"
                 android:layout_width="match_parent"
                 android:layout_height="19dp"
-                android:layout_marginEnd="6dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginEnd="6dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/location_type"
+                android:textAlignment="viewStart"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/locationTypeID"
                 app:layout_constraintStart_toStartOf="parent"
@@ -69,6 +80,9 @@
                 android:id="@+id/locationTypeID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="6dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/location_type"
                 app:layout_constraintBottom_toTopOf="@+id/phoneID"
                 app:layout_constraintTop_toTopOf="@+id/textView11"
@@ -79,8 +93,9 @@
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="19dp"
-                android:layout_marginEnd="10dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/latitude"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/latitudeID"
@@ -91,6 +106,9 @@
                 android:id="@+id/latitudeID"
                 android:layout_width="match_parent"
                 android:layout_height="19dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="6dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/latitude"
                 app:layout_constraintBottom_toTopOf="@+id/longitudeID"
                 app:layout_constraintTop_toBottomOf="@+id/locationTypeID"
@@ -101,8 +119,9 @@
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/longitude"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/longitudeID"
@@ -113,6 +132,9 @@
                 android:id="@+id/longitudeID"
                 android:layout_width="match_parent"
                 android:layout_height="19dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="6dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/longitude"
                 app:layout_constraintBottom_toTopOf="@+id/addressID"
                 app:layout_constraintTop_toBottomOf="@+id/locationTypeID"
@@ -123,8 +145,9 @@
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/phone_number"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/phoneID"
@@ -135,6 +158,9 @@
                 android:id="@+id/phoneID"
                 android:layout_width="match_parent"
                 android:layout_height="19dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="6dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/textview"
                 app:layout_constraintBottom_toTopOf="@+id/websiteID"
                 app:layout_constraintTop_toTopOf="parent"
@@ -145,8 +171,9 @@
                 android:id="@+id/textView10"
                 android:layout_width="match_parent"
                 android:layout_height="19dp"
-                android:layout_marginEnd="13dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginEnd="13dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/address"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/addressID"
@@ -157,6 +184,9 @@
                 android:id="@+id/addressID"
                 android:layout_width="match_parent"
                 android:layout_height="18dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="6dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/address"
                 app:layout_constraintBottom_toTopOf="@+id/phoneID"
                 app:layout_constraintTop_toBottomOf="@+id/locationTypeID"
@@ -167,8 +197,9 @@
                 android:id="@+id/textView12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="14dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginEnd="14dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/website"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/websiteID"
@@ -179,18 +210,13 @@
                 android:id="@+id/websiteID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="6dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/textview"
                 app:layout_constraintBottom_toBottomOf="@+id/textView12"
                 app:layout_constraintTop_toBottomOf="@+id/textView9"
                 tools:layout_editor_absoluteX="82dp" />
-
-            <Button
-                android:id="@+id/backButtonID"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:text="@string/string_back"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="334dp" />
 
         </LinearLayout>
     </ScrollView>

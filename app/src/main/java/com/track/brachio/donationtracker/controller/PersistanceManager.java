@@ -1,6 +1,7 @@
 package com.track.brachio.donationtracker.controller;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
@@ -51,7 +52,7 @@ public class PersistanceManager {
     public void loadAppOnStart(Activity activity) {
         User user = CurrentUser.getInstance().getUser();
         try {
-            gatherData();
+            gatherData(activity);
         } catch (InterruptedException ex) {
             Log.e("Something", "Happened");
         }
@@ -63,7 +64,19 @@ public class PersistanceManager {
      * gather data
      * @throws InterruptedException ** throws Interrupted Exception**
      */
-    private void gatherData() throws InterruptedException {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    private void gatherData(){
+=======
+    private void gatherData(Context context) throws InterruptedException {
+>>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
+=======
+    private void gatherData(Context context) throws InterruptedException {
+>>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
+=======
+    private void gatherData(Context context) throws InterruptedException {
+>>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
         //Get all locations from db so user can view all locations
         FirebaseLocationHandler locHandler = new FirebaseLocationHandler();
         Task task1 = locHandler.getAllLocations();
@@ -72,7 +85,7 @@ public class PersistanceManager {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 FirebaseItemHandler itemHandler = new FirebaseItemHandler();
-                Task task2 = itemHandler.getAllItems();
+                Task task2 = itemHandler.getAllItems(context);
                 task2.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -88,8 +101,9 @@ public class PersistanceManager {
      */
     private void initializeVariables() {
         int numCores = Runtime.getRuntime().availableProcessors();
+        long aliveTime = 60L;
         executor = new ThreadPoolExecutor( numCores * 2, numCores * 2,
-                60L, TimeUnit.SECONDS, new LinkedBlockingQueue<>() );
+                aliveTime, TimeUnit.SECONDS, new LinkedBlockingQueue<>() );
     }
 
     /**
@@ -179,7 +193,7 @@ public class PersistanceManager {
 
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    Task updateTask = getAllItems();
+                    Task updateTask = getAllItems(currentActivity);
                     updateTask.addOnCompleteListener( new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -199,9 +213,9 @@ public class PersistanceManager {
      * returns all items
      * @return task with items
      */
-    private Task getAllItems() {
+    private Task getAllItems(Context context) {
         FirebaseItemHandler itemHandler = new FirebaseItemHandler();
-        return itemHandler.getAllItems();
+        return itemHandler.getAllItems(context);
     }
 
     /**

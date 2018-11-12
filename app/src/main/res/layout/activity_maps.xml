@@ -36,25 +36,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".MapsActivity">
-
-            <!--<Spinner-->
-            <!--android:id="@+id/locationsOnMaps"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginBottom="8dp"-->
-            <!--android:layout_marginEnd="8dp"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginTop="8dp"-->
-            <!--android:gravity="center_vertical|right" />-->
-
-            <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="right|top"-->
-            <!--android:text="Demo Button"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:paddingRight="10dp"/>-->
         </fragment>
     </LinearLayout>
 
