@@ -50,7 +50,7 @@ public class ItemListAdapter extends
             this.v = v;
             nameText = v.findViewById(R.id.item_name_adapter);
             dateText = v.findViewById(R.id.item_date_adapter);
-            valueText = (TextView) v.findViewById(R.id.item_cost_adapter);
+            valueText = v.findViewById(R.id.item_cost_adapter);
             categoryText = v.findViewById(R.id.item_category_adapter);
         }
 
