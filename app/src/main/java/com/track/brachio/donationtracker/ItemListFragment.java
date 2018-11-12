@@ -68,6 +68,7 @@ public class ItemListFragment extends Fragment {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     /**
      * This is a required and empty public constructor
      */
@@ -75,6 +76,8 @@ public class ItemListFragment extends Fragment {
         // Required empty public constructor
     }
 
+=======
+>>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
 =======
 >>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
 =======

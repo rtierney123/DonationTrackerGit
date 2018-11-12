@@ -67,7 +67,11 @@ public class PersistanceManager {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     private void gatherData(){
+=======
+    private void gatherData(Context context) throws InterruptedException {
+>>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
 =======
     private void gatherData(Context context) throws InterruptedException {
 >>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495

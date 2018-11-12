@@ -44,6 +44,7 @@ public class LocationListFragment extends Fragment {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     /**
      * This is a required empty and public constructor
      */
@@ -51,6 +52,8 @@ public class LocationListFragment extends Fragment {
         // Required empty public constructor
     }
 
+=======
+>>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
 =======
 >>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
 =======
