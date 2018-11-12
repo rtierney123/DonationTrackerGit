@@ -65,6 +65,25 @@ public class ItemListFragment extends Fragment {
     @Nullable
     private OnFragmentInteractionListener mListener;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    /**
+     * This is a required and empty public constructor
+     */
+    public ItemListFragment() {
+        // Required empty public constructor
+    }
+
+=======
+>>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
+=======
+>>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
+=======
+>>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
+=======
+>>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -229,8 +248,8 @@ public class ItemListFragment extends Fragment {
      * @return id
      */
     private String getCurrentLocationID(){
-        UserLocations locs = UserLocations.getInstance();
-        List<Location> array = locs.getLocations();
+        UserLocations locations = UserLocations.getInstance();
+        List<Location> array = locations.getLocations();
         if (locIndex != 0) {
             Location loc = array.get(locIndex-1);
             return loc.getId();
@@ -241,12 +260,12 @@ public class ItemListFragment extends Fragment {
     }
 
     /**
-     * returns all of the locaitons id
+     * returns all of the locations id
      * @return list of ids
      */
     private List<String> getAllLocationIds(){
-        UserLocations locs = UserLocations.getInstance();
-        List<Location> array = locs.getLocations();
+        UserLocations locations = UserLocations.getInstance();
+        List<Location> array = locations.getLocations();
         List<String> ids = new ArrayList<>();
         for(Location loc : array){
             String id = loc.getId();
@@ -313,7 +332,8 @@ public class ItemListFragment extends Fragment {
 
 
         // populate view based on items and adapter specifications
-        RecyclerView.Adapter adapter =  new ItemListAdapter( displayItems, new ItemListAdapter.OnItemClickListener() {
+        RecyclerView.Adapter adapter =  new ItemListAdapter( displayItems,
+                new ItemListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Item item) {
                 CurrentItem.getInstance().setItem(item);

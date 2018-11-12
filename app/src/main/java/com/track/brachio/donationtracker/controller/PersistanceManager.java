@@ -51,11 +51,7 @@ public class PersistanceManager {
      */
     public void loadAppOnStart(Activity activity) {
         User user = CurrentUser.getInstance().getUser();
-        try {
-            gatherData(activity);
-        } catch (InterruptedException ex) {
-            Log.e("Something", "Happened");
-        }
+        gatherData(activity);
 
     }
 
@@ -63,7 +59,9 @@ public class PersistanceManager {
     /**
      * gather data
      */
+
     private void gatherData(Context context) {
+
         //Get all locations from db so user can view all locations
         FirebaseLocationHandler locHandler = new FirebaseLocationHandler();
         Task task1 = locHandler.getAllLocations();

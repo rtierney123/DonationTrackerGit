@@ -55,9 +55,9 @@ public class ItemListAdapter extends
         }
 
         /**
-         * binds for the itme view holder
-         * @param theItem item being binded
-         * @param listener listeneer on the list
+         * binds for the time view holder
+         * @param theItem item being bound
+         * @param listener listener on the list
          */
         private void bind(final Item theItem, final OnItemClickListener listener) {
             v.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +86,7 @@ public class ItemListAdapter extends
      * @param array array being assigned
      * @param listener current listener
      */
-    // Provide a suitable constructor (depends on the kind of dataset)
+    // Provide a suitable constructor (depends on the kind of data set)
     public ItemListAdapter(List<Item> array, OnItemClickListener listener) {
         this.items = array;
         this.theItemListener = listener;
@@ -110,7 +110,7 @@ public class ItemListAdapter extends
     @Override
     public void onBindViewHolder(
             @NonNull ItemListAdapter.ItemViewHolder holder, int position) {
-        // - get element from your dataset at this position
+        // - get element from your data set at this position
         // - replace the contents of the view with that element
         holder.nameText.setText(items.get(position).getName());
 
@@ -125,7 +125,7 @@ public class ItemListAdapter extends
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+    // Return the size of your data set (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return items.size();

@@ -43,7 +43,7 @@ public class LocationListAdapter extends
 
         /**
          * binds
-         * @param item current item being binded
+         * @param item current item being bound
          * @param listener current listener
          */
         private void bind(final Location item, final OnItemClickListener listener) {
