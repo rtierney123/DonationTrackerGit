@@ -27,7 +27,7 @@ public class JessicaTest {
 //    @Test
 //    public void testInvalidCodeInput() {
 //        //Test when a code that is invalid is passed in
-//        //actually shouldnt be able to receive this input
+//        //actually shouldn't be able to receive this input
 //        assertEquals("Invalid Item type should return 0", 0, Item.findItemTypePosition());
 //    }
 

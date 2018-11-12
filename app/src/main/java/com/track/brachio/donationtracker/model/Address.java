@@ -6,9 +6,9 @@ import android.support.annotation.NonNull;
  * Information Holder for Address
  */
 public class Address {
-    private String streetAddress;
+    private final String streetAddress;
     private final String city;
-    private String state;
+    private final String state;
     private double zip;
 
     /**
