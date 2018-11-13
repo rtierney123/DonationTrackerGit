@@ -367,9 +367,9 @@ public class Item {
     public String encodePic(){
         if (picture != null){
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-            picture.compress(Bitmap.CompressFormat.JPEG,100, baos);
-            byte [] b=baos.toByteArray();
+            ByteArrayOutputStream base=new  ByteArrayOutputStream();
+            picture.compress(Bitmap.CompressFormat.JPEG,100, base);
+            byte [] b=base.toByteArray();
             String temp=null;
             try{
                 //noinspection CallToSystemGC
@@ -378,11 +378,11 @@ public class Item {
             }catch(Exception e){
                 e.printStackTrace();
             }catch(OutOfMemoryError e){
-                baos=new  ByteArrayOutputStream();
-                picture.compress(Bitmap.CompressFormat.JPEG, compressed, baos);
-                b=baos.toByteArray();
+                base=new  ByteArrayOutputStream();
+                picture.compress(Bitmap.CompressFormat.JPEG, compressed, base);
+                b=base.toByteArray();
                 temp=Base64.encodeToString(b, Base64.DEFAULT);
-                Log.e("EWN", "Out of memory error catched");
+                Log.e("EWN", "Out of memory error has been caught");
             }
             return temp;
 
