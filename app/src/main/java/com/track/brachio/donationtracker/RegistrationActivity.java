@@ -44,7 +44,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
         FirebaseUserHandler handler = new FirebaseUserHandler();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(
+        @SuppressWarnings("unchecked")
+        ArrayAdapter adapter = new ArrayAdapter(
                 this,android.R.layout.simple_spinner_item, User.getLegalUserTypes());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         userTypeSpinner.setAdapter(adapter);

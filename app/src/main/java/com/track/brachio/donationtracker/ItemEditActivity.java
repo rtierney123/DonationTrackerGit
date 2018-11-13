@@ -89,7 +89,8 @@ public class ItemEditActivity extends AppCompatActivity {
 
         manager = new PersistanceManager( this );
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,
+        @SuppressWarnings("unchecked")
+        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,
                 Item.getLegalItemTypes());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         newItemCategory.setAdapter(adapter);

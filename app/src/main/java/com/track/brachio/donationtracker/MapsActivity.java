@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Objects;
 
 import android.widget.AdapterView;
-import android.util.Log;
 
 /**
  * Activity for Google Maps

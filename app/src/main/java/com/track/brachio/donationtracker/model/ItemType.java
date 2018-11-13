@@ -20,7 +20,7 @@ public enum ItemType {
      */
     public static List<String> getArrayList(){
         ItemType[] types = ItemType.values();
-        List<String> names = new ArrayList();
+        List<String> names = new ArrayList<>();
         for(ItemType s : types){
             names.add(s.toString());
         }

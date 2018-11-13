@@ -313,7 +313,13 @@ public class FirebaseUserHandler {
                             lastName = (String) doc.get( "lastname" );
                             email = (String) doc.get( "email" );
                             userType = (String) doc.get( "usertype" );
-                            locationHash= (HashMap<String, Boolean>) doc.get("locationIDs");
+                            try{
+                                //noinspection unchecked
+                                locationHash= (HashMap<String, Boolean>) doc.get("locationIDs");
+                            } catch(ClassCastException ex){
+                                Log.e(TAG, ex.getMessage());
+                            }
+
                         }
                         UserType type = stringToUserType( userType );
                         if (type == UserType.Volunteer) {

@@ -230,6 +230,7 @@ public class ItemListFragment extends Fragment {
          * abstract handler for fragment interaction
          * @param uri parameter
          */
+        @SuppressWarnings("EmptyMethod")
         void onFragmentInteraction(Uri uri);
     }
 
@@ -298,7 +299,7 @@ public class ItemListFragment extends Fragment {
         }
 
 
-        ArrayList<Item> displayItems = new ArrayList();
+        ArrayList<Item> displayItems = new ArrayList<>();
         for(Item item : items){
             int itemCat = item.getCategory().ordinal();
             String itemName = item.getName();

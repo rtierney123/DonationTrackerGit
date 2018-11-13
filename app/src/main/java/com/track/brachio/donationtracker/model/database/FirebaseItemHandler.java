@@ -33,7 +33,7 @@ import java.util.concurrent.ExecutorService;
 /**
  * Handler for Items
  */
-@SuppressWarnings("FeatureEnvy")
+@SuppressWarnings({"FeatureEnvy", "MismatchedQueryAndUpdateOfCollection"})
 public class FirebaseItemHandler {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -70,8 +70,12 @@ public class FirebaseItemHandler {
                                 String locationID = document.getString("locationID");
                                 Double cost = document.getDouble( "cost" );
                                 String category = document.getString("category");
-                                Item item = new Item(key, name, Objects.requireNonNull(date),
-                                        locationID, cost, category);
+                                Item item = new Item(Objects.requireNonNull(key),
+                                        Objects.requireNonNull(name),
+                                        Objects.requireNonNull(date),
+                                        Objects.requireNonNull(locationID),
+                                        Objects.requireNonNull(cost),
+                                        Objects.requireNonNull(category));
 
                                 //convert encoded string to bitmap
                                 String encodedImage = document.getString("picture");
@@ -119,7 +123,7 @@ public class FirebaseItemHandler {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-                        if (task.isSuccessful() && (task != null)) {
+                        if ((task != null) && task.isSuccessful()) {
                             for (DocumentSnapshot document :
                                     task.getResult()) {
 
@@ -132,7 +136,8 @@ public class FirebaseItemHandler {
                                 Double cost = document.getDouble( "cost" );
                                 String category = document.getString("category");
                                 Item item = new Item(key, name,
-                                        Objects.requireNonNull(date), locationID, cost, category);
+                                        Objects.requireNonNull(date), locationID,
+                                        Objects.requireNonNull(cost), category);
 
                                 String encodedPic = document.getString("picture");
                                 String shortDescription = document.getString("shortDescription");

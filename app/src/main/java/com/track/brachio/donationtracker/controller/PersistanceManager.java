@@ -19,7 +19,6 @@ import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -65,11 +64,13 @@ public class PersistanceManager {
         FirebaseLocationHandler locHandler = new FirebaseLocationHandler();
         Task task1 = locHandler.getAllLocations();
 
+        //noinspection unchecked
         task1.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 FirebaseItemHandler itemHandler = new FirebaseItemHandler();
                 Task task2 = itemHandler.getAllItems(contezt);
+                //noinspection unchecked
                 task2.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -173,11 +174,13 @@ public class PersistanceManager {
 
         if (!threadRunning) {
             threadRunning = true;
+            //noinspection unchecked
             editItemTask.addOnCompleteListener( new OnCompleteListener<QuerySnapshot>(){
 
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     Task updateTask = getAllItems(currentActivity);
+                    //noinspection unchecked
                     updateTask.addOnCompleteListener( new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {

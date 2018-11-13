@@ -3,26 +3,16 @@ package com.track.brachio.donationtracker.model;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 
-import com.track.brachio.donationtracker.R;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Arrays;
-import java.util.Random;
 
 /**
  * Information holder for Item
@@ -37,7 +27,7 @@ public class Item {
     private double dollarValue;
     private ItemType category;
     private static final List<ItemType> legalItemTypes = Arrays.asList(ItemType.values());
-    private ArrayList<String> comments = new ArrayList();
+    private ArrayList<String> comments = new ArrayList<>();
     private Bitmap picture;
 
     /**
@@ -365,6 +355,7 @@ public class Item {
             }
         }
         */
+        Log.d("ToDo", "need to uncomment");
         }
 
 
