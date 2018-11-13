@@ -47,12 +47,9 @@ public class LocationListAdapter extends
          * @param listener current listener
          */
         private void bind(final Location item, final OnItemClickListener listener) {
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("LocationListActivity", "To Location");
-                    listener.onItemClick(item);
-                }
+            v.setOnClickListener(v -> {
+                Log.d("LocationListActivity", "To Location");
+                listener.onItemClick(item);
             });
         }
     }

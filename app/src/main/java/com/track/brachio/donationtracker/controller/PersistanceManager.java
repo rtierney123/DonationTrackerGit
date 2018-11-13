@@ -66,19 +66,11 @@ public class PersistanceManager {
         Task task1 = locHandler.getAllLocations();
 
         //noinspection unchecked
-        task1.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                FirebaseItemHandler itemHandler = new FirebaseItemHandler();
-                Task task2 = itemHandler.getAllItems(contezt);
-                //noinspection unchecked
-                task2.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        goToMainPage();
-                    }
-                });
-            }
+        task1.addOnSuccessListener((OnSuccessListener<QuerySnapshot>) queryDocumentSnapshots -> {
+            FirebaseItemHandler itemHandler = new FirebaseItemHandler();
+            Task task2 = itemHandler.getAllItems(contezt);
+            //noinspection unchecked
+            task2.addOnSuccessListener((OnSuccessListener<QuerySnapshot>) queryDocumentSnapshots1 -> goToMainPage());
         });
     }
 
@@ -176,23 +168,16 @@ public class PersistanceManager {
         if (!threadRunning) {
             threadRunning = true;
             //noinspection unchecked
-            editItemTask.addOnCompleteListener( new OnCompleteListener<QuerySnapshot>(){
+            editItemTask.addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
+                Task updateTask = getAllItems(currentActivity);
+                //noinspection unchecked
+                updateTask.addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task1 -> {
+                    threadRunning = false;
+                    Intent intent = new Intent(currentActivity, MainActivity.class);
+                    currentActivity.startActivity(intent);
+                });
 
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    Task updateTask = getAllItems(currentActivity);
-                    //noinspection unchecked
-                    updateTask.addOnCompleteListener( new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            threadRunning = false;
-                            Intent intent = new Intent(currentActivity, MainActivity.class);
-                            currentActivity.startActivity(intent);
-                        }
-                    } );
-
-                }
-            } );
+            });
         }
 
     }

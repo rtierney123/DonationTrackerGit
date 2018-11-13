@@ -35,54 +35,41 @@ public class LoginActivity extends AppCompatActivity {
 
         FirebaseUserHandler handler = new FirebaseUserHandler();
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String enteredPassword;
-                String enteredEmail;
+        loginButton.setOnClickListener(view -> {
+            String enteredPassword;
+            String enteredEmail;
 
-                enteredPassword = passwordField.getText().toString();
-                enteredEmail = usernameField.getText().toString();
+            enteredPassword = passwordField.getText().toString();
+            enteredEmail = usernameField.getText().toString();
 
-                if (!enteredPassword.isEmpty() && !enteredEmail.isEmpty()){
-                    findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
-                    handler.signInUser( enteredEmail, enteredPassword,
-                            LoginActivity.this, LoginActivity.this);
-                }
-            }
-        });
-
-        guestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            if (!enteredPassword.isEmpty() && !enteredEmail.isEmpty()){
                 findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
-                PersistanceManager manager = new PersistanceManager(LoginActivity.this);
-                manager.loadAppOnStart( LoginActivity.this );
+                handler.signInUser( enteredEmail, enteredPassword,
+                        LoginActivity.this, LoginActivity.this);
             }
         });
 
-        optionButton.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Creating the instance of PopupMenu
-                PopupMenu popup = new PopupMenu( LoginActivity.this, optionButton );
-                //Inflating the Popup using xml file
-                popup.getMenuInflater()
-                        .inflate( R.menu.login_options_menu, popup.getMenu() );
-                //registering popup with OnMenuItemClickListener
-                popup.setOnMenuItemClickListener( new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
-                        startActivity(intent);
-                        return true;
-                    }
+        guestButton.setOnClickListener(v -> {
+            findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
+            PersistanceManager manager = new PersistanceManager(LoginActivity.this);
+            manager.loadAppOnStart( LoginActivity.this );
+        });
 
-                } );
+        optionButton.setOnClickListener(v -> {
+            //Creating the instance of PopupMenu
+            PopupMenu popup = new PopupMenu( LoginActivity.this, optionButton );
+            //Inflating the Popup using xml file
+            popup.getMenuInflater()
+                    .inflate( R.menu.login_options_menu, popup.getMenu() );
+            //registering popup with OnMenuItemClickListener
+            popup.setOnMenuItemClickListener(item -> {
+                Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                startActivity(intent);
+                return true;
+            });
 
-                popup.show();
-            }
-        } );
+            popup.show();
+        });
     }
 
 

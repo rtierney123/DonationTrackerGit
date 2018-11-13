@@ -50,46 +50,40 @@ public class RegistrationActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         userTypeSpinner.setAdapter(adapter);
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String firstNameEntered;
-                String lastNameEntered;
-                String emailEntered;
-                String passwordEntered;
-                UserType userTypeSelected;
+        registerButton.setOnClickListener(view -> {
+            String firstNameEntered;
+            String lastNameEntered;
+            String emailEntered;
+            String passwordEntered;
+            UserType userTypeSelected;
 
-                firstNameEntered = firstNameField.getText().toString();
-                lastNameEntered = lastNameField.getText().toString();
-                emailEntered = emailField.getText().toString();
-                passwordEntered = passwordField.getText().toString();
-                userTypeSelected = (UserType) userTypeSpinner.getSelectedItem();
-                //add a default Spinner value
-                if (!firstNameEntered.isEmpty() &&
-                        !lastNameEntered.isEmpty() && !emailEntered.isEmpty()
-                        && !passwordEntered.isEmpty()) {
-                    User newUser = new User(firstNameEntered, lastNameEntered,
-                            emailEntered, userTypeSelected);
-                    Calendar cal = Calendar.getInstance();
-                    Date today = cal.getTime();
-                    newUser.setTimestamp( today );
-                    handler.createNewUser(newUser, passwordEntered,
-                            RegistrationActivity.this, RegistrationActivity.this);
-                } else {
-                    Toast.makeText( RegistrationActivity.this,
-                            "Must fill in all info boxes.", Toast.LENGTH_SHORT ).show();
-                }
-
+            firstNameEntered = firstNameField.getText().toString();
+            lastNameEntered = lastNameField.getText().toString();
+            emailEntered = emailField.getText().toString();
+            passwordEntered = passwordField.getText().toString();
+            userTypeSelected = (UserType) userTypeSpinner.getSelectedItem();
+            //add a default Spinner value
+            if (!firstNameEntered.isEmpty() &&
+                    !lastNameEntered.isEmpty() && !emailEntered.isEmpty()
+                    && !passwordEntered.isEmpty()) {
+                User newUser = new User(firstNameEntered, lastNameEntered,
+                        emailEntered, userTypeSelected);
+                Calendar cal = Calendar.getInstance();
+                Date today = cal.getTime();
+                newUser.setTimestamp( today );
+                handler.createNewUser(newUser, passwordEntered,
+                        RegistrationActivity.this, RegistrationActivity.this);
+            } else {
+                Toast.makeText( RegistrationActivity.this,
+                        "Must fill in all info boxes.", Toast.LENGTH_SHORT ).show();
             }
+
         });
 
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("Registration", "Registration Canceled");
-                Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
+        cancelButton.setOnClickListener(view -> {
+            Log.d("Registration", "Registration Canceled");
+            Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+            startActivity(intent);
         });
     }
 }

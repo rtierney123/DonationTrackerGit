@@ -116,14 +116,11 @@ public class ItemListFragment extends Fragment {
         Spinner locSpinner= view.findViewById(R.id.locSpinner);
         Spinner categorySpinner= view.findViewById( R.id.categorySpinner );
         SearchView searchView = view.findViewById(R.id.nameSearchView);
-        editButton.setOnClickListener (new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("ItemList", "Edit");
-                //putting it to donator main activity for now
-                Intent intent = new Intent(containerActivity, ItemAddActivity.class);
-                startActivity(intent);
-            }
+        editButton.setOnClickListener (view1 -> {
+            Log.d("ItemList", "Edit");
+            //putting it to donator main activity for now
+            Intent intent = new Intent(containerActivity, ItemAddActivity.class);
+            startActivity(intent);
         });
 
         UIPopulator ui = new UIPopulator();
@@ -319,14 +316,11 @@ public class ItemListFragment extends Fragment {
 
         // populate view based on items and adapter specifications
         RecyclerView.Adapter adapter =  new ItemListAdapter( displayItems,
-                new ItemListAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Item item) {
-                CurrentItem.getInstance().setItem(item);
-                Intent intent = new Intent(containerActivity, ItemDetailActivity.class);
-                startActivity(intent);
-            }
-        });
+                item -> {
+                    CurrentItem.getInstance().setItem(item);
+                    Intent intent = new Intent(containerActivity, ItemDetailActivity.class);
+                    startActivity(intent);
+                });
         recyclerView.setAdapter( adapter );
 
 

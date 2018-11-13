@@ -51,13 +51,10 @@ public class ItemDetailActivity extends AppCompatActivity {
         categoryText.setText(currentItem.getCategory().toString());
 
         ImageButton editButton = findViewById( R.id.edit_item_button);
-        editButton.setOnClickListener (new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //putting it to donator main activity for now
-                Intent intent = new Intent(ItemDetailActivity.this, ItemEditActivity.class);
-                startActivity(intent);
-            }
+        editButton.setOnClickListener (view -> {
+            //putting it to donator main activity for now
+            Intent intent = new Intent(ItemDetailActivity.this, ItemEditActivity.class);
+            startActivity(intent);
         });
 
         if (currentItem.getPicture() != null){

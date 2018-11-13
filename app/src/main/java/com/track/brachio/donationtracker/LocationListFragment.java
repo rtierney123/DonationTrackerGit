@@ -86,12 +86,9 @@ public class LocationListFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         Button mapButton = view.findViewById( R.id.mapButtonID );
-        mapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(containerActivity, MapsActivity.class);
-                startActivity(intent);
-            }
+        mapButton.setOnClickListener(view1 -> {
+            Intent intent = new Intent(containerActivity, MapsActivity.class);
+            startActivity(intent);
         });
 
 
@@ -108,14 +105,11 @@ public class LocationListFragment extends Fragment {
 
         // populate view based on locations and adapter specifications
         RecyclerView.Adapter adapter = new LocationListAdapter(locations,
-                new LocationListAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Location item) {
-                CurrentLocation.getInstance().setLocation(item);
-                Intent intent = new Intent(containerActivity, LocationActivity.class);
-                startActivity(intent);
-            }
-        });
+                item -> {
+                    CurrentLocation.getInstance().setLocation(item);
+                    Intent intent = new Intent(containerActivity, LocationActivity.class);
+                    startActivity(intent);
+                });
         recyclerView.setAdapter(adapter);
 
     }

@@ -37,47 +37,44 @@ public class FirebaseLocationHandler {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection( "location" ).whereEqualTo( "locationID", locationID )
-                .get().addOnSuccessListener( new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot documentSnapshots) {
-                if (documentSnapshots.isEmpty()) {
-                    Log.d( TAG, "onSuccess: LIST EMPTY" );
-                } else {
-                    List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
-                    String id = "";
-                    String name = "";
-                    double longitude = 0;
-                    double latitude = 0;
-                    String type = "";
-                    String phone = "";
-                    String website = "";
-                    String streetAddress = "";
-                    String city = "";
-                    String state = "";
-                    long zip = 0;
-                    Log.d(TAG, "onSuccess: Got Location");
+                .get().addOnSuccessListener(documentSnapshots -> {
+                    if (documentSnapshots.isEmpty()) {
+                        Log.d( TAG, "onSuccess: LIST EMPTY" );
+                    } else {
+                        List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
+                        String id = "";
+                        String name = "";
+                        double longitude = 0;
+                        double latitude = 0;
+                        String type = "";
+                        String phone = "";
+                        String website = "";
+                        String streetAddress = "";
+                        String city = "";
+                        String state = "";
+                        long zip = 0;
+                        Log.d(TAG, "onSuccess: Got Location");
 
-                    for (DocumentSnapshot doc : retDocs) {
-                        id = (String) doc.get("locationID");
-                        name  = (String) doc.get( "name" );
-                        longitude = (Double) doc.get( "longitude" );
-                        //noinspection ConstantConditions,ConstantConditions
-                        latitude  = (Double) doc.get( "latitude" );
-                        type = (String) doc.get( "type" );
-                        phone = (String) doc.get("phone");
-                        website = (String) doc.get("website");
-                        streetAddress = (String) doc.get("address");
-                        city = (String) doc.get("city");
-                        state = (String) doc.get("city");
-                        zip = (Long) doc.get("zip");
+                        for (DocumentSnapshot doc : retDocs) {
+                            id = (String) doc.get("locationID");
+                            name  = (String) doc.get( "name" );
+                            longitude = (Double) doc.get( "longitude" );
+                            //noinspection ConstantConditions,ConstantConditions
+                            latitude  = (Double) doc.get( "latitude" );
+                            type = (String) doc.get( "type" );
+                            phone = (String) doc.get("phone");
+                            website = (String) doc.get("website");
+                            streetAddress = (String) doc.get("address");
+                            city = (String) doc.get("city");
+                            state = (String) doc.get("city");
+                            zip = (Long) doc.get("zip");
+                        }
+                        Address address = new Address(streetAddress, city, state, zip);
+                        locationCallback =
+                                new Location(id, name, longitude, latitude,
+                                        type, phone, website, address);
                     }
-                    Address address = new Address(streetAddress, city, state, zip);
-                    locationCallback =
-                            new Location(id, name, longitude, latitude,
-                                    type, phone, website, address);
-                }
-            }
-        } );
+                });
         return locationCallback;
     }
 
@@ -88,49 +85,46 @@ public class FirebaseLocationHandler {
     public Task getAllLocations(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         return db.collection( "location" )
-                .get().addOnSuccessListener( new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot documentSnapshots) {
-                if (documentSnapshots.isEmpty()) {
-                    Log.d( TAG, "onSuccess: LIST EMPTY" );
-                } else {
-                    List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
-                    String id;
-                    String name;
-                    double longitude;
-                    double latitude;
-                    String type;
-                    String phone;
-                    String website;
-                    String streetAddress;
-                    String city;
-                    String state;
-                    long zip;
-                    Log.d(TAG, "onSuccess: Got Locations");
+                .get().addOnSuccessListener(documentSnapshots -> {
+                    if (documentSnapshots.isEmpty()) {
+                        Log.d( TAG, "onSuccess: LIST EMPTY" );
+                    } else {
+                        List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
+                        String id;
+                        String name;
+                        double longitude;
+                        double latitude;
+                        String type;
+                        String phone;
+                        String website;
+                        String streetAddress;
+                        String city;
+                        String state;
+                        long zip;
+                        Log.d(TAG, "onSuccess: Got Locations");
 
-                    locationMap.clear();
-                    for (DocumentSnapshot doc : retDocs) {
-                        id = (String) doc.get("locationID");
-                        name  = (String) doc.get( "name" );
-                        longitude = (Double) doc.get( "longitude" );
-                        latitude  = (Double) doc.get( "latitude" );
-                        type = (String) doc.get( "type" );
-                        phone = (String) doc.get("phone");
-                        website = (String) doc.get("website");
-                        streetAddress = (String) doc.get("address");
-                        city = (String) doc.get("city");
-                        state = (String) doc.get("state");
-                        zip = (Long) doc.get("zip");
-                        Address address = new Address(streetAddress, city, state, zip);
-                        locationCallback =
-                                new Location(id, name, longitude, latitude,
-                                        type, phone, website, address);
-                        locationMap.put(Objects.requireNonNull(id), locationCallback);
+                        locationMap.clear();
+                        for (DocumentSnapshot doc : retDocs) {
+                            id = (String) doc.get("locationID");
+                            name  = (String) doc.get( "name" );
+                            longitude = (Double) doc.get( "longitude" );
+                            latitude  = (Double) doc.get( "latitude" );
+                            type = (String) doc.get( "type" );
+                            phone = (String) doc.get("phone");
+                            website = (String) doc.get("website");
+                            streetAddress = (String) doc.get("address");
+                            city = (String) doc.get("city");
+                            state = (String) doc.get("state");
+                            zip = (Long) doc.get("zip");
+                            Address address = new Address(streetAddress, city, state, zip);
+                            locationCallback =
+                                    new Location(id, name, longitude, latitude,
+                                            type, phone, website, address);
+                            locationMap.put(Objects.requireNonNull(id), locationCallback);
+                        }
+                        AllLocations.getInstance().setLocationMap( locationMap );
                     }
-                    AllLocations.getInstance().setLocationMap( locationMap );
-                }
-            }
-        } );
+                });
     }
     //make sure to replace in LocationListActivity
 
@@ -156,12 +150,7 @@ public class FirebaseLocationHandler {
             locMap.put("state", address.getState());
             locMap.put("zip", address.getZip());
             db.collection("location").document("location").set(locMap)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Log.d(TAG, "Added location.");
-                        }
-                    });
+                    .addOnSuccessListener(aVoid -> Log.d(TAG, "Added location."));
         } else {
             Log.e(TAG, "Entered null location");
         }

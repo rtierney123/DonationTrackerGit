@@ -96,12 +96,9 @@ public class FirebaseUserHandler {
                 .build();
 
         Objects.requireNonNull(user).updateProfile(profileUpdates)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "User profile updated.");
-                        }
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "User profile updated.");
                     }
                 });
     }
@@ -118,12 +115,9 @@ public class FirebaseUserHandler {
                 .build();
 
         Objects.requireNonNull(user).updateProfile(profileUpdates)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "User email address updated.");
-                        }
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "User email address updated.");
                     }
                 });
     }
@@ -136,12 +130,9 @@ public class FirebaseUserHandler {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         Objects.requireNonNull(user).updatePassword(newPassword)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "User password updated.");
-                        }
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "User password updated.");
                     }
                 });
     }
@@ -172,40 +163,32 @@ public class FirebaseUserHandler {
             userMap.put("usertype", appUser.getUserType().name());
             userMap.put("date created", appUser.getTimestamp());
                 auth.createUserWithEmailAndPassword(appUser.getEmail(), password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                try {
-                                    //check if successful
-                                    if (task.isSuccessful()) {
-                                        Log.d(TAG, "Registered");
-                                        FirebaseFirestore db = FirebaseFirestore.getInstance();
-                                        if (auth.getUid() != null) {
-                                            db.collection("users")
-                                                    .document(Objects.requireNonNull(auth.getCurrentUser()).getUid())
-                                                    .set(userMap)
-                                                    .addOnSuccessListener(
-                                                            new OnSuccessListener<Void>() {
-                                                        @Override
-                                                        public void onSuccess(Void aVoid) {
-                                                            Log.d(TAG, "Added extra data");
-                                                        }
-                                                    });
-                                            Intent intent =
-                                                    new Intent(activity, LoginActivity.class);
-                                            registration.startActivity(intent);
-                                        } else {
-                                            Log.e(TAG, "Cannot access current user");
-                                        }
-                                    }else{
-                                        Log.e(TAG, "Not registered");
-                                        Toast.makeText(activity,
-                                                "User with email entered already exists.",
-                                                Toast.LENGTH_LONG).show();
+                        .addOnCompleteListener(task -> {
+                            try {
+                                //check if successful
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "Registered");
+                                    FirebaseFirestore db1 = FirebaseFirestore.getInstance();
+                                    if (auth.getUid() != null) {
+                                        db1.collection("users")
+                                                .document(Objects.requireNonNull(auth.getCurrentUser()).getUid())
+                                                .set(userMap)
+                                                .addOnSuccessListener(
+                                                        aVoid -> Log.d(TAG, "Added extra data"));
+                                        Intent intent =
+                                                new Intent(activity, LoginActivity.class);
+                                        registration.startActivity(intent);
+                                    } else {
+                                        Log.e(TAG, "Cannot access current user");
                                     }
-                                }catch (Exception e){
-                                    e.printStackTrace();
+                                }else{
+                                    Log.e(TAG, "Not registered");
+                                    Toast.makeText(activity,
+                                            "User with email entered already exists.",
+                                            Toast.LENGTH_LONG).show();
                                 }
+                            }catch (Exception e){
+                                e.printStackTrace();
                             }
                         });
 
@@ -228,30 +211,27 @@ public class FirebaseUserHandler {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (!email.isEmpty() && !password.isEmpty()){
            Task task = auth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.d(TAG, "signInWithEmail:success");
-                                getSignedInUser(login);
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                try {
-                                    throw Objects.requireNonNull(task.getException());
-                                } catch(FirebaseAuthWeakPasswordException e) {
-                                    Toast.makeText(activity, e.getReason(),
-                                            Toast.LENGTH_LONG).show();
-                                } catch (FirebaseAuthInvalidUserException e) {
-                                    Toast.makeText(activity,
-                                            "User does not exist.",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                                catch(Exception e) {
-                                    Toast.makeText(activity,
-                                            e.getMessage(),
-                                            Toast.LENGTH_LONG).show();
-                                }
+                    .addOnCompleteListener(task1 -> {
+                        if (task1.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            getSignedInUser(login);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            try {
+                                throw Objects.requireNonNull(task1.getException());
+                            } catch(FirebaseAuthWeakPasswordException e) {
+                                Toast.makeText(activity, e.getReason(),
+                                        Toast.LENGTH_LONG).show();
+                            } catch (FirebaseAuthInvalidUserException e) {
+                                Toast.makeText(activity,
+                                        "User does not exist.",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                            catch(Exception e) {
+                                Toast.makeText(activity,
+                                        e.getMessage(),
+                                        Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -289,50 +269,48 @@ public class FirebaseUserHandler {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.d( TAG, "email " + Objects.requireNonNull(user).getEmail() );
         db.collection( "users" ).whereEqualTo( "email", user.getEmail() )
-                .get().addOnSuccessListener( new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot documentSnapshots) {
-                if (documentSnapshots.isEmpty()) {
-                    Log.d( TAG, "onSuccess: LIST EMPTY" );
-                } else {
-                    // Convert the whole Query Snapshot to a list
-                    // of objects directly! No need to fetch each
-                    // document.
-                    List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
-                    Log.d( TAG, "onSuccess: " + retDocs.get( 0 ).getId() );
-
-                    String firstName = "";
-                    String lastName = "";
-                    String email = "";
-                    String userType = "";
-                    Map<String, Boolean> locationHash = new HashMap<>(  );
-                    for (DocumentSnapshot doc : retDocs) {
-                        firstName = (String) doc.get( "firstname" );
-                        lastName = (String) doc.get( "lastname" );
-                        email = (String) doc.get( "email" );
-                        userType = (String) doc.get( "usertype" );
-                        try{
-                            //noinspection unchecked
-                            locationHash= (HashMap<String, Boolean>) doc.get("locationIDs");
-                        } catch(ClassCastException ex){
-                            Log.e(TAG, ex.getMessage());
-                        }
-
-                    }
-                    UserType type = stringToUserType( userType );
-                    if (type == UserType.Volunteer) {
-                        Set<String> keySet = locationHash.keySet();
-                        ArrayList<String> listOfKeys = new ArrayList<>(keySet);
-                        userCallback = new User(firstName, lastName,
-                                email, userType, listOfKeys);
+                .get().addOnSuccessListener(documentSnapshots -> {
+                    if (documentSnapshots.isEmpty()) {
+                        Log.d( TAG, "onSuccess: LIST EMPTY" );
                     } else {
-                        userCallback = new User( firstName, lastName, email, userType );
+                        // Convert the whole Query Snapshot to a list
+                        // of objects directly! No need to fetch each
+                        // document.
+                        List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
+                        Log.d( TAG, "onSuccess: " + retDocs.get( 0 ).getId() );
+
+                        String firstName = "";
+                        String lastName = "";
+                        String email = "";
+                        String userType = "";
+                        Map<String, Boolean> locationHash = new HashMap<>(  );
+                        for (DocumentSnapshot doc : retDocs) {
+                            firstName = (String) doc.get( "firstname" );
+                            lastName = (String) doc.get( "lastname" );
+                            email = (String) doc.get( "email" );
+                            userType = (String) doc.get( "usertype" );
+                            try{
+                                //noinspection unchecked
+                                locationHash= (HashMap<String, Boolean>) doc.get("locationIDs");
+                            } catch(ClassCastException ex){
+                                Log.e(TAG, ex.getMessage());
+                            }
+
+                        }
+                        assert userType != null;
+                        UserType type = stringToUserType( userType );
+                        if (type == UserType.Volunteer) {
+                            Set<String> keySet = locationHash.keySet();
+                            ArrayList<String> listOfKeys = new ArrayList<>(keySet);
+                            userCallback = new User(firstName, lastName,
+                                    email, userType, listOfKeys);
+                        } else {
+                            userCallback = new User( firstName, lastName, email, userType );
+                        }
+                        CurrentUser.getInstance().setUser( userCallback );
+                        login.goToCorrectActivity();
                     }
-                    CurrentUser.getInstance().setUser( userCallback );
-                    login.goToCorrectActivity();
-                }
-            }
-        } );
+                });
     }
 
     /**

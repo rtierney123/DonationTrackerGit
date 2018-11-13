@@ -61,55 +61,49 @@ public class ItemAddActivity extends AppCompatActivity {
         itemCategory.setAdapter(adapter);
 
 
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("Add Item", "Item added");
-                String nameEntered = itemName.getText().toString();
-                String locationEntered = location.getText().toString();
-                String sDescriptionEntered = shortDescription.getText().toString();
-                String lDescriptionEntered = longDescription.getText().toString();
-                String dollarEntered = dollarValue.getText().toString();
-                ItemType itemTypeSelected = (ItemType) itemCategory.getSelectedItem();
-                String commentEntered = comment.getText().toString();
-                String key = "key";
-                Date theDate = new Date();
-                //WHAT IS THE KEY
+        addButton.setOnClickListener(view -> {
+            Log.d("Add Item", "Item added");
+            String nameEntered = itemName.getText().toString();
+            String locationEntered = location.getText().toString();
+            String sDescriptionEntered = shortDescription.getText().toString();
+            String lDescriptionEntered = longDescription.getText().toString();
+            String dollarEntered = dollarValue.getText().toString();
+            ItemType itemTypeSelected = (ItemType) itemCategory.getSelectedItem();
+            String commentEntered = comment.getText().toString();
+            String key = "key";
+            Date theDate = new Date();
+            //WHAT IS THE KEY
 
-                if (!nameEntered.isEmpty() &&
-                        !locationEntered.isEmpty() &&
-                        !dollarEntered.isEmpty()) {
-                    Item newItem = new Item(key, nameEntered, theDate,
-                            locationEntered,
-                            Double.parseDouble(dollarEntered),
-                            itemTypeSelected.toString());
-                    if (!sDescriptionEntered.isEmpty()) {
-                        newItem.setShortDescription(sDescriptionEntered);
-                    }
-                    if (!lDescriptionEntered.isEmpty()) {
-                        newItem.setLongDescription(lDescriptionEntered);
-                    }
-                    if (!commentEntered.isEmpty()) {
-                        newItem.addComment(commentEntered);
-                    }
-                    manager.addItem(newItem, currentActivity);
-                    Toast.makeText( ItemAddActivity.this, "Item Added", Toast.LENGTH_SHORT ).show();
-                } else {
-                    Toast.makeText( ItemAddActivity.this,
-                            "Must fill in name, location, and amount",
-                            Toast.LENGTH_SHORT ).show();
+            if (!nameEntered.isEmpty() &&
+                    !locationEntered.isEmpty() &&
+                    !dollarEntered.isEmpty()) {
+                Item newItem = new Item(key, nameEntered, theDate,
+                        locationEntered,
+                        Double.parseDouble(dollarEntered),
+                        itemTypeSelected.toString());
+                if (!sDescriptionEntered.isEmpty()) {
+                    newItem.setShortDescription(sDescriptionEntered);
                 }
+                if (!lDescriptionEntered.isEmpty()) {
+                    newItem.setLongDescription(lDescriptionEntered);
+                }
+                if (!commentEntered.isEmpty()) {
+                    newItem.addComment(commentEntered);
+                }
+                manager.addItem(newItem, currentActivity);
+                Toast.makeText( ItemAddActivity.this, "Item Added", Toast.LENGTH_SHORT ).show();
+            } else {
+                Toast.makeText( ItemAddActivity.this,
+                        "Must fill in name, location, and amount",
+                        Toast.LENGTH_SHORT ).show();
             }
         });
 
 
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("Add Item", "Add Item Canceled");
-                Intent intent = new Intent(ItemAddActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
+        cancelButton.setOnClickListener(view -> {
+            Log.d("Add Item", "Add Item Canceled");
+            Intent intent = new Intent(ItemAddActivity.this, MainActivity.class);
+            startActivity(intent);
         });
 
     }

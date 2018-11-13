@@ -113,52 +113,49 @@ public class ItemEditActivity extends AppCompatActivity {
             //newComments.setText(currentItem.getComments());
             //set default for image
         }
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
-                Log.d("Edit Item", "Change Made");
-                String locationEntered = newLocation.getText().toString();
-                String shortDescriptionEntered = newShortDescription.getText().toString();
-                String longDescriptionEntered = newLongDescription.getText().toString();
-                String dollarValueEntered = newDollarValue.getText().toString();
-                String commentEntered = newComments.getText().toString();
-                ItemType itemTypeSelected = (ItemType) newItemCategory.getSelectedItem();
+        addButton.setOnClickListener(view -> {
+            findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
+            Log.d("Edit Item", "Change Made");
+            String locationEntered = newLocation.getText().toString();
+            String shortDescriptionEntered = newShortDescription.getText().toString();
+            String longDescriptionEntered = newLongDescription.getText().toString();
+            String dollarValueEntered = newDollarValue.getText().toString();
+            String commentEntered = newComments.getText().toString();
+            ItemType itemTypeSelected = (ItemType) newItemCategory.getSelectedItem();
 
-                //image
-                if (!locationEntered.isEmpty() &&
-                        !locationEntered.equals(currentItem.getLocation())) {
-                    currentItem.setLocation(locationEntered);
-                }
-
-
-                if (!shortDescriptionEntered.isEmpty() &&
-                        !shortDescriptionEntered.equals(currentItem.getShortDescription())) {
-                    currentItem.setShortDescription(shortDescriptionEntered);
-                }
-
-                if (!longDescriptionEntered.isEmpty() &&
-                        !longDescriptionEntered.equals(currentItem.getLongDescription())) {
-                    currentItem.setLongDescription(longDescriptionEntered);
-                }
-
-                if (!dollarValueEntered.isEmpty() &&
-                        !(Double.parseDouble(dollarValueEntered) == currentItem.getDollarValue())) {
-                    currentItem.setDollarValue(Double.parseDouble(dollarValueEntered));
-                }
-
-                if (!commentEntered.isEmpty()) {
-                    currentItem.addComment(commentEntered);
-                }
-
-                if (!itemTypeSelected.equals(currentItem.getCategory())) {
-                    currentItem.setCategory(itemTypeSelected);
-                }
-
-                Toast.makeText( getApplicationContext(), "Item Edited", Toast.LENGTH_SHORT ).show();
-                manager.editItem( currentItem, currentActivity);
-
+            //image
+            if (!locationEntered.isEmpty() &&
+                    !locationEntered.equals(currentItem.getLocation())) {
+                currentItem.setLocation(locationEntered);
             }
+
+
+            if (!shortDescriptionEntered.isEmpty() &&
+                    !shortDescriptionEntered.equals(currentItem.getShortDescription())) {
+                currentItem.setShortDescription(shortDescriptionEntered);
+            }
+
+            if (!longDescriptionEntered.isEmpty() &&
+                    !longDescriptionEntered.equals(currentItem.getLongDescription())) {
+                currentItem.setLongDescription(longDescriptionEntered);
+            }
+
+            if (!dollarValueEntered.isEmpty() &&
+                    !(Double.parseDouble(dollarValueEntered) == currentItem.getDollarValue())) {
+                currentItem.setDollarValue(Double.parseDouble(dollarValueEntered));
+            }
+
+            if (!commentEntered.isEmpty()) {
+                currentItem.addComment(commentEntered);
+            }
+
+            if (!itemTypeSelected.equals(currentItem.getCategory())) {
+                currentItem.setCategory(itemTypeSelected);
+            }
+
+            Toast.makeText( getApplicationContext(), "Item Edited", Toast.LENGTH_SHORT ).show();
+            manager.editItem( currentItem, currentActivity);
+
         });
 
         if (ContextCompat.checkSelfPermission(this,
@@ -169,54 +166,43 @@ public class ItemEditActivity extends AppCompatActivity {
                     new String[] { Manifest.permission.CAMERA,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
         }
-        newImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                takePicture(view);
-            }
-        });
+        newImage.setOnClickListener(view -> takePicture(view));
 
         Bitmap picture = currentItem.getPicture();
         if (picture != null){
             newImage.setImageBitmap( currentItem.getPicture() );
         }
 
-        optionButton.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Creating the instance of PopupMenu
-                PopupMenu popup = new PopupMenu( ItemEditActivity.this, optionButton );
-                //Inflating the Popup using xml file
-                popup.getMenuInflater()
-                        .inflate( R.menu.activity_edit_item_draw, popup.getMenu() );
-                //registering popup with OnMenuItemClickListener
-                popup.setOnMenuItemClickListener( new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        int id = item.getItemId();
-                        switch (id) {
-                            case R.id.nav_delete_item:
-                                Log.d( "Edit Item", "Item deleted" );
-                                Toast.makeText( getApplicationContext(),
-                                        "Item Deleted",
-                                        Toast.LENGTH_SHORT ).show();
-                                manager.deleteItem( currentItem, currentActivity );
-                                findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
-                                return true;
-                            case R.id.nav_cancel_item:
-                                Log.d( "Edit Item", "Edit Item Canceled" );
-                                Intent intent = new Intent( ItemEditActivity.this,
-                                        ItemDetailActivity.class );
-                                startActivity( intent );
-                                return true;
-                            default:
-                                return false;
-                        }
-                    }
-                } );
-                popup.show();
-            }
-        } );
+        optionButton.setOnClickListener(v -> {
+            //Creating the instance of PopupMenu
+            PopupMenu popup = new PopupMenu( ItemEditActivity.this, optionButton );
+            //Inflating the Popup using xml file
+            popup.getMenuInflater()
+                    .inflate( R.menu.activity_edit_item_draw, popup.getMenu() );
+            //registering popup with OnMenuItemClickListener
+            popup.setOnMenuItemClickListener(item -> {
+                int id = item.getItemId();
+                switch (id) {
+                    case R.id.nav_delete_item:
+                        Log.d("Edit Item", "Item deleted");
+                        Toast.makeText(getApplicationContext(),
+                                "Item Deleted",
+                                Toast.LENGTH_SHORT).show();
+                        manager.deleteItem(currentItem, currentActivity);
+                        findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
+                        return true;
+                    case R.id.nav_cancel_item:
+                        Log.d("Edit Item", "Edit Item Canceled");
+                        Intent intent = new Intent(ItemEditActivity.this,
+                                ItemDetailActivity.class);
+                        startActivity(intent);
+                        return true;
+                    default:
+                        return false;
+                }
+            });
+            popup.show();
+        });
 
     }
     @Override

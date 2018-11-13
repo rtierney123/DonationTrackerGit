@@ -57,12 +57,9 @@ public class ItemListAdapter extends
          * @param listener listener on the list
          */
         private void bind(final Item theItem, final OnItemClickListener listener) {
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("EditItemListActivity", "To Item");
-                    listener.onItemClick(theItem);
-                }
+            v.setOnClickListener(v -> {
+                Log.d("EditItemListActivity", "To Item");
+                listener.onItemClick(theItem);
             });
         }
     }

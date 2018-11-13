@@ -44,6 +44,7 @@ public class FirebaseItemHandler {
 
     /**
      * returns all of the items in Items database
+     * @param context passed in
      * @return all Items
      */
     public Task getAllItems(Context context){
@@ -52,67 +53,65 @@ public class FirebaseItemHandler {
         items.clear();
         return db.collection("items")
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        Map<String, Map<String, Item>> map = new LinkedHashMap<>(  );
-                        if (task.isSuccessful()) {
+                .addOnCompleteListener(task -> {
+                    Map<String, Map<String, Item>> map = new LinkedHashMap<>(  );
+                    if (task.isSuccessful()) {
 
-                            for (DocumentSnapshot document :
-                                    Objects.requireNonNull(
-                                            task.getResult())) //noinspection TodoComment
-                                {
+                        for (DocumentSnapshot document :
+                                Objects.requireNonNull(
+                                        task.getResult())) //noinspection TodoComment
+                            {
 
-                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            Log.d(TAG, document.getId() + " => " + document.getData());
 
-                                String key = document.getId();
-                                String name = document.getString("name");
-                                Date date = document.getDate("date");
-                                String locationID = document.getString("locationID");
-                                Double cost = document.getDouble( "cost" );
-                                String category = document.getString("category");
-                                Item item = new Item(Objects.requireNonNull(key),
-                                        Objects.requireNonNull(name),
-                                        Objects.requireNonNull(date),
-                                        Objects.requireNonNull(locationID),
-                                        Objects.requireNonNull(cost),
-                                        Objects.requireNonNull(category));
+                            String key = document.getId();
+                            String name = document.getString("name");
+                            Date date = document.getDate("date");
+                            String locationID = document.getString("locationID");
+                            Double cost = document.getDouble( "cost" );
+                            String category = document.getString("category");
+                            Item item = new Item(Objects.requireNonNull(key),
+                                    Objects.requireNonNull(name),
+                                    Objects.requireNonNull(date),
+                                    Objects.requireNonNull(locationID),
+                                    Objects.requireNonNull(cost),
+                                    Objects.requireNonNull(category));
 
-                                //convert encoded string to bitmap
-                                String encodedImage = document.getString("picture");
-                                //item.setPicture(encodedImage, context);
+                            //convert encoded string to bitmap
+                            String encodedImage = document.getString("picture");
+                            //item.setPicture(encodedImage, context);
 
 
-                                String shortDescription = document.getString("shortDescription");
-                                String longDescription = document.getString("longDescription");
+                            String shortDescription = document.getString("shortDescription");
+                            String longDescription = document.getString("longDescription");
 
-                                item.setShortDescription( shortDescription );
-                                item.setLongDescription( longDescription );
-                                //TODO How to get comment array
-                                Map<String, Item> items;
-                                if (map.get(locationID) == null){
-                                    items = new LinkedHashMap<>( );
+                            item.setShortDescription( shortDescription );
+                            item.setLongDescription( longDescription );
+                            //TODO How to get comment array
+                            Map<String, Item> items;
+                            if (map.get(locationID) == null){
+                                items = new LinkedHashMap<>( );
+                                items.put(key, item);
+                                map.put(Objects.requireNonNull(locationID), items);
+                            } else {
+                                items = map.get(locationID);
+                                if (items != null){
                                     items.put(key, item);
-                                    map.put(Objects.requireNonNull(locationID), items);
-                                } else {
-                                    items = map.get(locationID);
-                                    if (items != null){
-                                        items.put(key, item);
-                                    }
-
                                 }
+
                             }
-                            SearchedItems searched = SearchedItems.getInstance();
-                            searched.setSearchedMap(map);
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
                         }
+                        SearchedItems searched = SearchedItems.getInstance();
+                        searched.setSearchedMap(map);
+                    } else {
+                        Log.w(TAG, "Error getting documents.", task.getException());
                     }
                 });
     }
 
     /**
      * gets Item through location
+     * @param context passed in
      * @param item item being searched for
      */
     public void getItemByLocation(Item item, Context context) {
@@ -120,38 +119,35 @@ public class FirebaseItemHandler {
         db.collection("items")
                 .whereEqualTo( "locationID", item.getLocation() )
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                .addOnCompleteListener(task -> {
 
-                        if (task.isSuccessful()) {
-                            for (DocumentSnapshot document :
-                                    task.getResult()) {
+                    if (task.isSuccessful()) {
+                        for (DocumentSnapshot document :
+                                task.getResult()) {
 
-                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            Log.d(TAG, document.getId() + " => " + document.getData());
 
-                                String key = document.getId();
-                                String name = document.getString("name");
-                                Date date = document.getDate("date");
-                                String locationID = document.getString("locationID");
-                                Double cost = document.getDouble( "cost" );
-                                String category = document.getString("category");
-                                Item item = new Item(key, name,
-                                        Objects.requireNonNull(date), locationID,
-                                        Objects.requireNonNull(cost), category);
+                            String key = document.getId();
+                            String name = document.getString("name");
+                            Date date = document.getDate("date");
+                            String locationID = document.getString("locationID");
+                            Double cost = document.getDouble( "cost" );
+                            String category = document.getString("category");
+                            Item item1 = new Item(key, name,
+                                    Objects.requireNonNull(date), locationID,
+                                    Objects.requireNonNull(cost), category);
 
-                                String encodedPic = document.getString("picture");
-                                String shortDescription = document.getString("shortDescription");
-                                String longDescription = document.getString("longDescription");
-                                item.setPicture( encodedPic, context);
-                                item.setShortDescription( shortDescription );
-                                item.setLongDescription( longDescription );
-                                items.add(item);
+                            String encodedPic = document.getString("picture");
+                            String shortDescription = document.getString("shortDescription");
+                            String longDescription = document.getString("longDescription");
+                            item1.setPicture( encodedPic, context);
+                            item1.setShortDescription( shortDescription );
+                            item1.setLongDescription( longDescription );
+                            items.add(item1);
 
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
                         }
+                    } else {
+                        Log.w(TAG, "Error getting documents.", task.getException());
                     }
                 });
     }
@@ -187,18 +183,8 @@ public class FirebaseItemHandler {
         // Add a new document with a generated ID
         return db.collection("items")
                 .add(itemMap)
-                .addOnSuccessListener(executor, new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding user", e);
-                    }
-                });
+                .addOnSuccessListener(executor, documentReference -> Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId()))
+                .addOnFailureListener(e -> Log.w(TAG, "Error adding user", e));
 
     }
 
