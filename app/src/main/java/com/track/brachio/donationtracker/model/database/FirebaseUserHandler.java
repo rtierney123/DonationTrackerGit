@@ -72,7 +72,7 @@ public class FirebaseUserHandler {
      */
     public boolean isCurrentUserEmailVerified(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        return user.isEmailVerified();
+        return Objects.requireNonNull(user).isEmailVerified();
     }
 
     /**
@@ -81,7 +81,7 @@ public class FirebaseUserHandler {
      */
     public String getCurrentUserID(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        return user.getUid();
+        return Objects.requireNonNull(user).getUid();
     }
 
     /**
@@ -117,7 +117,7 @@ public class FirebaseUserHandler {
                 .setDisplayName(newEmail)
                 .build();
 
-        user.updateProfile(profileUpdates)
+        Objects.requireNonNull(user).updateProfile(profileUpdates)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -182,7 +182,7 @@ public class FirebaseUserHandler {
                                         FirebaseFirestore db = FirebaseFirestore.getInstance();
                                         if (auth.getUid() != null) {
                                             db.collection("users")
-                                                    .document(auth.getCurrentUser().getUid())
+                                                    .document(Objects.requireNonNull(auth.getCurrentUser()).getUid())
                                                     .set(userMap)
                                                     .addOnSuccessListener(
                                                             new OnSuccessListener<Void>() {
@@ -238,7 +238,7 @@ public class FirebaseUserHandler {
                             } else {
                                 // If sign in fails, display a message to the user.
                                 try {
-                                    throw task.getException();
+                                    throw Objects.requireNonNull(task.getException());
                                 } catch(FirebaseAuthWeakPasswordException e) {
                                     Toast.makeText(activity, e.getReason(),
                                             Toast.LENGTH_LONG).show();
@@ -287,7 +287,7 @@ public class FirebaseUserHandler {
     private void getSignedInUser(LoginActivity login) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Log.d( TAG, "email " + user.getEmail() );
+        Log.d( TAG, "email " + Objects.requireNonNull(user).getEmail() );
         if (user == null) {
             Log.d( TAG, "onFailure: Not signed it" );
         } else {

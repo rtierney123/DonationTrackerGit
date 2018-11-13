@@ -96,15 +96,15 @@ public class FirebaseLocationHandler {
                     List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
                     String id;
                     String name;
-                    double longitude = 0;
-                    double latitude = 0;
-                    String type = "";
+                    double longitude;
+                    double latitude;
+                    String type;
                     String phone;
-                    String website = "";
-                    String streetAddress = "";
-                    String city = "";
-                    String state = "";
-                    long zip = 0;
+                    String website;
+                    String streetAddress;
+                    String city;
+                    String state;
+                    long zip;
                     Log.d(TAG, "onSuccess: Got Locations");
 
                     locationMap.clear();
