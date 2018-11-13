@@ -36,7 +36,8 @@ public class JessicaTest {
     public void testValidCodeInputs() {
         int i = 0;
         while (i < legalItemTypes.size()) {
-            assertEquals("Return value should equal: " + i, i, Item.findItemTypePosition(legalItemTypes.get(i)));
+            assertEquals("Return value should equal: " + i,
+                    i, Item.findItemTypePosition(legalItemTypes.get(i)));
             i++;
         }
     }

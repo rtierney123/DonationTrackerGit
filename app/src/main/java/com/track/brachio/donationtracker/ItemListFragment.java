@@ -56,7 +56,6 @@ public class ItemListFragment extends Fragment {
 
     private String searchString = "";
 
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -82,7 +81,6 @@ public class ItemListFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment ItemListFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static ItemListFragment newInstance(String param1, String param2) {
         ItemListFragment fragment = new ItemListFragment();
         Bundle args = new Bundle();
@@ -184,7 +182,6 @@ public class ItemListFragment extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
 
     /**
      * handler for button press
@@ -224,7 +221,6 @@ public class ItemListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
 
         /**
          * abstract handler for fragment interaction
@@ -318,7 +314,8 @@ public class ItemListFragment extends Fragment {
 
         //show that no items were found
         if (displayItems.isEmpty()){
-            Toast.makeText(this.getActivity(), "No items found for this criteria.",  Toast.LENGTH_LONG).show();
+            Toast.makeText(this.getActivity(), "No items found for this criteria.",
+                    Toast.LENGTH_LONG).show();
         }
 
 

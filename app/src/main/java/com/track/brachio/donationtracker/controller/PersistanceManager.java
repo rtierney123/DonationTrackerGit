@@ -34,6 +34,7 @@ public class PersistanceManager {
     private static ThreadPoolExecutor executor;
     private final Activity activity;
     private static boolean threadRunning;
+    private static final long aliveTime = 60L;
 
     /**
      * Constructor for Persistance Manager
@@ -86,7 +87,7 @@ public class PersistanceManager {
      */
     private void initializeVariables() {
         int numCores = Runtime.getRuntime().availableProcessors();
-        long aliveTime = 60L;
+
         executor = new ThreadPoolExecutor( numCores * 2, numCores * 2,
                 aliveTime, TimeUnit.SECONDS, new LinkedBlockingQueue<>() );
     }

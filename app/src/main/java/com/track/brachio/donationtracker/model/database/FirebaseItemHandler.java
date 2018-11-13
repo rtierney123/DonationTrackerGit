@@ -142,7 +142,6 @@ public class FirebaseItemHandler {
                                 String encodedPic = document.getString("picture");
                                 String shortDescription = document.getString("shortDescription");
                                 String longDescription = document.getString("longDescription");
-                                //TODO How to get comment array and picture?
                                 item.setPicture( encodedPic, context);
                                 item.setShortDescription( shortDescription );
                                 item.setLongDescription( longDescription );

@@ -34,7 +34,6 @@ import java.util.ArrayList;
 public class LocationListFragment extends Fragment {
     private Activity containerActivity;
     private RecyclerView recyclerView;
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
 
@@ -58,7 +57,6 @@ public class LocationListFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment LocationListFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static LocationListFragment newInstance(String param1, String param2) {
         LocationListFragment fragment = new LocationListFragment();
         Bundle args = new Bundle();
@@ -125,7 +123,6 @@ public class LocationListFragment extends Fragment {
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
 
     /**
      * handles when button pressed
@@ -165,7 +162,6 @@ public class LocationListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
 
         /**
          * handles fragment interaction

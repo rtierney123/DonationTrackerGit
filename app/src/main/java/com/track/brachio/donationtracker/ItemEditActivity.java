@@ -205,7 +205,8 @@ public class ItemEditActivity extends AppCompatActivity {
                                 return true;
                             case R.id.nav_cancel_item:
                                 Log.d( "Edit Item", "Edit Item Canceled" );
-                                Intent intent = new Intent( ItemEditActivity.this, ItemDetailActivity.class );
+                                Intent intent = new Intent( ItemEditActivity.this,
+                                        ItemDetailActivity.class );
                                 startActivity( intent );
                                 return true;
                             default:

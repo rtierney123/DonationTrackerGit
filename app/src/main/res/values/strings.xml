@@ -28,7 +28,6 @@
     <string name="item_category_detail">Item Category</string>
     <string name="item_picture">item_picture</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_item_list2">ItemListActivity2</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -80,7 +79,7 @@
 
     <string name="manage_items">Manage Items</string>
     <string name="register">Register</string>
-    <string name="register_cancel">cancel</string>
+    <string name="register_cancel">Cancel</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
 

@@ -29,6 +29,7 @@ public class Item {
     private static final List<ItemType> legalItemTypes = Arrays.asList(ItemType.values());
     private ArrayList<String> comments = new ArrayList<>();
     private Bitmap picture;
+    private static final int compressed = 50;
 
     /**
      * Constructor for Item
@@ -294,7 +295,7 @@ public class Item {
                 // yes SD-card is present
                 sdCardDirectory = new File(
                         Environment
-                                .getExternalStoragePublicDirectory( Environment.DIRECTORY_PICTURES ),
+                               .getExternalStoragePublicDirectory( Environment.DIRECTORY_PICTURES ),
                         "IMG" );
 
                 if (!sdCardDirectory.exists()) {
@@ -345,11 +346,10 @@ public class Item {
                 bitmap = BitmapFactory.decodeByteArray( decodedByte, 0, decodedByte.length );
             } catch (OutOfMemoryError e) {
                 e.printStackTrace();
-                //InputStream is = context.getResources().openRawResource( R.drawable.ic_menu_camera );
+            //InputStream is = context.getResources().openRawResource( R.drawable.ic_menu_camera );
                 //bitmap = BitmapFactory.decodeStream( is );
 
             } catch (Exception e) {
-                // TODO: handle exception
                 e.printStackTrace();
                 bitmap = null;
             }
@@ -377,7 +377,7 @@ public class Item {
                 e.printStackTrace();
             }catch(OutOfMemoryError e){
                 baos=new  ByteArrayOutputStream();
-                picture.compress(Bitmap.CompressFormat.JPEG,50, baos);
+                picture.compress(Bitmap.CompressFormat.JPEG, compressed, baos);
                 b=baos.toByteArray();
                 temp=Base64.encodeToString(b, Base64.DEFAULT);
                 Log.e("EWN", "Out of memory error catched");
