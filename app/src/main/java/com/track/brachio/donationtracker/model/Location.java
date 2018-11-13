@@ -3,6 +3,7 @@ package com.track.brachio.donationtracker.model;
 /**
  * Information holder for Location
  */
+@SuppressWarnings("ClassWithTooManyDependents")
 public class Location {
     private String id;
     private String name;

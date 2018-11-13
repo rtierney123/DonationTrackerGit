@@ -3,7 +3,6 @@ package com.track.brachio.donationtracker.controller;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Manages Persistance
  */
-@SuppressWarnings("FeatureEnvy")
+@SuppressWarnings({"FeatureEnvy", "ClassWithTooManyDependencies"})
 public class PersistanceManager {
 
     private static ThreadPoolExecutor executor;

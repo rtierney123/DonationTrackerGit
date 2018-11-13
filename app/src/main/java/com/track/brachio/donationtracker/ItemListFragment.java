@@ -46,6 +46,7 @@ import java.util.regex.Pattern;
  * Use the {@link ItemListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+@SuppressWarnings("ClassWithTooManyDependencies")
 public class ItemListFragment extends Fragment {
 
     private Collection<Item> items = new ArrayList<>();
@@ -134,6 +135,7 @@ public class ItemListFragment extends Fragment {
         ui.populateSpinner( locSpinner, names, this.getActivity() );
         locSpinner.setSelection(locIndex);
         locSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 locIndex = position;
                 populateRecycleView();
@@ -148,10 +150,12 @@ public class ItemListFragment extends Fragment {
         ui.populateSpinner( categorySpinner, categories, containerActivity);
         categorySpinner.setSelection(catIndex);
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 catIndex = position;
                 populateRecycleView();
             }
+            @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });

@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -166,7 +165,7 @@ public class ItemEditActivity extends AppCompatActivity {
                     new String[] { Manifest.permission.CAMERA,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
         }
-        newImage.setOnClickListener(view -> takePicture(view));
+        newImage.setOnClickListener(this::takePicture);
 
         Bitmap picture = currentItem.getPicture();
         if (picture != null){

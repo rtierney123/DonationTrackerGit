@@ -2,11 +2,9 @@ package com.track.brachio.donationtracker.model.database;
 
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.track.brachio.donationtracker.model.Address;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
@@ -58,6 +56,7 @@ public class FirebaseLocationHandler {
                         for (DocumentSnapshot doc : retDocs) {
                             id = (String) doc.get("locationID");
                             name  = (String) doc.get( "name" );
+                            //noinspection ConstantConditions
                             longitude = (Double) doc.get( "longitude" );
                             //noinspection ConstantConditions,ConstantConditions
                             latitude  = (Double) doc.get( "latitude" );

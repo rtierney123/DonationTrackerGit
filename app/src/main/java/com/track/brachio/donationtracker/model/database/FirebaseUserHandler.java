@@ -2,14 +2,10 @@ package com.track.brachio.donationtracker.model.database;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
@@ -17,7 +13,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.track.brachio.donationtracker.LoginActivity;
 import com.track.brachio.donationtracker.RegistrationActivity;
 import com.track.brachio.donationtracker.model.User;
@@ -300,7 +295,7 @@ public class FirebaseUserHandler {
                         assert userType != null;
                         UserType type = stringToUserType( userType );
                         if (type == UserType.Volunteer) {
-                            Set<String> keySet = locationHash.keySet();
+                            Set<String> keySet = Objects.requireNonNull(locationHash).keySet();
                             ArrayList<String> listOfKeys = new ArrayList<>(keySet);
                             userCallback = new User(firstName, lastName,
                                     email, userType, listOfKeys);

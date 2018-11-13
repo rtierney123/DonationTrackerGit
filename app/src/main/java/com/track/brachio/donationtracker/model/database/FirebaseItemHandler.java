@@ -2,18 +2,13 @@ package com.track.brachio.donationtracker.model.database;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.singleton.SearchedItems;
 /*
@@ -29,7 +24,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
 
 /**
  * Handler for Items

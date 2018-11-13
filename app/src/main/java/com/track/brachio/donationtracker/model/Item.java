@@ -17,6 +17,7 @@ import java.util.Arrays;
 /**
  * Information holder for Item
  */
+@SuppressWarnings("ClassWithTooManyDependents")
 public class Item {
     private String key;
     private String name;
@@ -120,7 +121,7 @@ public class Item {
      * @param dateCreated date being set
      */
     public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+        this.dateCreated = (Date) dateCreated.clone();
     }
 
     /**
@@ -371,6 +372,7 @@ public class Item {
             byte [] b=baos.toByteArray();
             String temp=null;
             try{
+                //noinspection CallToSystemGC
                 System.gc();
                 temp=Base64.encodeToString(b, Base64.DEFAULT);
             }catch(Exception e){
