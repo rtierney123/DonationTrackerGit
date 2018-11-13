@@ -98,25 +98,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             .snippet(locations.get(i).getPhone()));
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        // Add a marker in Sydney and move the camera
-        LatLng AFDStation4 = new LatLng(33.75416, -84.37742);
-        mMap.addMarker(new MarkerOptions().position(AFDStation4).title("ID: 1 Name: "
-                + "AFD Station 4"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(AFDStation4, 12.0f));
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-=======
->>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
-=======
->>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
-=======
->>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
-=======
->>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
+
     }
 }

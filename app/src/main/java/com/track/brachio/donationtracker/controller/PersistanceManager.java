@@ -59,41 +59,8 @@ public class PersistanceManager {
     /**
      * gather data
      */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<< HEAD>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    private void gatherData(){
-=======
-    private void gatherData ((Context) context) throws InterruptedException {
->>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
-=======
-    private void gatherData(Context context) throws InterruptedException {
->>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
-=======
-    private void gatherData(Context context) throws InterruptedException {
->>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
-=======
-    private void gatherData(Context context) throws InterruptedException {
->>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
-=======
+    private void gatherData(Context contezt){
 
-    private void gatherData(Context context) {
-
->>>>>>> ea1abbf4cdbc66b36066ca0e65e2c0b8cad8120b
-=======
-
-    private void gatherData(Context context) {
-
->>>>>>> ea1abbf4cdbc66b36066ca0e65e2c0b8cad8120b
-=======
-
-    private void gatherData(Context context) {
-
->>>>>>> ea1abbf4cdbc66b36066ca0e65e2c0b8cad8120b
         //Get all locations from db so user can view all locations
         FirebaseLocationHandler locHandler = new FirebaseLocationHandler();
         Task task1 = locHandler.getAllLocations();
@@ -102,7 +69,7 @@ public class PersistanceManager {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 FirebaseItemHandler itemHandler = new FirebaseItemHandler();
-                Task task2 = itemHandler.getAllItems(context);
+                Task task2 = itemHandler.getAllItems(contezt);
                 task2.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

@@ -41,10 +41,7 @@ public class LocationListFragment extends Fragment {
     @Nullable
     private OnFragmentInteractionListener mListener;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     /**
      * This is a required empty and public constructor
      */
@@ -52,14 +49,7 @@ public class LocationListFragment extends Fragment {
         // Required empty public constructor
     }
 
-=======
->>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
-=======
->>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
-=======
->>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
-=======
->>>>>>> 9b9841f1d9e2474400d8bd6b425c599fe811b495
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
