@@ -95,7 +95,7 @@ public class FirebaseLocationHandler {
                 } else {
                     List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
                     String id;
-                    String name = "";
+                    String name;
                     double longitude = 0;
                     double latitude = 0;
                     String type = "";

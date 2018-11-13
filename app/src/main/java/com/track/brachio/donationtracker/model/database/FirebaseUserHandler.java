@@ -62,6 +62,7 @@ public class FirebaseUserHandler {
      */
     public String getCurrentUserEmail(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
         return user.getEmail();
     }
 

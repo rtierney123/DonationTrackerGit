@@ -91,6 +91,7 @@ public class ItemListAdapter extends
 
     // Create new views (invoked by the layout manager)
     // Create new views (invoked by the layout manager)
+    @NonNull
     @Override
     public ItemListAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
                                                                                   int viewType) {

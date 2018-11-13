@@ -68,9 +68,6 @@ public class LocationListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        if (getArguments() != null) {
-
-        }
         containerActivity = this.getActivity();
     }
 
