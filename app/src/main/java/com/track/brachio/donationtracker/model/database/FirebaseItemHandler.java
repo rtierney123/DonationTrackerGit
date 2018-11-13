@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -161,7 +162,7 @@ public class FirebaseItemHandler {
      * @param executor executor for database
      * @return task being done
      */
-    public Task addItem(Item item, ExecutorService executor){
+    public Task addItem(Item item, Executor executor){
 
         Map<String, Object> itemMap = new HashMap<>();
         itemMap.put("name", item.getName());
