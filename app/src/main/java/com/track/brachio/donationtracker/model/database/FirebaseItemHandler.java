@@ -179,6 +179,7 @@ public class FirebaseItemHandler {
             String encoded = item.encodePic();
             itemMap.put("picture", encoded);
         } else {
+            //noinspection ConstantConditions
             itemMap.put("picture", null);
         }
 

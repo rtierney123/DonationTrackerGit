@@ -288,55 +288,51 @@ public class FirebaseUserHandler {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.d( TAG, "email " + Objects.requireNonNull(user).getEmail() );
-        if (user == null) {
-            Log.d( TAG, "onFailure: Not signed it" );
-        } else {
-            db.collection( "users" ).whereEqualTo( "email", user.getEmail() )
-                    .get().addOnSuccessListener( new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot documentSnapshots) {
-                    if (documentSnapshots.isEmpty()) {
-                        Log.d( TAG, "onSuccess: LIST EMPTY" );
-                    } else {
-                        // Convert the whole Query Snapshot to a list
-                        // of objects directly! No need to fetch each
-                        // document.
-                        List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
-                        Log.d( TAG, "onSuccess: " + retDocs.get( 0 ).getId() );
+        db.collection( "users" ).whereEqualTo( "email", user.getEmail() )
+                .get().addOnSuccessListener( new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot documentSnapshots) {
+                if (documentSnapshots.isEmpty()) {
+                    Log.d( TAG, "onSuccess: LIST EMPTY" );
+                } else {
+                    // Convert the whole Query Snapshot to a list
+                    // of objects directly! No need to fetch each
+                    // document.
+                    List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
+                    Log.d( TAG, "onSuccess: " + retDocs.get( 0 ).getId() );
 
-                        String firstName = "";
-                        String lastName = "";
-                        String email = "";
-                        String userType = "";
-                        Map<String, Boolean> locationHash = new HashMap<>(  );
-                        for (DocumentSnapshot doc : retDocs) {
-                            firstName = (String) doc.get( "firstname" );
-                            lastName = (String) doc.get( "lastname" );
-                            email = (String) doc.get( "email" );
-                            userType = (String) doc.get( "usertype" );
-                            try{
-                                //noinspection unchecked
-                                locationHash= (HashMap<String, Boolean>) doc.get("locationIDs");
-                            } catch(ClassCastException ex){
-                                Log.e(TAG, ex.getMessage());
-                            }
+                    String firstName = "";
+                    String lastName = "";
+                    String email = "";
+                    String userType = "";
+                    Map<String, Boolean> locationHash = new HashMap<>(  );
+                    for (DocumentSnapshot doc : retDocs) {
+                        firstName = (String) doc.get( "firstname" );
+                        lastName = (String) doc.get( "lastname" );
+                        email = (String) doc.get( "email" );
+                        userType = (String) doc.get( "usertype" );
+                        try{
+                            //noinspection unchecked
+                            locationHash= (HashMap<String, Boolean>) doc.get("locationIDs");
+                        } catch(ClassCastException ex){
+                            Log.e(TAG, ex.getMessage());
+                        }
 
-                        }
-                        UserType type = stringToUserType( userType );
-                        if (type == UserType.Volunteer) {
-                            Set<String> keySet = locationHash.keySet();
-                            ArrayList<String> listOfKeys = new ArrayList<>(keySet);
-                            userCallback = new User(firstName, lastName,
-                                    email, userType, listOfKeys);
-                        } else {
-                            userCallback = new User( firstName, lastName, email, userType );
-                        }
-                        CurrentUser.getInstance().setUser( userCallback );
-                        login.goToCorrectActivity();
                     }
+                    UserType type = stringToUserType( userType );
+                    if (type == UserType.Volunteer) {
+                        Set<String> keySet = locationHash.keySet();
+                        ArrayList<String> listOfKeys = new ArrayList<>(keySet);
+                        userCallback = new User(firstName, lastName,
+                                email, userType, listOfKeys);
+                    } else {
+                        userCallback = new User( firstName, lastName, email, userType );
+                    }
+                    CurrentUser.getInstance().setUser( userCallback );
+                    login.goToCorrectActivity();
                 }
-            } );
-        }
+            }
+        } );
     }
 
     /**

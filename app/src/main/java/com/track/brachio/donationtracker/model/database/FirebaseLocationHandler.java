@@ -61,6 +61,7 @@ public class FirebaseLocationHandler {
                         id = (String) doc.get("locationID");
                         name  = (String) doc.get( "name" );
                         longitude = (Double) doc.get( "longitude" );
+                        //noinspection ConstantConditions,ConstantConditions
                         latitude  = (Double) doc.get( "latitude" );
                         type = (String) doc.get( "type" );
                         phone = (String) doc.get("phone");
