@@ -1,5 +1,9 @@
-package com.track.brachio.donationtracker.model;
+package com.track.brachio.donationtracker;
 
+import com.track.brachio.donationtracker.model.Item;
+import com.track.brachio.donationtracker.model.ItemType;
+
+import org.junit.Assert;
 import org.junit.Test;
 import java.util.List;
 import java.util.Arrays;
@@ -19,7 +23,7 @@ public class JessicaTest {
     public void testNullInput() {
         //legalItemTypes is constant
         //If while loop runs without finding anything should return
-        assertEquals("Null should return 0", 0, Item.findItemTypePosition(null));
+        Assert.assertEquals("Null should return 0", 0, Item.findItemTypePosition(null));
     }
 
 //    @Test

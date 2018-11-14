@@ -7,6 +7,7 @@ import android.content.Intent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.track.brachio.donationtracker.MainActivity;
 import com.track.brachio.donationtracker.model.Item;
@@ -34,7 +35,7 @@ public class PersistanceManager {
     private final Activity activity;
     private static boolean threadRunning;
     private static final long aliveTime = 60L;
-
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     /**
      * Constructor for Persistance Manager
      * @param currentActivity current activity
@@ -42,6 +43,7 @@ public class PersistanceManager {
     public PersistanceManager(Activity currentActivity) {
         activity = currentActivity;
         initializeVariables();
+
     }
 
     /**
@@ -61,12 +63,12 @@ public class PersistanceManager {
     private void gatherData(Context contezt){
 
         //Get all locations from db so user can view all locations
-        FirebaseLocationHandler locHandler = new FirebaseLocationHandler();
+        FirebaseLocationHandler locHandler = new FirebaseLocationHandler(db);
         Task task1 = locHandler.getAllLocations();
 
         //noinspection unchecked
         task1.addOnSuccessListener((OnSuccessListener<QuerySnapshot>) queryDocumentSnapshots -> {
-            FirebaseItemHandler itemHandler = new FirebaseItemHandler();
+            FirebaseItemHandler itemHandler = new FirebaseItemHandler(db);
             Task task2 = itemHandler.getAllItems(contezt);
             //noinspection unchecked
             task2.addOnSuccessListener((OnSuccessListener<QuerySnapshot>) queryDocumentSnapshots1 -> goToMainPage());
@@ -130,8 +132,8 @@ public class PersistanceManager {
      * @param activity current activity
      */
     public void deleteItem(Item item, Activity activity) {
-        FirebaseItemHandler db = new FirebaseItemHandler();
-        Task task = db.deleteItem( item );
+        FirebaseItemHandler handler = new FirebaseItemHandler(db);
+        Task task = handler.deleteItem( item );
         startUpdate(task, activity);
     }
 
@@ -141,8 +143,8 @@ public class PersistanceManager {
      * @param activity current activity
      */
     public void addItem(Item item, Activity activity) {
-        FirebaseItemHandler db = new FirebaseItemHandler();
-        Task task = db.addItem( item, executor );
+        FirebaseItemHandler handler = new FirebaseItemHandler(db);
+        Task task = handler.addItem( item );
         startUpdate(task, activity);
     }
 
@@ -152,8 +154,8 @@ public class PersistanceManager {
      * @param activity current activity
      */
     public void editItem(Item item, Activity activity) {
-        FirebaseItemHandler db = new FirebaseItemHandler();
-        Task task = db.editItem( item);
+        FirebaseItemHandler handler = new FirebaseItemHandler(db);
+        Task task = handler.editItem( item);
         startUpdate(task, activity);
     }
 
@@ -186,7 +188,7 @@ public class PersistanceManager {
      * @return task with items
      */
     private Task getAllItems(Context context) {
-        FirebaseItemHandler itemHandler = new FirebaseItemHandler();
+        FirebaseItemHandler itemHandler = new FirebaseItemHandler(db);
         return itemHandler.getAllItems(context);
     }
 
