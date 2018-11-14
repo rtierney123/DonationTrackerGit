@@ -9,6 +9,7 @@ import android.util.Log;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +29,7 @@ public class Item {
     private double dollarValue;
     private ItemType category;
     private static final List<ItemType> legalItemTypes = Arrays.asList(ItemType.values());
-    private ArrayList<String> comments = new ArrayList<>();
+    private final Collection<String> comments = new ArrayList<>();
     private Bitmap picture;
     private static final int compressed = 50;
 
@@ -92,13 +93,13 @@ public class Item {
         return key;
     }
 
-    /**
-     * setter - key
-     * @param key key being set
-     */
-    public void setKey(String key) {
-        this.key = key;
-    }
+//    /**
+//     * setter - key
+//     * @param key key being set
+//     */
+//    public void setKey(String key) {
+//        this.key = key;
+//    }
 
     /**
      * getter - name
@@ -108,21 +109,21 @@ public class Item {
         return name;
     }
 
-    /**
-     * Setter - name
-     * @param name name being set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+//    /**
+//     * Setter - name
+//     * @param name name being set
+//     */
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
-    /**
-     * setter - date
-     * @param dateCreated date being set
-     */
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = (Date) dateCreated.clone();
-    }
+//    /**
+//     * setter - date
+//     * @param dateCreated date being set
+//     */
+//    public void setDateCreated(Date dateCreated) {
+//        this.dateCreated = (Date) dateCreated.clone();
+//    }
 
     /**
      * setter - location
@@ -164,13 +165,13 @@ public class Item {
         this.category = category;
     }
 
-    /**
-     * setter - comments
-     * @param comments comments being set
-     */
-    public void setComments(ArrayList<String> comments) {
-        this.comments = comments;
-    }
+//    /**
+//     * setter - comments
+//     * @param comments comments being set
+//     */
+//    public void setComments(ArrayList<String> comments) {
+//        this.comments = comments;
+//    }
 
     /**
      * adds comments
@@ -195,7 +196,7 @@ public class Item {
      * @return date
      */
     public Date getDateCreated() {
-        return dateCreated;
+        return (Date) dateCreated.clone();
     }
 
     /**
@@ -238,13 +239,13 @@ public class Item {
         return category;
     }
 
-    /**
-     * getter - comments
-     * @return comments
-     */
-    public ArrayList<String> getComments() {
-        return comments;
-    }
+//    /**
+//     * getter - comments
+//     * @return comments
+//     */
+//    public ArrayList<String> getComments() {
+//        return comments;
+//    }
 
     /**
      * getter - picture
@@ -366,7 +367,7 @@ public class Item {
      */
     public String encodePic(){
         if (picture != null){
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            //ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ByteArrayOutputStream base=new  ByteArrayOutputStream();
             picture.compress(Bitmap.CompressFormat.JPEG,100, base);
             byte [] b=base.toByteArray();

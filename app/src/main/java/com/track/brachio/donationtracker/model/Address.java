@@ -9,7 +9,7 @@ public class Address {
     private final String streetAddress;
     private final String city;
     private final String state;
-    private double zip;
+    private final double zip;
 
     /**
      * Constructor for Address
@@ -89,13 +89,10 @@ public class Address {
 //    }
 // --Commented out by Inspection STOP (11/9/18, 1:43 PM)
 
-    /**
-     * setter - cip
-     * @param zip zip location
-     */
-    public void setZip(double zip) {
-        this.zip = zip;
-    }
+
+//    public void setZip(double zip) {
+//        this.zip = zip;
+//    }
 
     @NonNull
     @Override

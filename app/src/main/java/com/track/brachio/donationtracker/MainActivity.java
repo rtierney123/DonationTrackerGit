@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Intent intent;
+        //Intent intent;
         if (id == R.id.nav_location) {
             fragmentManager.beginTransaction().
                     replace(R.id.main_frame_layout, new LocationListFragment())
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void logOut(){
-        PersistanceManager manager = new PersistanceManager( this);
+        //PersistanceManager manager = new PersistanceManager( this);
         PersistanceManager.signOut();
         Intent intent = new Intent( this, LoginActivity.class);
         startActivity(intent);

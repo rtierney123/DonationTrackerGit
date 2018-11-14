@@ -31,7 +31,6 @@ import com.track.brachio.donationtracker.model.singleton.UserLocations;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -43,14 +42,14 @@ import java.util.regex.Pattern;
  * Activities that contain this fragment must implement the
  * {@link ItemListFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ItemListFragment#newInstance} factory method to
+ * Use the {@link ItemListFragment} factory method to
  * create an instance of this fragment.
  */
 @SuppressWarnings("ClassWithTooManyDependencies")
 public class ItemListFragment extends Fragment {
 
     private Collection<Item> items = new ArrayList<>();
-    private static HashMap<String, HashMap<String, Item>> storeItems;
+    //private static HashMap<String, HashMap<String, Item>> storeItems;
     private RecyclerView recyclerView;
     private static int locIndex;
     private static int catIndex;
@@ -75,22 +74,22 @@ public class ItemListFragment extends Fragment {
     }
 
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ItemListFragment.
-     */
-    public static ItemListFragment newInstance(String param1, String param2) {
-        ItemListFragment fragment = new ItemListFragment();
-        Bundle args = new Bundle();
-        args.putString( ARG_PARAM1, param1 );
-        args.putString( ARG_PARAM2, param2 );
-        fragment.setArguments( args );
-        return fragment;
-    }
+//    /**
+//     * Use this factory method to create a new instance of
+//     * this fragment using the provided parameters.
+//     *
+//     * @param param1 Parameter 1.
+//     * @param param2 Parameter 2.
+//     * @return A new instance of fragment ItemListFragment.
+//     */
+//    public static ItemListFragment newInstance(String param1, String param2) {
+//        ItemListFragment fragment = new ItemListFragment();
+//        Bundle args = new Bundle();
+//        args.putString( ARG_PARAM1, param1 );
+//        args.putString( ARG_PARAM2, param2 );
+//        fragment.setArguments( args );
+//        return fragment;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -127,7 +126,8 @@ public class ItemListFragment extends Fragment {
         UIPopulator ui = new UIPopulator();
         List<String> names = new ArrayList<>();
         names.add("All");
-        List<Location> array = UserLocations.getInstance().getLocations();
+        UserLocations currentUserLocations = UserLocations.getInstance();
+        List<Location> array = currentUserLocations.getLocations();
         for(Location loc : array){
             names.add(loc.getName());
         }
@@ -182,15 +182,15 @@ public class ItemListFragment extends Fragment {
     }
 
 
-    /**
-     * handler for button press
-     * @param uri parameter
-     */
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction( uri );
-        }
-    }
+//    /**
+//     * handler for button press
+//     * @param uri parameter
+//     */
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onFragmentInteraction( uri );
+//        }
+//    }
 
     @Override
     public void onAttach(Context context) {
@@ -296,7 +296,8 @@ public class ItemListFragment extends Fragment {
 
         ArrayList<Item> displayItems = new ArrayList<>();
         for(Item item : items){
-            int itemCat = item.getCategory().ordinal();
+            ItemType theItemType = item.getCategory();
+            int itemCat = theItemType.ordinal();
             String itemName = item.getName();
             if((catIndex == 0) || (itemCat == (catIndex - 1))){
                 if (searchString.isEmpty()){
@@ -321,7 +322,8 @@ public class ItemListFragment extends Fragment {
         // populate view based on items and adapter specifications
         RecyclerView.Adapter adapter =  new ItemListAdapter( displayItems,
                 item -> {
-                    CurrentItem.getInstance().setItem(item);
+                    CurrentItem currentItemInstance = CurrentItem.getInstance();
+                    currentItemInstance.setItem(item);
                     Intent intent = new Intent(containerActivity, ItemDetailActivity.class);
                     startActivity(intent);
                 });

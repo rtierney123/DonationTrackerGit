@@ -62,13 +62,13 @@ public class Location {
         return id;
     }
 
-    /**
-     * setter - id
-     * @param id id being set
-     */
-    public void setId(String id){
-        this.id = id;
-    }
+//    /**
+//     * setter - id
+//     * @param id id being set
+//     */
+//    public void setId(String id){
+//        this.id = id;
+//    }
 
     /**
      * getter - name
@@ -126,61 +126,61 @@ public class Location {
         return website;
     }
 
-    /**
-     * setter - name
-     * @param name name being set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+//    /**
+//     * setter - name
+//     * @param name name being set
+//     */
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
-    /**
-     * setter - latitude
-     * @param latitude latitude being set
-     */
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
+//    /**
+//     * setter - latitude
+//     * @param latitude latitude being set
+//     */
+//    public void setLatitude(double latitude) {
+//        this.latitude = latitude;
+//    }
 
-    /**
-     * setter- longitude
-     * @param longitude longitude being set
-     */
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
+//    /**
+//     * setter- longitude
+//     * @param longitude longitude being set
+//     */
+//    public void setLongitude(double longitude) {
+//        this.longitude = longitude;
+//    }
 
-    /**
-     * setter - address
-     * @param address address being set
-     */
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+//    /**
+//     * setter - address
+//     * @param address address being set
+//     */
+//    public void setAddress(Address address) {
+//        this.address = address;
+//    }
 
-    /**
-     * setter - Type
-     * @param type type being set
-     */
-    public void setType(LocationType type) {
-        this.type = type;
-    }
+//    /**
+//     * setter - Type
+//     * @param type type being set
+//     */
+//    public void setType(LocationType type) {
+//        this.type = type;
+//    }
 
-    /**
-     * setter - phone
-     * @param phone phone being set
-     */
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+//    /**
+//     * setter - phone
+//     * @param phone phone being set
+//     */
+//    public void setPhone(String phone) {
+//        this.phone = phone;
+//    }
 
-    /**
-     * setter - website
-     * @param website website being set
-     */
-    public void setWebsite(String website) {
-        this.website = website;
-    }
+//    /**
+//     * setter - website
+//     * @param website website being set
+//     */
+//    public void setWebsite(String website) {
+//        this.website = website;
+//    }
 
     /**
      * returns type from inputted string

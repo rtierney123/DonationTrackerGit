@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.Date;
 
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentItem;
+import com.track.brachio.donationtracker.model.ItemType;
 
 import java.util.Map;
 import java.util.Objects;
@@ -27,7 +29,8 @@ public class ItemDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_item_detail );
-        Item currentItem = CurrentItem.getInstance().getItem();
+        CurrentItem currentInstance = CurrentItem.getInstance();
+        Item currentItem = currentInstance.getItem();
 
         TextView nameText = findViewById(R.id.detail_name);
         TextView dateText = findViewById( R.id.detail_date );
@@ -40,14 +43,22 @@ public class ItemDetailActivity extends AppCompatActivity {
 
 
         nameText.setText(currentItem.getName());
-        dateText.setText(currentItem.getDateCreated().toString());
-        Map<String, Location> allLoc = AllLocations.getInstance().getLocationMap();
+        Date dateCreated = currentItem.getDateCreated();
+        String dateCreatedString = dateCreated.toString();
+        dateText.setText(dateCreatedString);
+        AllLocations currentLocationsInstance = AllLocations.getInstance();
+        Map<String, Location> allLoc = currentLocationsInstance.getLocationMap();
         Location loc = allLoc.get(currentItem.getLocation());
-        locationText.setText(Objects.requireNonNull(loc).getName());
+        Location obj = Objects.requireNonNull(loc);
+        String theName = obj.getName();
+        locationText.setText(theName);
         shortDescriptionText.setText(currentItem.getShortDescription());
         longDescriptionText.setText(currentItem.getLongDescription());
         dollarText.setText(currentItem.getDollarValue() + "");
-        categoryText.setText(currentItem.getCategory().toString());
+
+        ItemType type = currentItem.getCategory();
+        String typeString = type.toString();
+        categoryText.setText(typeString);
 
         ImageButton editButton = findViewById( R.id.edit_item_button);
         editButton.setOnClickListener (view -> {

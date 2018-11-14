@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
+import android.text.Editable;
 
 import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.Item;
@@ -32,7 +32,7 @@ public class ItemAddActivity extends AppCompatActivity {
     private EditText comment;
 
     private final Activity currentActivity = this;
-    Item currentItem;
+    //Item currentItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class ItemAddActivity extends AppCompatActivity {
         comment = findViewById(R.id.addItemCommentID);
         Button addButton = findViewById(R.id.addItemAddID);
         Button cancelButton = findViewById(R.id.addItemCancelButton);
-        ImageButton newimage = findViewById(R.id.addItemImage);
+        //ImageButton newimage = findViewById(R.id.addItemImage);
 
         PersistanceManager manager = new PersistanceManager( this );
 
@@ -62,13 +62,27 @@ public class ItemAddActivity extends AppCompatActivity {
 
         addButton.setOnClickListener(view -> {
             Log.d("Add Item", "Item added");
-            String nameEntered = itemName.getText().toString();
-            String locationEntered = location.getText().toString();
-            String sDescriptionEntered = shortDescription.getText().toString();
-            String lDescriptionEntered = longDescription.getText().toString();
-            String dollarEntered = dollarValue.getText().toString();
+
+            Editable nameTemp = itemName.getText();
+            String nameEntered = nameTemp.toString();
+
+            Editable locationTemp = location.getText();
+            String locationEntered = locationTemp.toString();
+
+            Editable shortTemp = shortDescription.getText();
+            String sDescriptionEntered = shortTemp.toString();
+
+            Editable longTemp = longDescription.getText();
+            String lDescriptionEntered = longTemp.toString();
+
+            Editable dollarTemp = dollarValue.getText();
+            String dollarEntered = dollarTemp.toString();
+
             ItemType itemTypeSelected = (ItemType) itemCategory.getSelectedItem();
-            String commentEntered = comment.getText().toString();
+
+            Editable commentTemp = comment.getText();
+            String commentEntered = commentTemp.toString();
+
             String key = "key";
             Date theDate = new Date();
             //WHAT IS THE KEY

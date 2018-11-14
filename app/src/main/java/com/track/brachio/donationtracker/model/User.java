@@ -1,6 +1,5 @@
 package com.track.brachio.donationtracker.model;
 
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.ArrayList;
@@ -15,27 +14,24 @@ import java.util.Date;
  */
 @SuppressWarnings("SpellCheckingInspection")
 public class User {
-    //Should probably add first and last name
-    private String userId;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private UserType userType;
+    private final String firstName;
+    private final String lastName;
+    private final String email;
+    private final UserType userType;
     private static final List<UserType> legalUserTypes = Arrays.asList(UserType.values());
     @ServerTimestamp
     private Date timestamp;
-    private ArrayList<String> locationIDs;
 
-    /**
-     * Constructor for User
-     * @param user user being entered
-     * @param type type being entered
-     */
-    public User(UserInfo user, UserType type){
-        this.userId = user.getUid();
-        this.email = user.getEmail();
-        userType = type;
-    }
+//    /**
+//     * Constructor for User
+//     * @param user user being entered
+//     * @param type type being entered
+//     */
+//    public User(UserInfo user, UserType type){
+//        this.userId = user.getUid();
+//        this.email = user.getEmail();
+//        userType = type;
+//    }
 
     /**
      * Constructor for User
@@ -78,7 +74,7 @@ public class User {
         this.lastName = lastName;
         this.email = em;
         userType = stringToUserType( type );
-        locationIDs = ids;
+        List<String> locationIDs = ids;
     }
 
 
@@ -86,7 +82,8 @@ public class User {
      * constructor for user
      */
     public User(){
-        userId = "";
+        //Should probably add first and last name
+        String userId = "";
         email = "";
         firstName= "";
         lastName = "";
@@ -102,29 +99,29 @@ public class User {
     }
 
 
-    /**
-     * getter - locations
-     * @return locations
-     */
-    public ArrayList<String> getLocations() {
-        return locationIDs;
-    }
+//    /**
+//     * getter - locations
+//     * @return locations
+//     */
+//    public ArrayList<String> getLocations() {
+//        return locationIDs;
+//    }
 
-    /**
-     * setter - locations
-     * @param locations locations being set
-     */
-    public void setLocations(ArrayList<String> locations) {
-        this.locationIDs = locations;
-    }
+//    /**
+//     * setter - locations
+//     * @param locations locations being set
+//     */
+//    public void setLocations(ArrayList<String> locations) {
+//        this.locationIDs = locations;
+//    }
 
-    /**
-     * setter - email
-     * @param em email being set
-     */
-    public void setEmail(String em){
-        email = em;
-    }
+//    /**
+//     * setter - email
+//     * @param em email being set
+//     */
+//    public void setEmail(String em){
+//        email = em;
+//    }
 
     /**
      * getter - email
@@ -134,13 +131,13 @@ public class User {
         return email;
     }
 
-    /**
-     * setter - UserType
-     * @param type usertype being set
-     */
-    public void setUserType(UserType type){
-        userType = type;
-    }
+//    /**
+//     * setter - UserType
+//     * @param type usertype being set
+//     */
+//    public void setUserType(UserType type){
+//        userType = type;
+//    }
 
     /**
      * getter - UserType
@@ -163,7 +160,7 @@ public class User {
      * @param timestamp sets timestamp
      */
     public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+        this.timestamp = (Date) timestamp.clone();
     }
 
     /**
@@ -174,13 +171,13 @@ public class User {
         return firstName;
     }
 
-    /**
-     * setter - first name
-     * @param firstName first name being set
-     */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+//    /**
+//     * setter - first name
+//     * @param firstName first name being set
+//     */
+//    public void setFirstName(String firstName) {
+//        this.firstName = firstName;
+//    }
 
     /**
      * getter - last name
@@ -190,13 +187,13 @@ public class User {
         return lastName;
     }
 
-    /**
-     * setter - last name
-     * @param lastName last name
-     */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+//    /**
+//     * setter - last name
+//     * @param lastName last name
+//     */
+//    public void setLastName(String lastName) {
+//        this.lastName = lastName;
+//    }
 
     /**
      * converts string to UserType

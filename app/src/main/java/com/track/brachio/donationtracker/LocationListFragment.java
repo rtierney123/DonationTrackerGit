@@ -101,12 +101,14 @@ public class LocationListFragment extends Fragment {
      * populates recycler view
      */
     private void populateRecycleView() {
-        ArrayList<Location> locations = AllLocations.getInstance().getLocationArray();
+        AllLocations currentInstance = AllLocations.getInstance();
+        ArrayList<Location> locations = currentInstance.getLocationArray();
 
         // populate view based on locations and adapter specifications
         RecyclerView.Adapter adapter = new LocationListAdapter(locations,
                 item -> {
-                    CurrentLocation.getInstance().setLocation(item);
+                    CurrentLocation currentInstanceLocation = CurrentLocation.getInstance();
+                    currentInstanceLocation.setLocation(item);
                     Intent intent = new Intent(containerActivity, LocationActivity.class);
                     startActivity(intent);
                 });
@@ -115,15 +117,15 @@ public class LocationListFragment extends Fragment {
     }
 
 
-    /**
-     * handles when button pressed
-     * @param uri parameter
-     */
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction( uri );
-        }
-    }
+//    /**
+//     * handles when button pressed
+//     * @param uri parameter
+//     */
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onFragmentInteraction( uri );
+//        }
+//    }
 
     @Override
     public void onAttach(Context context) {

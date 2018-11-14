@@ -19,8 +19,10 @@ import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
+import com.track.brachio.donationtracker.model.Location;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -51,7 +53,8 @@ public class PersistanceManager {
      * @param activity current activity
      */
     public void loadAppOnStart(Activity activity) {
-        User user = CurrentUser.getInstance().getUser();
+        //CurrentUser userInstance = CurrentUser.getInstance();
+        //User user = userInstance.getUser();
         gatherData(activity);
 
     }
@@ -85,30 +88,34 @@ public class PersistanceManager {
                 aliveTime, TimeUnit.SECONDS, new LinkedBlockingQueue<>() );
     }
 
-    /**
-     * returns executor
-     * @return current executor
-     */
-    public ThreadPoolExecutor getExecutor() {
-        return executor;
-    }
+//    /**
+//     * returns executor
+//     * @return current executor
+//     */
+//    public ThreadPoolExecutor getExecutor() {
+//        return executor;
+//    }
 
 
     /**
      * goes to main page
      */
     private void goToMainPage(){
-        User currentUser = CurrentUser.getInstance().getUser();
+        CurrentUser userInstance = CurrentUser.getInstance();
+        User currentUser = userInstance.getUser();
 
         //set what locations user can edit items
+        UserLocations currentLocation = UserLocations.getInstance();
+        AllLocations currentAllLocations = AllLocations.getInstance();
+        List<Location> locationArray = currentAllLocations.getLocationArray();
         if (currentUser.getUserType() == UserType.Donator) {
-            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
+            currentLocation.setLocations(locationArray);
         } else if (currentUser.getUserType() == UserType.Admin){
-            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
+            currentLocation.setLocations(locationArray);
         } else if (currentUser.getUserType() == UserType.Volunteer) {
-            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
+            currentLocation.setLocations(locationArray);
         } else if (currentUser.getUserType() == UserType.Manager) {
-            UserLocations.getInstance().setLocations(AllLocations.getInstance().getLocationArray());
+            currentLocation.setLocations(locationArray);
 
         }
         Intent intent = new Intent(activity, MainActivity.class );
@@ -122,8 +129,10 @@ public class PersistanceManager {
     public static void signOut() {
         FirebaseUserHandler handler = new FirebaseUserHandler();
         handler.signOutUser();
-        CurrentUser.getInstance().setUser( new User() );
-        UserLocations.getInstance().setLocations( new ArrayList<>() );
+        CurrentUser currentUserInstance = CurrentUser.getInstance();
+        currentUserInstance.setUser( new User() );
+        UserLocations currentLocationInstance = UserLocations.getInstance();
+        currentLocationInstance.setLocations( new ArrayList<>() );
     }
 
     /**
@@ -192,13 +201,13 @@ public class PersistanceManager {
         return itemHandler.getAllItems(context);
     }
 
-    /**
-     * gets thread running
-     * @return true if thread is running
-     */
-    public static boolean getThreadRunning() {
-        return threadRunning;
-    }
+//    /**
+//     * gets thread running
+//     * @return true if thread is running
+//     */
+//    public static boolean getThreadRunning() {
+//        return threadRunning;
+//    }
 
 
 }

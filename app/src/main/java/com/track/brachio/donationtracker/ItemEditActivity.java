@@ -19,6 +19,8 @@ import android.widget.Toast;
 import android.widget.ArrayAdapter;
 import android.Manifest;
 import java.io.File;
+import android.text.Editable;
+import java.util.Date;
 
 import android.content.pm.PackageManager;
 import android.support.v4.content.ContextCompat;
@@ -51,7 +53,6 @@ public class ItemEditActivity extends AppCompatActivity {
     private EditText newLongDescription;
     private EditText newDollarValue;
     private Spinner newItemCategory;
-    private RecyclerView newCommentsRecyclerView;
     private EditText newComments;
     private ImageButton newImage;
     private ArrayList<String> comments;
@@ -59,7 +60,7 @@ public class ItemEditActivity extends AppCompatActivity {
     private final Activity currentActivity = this;
     private Item currentItem;
     private Uri file;
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    //private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +75,7 @@ public class ItemEditActivity extends AppCompatActivity {
         newDollarValue = findViewById(R.id.editItemValueID);
         newItemCategory = findViewById(R.id.editItemCategoryID);
         newComments = findViewById(R.id.editItemAddCommentID);
-        newCommentsRecyclerView = findViewById(R.id.editItemCommentsID);
+        RecyclerView newCommentsRecyclerView = findViewById(R.id.editItemCommentsID);
         newImage = findViewById(R.id.editItemImage);
         Button addButton = findViewById(R.id.editItemMakeChangesID);
         ImageButton optionButton = findViewById(R.id.item_edit_options);
@@ -95,16 +96,21 @@ public class ItemEditActivity extends AppCompatActivity {
         newItemCategory.setAdapter(adapter);
 
         //set default value
-        currentItem = CurrentItem.getInstance().getItem();
+        CurrentItem currentItemInstance = CurrentItem.getInstance();
+        currentItem = currentItemInstance.getItem();
         if (currentItem != null) {
             itemName.setText(currentItem.getName());
             if (currentItem.getDateCreated() != null) {
-                dateCreated.setText(currentItem.getDateCreated().toString());
+                Date theDateCreated = currentItem.getDateCreated();
+                String dateString = theDateCreated.toString();
+                dateCreated.setText(dateString);
             }
             newLocation.setText(currentItem.getLocation());
             newShortDescription.setText(currentItem.getShortDescription());
             newLongDescription.setText(currentItem.getLongDescription());
-            newDollarValue.setText(Double.toString(currentItem.getDollarValue()));
+            double dollarValue = currentItem.getDollarValue();
+            String dollarValueString = Double.toString(dollarValue);
+            newDollarValue.setText(dollarValueString);
             if (currentItem.getCategory() != null) {
                 newItemCategory.setSelection(Item.findItemTypePosition(currentItem.getCategory()));
             }
@@ -115,11 +121,22 @@ public class ItemEditActivity extends AppCompatActivity {
         addButton.setOnClickListener(view -> {
             findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
             Log.d("Edit Item", "Change Made");
-            String locationEntered = newLocation.getText().toString();
-            String shortDescriptionEntered = newShortDescription.getText().toString();
-            String longDescriptionEntered = newLongDescription.getText().toString();
-            String dollarValueEntered = newDollarValue.getText().toString();
-            String commentEntered = newComments.getText().toString();
+
+            Editable locationTemp = newLocation.getText();
+            String locationEntered = locationTemp.toString();
+
+            Editable shortDecriptionTemp = newShortDescription.getText();
+            String shortDescriptionEntered = shortDecriptionTemp.toString();
+
+            Editable longDescriptionTemp = newLongDescription.getText();
+            String longDescriptionEntered = longDescriptionTemp.toString();
+
+            Editable dollarValueTemp = newDollarValue.getText();
+            String dollarValueEntered = dollarValueTemp.toString();
+
+            Editable commentsTemp = newComments.getText();
+            String commentEntered = commentsTemp.toString();
+
             ItemType itemTypeSelected = (ItemType) newItemCategory.getSelectedItem();
 
             //image
@@ -246,7 +263,8 @@ public class ItemEditActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Item item = CurrentItem.getInstance().getItem();
+                CurrentItem currentItemInstance = CurrentItem.getInstance();
+                Item item = currentItemInstance.getItem();
                 item.setPicture(bitmap);
                 newImage.setImageBitmap(bitmap);
             }
@@ -270,29 +288,29 @@ public class ItemEditActivity extends AppCompatActivity {
                 "IMG_" + ".jpg");
     }
 
-    /**
-     * sets comments for array
-     * @param array array being set
-     */
-    public void setCommentsArray(ArrayList<String> array) {
-        comments = array;
-    }
+//    /**
+//     * sets comments for array
+//     * @param array array being set
+//     */
+//    public void setCommentsArray(ArrayList<String> array) {
+//        comments = array;
+//    }
 
 
-    /**
-     * populates the recyclerview
-     * @param comm what is populating the recycler view
-     */
-    public void populateRecycleView(ArrayList<String> comm) {
-        comments = comm;
-
-        if (comments != null) {
-            RecyclerView.Adapter adapter = new ItemEditActivity.CommentListAdapter(comments);
-            newCommentsRecyclerView.setAdapter(adapter);
-        } else {
-            Log.d("Comments", "Comments are null");
-        }
-    }
+//    /**
+//     * populates the recyclerview
+//     * @param comm what is populating the recycler view
+//     */
+//    public void populateRecycleView(ArrayList<String> comm) {
+//        comments = comm;
+//
+//        if (comments != null) {
+//            RecyclerView.Adapter adapter = new ItemEditActivity.CommentListAdapter(comments);
+//            newCommentsRecyclerView.setAdapter(adapter);
+//        } else {
+//            Log.d("Comments", "Comments are null");
+//        }
+//    }
 
     /**
      * Adapter for Comment List
@@ -301,7 +319,7 @@ public class ItemEditActivity extends AppCompatActivity {
             RecyclerView.Adapter<ItemEditActivity
                     .CommentListAdapter.CommentViewHolder> {
         private final List<String> theComments;
-        private View view;
+        private View view; //for now
 
         /**
          * Holder for Comment View
