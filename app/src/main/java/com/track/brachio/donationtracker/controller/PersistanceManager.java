@@ -28,7 +28,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Manages Persistance
+ * Manages Persistence
  */
 public class PersistanceManager {
 
@@ -62,7 +62,7 @@ public class PersistanceManager {
     /**
      * gather data
      */
-    private void gatherData(Context contezt){
+    private void gatherData(Context context){
 
         //Get all locations from db so user can view all locations
         FirebaseLocationHandler locHandler = new FirebaseLocationHandler(db);
@@ -70,7 +70,7 @@ public class PersistanceManager {
 
         task1.addOnSuccessListener((OnSuccessListener<QuerySnapshot>) queryDocumentSnapshots -> {
             FirebaseItemHandler itemHandler = new FirebaseItemHandler(db);
-            Task task2 = itemHandler.getAllItems(contezt);
+            Task task2 = itemHandler.getAllItems(context);
             task2.addOnSuccessListener(
                     (OnSuccessListener<QuerySnapshot>) queryDocumentSnapshots1 -> goToMainPage());
         });

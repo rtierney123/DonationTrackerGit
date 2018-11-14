@@ -2,7 +2,6 @@ package com.track.brachio.donationtracker.model;
 
 import com.google.firebase.firestore.ServerTimestamp;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -60,20 +59,20 @@ public class User {
         userType = stringToUserType( type );
     }
 
-    /**
-     * Constructor for User
-     * @param firstName first name of user
-     * @param lastName last name of user
-     * @param em email of user
-     * @param type type of user
-     * @param ids id of user
-     */
-    public User(String firstName, String lastName, String em, String type, List<String> ids){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = em;
-        userType = stringToUserType( type );
-    }
+//    /**
+//     * Constructor for User
+//     * @param firstName first name of user
+//     * @param lastName last name of user
+//     * @param em email of user
+//     * @param type type of user
+//     * @param ids id of user
+//     */
+//    public User(String firstName, String lastName, String em, String type, List<String> ids){
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = em;
+//        userType = stringToUserType( type );
+//    }
 
 
     /**
@@ -81,7 +80,7 @@ public class User {
      */
     public User(){
         //Should probably add first and last name
-        String userId = "";
+        //String userId = "";
         email = "";
         firstName= "";
         lastName = "";
@@ -131,7 +130,6 @@ public class User {
 
 //    /**
 //     * setter - UserType
-//     * @param type usertype being set
 //     */
 //    public void setUserType(UserType type){
 //        userType = type;
@@ -139,7 +137,7 @@ public class User {
 
     /**
      * getter - UserType
-     * @return usertype
+     * @return userType
      */
     public UserType getUserType(){
         return userType;

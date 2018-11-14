@@ -65,7 +65,7 @@ public class FirebaseUserHandler {
     }
 
     /**
-     * reutrns whether or not they are verified
+     * returns whether or not they are verified
      * @return true or false
      */
     public boolean isCurrentUserEmailVerified(){
@@ -149,7 +149,7 @@ public class FirebaseUserHandler {
     /**
      * creates new user
      * @param appUser new user
-     * @param password passowrd of new user
+     * @param password password of new user
      * @param registration type of user
      * @param activity current activity
      */
@@ -312,10 +312,10 @@ public class FirebaseUserHandler {
                         assert userType != null;
                         UserType type = stringToUserType( userType );
                         if (type == UserType.Volunteer) {
-                            Set<String> keySet = Objects.requireNonNull(locationHash).keySet();
-                            ArrayList<String> listOfKeys = new ArrayList<>(keySet);
+                            //Set<String> keySet = Objects.requireNonNull(locationHash).keySet();
+                            //ArrayList<String> listOfKeys = new ArrayList<>(keySet);
                             userCallback = new User(firstName, lastName,
-                                    email, userType, listOfKeys);
+                                    email, userType);
                         } else {
                             userCallback = new User( firstName, lastName, email, userType );
                         }
@@ -326,18 +326,18 @@ public class FirebaseUserHandler {
                 });
     }
 
-    /**
-     * returns locations
-     * @param user user being passed in to find locations
-     */
-    private void getLocations(User user){
-        if (user.getUserType() == UserType.Volunteer){
-
-        } else if (user.getUserType() == UserType.Manager){
-
-        }
-
-    }
+//    /**
+//     * returns locations
+//     * @param user user being passed in to find locations
+//     */
+//    private void getLocations(User user){
+//        if (user.getUserType() == UserType.Volunteer){
+//
+//        } else if (user.getUserType() == UserType.Manager){
+//
+//        }
+//
+//    }
 
     /**
      * converts string user to usertype user

@@ -62,6 +62,6 @@ public final class AllLocations {
      */
     public ArrayList<Location> getLocationArray(){
         Collection<Location> collect = locMap.values();
-        return new ArrayList<Location>(collect);
+        return new ArrayList<>(collect);
     }
 }

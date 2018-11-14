@@ -123,8 +123,8 @@ public class ItemEditActivity extends AppCompatActivity {
             Editable locationTemp = newLocation.getText();
             String locationEntered = locationTemp.toString();
 
-            Editable shortDecriptionTemp = newShortDescription.getText();
-            String shortDescriptionEntered = shortDecriptionTemp.toString();
+            Editable shortDescriptionTemp = newShortDescription.getText();
+            String shortDescriptionEntered = shortDescriptionTemp.toString();
 
             Editable longDescriptionTemp = newLongDescription.getText();
             String longDescriptionEntered = longDescriptionTemp.toString();
@@ -296,7 +296,6 @@ public class ItemEditActivity extends AppCompatActivity {
 
 
 //    /**
-//     * populates the recyclerview
 //     * @param comm what is populating the recycler view
 //     */
 //    public void populateRecycleView(ArrayList<String> comm) {

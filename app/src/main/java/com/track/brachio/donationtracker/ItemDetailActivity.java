@@ -61,7 +61,6 @@ public class ItemDetailActivity extends AppCompatActivity {
 
         ImageButton editButton = findViewById( R.id.edit_item_button);
         editButton.setOnClickListener (view -> {
-            //putting it to donator main activity for now
             Intent intent = new Intent(ItemDetailActivity.this, ItemEditActivity.class);
             startActivity(intent);
         });

@@ -47,7 +47,6 @@ public class ItemAddActivity extends AppCompatActivity {
         comment = findViewById(R.id.addItemCommentID);
         Button addButton = findViewById(R.id.addItemAddID);
         Button cancelButton = findViewById(R.id.addItemCancelButton);
-        //ImageButton newimage = findViewById(R.id.addItemImage);
 
         PersistanceManager manager = new PersistanceManager( this );
 
@@ -119,6 +118,9 @@ public class ItemAddActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * acts as onClick REQUIRED
+     * @param view view being passed in
+     */
     public void takePicture(View view) {
     }}

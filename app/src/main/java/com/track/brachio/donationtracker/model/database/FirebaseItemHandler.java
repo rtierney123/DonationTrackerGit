@@ -24,7 +24,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.Executor;
 
 /**
  * Handler for Items
@@ -36,6 +35,10 @@ public class FirebaseItemHandler {
     private final String TAG = "FirebaseItemHandler";
     private final Collection<Item> items = new ArrayList<>();
 
+    /**
+     * Constructor for FirebaseItemhandler
+     * @param db db being passed in
+     */
     public FirebaseItemHandler(FirebaseFirestore db){
         this.db = db;
     }

@@ -26,6 +26,10 @@ public class FirebaseLocationHandler {
     private final ArrayList<Location> locationArray = new ArrayList<>();
     private final FirebaseFirestore db;
 
+    /**
+     * Constructor for FirebaseLocationHandler
+     * @param db db being passed int
+     */
     public FirebaseLocationHandler(FirebaseFirestore db){
         this.db = db;
     }

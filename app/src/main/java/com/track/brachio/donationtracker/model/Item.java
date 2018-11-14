@@ -310,7 +310,7 @@ public class Item {
             }
 
 
-            String timeStamp = new SimpleDateFormat( "yyyyMMdd_HHmmss" )
+            String timeStamp = new SimpleDateFormat( )
                     .format( new Date() );
 
             Random rand = new Random();

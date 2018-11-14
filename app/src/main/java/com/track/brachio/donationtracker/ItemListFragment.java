@@ -57,8 +57,8 @@ public class ItemListFragment extends Fragment {
     private String searchString = "";
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+//    private static final String ARG_PARAM1 = "param1";
+//    private static final String ARG_PARAM2 = "param2";
 
 
     @Nullable
@@ -117,7 +117,6 @@ public class ItemListFragment extends Fragment {
         SearchView searchView = view.findViewById(R.id.nameSearchView);
         editButton.setOnClickListener (view1 -> {
             Log.d("ItemList", "Edit");
-            //putting it to donator main activity for now
             Intent intent = new Intent(containerActivity, ItemAddActivity.class);
             startActivity(intent);
         });
