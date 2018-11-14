@@ -5,9 +5,9 @@
 
         android:id="@+id/nav_location"
         android:icon="@drawable/fui_idp_button_background_github"
-        android:title="View Locations" />;
+        android:title="View Locations" />
     <item
         android:id="@+id/nav_item"
         android:icon="@drawable/fui_idp_button_background_github"
-        android:title="View Items" />;
+        android:title="View Items" />
 </menu>
