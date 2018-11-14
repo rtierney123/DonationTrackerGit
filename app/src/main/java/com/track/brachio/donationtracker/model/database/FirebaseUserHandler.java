@@ -39,7 +39,8 @@ public class FirebaseUserHandler {
      * @return current user
      */
     public FirebaseUser getCurrentUser(){
-        return FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseAuth currentInstance = FirebaseAuth.getInstance();
+        return currentInstance.getCurrentUser();
     }
 
     /**
@@ -47,8 +48,10 @@ public class FirebaseUserHandler {
      * @return name of current user
      */
     public String getCurrentUserName(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        return Objects.requireNonNull(user).getDisplayName();
+        FirebaseAuth currentInstance = FirebaseAuth.getInstance();
+        FirebaseUser user = currentInstance.getCurrentUser();
+        user = Objects.requireNonNull(user);
+        return user.getDisplayName();
     }
 
     /**
@@ -56,7 +59,8 @@ public class FirebaseUserHandler {
      * @return email of current user
      */
     public String getCurrentUserEmail(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseAuth currentInstance = FirebaseAuth.getInstance();
+        FirebaseUser user = currentInstance.getCurrentUser();
         assert user != null;
         return user.getEmail();
     }
@@ -66,8 +70,10 @@ public class FirebaseUserHandler {
      * @return true or false
      */
     public boolean isCurrentUserEmailVerified(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        return Objects.requireNonNull(user).isEmailVerified();
+        FirebaseAuth currentInstance = FirebaseAuth.getInstance();
+        FirebaseUser user = currentInstance.getCurrentUser();
+        user = Objects.requireNonNull(user);
+        return user.isEmailVerified();
     }
 
     /**
@@ -75,8 +81,10 @@ public class FirebaseUserHandler {
      * @return id
      */
     public String getCurrentUserID(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        return Objects.requireNonNull(user).getUid();
+        FirebaseAuth currentInstance = FirebaseAuth.getInstance();
+        FirebaseUser user = currentInstance.getCurrentUser();
+        user = Objects.requireNonNull(user);
+        return user.getUid();
     }
 
     /**
@@ -84,7 +92,8 @@ public class FirebaseUserHandler {
      * @param newUserName new name
      */
     public void updateUserName(String newUserName){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseAuth currentInstance = FirebaseAuth.getInstance();
+        FirebaseUser user = currentInstance.getCurrentUser();
 
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(newUserName)
@@ -103,7 +112,8 @@ public class FirebaseUserHandler {
      * @param newEmail new email
      */
     public void updateEmail(String newEmail){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseAuth currentInstance = FirebaseAuth.getInstance();
+        FirebaseUser user = currentInstance.getCurrentUser();
 
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(newEmail)
@@ -122,9 +132,11 @@ public class FirebaseUserHandler {
      * @param newPassword new password
      */
     public void updatePassword(String newPassword){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseAuth currentInstance = FirebaseAuth.getInstance();
+        FirebaseUser user = currentInstance.getCurrentUser();
+        user = Objects.requireNonNull(user);
 
-        Objects.requireNonNull(user).updatePassword(newPassword)
+        user.updatePassword(newPassword)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "User password updated.");
@@ -155,7 +167,9 @@ public class FirebaseUserHandler {
             userMap.put("firstname", appUser.getFirstName());
             userMap.put("lastname", appUser.getLastName());
             userMap.put("email", appUser.getEmail());
-            userMap.put("usertype", appUser.getUserType().name());
+            UserType currentUserType = appUser.getUserType();
+            String stringCurrentUserType = currentUserType.name();
+            userMap.put("usertype", stringCurrentUserType);
             userMap.put("date created", appUser.getTimestamp());
                 auth.createUserWithEmailAndPassword(appUser.getEmail(), password)
                         .addOnCompleteListener(task -> {
@@ -240,7 +254,8 @@ public class FirebaseUserHandler {
      * signs out the user
      */
     public void signOutUser(){
-        FirebaseAuth.getInstance().signOut();
+        FirebaseAuth currentInstance = FirebaseAuth.getInstance();
+        currentInstance.signOut();
     }
 
     /**
@@ -248,7 +263,8 @@ public class FirebaseUserHandler {
      * @return true or false
      */
     public boolean isUserSignedIn(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseAuth currentInstance = FirebaseAuth.getInstance();
+        FirebaseUser user = currentInstance.getCurrentUser();
         return user != null;
     }
 
@@ -261,9 +277,12 @@ public class FirebaseUserHandler {
      */
     private void getSignedInUser(LoginActivity login) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Log.d( TAG, "email " + Objects.requireNonNull(user).getEmail() );
-        db.collection( "users" ).whereEqualTo( "email", user.getEmail() )
+        FirebaseAuth currentInstance = FirebaseAuth.getInstance();
+        FirebaseUser user = currentInstance.getCurrentUser();
+        user = Objects.requireNonNull(user);
+        String theEmail = user.getEmail();
+        Log.d( TAG, "email " + theEmail );
+        db.collection( "users" ).whereEqualTo( "email", theEmail )
                 .get().addOnSuccessListener(documentSnapshots -> {
                     if (documentSnapshots.isEmpty()) {
                         Log.d( TAG, "onSuccess: LIST EMPTY" );
@@ -302,7 +321,8 @@ public class FirebaseUserHandler {
                         } else {
                             userCallback = new User( firstName, lastName, email, userType );
                         }
-                        CurrentUser.getInstance().setUser( userCallback );
+                        CurrentUser currentInstanceUser = CurrentUser.getInstance();
+                        currentInstanceUser.setUser( userCallback );
                         login.goToCorrectActivity();
                     }
                 });

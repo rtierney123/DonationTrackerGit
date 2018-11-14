@@ -121,7 +121,8 @@ public class FirebaseLocationHandler {
                                             type, phone, website, address);
                             locationMap.put(Objects.requireNonNull(id), locationCallback);
                         }
-                        AllLocations.getInstance().setLocationMap( locationMap );
+                        AllLocations currentLocationInstance = AllLocations.getInstance();
+                        currentLocationInstance.setLocationMap( locationMap );
                     }
                 });
     }

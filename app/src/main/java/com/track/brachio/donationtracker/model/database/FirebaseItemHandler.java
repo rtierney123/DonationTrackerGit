@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.singleton.SearchedItems;
+import com.track.brachio.donationtracker.model.ItemType;
 /*
 import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutureCallback;
@@ -159,7 +160,9 @@ public class FirebaseItemHandler {
         itemMap.put("date", item.getDateCreated());
         itemMap.put("locationID", item.getLocation());
         itemMap.put("cost", item.getDollarValue());
-        itemMap.put("category", item.getCategory().toString());
+        ItemType theTypeOfItem = item.getCategory();
+        String stringItemType = theTypeOfItem.toString();
+        itemMap.put("category", stringItemType);
         itemMap.put("shortDescription", item.getShortDescription());
         itemMap.put("longDescription", item.getLongDescription());
 
@@ -203,7 +206,9 @@ public class FirebaseItemHandler {
         itemMap.put("date", item.getDateCreated());
         itemMap.put("locationID", item.getLocation());
         itemMap.put("cost", item.getDollarValue());
-        itemMap.put("category", item.getCategory().toString());
+        ItemType itemCategory = item.getCategory();
+        String stringItemCategory = itemCategory.toString();
+        itemMap.put("category", stringItemCategory);
         itemMap.put("shortDescription", item.getShortDescription());
         itemMap.put("longDescription", item.getLongDescription());
         itemMap.put("picture", item.encodePic());
