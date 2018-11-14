@@ -180,7 +180,8 @@ public class FirebaseUserHandler {
                                     FirebaseFirestore db1 = FirebaseFirestore.getInstance();
                                     if (auth.getUid() != null) {
                                         db1.collection("users")
-                                                .document(Objects.requireNonNull(auth.getCurrentUser()).getUid())
+                                                .document(Objects.requireNonNull(
+                                                        auth.getCurrentUser()).getUid())
                                                 .set(userMap)
                                                 .addOnSuccessListener(
                                                         aVoid -> Log.d(TAG, "Added extra data"));

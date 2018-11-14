@@ -180,7 +180,9 @@ public class FirebaseItemHandler {
         // Add a new document with a generated ID
         return db.collection("items")
                 .add(itemMap)
-                .addOnSuccessListener(executor, documentReference -> Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId()))
+                .addOnSuccessListener(executor,
+                        documentReference -> Log.d(TAG, "DocumentSnapshot added with ID: "
+                                + documentReference.getId()))
                 .addOnFailureListener(e -> Log.w(TAG, "Error adding user", e));
 
     }
