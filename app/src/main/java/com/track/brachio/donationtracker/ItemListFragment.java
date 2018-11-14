@@ -50,7 +50,7 @@ import java.util.regex.Pattern;
 public class ItemListFragment extends Fragment {
 
     private Collection<Item> items = new ArrayList<>();
-    private static HashMap<String, HashMap<String, Item>> storeItems;
+    //private static HashMap<String, HashMap<String, Item>> storeItems;
     private RecyclerView recyclerView;
     private static int locIndex;
     private static int catIndex;
@@ -83,14 +83,14 @@ public class ItemListFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment ItemListFragment.
      */
-    public static ItemListFragment newInstance(String param1, String param2) {
-        ItemListFragment fragment = new ItemListFragment();
-        Bundle args = new Bundle();
-        args.putString( ARG_PARAM1, param1 );
-        args.putString( ARG_PARAM2, param2 );
-        fragment.setArguments( args );
-        return fragment;
-    }
+//    public static ItemListFragment newInstance(String param1, String param2) {
+//        ItemListFragment fragment = new ItemListFragment();
+//        Bundle args = new Bundle();
+//        args.putString( ARG_PARAM1, param1 );
+//        args.putString( ARG_PARAM2, param2 );
+//        fragment.setArguments( args );
+//        return fragment;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -187,11 +187,11 @@ public class ItemListFragment extends Fragment {
      * handler for button press
      * @param uri parameter
      */
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction( uri );
-        }
-    }
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onFragmentInteraction( uri );
+//        }
+//    }
 
     @Override
     public void onAttach(Context context) {

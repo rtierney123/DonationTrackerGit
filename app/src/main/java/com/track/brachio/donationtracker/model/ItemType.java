@@ -31,8 +31,8 @@ public enum ItemType {
      * returns size
      * @return returns size of enums;
      */
-    public static int getSize(){
-        ItemType[] types = ItemType.values();
-        return types.length;
-    }
+//    public static int getSize(){
+//        ItemType[] types = ItemType.values();
+//        return types.length;
+//    }
 }
