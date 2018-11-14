@@ -1,6 +1,5 @@
 package com.track.brachio.donationtracker.model;
 
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.ArrayList;
@@ -15,16 +14,13 @@ import java.util.Date;
  */
 @SuppressWarnings("SpellCheckingInspection")
 public class User {
-    //Should probably add first and last name
-    private String userId;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private UserType userType;
+    private final String firstName;
+    private final String lastName;
+    private final String email;
+    private final UserType userType;
     private static final List<UserType> legalUserTypes = Arrays.asList(UserType.values());
     @ServerTimestamp
     private Date timestamp;
-    private ArrayList<String> locationIDs;
 
 //    /**
 //     * Constructor for User
@@ -78,7 +74,7 @@ public class User {
         this.lastName = lastName;
         this.email = em;
         userType = stringToUserType( type );
-        locationIDs = ids;
+        List<String> locationIDs = ids;
     }
 
 
@@ -86,7 +82,8 @@ public class User {
      * constructor for user
      */
     public User(){
-        userId = "";
+        //Should probably add first and last name
+        String userId = "";
         email = "";
         firstName= "";
         lastName = "";
@@ -163,7 +160,7 @@ public class User {
      * @param timestamp sets timestamp
      */
     public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+        this.timestamp = (Date) timestamp.clone();
     }
 
     /**

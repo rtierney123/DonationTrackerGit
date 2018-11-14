@@ -53,7 +53,6 @@ public class ItemEditActivity extends AppCompatActivity {
     private EditText newLongDescription;
     private EditText newDollarValue;
     private Spinner newItemCategory;
-    private RecyclerView newCommentsRecyclerView;
     private EditText newComments;
     private ImageButton newImage;
     private ArrayList<String> comments;
@@ -76,7 +75,7 @@ public class ItemEditActivity extends AppCompatActivity {
         newDollarValue = findViewById(R.id.editItemValueID);
         newItemCategory = findViewById(R.id.editItemCategoryID);
         newComments = findViewById(R.id.editItemAddCommentID);
-        newCommentsRecyclerView = findViewById(R.id.editItemCommentsID);
+        RecyclerView newCommentsRecyclerView = findViewById(R.id.editItemCommentsID);
         newImage = findViewById(R.id.editItemImage);
         Button addButton = findViewById(R.id.editItemMakeChangesID);
         ImageButton optionButton = findViewById(R.id.item_edit_options);
@@ -320,7 +319,7 @@ public class ItemEditActivity extends AppCompatActivity {
             RecyclerView.Adapter<ItemEditActivity
                     .CommentListAdapter.CommentViewHolder> {
         private final List<String> theComments;
-        private View view = null; //for now
+        private View view; //for now
 
         /**
          * Holder for Comment View

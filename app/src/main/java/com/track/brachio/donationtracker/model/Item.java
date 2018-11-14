@@ -9,6 +9,7 @@ import android.util.Log;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +29,7 @@ public class Item {
     private double dollarValue;
     private ItemType category;
     private static final List<ItemType> legalItemTypes = Arrays.asList(ItemType.values());
-    private final List<String> comments = new ArrayList<>();
+    private final Collection<String> comments = new ArrayList<>();
     private Bitmap picture;
     private static final int compressed = 50;
 
@@ -195,7 +196,7 @@ public class Item {
      * @return date
      */
     public Date getDateCreated() {
-        return dateCreated;
+        return (Date) dateCreated.clone();
     }
 
     /**

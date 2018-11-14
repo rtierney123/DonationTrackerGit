@@ -4,8 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
-import com.track.brachio.donationtracker.model.singleton.CurrentItem;
 import com.track.brachio.donationtracker.model.singleton.CurrentLocation;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.Address;

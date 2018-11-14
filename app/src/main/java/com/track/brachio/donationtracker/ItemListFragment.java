@@ -31,7 +31,6 @@ import com.track.brachio.donationtracker.model.singleton.UserLocations;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
