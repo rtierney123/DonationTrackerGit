@@ -1,49 +1,113 @@
 package com.track.brachio.donationtracker.model;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Clara Junit Tests
  */
 public class ClaraTest {
-//    /**
-//    * Tests if input is empty string
-//    */
-//    @Test
-//    public void testNullInput() {
-//        assertEquals("Empty string should return null", null, Item.stringToItemType(""));
-//    }
-//    /**
-//    * Tests if input is not one of the strings
-//    */
-//    @Test
-//    public void testInvalidInput() {
-//        assertEquals("Invalid string should return null", null, Item.stringToItemType("clara"));
-//    }
-//
-//    @Test
-//    public void testFoodInput() {
-//        assertEquals("Food string should return food item type", ItemType.Food, Item.stringToItemType("Food"));
-//    }
-//    @Test
-//    public void testClothesInput() {
-//        assertEquals("Clothes string should return clothes item type", ItemType.Clothes, Item.stringToItemType("Clothes"));
-//    }
-//    @Test
-//    public void testSportInput() {
-//
-//    }
-//    @Test
-//    public void testElectronicInput() {
-//
-//    }
-//    @Test
-//    public void testMiscInput() {
-//
-//    }
-//    @Test
-//    public void testFurnitureInput() {
-//
-//    }
+    public static Item holder;
+    @BeforeClass
+    public static void beforeClass() {
+        holder = new Item();
+    }
+
+    /**
+    * Tests if input is empty string
+    */
+    @Test
+    public void testNullInput() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException{
+        String input = "";
+        Method method = Item.class.getDeclaredMethod("stringToItemType", String.class);
+        method.setAccessible(true);
+        ItemType output = (ItemType) method.invoke(holder, input);
+        assertEquals("Empty string should return null", null, output);
+    }
+    /**
+    * Tests if input is not one of the strings
+    */
+    @Test
+    public void testInvalidInput() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException{
+        String input = "clara";
+        Method method = Item.class.getDeclaredMethod("stringToItemType", String.class);
+        method.setAccessible(true);
+        ItemType output = (ItemType) method.invoke(holder, input);
+        assertEquals("Invalid string should return null", null, output);
+    }
+
+    /**
+     * Tests if input is food
+     */
+    @Test
+    public void testFoodInput() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException{
+        String input = "Food";
+        Method method = Item.class.getDeclaredMethod("stringToItemType", String.class);
+        method.setAccessible(true);
+        ItemType output = (ItemType) method.invoke(holder, input);
+        assertEquals("Food string should return food item type", ItemType.Food, output);
+    }
+
+    /**
+     * Tests if input is clothes
+      */
+    @Test
+    public void testClothesInput() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException{
+        String input = "Clothes";
+        Method method = Item.class.getDeclaredMethod("stringToItemType", String.class);
+        method.setAccessible(true);
+        ItemType output = (ItemType) method.invoke(holder, input);
+        assertEquals("Clothes string should return clothes item type", ItemType.Clothes, output);
+    }
+
+    /**
+     * Tests if input is sport
+      */
+    @Test
+    public void testSportInput() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException{
+        String input = "Sport";
+        Method method = Item.class.getDeclaredMethod("stringToItemType", String.class);
+        method.setAccessible(true);
+        ItemType output = (ItemType) method.invoke(holder, input);
+        assertEquals("Sport string should return sport item type", ItemType.Sport, output);
+    }
+
+    /**
+     * Tests if input is electronic
+      */
+    @Test
+    public void testElectronicInput() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException{
+        String input = "Sport";
+        Method method = Item.class.getDeclaredMethod("stringToItemType", String.class);
+        method.setAccessible(true);
+        ItemType output = (ItemType) method.invoke(holder, input);
+        assertEquals("Electronic string should return electronic item type", ItemType.Electronics, output);
+    }
+
+    /**
+     * Tests if input is miscellaneous
+      */
+    @Test
+    public void testMiscInput() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException{
+        String input = "Miscellaneous";
+        Method method = Item.class.getDeclaredMethod("stringToItemType", String.class);
+        method.setAccessible(true);
+        ItemType output = (ItemType) method.invoke(holder, input);
+        assertEquals("Misc string should return misc item type", ItemType.Miscellaneous, output);
+    }
+
+    /**
+     * Tests if input is furniture
+      */
+    @Test
+    public void testFurnitureInput() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException{
+        String input = "Furniture";
+        Method method = Item.class.getDeclaredMethod("stringToItemType", String.class);
+        method.setAccessible(true);
+        ItemType output = (ItemType) method.invoke(holder, input);
+        assertEquals("Furniture string should return furniture item type", ItemType.Furniture, output);
+    }
 }
