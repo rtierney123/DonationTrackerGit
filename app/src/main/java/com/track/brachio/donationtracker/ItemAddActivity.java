@@ -33,7 +33,7 @@ public class ItemAddActivity extends AppCompatActivity {
     private EditText comment;
 
     private final Activity currentActivity = this;
-    Item currentItem;
+    //Item currentItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class ItemAddActivity extends AppCompatActivity {
         comment = findViewById(R.id.addItemCommentID);
         Button addButton = findViewById(R.id.addItemAddID);
         Button cancelButton = findViewById(R.id.addItemCancelButton);
-        ImageButton newimage = findViewById(R.id.addItemImage);
+        //ImageButton newimage = findViewById(R.id.addItemImage);
 
         PersistanceManager manager = new PersistanceManager( this );
 

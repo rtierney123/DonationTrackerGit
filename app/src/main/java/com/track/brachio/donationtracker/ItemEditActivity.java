@@ -320,14 +320,14 @@ public class ItemEditActivity extends AppCompatActivity {
             RecyclerView.Adapter<ItemEditActivity
                     .CommentListAdapter.CommentViewHolder> {
         private final List<String> theComments;
-        private View view;
+        private View view = null; //for now
 
         /**
          * Holder for Comment View
          */
         public static final class CommentViewHolder extends RecyclerView.ViewHolder {
             private final TextView commentText;
-            private final View v;
+            private final View v; 
             private CommentViewHolder(View v) {
                 super(v);
                 this.v = v;
