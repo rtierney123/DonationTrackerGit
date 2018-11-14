@@ -61,7 +61,7 @@ public class ItemEditActivity extends AppCompatActivity {
     private final Activity currentActivity = this;
     private Item currentItem;
     private Uri file;
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    //private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -293,25 +293,25 @@ public class ItemEditActivity extends AppCompatActivity {
      * sets comments for array
      * @param array array being set
      */
-    public void setCommentsArray(ArrayList<String> array) {
-        comments = array;
-    }
+//    public void setCommentsArray(ArrayList<String> array) {
+//        comments = array;
+//    }
 
 
     /**
      * populates the recyclerview
      * @param comm what is populating the recycler view
      */
-    public void populateRecycleView(ArrayList<String> comm) {
-        comments = comm;
-
-        if (comments != null) {
-            RecyclerView.Adapter adapter = new ItemEditActivity.CommentListAdapter(comments);
-            newCommentsRecyclerView.setAdapter(adapter);
-        } else {
-            Log.d("Comments", "Comments are null");
-        }
-    }
+//    public void populateRecycleView(ArrayList<String> comm) {
+//        comments = comm;
+//
+//        if (comments != null) {
+//            RecyclerView.Adapter adapter = new ItemEditActivity.CommentListAdapter(comments);
+//            newCommentsRecyclerView.setAdapter(adapter);
+//        } else {
+//            Log.d("Comments", "Comments are null");
+//        }
+//    }
 
     /**
      * Adapter for Comment List
@@ -327,7 +327,7 @@ public class ItemEditActivity extends AppCompatActivity {
          */
         public static final class CommentViewHolder extends RecyclerView.ViewHolder {
             private final TextView commentText;
-            private final View v; 
+            private final View v;
             private CommentViewHolder(View v) {
                 super(v);
                 this.v = v;

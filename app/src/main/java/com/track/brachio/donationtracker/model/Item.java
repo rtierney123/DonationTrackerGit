@@ -28,7 +28,7 @@ public class Item {
     private double dollarValue;
     private ItemType category;
     private static final List<ItemType> legalItemTypes = Arrays.asList(ItemType.values());
-    private ArrayList<String> comments = new ArrayList<>();
+    private final List<String> comments = new ArrayList<>();
     private Bitmap picture;
     private static final int compressed = 50;
 
@@ -92,10 +92,10 @@ public class Item {
         return key;
     }
 
-    /**
-     * setter - key
-     * @param key key being set
-     */
+//    /**
+//     * setter - key
+//     * @param key key being set
+//     */
 //    public void setKey(String key) {
 //        this.key = key;
 //    }
@@ -108,18 +108,18 @@ public class Item {
         return name;
     }
 
-    /**
-     * Setter - name
-     * @param name name being set
-     */
+//    /**
+//     * Setter - name
+//     * @param name name being set
+//     */
 //    public void setName(String name) {
 //        this.name = name;
 //    }
 
-    /**
-     * setter - date
-     * @param dateCreated date being set
-     */
+//    /**
+//     * setter - date
+//     * @param dateCreated date being set
+//     */
 //    public void setDateCreated(Date dateCreated) {
 //        this.dateCreated = (Date) dateCreated.clone();
 //    }
@@ -164,10 +164,10 @@ public class Item {
         this.category = category;
     }
 
-    /**
-     * setter - comments
-     * @param comments comments being set
-     */
+//    /**
+//     * setter - comments
+//     * @param comments comments being set
+//     */
 //    public void setComments(ArrayList<String> comments) {
 //        this.comments = comments;
 //    }
@@ -238,10 +238,10 @@ public class Item {
         return category;
     }
 
-    /**
-     * getter - comments
-     * @return comments
-     */
+//    /**
+//     * getter - comments
+//     * @return comments
+//     */
 //    public ArrayList<String> getComments() {
 //        return comments;
 //    }
