@@ -29,7 +29,8 @@ public class ItemDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_item_detail );
-        Item currentItem = CurrentItem.getInstance().getItem();
+        CurrentItem currentInstance = CurrentItem.getInstance();
+        Item currentItem = currentInstance.getItem();
 
         TextView nameText = findViewById(R.id.detail_name);
         TextView dateText = findViewById( R.id.detail_date );
@@ -45,9 +46,11 @@ public class ItemDetailActivity extends AppCompatActivity {
         Date dateCreated = currentItem.getDateCreated();
         String dateCreatedString = dateCreated.toString();
         dateText.setText(dateCreatedString);
-        Map<String, Location> allLoc = AllLocations.getInstance().getLocationMap();
+        AllLocations currentLocationsInstance = AllLocations.getInstance();
+        Map<String, Location> allLoc = currentLocationsInstance.getLocationMap();
         Location loc = allLoc.get(currentItem.getLocation());
-        String theName = Objects.requireNonNull(loc).getName();
+        Location obj = Objects.requireNonNull(loc);
+        String theName = obj.getName();
         locationText.setText(theName);
         shortDescriptionText.setText(currentItem.getShortDescription());
         longDescriptionText.setText(currentItem.getLongDescription());

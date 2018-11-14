@@ -127,7 +127,8 @@ public class ItemListFragment extends Fragment {
         UIPopulator ui = new UIPopulator();
         List<String> names = new ArrayList<>();
         names.add("All");
-        List<Location> array = UserLocations.getInstance().getLocations();
+        UserLocations currentUserLocations = UserLocations.getInstance();
+        List<Location> array = currentUserLocations.getLocations();
         for(Location loc : array){
             names.add(loc.getName());
         }
@@ -322,7 +323,8 @@ public class ItemListFragment extends Fragment {
         // populate view based on items and adapter specifications
         RecyclerView.Adapter adapter =  new ItemListAdapter( displayItems,
                 item -> {
-                    CurrentItem.getInstance().setItem(item);
+                    CurrentItem currentItemInstance = CurrentItem.getInstance();
+                    currentItemInstance.setItem(item);
                     Intent intent = new Intent(containerActivity, ItemDetailActivity.class);
                     startActivity(intent);
                 });

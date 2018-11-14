@@ -39,7 +39,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Spinner locationDisplayed = findViewById(R.id.locationsOnMaps);
         UIPopulator ui = new UIPopulator();
         List<String> names = new ArrayList<>();
-        locations = UserLocations.getInstance().getLocations();
+        UserLocations currentLocations = UserLocations.getInstance();
+        locations = currentLocations.getLocations();
 
         for (Location location : locations){
             names.add(location.getName());

@@ -97,7 +97,8 @@ public class ItemEditActivity extends AppCompatActivity {
         newItemCategory.setAdapter(adapter);
 
         //set default value
-        currentItem = CurrentItem.getInstance().getItem();
+        CurrentItem currentItemInstance = CurrentItem.getInstance();
+        currentItem = currentItemInstance.getItem();
         if (currentItem != null) {
             itemName.setText(currentItem.getName());
             if (currentItem.getDateCreated() != null) {
@@ -263,7 +264,8 @@ public class ItemEditActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Item item = CurrentItem.getInstance().getItem();
+                CurrentItem currentItemInstance = CurrentItem.getInstance();
+                Item item = currentItemInstance.getItem();
                 item.setPicture(bitmap);
                 newImage.setImageBitmap(bitmap);
             }
