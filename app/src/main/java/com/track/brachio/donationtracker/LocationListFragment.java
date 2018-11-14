@@ -121,11 +121,11 @@ public class LocationListFragment extends Fragment {
      * handles when button pressed
      * @param uri parameter
      */
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction( uri );
-        }
-    }
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onFragmentInteraction( uri );
+//        }
+//    }
 
     @Override
     public void onAttach(Context context) {

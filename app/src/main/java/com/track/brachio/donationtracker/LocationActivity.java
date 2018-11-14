@@ -32,7 +32,7 @@ public class LocationActivity extends AppCompatActivity {
         TextView website = findViewById(R.id.websiteID);
         TextView locationType = findViewById(R.id.locationTypeID);
 
-        FirebaseLocationHandler handler = new FirebaseLocationHandler();
+        //FirebaseLocationHandler handler = new FirebaseLocationHandler();
         Location currentLocation;
         CurrentLocation locationInstance = CurrentLocation.getInstance();
         currentLocation = locationInstance.getLocation();

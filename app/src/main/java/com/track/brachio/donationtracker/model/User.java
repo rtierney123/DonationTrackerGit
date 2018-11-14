@@ -31,11 +31,11 @@ public class User {
      * @param user user being entered
      * @param type type being entered
      */
-    public User(UserInfo user, UserType type){
-        this.userId = user.getUid();
-        this.email = user.getEmail();
-        userType = type;
-    }
+//    public User(UserInfo user, UserType type){
+//        this.userId = user.getUid();
+//        this.email = user.getEmail();
+//        userType = type;
+//    }
 
     /**
      * Constructor for User
@@ -106,25 +106,25 @@ public class User {
      * getter - locations
      * @return locations
      */
-    public ArrayList<String> getLocations() {
-        return locationIDs;
-    }
+//    public ArrayList<String> getLocations() {
+//        return locationIDs;
+//    }
 
     /**
      * setter - locations
      * @param locations locations being set
      */
-    public void setLocations(ArrayList<String> locations) {
-        this.locationIDs = locations;
-    }
+//    public void setLocations(ArrayList<String> locations) {
+//        this.locationIDs = locations;
+//    }
 
     /**
      * setter - email
      * @param em email being set
      */
-    public void setEmail(String em){
-        email = em;
-    }
+//    public void setEmail(String em){
+//        email = em;
+//    }
 
     /**
      * getter - email
@@ -138,9 +138,9 @@ public class User {
      * setter - UserType
      * @param type usertype being set
      */
-    public void setUserType(UserType type){
-        userType = type;
-    }
+//    public void setUserType(UserType type){
+//        userType = type;
+//    }
 
     /**
      * getter - UserType
@@ -178,9 +178,9 @@ public class User {
      * setter - first name
      * @param firstName first name being set
      */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+//    public void setFirstName(String firstName) {
+//        this.firstName = firstName;
+//    }
 
     /**
      * getter - last name
@@ -194,9 +194,9 @@ public class User {
      * setter - last name
      * @param lastName last name
      */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+//    public void setLastName(String lastName) {
+//        this.lastName = lastName;
+//    }
 
     /**
      * converts string to UserType

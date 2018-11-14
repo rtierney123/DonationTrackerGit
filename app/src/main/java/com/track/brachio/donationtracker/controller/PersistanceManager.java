@@ -51,8 +51,8 @@ public class PersistanceManager {
      * @param activity current activity
      */
     public void loadAppOnStart(Activity activity) {
-        CurrentUser userInstance = CurrentUser.getInstance();
-        User user = userInstance.getUser();
+        //CurrentUser userInstance = CurrentUser.getInstance();
+        //User user = userInstance.getUser();
         gatherData(activity);
 
     }
@@ -90,9 +90,9 @@ public class PersistanceManager {
      * returns executor
      * @return current executor
      */
-    public ThreadPoolExecutor getExecutor() {
-        return executor;
-    }
+//    public ThreadPoolExecutor getExecutor() {
+//        return executor;
+//    }
 
 
     /**
@@ -203,9 +203,9 @@ public class PersistanceManager {
      * gets thread running
      * @return true if thread is running
      */
-    public static boolean getThreadRunning() {
-        return threadRunning;
-    }
+//    public static boolean getThreadRunning() {
+//        return threadRunning;
+//    }
 
 
 }
