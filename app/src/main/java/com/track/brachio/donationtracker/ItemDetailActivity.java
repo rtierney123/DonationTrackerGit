@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.Date;
 
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentItem;
+import com.track.brachio.donationtracker.model.ItemType;
 
 import java.util.Map;
 import java.util.Objects;
@@ -40,14 +42,20 @@ public class ItemDetailActivity extends AppCompatActivity {
 
 
         nameText.setText(currentItem.getName());
-        dateText.setText(currentItem.getDateCreated().toString());
+        Date dateCreated = currentItem.getDateCreated();
+        String dateCreatedString = dateCreated.toString();
+        dateText.setText(dateCreatedString);
         Map<String, Location> allLoc = AllLocations.getInstance().getLocationMap();
         Location loc = allLoc.get(currentItem.getLocation());
-        locationText.setText(Objects.requireNonNull(loc).getName());
+        String theName = Objects.requireNonNull(loc).getName();
+        locationText.setText(theName);
         shortDescriptionText.setText(currentItem.getShortDescription());
         longDescriptionText.setText(currentItem.getLongDescription());
         dollarText.setText(currentItem.getDollarValue() + "");
-        categoryText.setText(currentItem.getCategory().toString());
+
+        ItemType type = currentItem.getCategory();
+        String typeString = type.toString();
+        categoryText.setText(typeString);
 
         ImageButton editButton = findViewById( R.id.edit_item_button);
         editButton.setOnClickListener (view -> {

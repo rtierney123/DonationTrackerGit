@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.Manifest;
 import java.io.File;
 import android.text.Editable;
+import java.util.Date;
 
 import android.content.pm.PackageManager;
 import android.support.v4.content.ContextCompat;
@@ -100,7 +101,9 @@ public class ItemEditActivity extends AppCompatActivity {
         if (currentItem != null) {
             itemName.setText(currentItem.getName());
             if (currentItem.getDateCreated() != null) {
-                dateCreated.setText(currentItem.getDateCreated().toString());
+                Date theDateCreated = currentItem.getDateCreated();
+                String dateString = theDateCreated.toString();
+                dateCreated.setText(dateString);
             }
             newLocation.setText(currentItem.getLocation());
             newShortDescription.setText(currentItem.getShortDescription());
