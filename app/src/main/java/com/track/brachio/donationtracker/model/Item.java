@@ -96,9 +96,9 @@ public class Item {
      * setter - key
      * @param key key being set
      */
-    public void setKey(String key) {
-        this.key = key;
-    }
+//    public void setKey(String key) {
+//        this.key = key;
+//    }
 
     /**
      * getter - name
@@ -112,17 +112,17 @@ public class Item {
      * Setter - name
      * @param name name being set
      */
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     /**
      * setter - date
      * @param dateCreated date being set
      */
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = (Date) dateCreated.clone();
-    }
+//    public void setDateCreated(Date dateCreated) {
+//        this.dateCreated = (Date) dateCreated.clone();
+//    }
 
     /**
      * setter - location
@@ -168,9 +168,9 @@ public class Item {
      * setter - comments
      * @param comments comments being set
      */
-    public void setComments(ArrayList<String> comments) {
-        this.comments = comments;
-    }
+//    public void setComments(ArrayList<String> comments) {
+//        this.comments = comments;
+//    }
 
     /**
      * adds comments
@@ -242,9 +242,9 @@ public class Item {
      * getter - comments
      * @return comments
      */
-    public ArrayList<String> getComments() {
-        return comments;
-    }
+//    public ArrayList<String> getComments() {
+//        return comments;
+//    }
 
     /**
      * getter - picture
@@ -366,7 +366,7 @@ public class Item {
      */
     public String encodePic(){
         if (picture != null){
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            //ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ByteArrayOutputStream base=new  ByteArrayOutputStream();
             picture.compress(Bitmap.CompressFormat.JPEG,100, base);
             byte [] b=base.toByteArray();

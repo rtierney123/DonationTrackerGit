@@ -93,9 +93,9 @@ public class Address {
      * setter - cip
      * @param zip zip location
      */
-    public void setZip(double zip) {
-        this.zip = zip;
-    }
+//    public void setZip(double zip) {
+//        this.zip = zip;
+//    }
 
     @NonNull
     @Override

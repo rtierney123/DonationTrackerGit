@@ -21,6 +21,7 @@ import com.track.brachio.donationtracker.model.singleton.UserLocations;
 import com.track.brachio.donationtracker.model.Location;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -104,7 +105,7 @@ public class PersistanceManager {
         //set what locations user can edit items
         UserLocations currentLocation = UserLocations.getInstance();
         AllLocations currentAllLocations = AllLocations.getInstance();
-        ArrayList<Location> locationArray = currentAllLocations.getLocationArray();
+        List<Location> locationArray = currentAllLocations.getLocationArray();
         if (currentUser.getUserType() == UserType.Donator) {
             currentLocation.setLocations(locationArray);
         } else if (currentUser.getUserType() == UserType.Admin){
