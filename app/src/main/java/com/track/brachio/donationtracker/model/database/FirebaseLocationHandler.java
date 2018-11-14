@@ -24,7 +24,11 @@ public class FirebaseLocationHandler {
     private Location locationCallback;
     private final Map<String, Location> locationMap = new LinkedHashMap<>(  );
     private final ArrayList<Location> locationArray = new ArrayList<>();
+    private final FirebaseFirestore db;
 
+    public FirebaseLocationHandler(FirebaseFirestore db){
+        this.db = db;
+    }
     /**
      * returns locations
      * @param locationID id for the specific location
@@ -79,7 +83,6 @@ public class FirebaseLocationHandler {
      * @return current Task
      */
     public Task getAllLocations(){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         return db.collection( "location" )
                 .get().addOnSuccessListener(documentSnapshots -> {
                     if (documentSnapshots.isEmpty()) {
@@ -123,7 +126,6 @@ public class FirebaseLocationHandler {
                     }
                 });
     }
-    //make sure to replace in LocationListActivity
 
     
 

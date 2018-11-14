@@ -30,12 +30,15 @@ import java.util.concurrent.Executor;
  * Handler for Items
  */
 public class FirebaseItemHandler {
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db ;
 
     private FirebaseFirestore mFirestore;
     private final String TAG = "FirebaseItemHandler";
     private final Collection<Item> items = new ArrayList<>();
 
+    public FirebaseItemHandler(FirebaseFirestore db){
+        this.db = db;
+    }
     /**
      * returns all of the items in Items database
      * @param context passed in
@@ -149,10 +152,9 @@ public class FirebaseItemHandler {
     /**
      * item being added to database
      * @param item item being added
-     * @param executor executor for database
      * @return task being done
      */
-    public Task addItem(Item item, Executor executor){
+    public Task addItem(Item item){
 
         Map<String, Object> itemMap = new HashMap<>();
         itemMap.put("name", item.getName());
@@ -178,9 +180,7 @@ public class FirebaseItemHandler {
         // Add a new document with a generated ID
         return db.collection("items")
                 .add(itemMap)
-                .addOnSuccessListener(executor,
-                        documentReference -> Log.d(TAG, "DocumentSnapshot added with ID: "
-                                + documentReference.getId()))
+                .addOnSuccessListener(documentReference -> Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId()))
                 .addOnFailureListener(e -> Log.w(TAG, "Error adding user", e));
 
     }

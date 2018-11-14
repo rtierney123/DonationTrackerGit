@@ -1,4 +1,7 @@
-package com.track.brachio.donationtracker.model;
+package com.track.brachio.donationtracker;
+
+import com.track.brachio.donationtracker.model.Item;
+import com.track.brachio.donationtracker.model.ItemType;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
