@@ -7,10 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import java.util.Date;
 import android.widget.TextView;
 
 import com.track.brachio.donationtracker.R;
 import com.track.brachio.donationtracker.model.Item;
+import com.track.brachio.donationtracker.model.ItemType;
 
 import java.util.List;
 
@@ -107,16 +109,27 @@ public class ItemListAdapter extends
             @NonNull ItemListAdapter.ItemViewHolder holder, int position) {
         // - get element from your data set at this position
         // - replace the contents of the view with that element
-        holder.nameText.setText(items.get(position).getName());
+        Item theItem = items.get(position);
+        String itemName = theItem.getName();
 
-        if (items.get(position).getDateCreated() != null){
-            holder.dateText.setText(items.get(position).getDateCreated().toString());
+        holder.nameText.setText(itemName);
+
+        Date theDate = theItem.getDateCreated();
+        if (theDate != null){
+            Date dateCreated = theItem.getDateCreated();
+            String dateCreatedString = dateCreated.toString();
+            holder.dateText.setText(dateCreatedString);
         }
-        holder.valueText.setText(items.get(position).getDollarValue()+"");
-        if (items.get(position).getCategory() != null) {
-            holder.categoryText.setText(items.get(position).getCategory().toString());
+        double dollarValue = theItem.getDollarValue();
+        String dollarValueString = Double.toString(dollarValue);
+        holder.valueText.setText(dollarValueString);
+        ItemType itemsType = theItem.getCategory();
+        if (itemsType != null) {
+            ItemType theItemType = theItem.getCategory();
+            String theItemTypeString = theItemType.toString();
+            holder.categoryText.setText(theItemTypeString);
         }
-        holder.bind(items.get(position), theItemListener);
+        holder.bind(theItem, theItemListener);
 
     }
 

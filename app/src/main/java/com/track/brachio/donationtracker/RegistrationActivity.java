@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
+import android.text.Editable;
 
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
@@ -55,11 +56,20 @@ public class RegistrationActivity extends AppCompatActivity {
             String emailEntered;
             String passwordEntered;
             UserType userTypeSelected;
+            Editable tempFirstName;
 
-            firstNameEntered = firstNameField.getText().toString();
-            lastNameEntered = lastNameField.getText().toString();
-            emailEntered = emailField.getText().toString();
-            passwordEntered = passwordField.getText().toString();
+            tempFirstName = firstNameField.getText();
+            firstNameEntered = tempFirstName.toString();
+
+            Editable tempLastName = lastNameField.getText();
+            lastNameEntered = tempLastName.toString();
+
+            Editable emailTemp = emailField.getText();
+            emailEntered = emailTemp.toString();
+
+            Editable passTemp = passwordField.getText();
+            passwordEntered = passTemp.toString();
+
             userTypeSelected = (UserType) userTypeSpinner.getSelectedItem();
             //add a default Spinner value
             if (!firstNameEntered.isEmpty() &&

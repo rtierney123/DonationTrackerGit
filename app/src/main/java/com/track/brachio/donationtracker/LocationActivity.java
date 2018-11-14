@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
 import com.track.brachio.donationtracker.model.singleton.CurrentLocation;
 import com.track.brachio.donationtracker.model.Location;
-
+import com.track.brachio.donationtracker.model.Address;
 
 
 //Displays specific location information
@@ -35,13 +35,24 @@ public class LocationActivity extends AppCompatActivity {
         Location currentLocation;
         currentLocation = CurrentLocation.getInstance().getLocation();
         if (currentLocation != null) {
-            locationName.setText(currentLocation.getName());
-            longitude.setText(Double.toString(currentLocation.getLongitude()));
-            latitude.setText(Double.toString(currentLocation.getLatitude()));
-            address.setText(currentLocation.getAddress().toString());
-            phone.setText(currentLocation.getPhone());
-            website.setText(currentLocation.getWebsite());
-            locationType.setText(currentLocation.getStringLocationType());
+            double theLong = currentLocation.getLongitude();
+            String theLongString = Double.toString(theLong);
+            double lat = currentLocation.getLatitude();
+            String theLatString = Double.toString(lat);
+            Address add = currentLocation.getAddress();
+            String addString = add.toString();
+            String name = currentLocation.getName();
+            String thePhone = currentLocation.getPhone();
+            String theWebsite = currentLocation.getWebsite();
+            String locType = currentLocation.getStringLocationType();
+
+            locationName.setText(name);
+            longitude.setText(theLongString);
+            latitude.setText(theLatString);
+            address.setText(addString);
+            phone.setText(thePhone);
+            website.setText(theWebsite);
+            locationType.setText(locType);
         }
 
 

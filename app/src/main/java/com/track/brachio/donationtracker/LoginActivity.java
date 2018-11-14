@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.text.Editable;
 
 import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
@@ -38,8 +39,11 @@ public class LoginActivity extends AppCompatActivity {
             String enteredPassword;
             String enteredEmail;
 
-            enteredPassword = passwordField.getText().toString();
-            enteredEmail = usernameField.getText().toString();
+            Editable passTemp = passwordField.getText();
+            enteredPassword = passTemp.toString();
+
+            Editable emailTemp = usernameField.getText();
+            enteredEmail = emailTemp.toString();
 
             if (!enteredPassword.isEmpty() && !enteredEmail.isEmpty()){
                 findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);

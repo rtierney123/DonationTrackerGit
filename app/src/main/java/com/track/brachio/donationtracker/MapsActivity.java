@@ -58,10 +58,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onItemSelected(AdapterView<?> arg0, View v, int position, long id)
             {
-
+                Location locationOne = locations.get(position);
                 LatLng loc = new LatLng(
-                        locations.get(position).getLongitude(),
-                        locations.get(position).getLatitude());
+                        locationOne.getLongitude(),
+                        locationOne.getLatitude());
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, zoomFactor));
             }
 
@@ -92,11 +92,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void addMarkers(){
 
         for(int i = 0; i < locations.size(); i++){
+            Location location = locations.get(i);
             LatLng loc = new LatLng(
-                    locations.get(i).getLongitude(), locations.get(i).getLatitude());
+                    location.getLongitude(), location.getLatitude());
             mMap.addMarker(
-                    new MarkerOptions().position(loc).title(locations.get(i).getName())
-                            .snippet(locations.get(i).getPhone()));
+                    new MarkerOptions().position(loc).title(location.getName())
+                            .snippet(location.getPhone()));
         }
 
 

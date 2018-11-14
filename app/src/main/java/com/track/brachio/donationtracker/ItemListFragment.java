@@ -296,7 +296,8 @@ public class ItemListFragment extends Fragment {
 
         ArrayList<Item> displayItems = new ArrayList<>();
         for(Item item : items){
-            int itemCat = item.getCategory().ordinal();
+            ItemType theItemType = item.getCategory();
+            int itemCat = theItemType.ordinal();
             String itemName = item.getName();
             if((catIndex == 0) || (itemCat == (catIndex - 1))){
                 if (searchString.isEmpty()){

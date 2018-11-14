@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.track.brachio.donationtracker.R;
 import com.track.brachio.donationtracker.model.Location;
+import com.track.brachio.donationtracker.model.Address;
 
 import java.util.List;
 
@@ -99,9 +100,11 @@ public class LocationListAdapter extends
             @NonNull LocationListAdapter.LocationViewHolder holder, int position) {
         // - get element from your data set at this position
         // - replace the contents of the view with that element
-        holder.nameText.setText(locations.get(position).getName());
-        holder.cityText.setText(locations.get(position).getAddress().getCity());
-        holder.bind(locations.get(position), locationListener);
+        Location location = locations.get(position);
+        Address add = location.getAddress();
+        holder.nameText.setText(location.getName());
+        holder.cityText.setText(add.getCity());
+        holder.bind(location, locationListener);
 
 
     }

@@ -19,6 +19,7 @@ import android.widget.Toast;
 import android.widget.ArrayAdapter;
 import android.Manifest;
 import java.io.File;
+import android.text.Editable;
 
 import android.content.pm.PackageManager;
 import android.support.v4.content.ContextCompat;
@@ -104,7 +105,9 @@ public class ItemEditActivity extends AppCompatActivity {
             newLocation.setText(currentItem.getLocation());
             newShortDescription.setText(currentItem.getShortDescription());
             newLongDescription.setText(currentItem.getLongDescription());
-            newDollarValue.setText(Double.toString(currentItem.getDollarValue()));
+            double dollarValue = currentItem.getDollarValue();
+            String dollarValueString = Double.toString(dollarValue);
+            newDollarValue.setText(dollarValueString);
             if (currentItem.getCategory() != null) {
                 newItemCategory.setSelection(Item.findItemTypePosition(currentItem.getCategory()));
             }
@@ -115,11 +118,22 @@ public class ItemEditActivity extends AppCompatActivity {
         addButton.setOnClickListener(view -> {
             findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
             Log.d("Edit Item", "Change Made");
-            String locationEntered = newLocation.getText().toString();
-            String shortDescriptionEntered = newShortDescription.getText().toString();
-            String longDescriptionEntered = newLongDescription.getText().toString();
-            String dollarValueEntered = newDollarValue.getText().toString();
-            String commentEntered = newComments.getText().toString();
+
+            Editable locationTemp = newLocation.getText();
+            String locationEntered = locationTemp.toString();
+
+            Editable shortDecriptionTemp = newShortDescription.getText();
+            String shortDescriptionEntered = shortDecriptionTemp.toString();
+
+            Editable longDescriptionTemp = newLongDescription.getText();
+            String longDescriptionEntered = longDescriptionTemp.toString();
+
+            Editable dollarValueTemp = newDollarValue.getText();
+            String dollarValueEntered = dollarValueTemp.toString();
+
+            Editable commentsTemp = newComments.getText();
+            String commentEntered = commentsTemp.toString();
+
             ItemType itemTypeSelected = (ItemType) newItemCategory.getSelectedItem();
 
             //image
