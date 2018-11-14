@@ -74,7 +74,8 @@ public class PersistanceManager {
             FirebaseItemHandler itemHandler = new FirebaseItemHandler(db);
             Task task2 = itemHandler.getAllItems(contezt);
             //noinspection unchecked
-            task2.addOnSuccessListener((OnSuccessListener<QuerySnapshot>) queryDocumentSnapshots1 -> goToMainPage());
+            task2.addOnSuccessListener(
+                    (OnSuccessListener<QuerySnapshot>) queryDocumentSnapshots1 -> goToMainPage());
         });
     }
 

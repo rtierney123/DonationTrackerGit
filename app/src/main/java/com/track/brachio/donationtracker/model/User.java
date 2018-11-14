@@ -69,7 +69,7 @@ public class User {
      * @param type type of user
      * @param ids id of user
      */
-    public User(String firstName, String lastName, String em, String type, ArrayList<String> ids){
+    public User(String firstName, String lastName, String em, String type, List<String> ids){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = em;
