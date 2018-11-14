@@ -14,7 +14,6 @@ import com.track.brachio.donationtracker.model.Address;
 /**
  * Activity for Locations
  */
-@SuppressWarnings({"SpellCheckingInspection", "FeatureEnvy"})
 public class LocationActivity extends AppCompatActivity {
 
     @Override

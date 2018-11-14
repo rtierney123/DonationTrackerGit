@@ -29,7 +29,6 @@ import java.util.Set;
 /**
  * Handler for User
  */
-@SuppressWarnings({"SpellCheckingInspection", "FeatureEnvy"})
 public class FirebaseUserHandler {
     private final String TAG = "FirebaseUserHandler";
     private User userCallback;
@@ -155,7 +154,6 @@ public class FirebaseUserHandler {
      * @param activity current activity
      */
     //TODO create progress bar to be displayed
-    @SuppressWarnings("TodoComment")
     public void createNewUser(User appUser, String password,
                               RegistrationActivity registration, Activity activity){
         // Write a message to the database
@@ -305,7 +303,6 @@ public class FirebaseUserHandler {
                             email = (String) doc.get( "email" );
                             userType = (String) doc.get( "usertype" );
                             try{
-                                //noinspection unchecked
                                 locationHash= (HashMap<String, Boolean>) doc.get("locationIDs");
                             } catch(ClassCastException ex){
                                 Log.e(TAG, ex.getMessage());
@@ -333,7 +330,6 @@ public class FirebaseUserHandler {
      * returns locations
      * @param user user being passed in to find locations
      */
-    @SuppressWarnings("StatementWithEmptyBody")
     private void getLocations(User user){
         if (user.getUserType() == UserType.Volunteer){
 

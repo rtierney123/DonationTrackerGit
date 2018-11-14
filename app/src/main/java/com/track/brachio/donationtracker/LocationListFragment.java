@@ -160,7 +160,6 @@ public class LocationListFragment extends Fragment {
          * handles fragment interaction
          * @param uri parameter
          */
-        @SuppressWarnings("EmptyMethod")
         void onFragmentInteraction(Uri uri);
     }
 }

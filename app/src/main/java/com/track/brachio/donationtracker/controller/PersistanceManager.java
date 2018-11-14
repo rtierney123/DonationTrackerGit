@@ -29,7 +29,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * Manages Persistance
  */
-@SuppressWarnings({"FeatureEnvy", "ClassWithTooManyDependencies"})
 public class PersistanceManager {
 
     private static ThreadPoolExecutor executor;
@@ -67,11 +66,9 @@ public class PersistanceManager {
         FirebaseLocationHandler locHandler = new FirebaseLocationHandler();
         Task task1 = locHandler.getAllLocations();
 
-        //noinspection unchecked
         task1.addOnSuccessListener((OnSuccessListener<QuerySnapshot>) queryDocumentSnapshots -> {
             FirebaseItemHandler itemHandler = new FirebaseItemHandler();
             Task task2 = itemHandler.getAllItems(contezt);
-            //noinspection unchecked
             task2.addOnSuccessListener(
                     (OnSuccessListener<QuerySnapshot>) queryDocumentSnapshots1 -> goToMainPage());
         });
@@ -176,10 +173,8 @@ public class PersistanceManager {
 
         if (!threadRunning) {
             threadRunning = true;
-            //noinspection unchecked
             editItemTask.addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
                 Task updateTask = getAllItems(currentActivity);
-                //noinspection unchecked
                 updateTask.addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task1 -> {
                     threadRunning = false;
                     Intent intent = new Intent(currentActivity, MainActivity.class);

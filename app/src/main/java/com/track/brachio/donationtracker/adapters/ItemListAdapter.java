@@ -18,7 +18,6 @@ import java.util.List;
 /**
  * Adapter for ItemList
  */
-@SuppressWarnings("FeatureEnvy")
 public class ItemListAdapter extends
         RecyclerView.Adapter<ItemListAdapter.ItemViewHolder>{
     private final List<Item> items;

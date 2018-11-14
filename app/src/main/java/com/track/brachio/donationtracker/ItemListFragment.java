@@ -45,7 +45,6 @@ import java.util.regex.Pattern;
  * Use the {@link ItemListFragment} factory method to
  * create an instance of this fragment.
  */
-@SuppressWarnings("ClassWithTooManyDependencies")
 public class ItemListFragment extends Fragment {
 
     private Collection<Item> items = new ArrayList<>();
@@ -225,7 +224,6 @@ public class ItemListFragment extends Fragment {
          * abstract handler for fragment interaction
          * @param uri parameter
          */
-        @SuppressWarnings("EmptyMethod")
         void onFragmentInteraction(Uri uri);
     }
 

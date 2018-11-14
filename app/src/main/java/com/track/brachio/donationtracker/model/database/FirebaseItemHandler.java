@@ -29,7 +29,6 @@ import java.util.concurrent.Executor;
 /**
  * Handler for Items
  */
-@SuppressWarnings({"FeatureEnvy", "MismatchedQueryAndUpdateOfCollection"})
 public class FirebaseItemHandler {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -54,7 +53,7 @@ public class FirebaseItemHandler {
 
                         for (DocumentSnapshot document :
                                 Objects.requireNonNull(
-                                        task.getResult())) //noinspection TodoComment
+                                        task.getResult()))
                             {
 
                             Log.d(TAG, document.getId() + " => " + document.getData());
@@ -172,7 +171,6 @@ public class FirebaseItemHandler {
             String encoded = item.encodePic();
             itemMap.put("picture", encoded);
         } else {
-            //noinspection ConstantConditions
             itemMap.put("picture", null);
         }
 

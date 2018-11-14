@@ -21,7 +21,6 @@ import java.util.Objects;
 /**
  * Activity for the Details of the Item activity
  */
-@SuppressWarnings("FeatureEnvy")
 public class ItemDetailActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")

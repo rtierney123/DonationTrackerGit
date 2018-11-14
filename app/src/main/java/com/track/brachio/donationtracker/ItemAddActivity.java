@@ -21,7 +21,6 @@ import java.util.Date;
 /**
  * Activity for Adding Item Activity
  */
-@SuppressWarnings({"SpellCheckingInspection", "FeatureEnvy"})
 public class ItemAddActivity extends AppCompatActivity {
     private EditText itemName;
     private EditText location;
@@ -52,7 +51,6 @@ public class ItemAddActivity extends AppCompatActivity {
 
         PersistanceManager manager = new PersistanceManager( this );
 
-        @SuppressWarnings("unchecked")
         ArrayAdapter adapter =
                 new ArrayAdapter(this, android.R.layout.simple_spinner_item,
                         Item.getLegalItemTypes());

@@ -18,7 +18,6 @@ import java.util.Arrays;
 /**
  * Information holder for Item
  */
-@SuppressWarnings("ClassWithTooManyDependents")
 public class Item {
     private String key;
     private String name;
@@ -49,7 +48,6 @@ public class Item {
      * @param val dollarValue
      * @param cat category
      */
-    @SuppressWarnings("ConstructorWithTooManyParameters")
     public Item(String k, String n, Date d, String l, double val, String cat){
         key = k;
         name = n;
@@ -373,7 +371,6 @@ public class Item {
             byte [] b=base.toByteArray();
             String temp=null;
             try{
-                //noinspection CallToSystemGC
                 System.gc();
                 temp=Base64.encodeToString(b, Base64.DEFAULT);
             }catch(Exception e){

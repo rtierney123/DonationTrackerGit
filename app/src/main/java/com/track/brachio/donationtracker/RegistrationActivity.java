@@ -21,7 +21,6 @@ import java.util.Date;
 /**
  * Activity for registration
  */
-@SuppressWarnings("SpellCheckingInspection")
 public class RegistrationActivity extends AppCompatActivity {
     private EditText firstNameField;
     private EditText lastNameField;
@@ -44,7 +43,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
         FirebaseUserHandler handler = new FirebaseUserHandler();
 
-        @SuppressWarnings("unchecked")
         ArrayAdapter adapter = new ArrayAdapter(
                 this,android.R.layout.simple_spinner_item, User.getLegalUserTypes());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

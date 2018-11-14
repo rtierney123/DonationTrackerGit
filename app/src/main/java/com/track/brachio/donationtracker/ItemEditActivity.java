@@ -46,7 +46,6 @@ import java.util.List;
 /**
  * Activity for Editing Items
  */
-@SuppressWarnings({"SpellCheckingInspection", "FeatureEnvy"})
 public class ItemEditActivity extends AppCompatActivity {
     private EditText newLocation;
     private EditText newShortDescription;
@@ -89,7 +88,6 @@ public class ItemEditActivity extends AppCompatActivity {
 
         manager = new PersistanceManager( this );
 
-        @SuppressWarnings("unchecked")
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,
                 Item.getLegalItemTypes());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

@@ -22,7 +22,6 @@ public final class CurrentUser {
 
     // static method to create instance of CurrentUser class
 
-    @SuppressWarnings("UtilityClass")
     private static class Single_instanceHolder {
         private static final CurrentUser single_instance = new CurrentUser();
     }

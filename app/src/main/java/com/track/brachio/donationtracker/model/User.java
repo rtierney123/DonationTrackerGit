@@ -12,7 +12,6 @@ import java.util.Date;
 /**
  * Information holder for User
  */
-@SuppressWarnings("SpellCheckingInspection")
 public class User {
     private final String firstName;
     private final String lastName;
@@ -74,7 +73,6 @@ public class User {
         this.lastName = lastName;
         this.email = em;
         userType = stringToUserType( type );
-        List<String> locationIDs = ids;
     }
 
 

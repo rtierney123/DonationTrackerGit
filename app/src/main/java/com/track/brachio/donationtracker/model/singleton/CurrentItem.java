@@ -5,7 +5,6 @@ import com.track.brachio.donationtracker.model.Item;
 /**
  * Information holder for CurrentItem
  */
-@SuppressWarnings("CyclicClassDependency")
 public final class CurrentItem {
 
     // current User
@@ -23,7 +22,6 @@ public final class CurrentItem {
 
     // static method to create instance of CurrentUser class
 
-    @SuppressWarnings({"UtilityClass", "CyclicClassDependency"})
     private static class Single_instanceHolder {
         private static final CurrentItem single_instance = new CurrentItem();
     }

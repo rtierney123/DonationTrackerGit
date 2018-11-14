@@ -19,7 +19,6 @@ import java.util.Objects;
 /**
  * Handler for Locations in Database
  */
-@SuppressWarnings({"SpellCheckingInspection", "FeatureEnvy"})
 public class FirebaseLocationHandler {
     private final String TAG = "FirebaseLocationHandler";
     private Location locationCallback;
@@ -56,9 +55,7 @@ public class FirebaseLocationHandler {
                         for (DocumentSnapshot doc : retDocs) {
                             id = (String) doc.get("locationID");
                             name  = (String) doc.get( "name" );
-                            //noinspection ConstantConditions
                             longitude = (Double) doc.get( "longitude" );
-                            //noinspection ConstantConditions,ConstantConditions
                             latitude  = (Double) doc.get( "latitude" );
                             type = (String) doc.get( "type" );
                             phone = (String) doc.get("phone");
