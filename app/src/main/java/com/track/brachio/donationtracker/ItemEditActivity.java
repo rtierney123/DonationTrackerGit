@@ -289,19 +289,19 @@ public class ItemEditActivity extends AppCompatActivity {
                 "IMG_" + ".jpg");
     }
 
-    /**
-     * sets comments for array
-     * @param array array being set
-     */
+//    /**
+//     * sets comments for array
+//     * @param array array being set
+//     */
 //    public void setCommentsArray(ArrayList<String> array) {
 //        comments = array;
 //    }
 
 
-    /**
-     * populates the recyclerview
-     * @param comm what is populating the recycler view
-     */
+//    /**
+//     * populates the recyclerview
+//     * @param comm what is populating the recycler view
+//     */
 //    public void populateRecycleView(ArrayList<String> comm) {
 //        comments = comm;
 //

@@ -27,10 +27,10 @@ public enum ItemType {
         return names;
     }
 
-    /**
-     * returns size
-     * @return returns size of enums;
-     */
+//    /**
+//     * returns size
+//     * @return returns size of enums;
+//     */
 //    public static int getSize(){
 //        ItemType[] types = ItemType.values();
 //        return types.length;

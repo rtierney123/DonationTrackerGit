@@ -26,11 +26,11 @@ public class User {
     private Date timestamp;
     private ArrayList<String> locationIDs;
 
-    /**
-     * Constructor for User
-     * @param user user being entered
-     * @param type type being entered
-     */
+//    /**
+//     * Constructor for User
+//     * @param user user being entered
+//     * @param type type being entered
+//     */
 //    public User(UserInfo user, UserType type){
 //        this.userId = user.getUid();
 //        this.email = user.getEmail();
@@ -102,26 +102,26 @@ public class User {
     }
 
 
-    /**
-     * getter - locations
-     * @return locations
-     */
+//    /**
+//     * getter - locations
+//     * @return locations
+//     */
 //    public ArrayList<String> getLocations() {
 //        return locationIDs;
 //    }
 
-    /**
-     * setter - locations
-     * @param locations locations being set
-     */
+//    /**
+//     * setter - locations
+//     * @param locations locations being set
+//     */
 //    public void setLocations(ArrayList<String> locations) {
 //        this.locationIDs = locations;
 //    }
 
-    /**
-     * setter - email
-     * @param em email being set
-     */
+//    /**
+//     * setter - email
+//     * @param em email being set
+//     */
 //    public void setEmail(String em){
 //        email = em;
 //    }
@@ -134,10 +134,10 @@ public class User {
         return email;
     }
 
-    /**
-     * setter - UserType
-     * @param type usertype being set
-     */
+//    /**
+//     * setter - UserType
+//     * @param type usertype being set
+//     */
 //    public void setUserType(UserType type){
 //        userType = type;
 //    }
@@ -174,10 +174,10 @@ public class User {
         return firstName;
     }
 
-    /**
-     * setter - first name
-     * @param firstName first name being set
-     */
+//    /**
+//     * setter - first name
+//     * @param firstName first name being set
+//     */
 //    public void setFirstName(String firstName) {
 //        this.firstName = firstName;
 //    }
@@ -190,10 +190,10 @@ public class User {
         return lastName;
     }
 
-    /**
-     * setter - last name
-     * @param lastName last name
-     */
+//    /**
+//     * setter - last name
+//     * @param lastName last name
+//     */
 //    public void setLastName(String lastName) {
 //        this.lastName = lastName;
 //    }

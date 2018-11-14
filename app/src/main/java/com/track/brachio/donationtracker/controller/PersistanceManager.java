@@ -86,10 +86,10 @@ public class PersistanceManager {
                 aliveTime, TimeUnit.SECONDS, new LinkedBlockingQueue<>() );
     }
 
-    /**
-     * returns executor
-     * @return current executor
-     */
+//    /**
+//     * returns executor
+//     * @return current executor
+//     */
 //    public ThreadPoolExecutor getExecutor() {
 //        return executor;
 //    }
@@ -199,10 +199,10 @@ public class PersistanceManager {
         return itemHandler.getAllItems(context);
     }
 
-    /**
-     * gets thread running
-     * @return true if thread is running
-     */
+//    /**
+//     * gets thread running
+//     * @return true if thread is running
+//     */
 //    public static boolean getThreadRunning() {
 //        return threadRunning;
 //    }

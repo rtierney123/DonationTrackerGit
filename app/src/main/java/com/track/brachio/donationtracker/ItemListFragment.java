@@ -43,7 +43,7 @@ import java.util.regex.Pattern;
  * Activities that contain this fragment must implement the
  * {@link ItemListFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ItemListFragment#newInstance} factory method to
+ * Use the {@link ItemListFragment} factory method to
  * create an instance of this fragment.
  */
 @SuppressWarnings("ClassWithTooManyDependencies")
@@ -75,14 +75,14 @@ public class ItemListFragment extends Fragment {
     }
 
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ItemListFragment.
-     */
+//    /**
+//     * Use this factory method to create a new instance of
+//     * this fragment using the provided parameters.
+//     *
+//     * @param param1 Parameter 1.
+//     * @param param2 Parameter 2.
+//     * @return A new instance of fragment ItemListFragment.
+//     */
 //    public static ItemListFragment newInstance(String param1, String param2) {
 //        ItemListFragment fragment = new ItemListFragment();
 //        Bundle args = new Bundle();
@@ -183,10 +183,10 @@ public class ItemListFragment extends Fragment {
     }
 
 
-    /**
-     * handler for button press
-     * @param uri parameter
-     */
+//    /**
+//     * handler for button press
+//     * @param uri parameter
+//     */
 //    public void onButtonPressed(Uri uri) {
 //        if (mListener != null) {
 //            mListener.onFragmentInteraction( uri );

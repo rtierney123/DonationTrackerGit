@@ -117,10 +117,10 @@ public class LocationListFragment extends Fragment {
     }
 
 
-    /**
-     * handles when button pressed
-     * @param uri parameter
-     */
+//    /**
+//     * handles when button pressed
+//     * @param uri parameter
+//     */
 //    public void onButtonPressed(Uri uri) {
 //        if (mListener != null) {
 //            mListener.onFragmentInteraction( uri );
