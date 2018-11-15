@@ -111,11 +111,11 @@ public class ClaraTest {
     @Test
     public void testElectronicInput() throws NoSuchMethodException,
             InvocationTargetException, IllegalAccessException{
-        String input = "Sport";
+        String input = "Electronics";
         Method method = Item.class.getDeclaredMethod("stringToItemType", String.class);
         method.setAccessible(true);
         ItemType output = (ItemType) method.invoke(holder, input);
-        assertEquals("Electronic string should return electronic item type",
+        assertEquals("Electronics string should return electronics item type",
                 ItemType.Electronics, output);
     }
 
