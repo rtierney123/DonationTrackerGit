@@ -51,19 +51,10 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'org.jetbrains:annotations:15.0'
 
-    // Required -- JUnit 4 framework
-    testImplementation 'junit:junit:4.12'
-    // Optional -- Robolectric environment
-    testImplementation 'androidx.test:core:1.0.0'
-
-
-    // required if you want to use Mockito for unit tests
-    testImplementation  'org.mockito:mockito-core:2.4.0'
-    // required if you want to use Mockito for Android tests
-    androidTestImplementation 'org.mockito:mockito-android:2.7.22'
-    testImplementation  'org.powermock:powermock-core:1.7.0RC2'
-    testImplementation  'org.powermock:powermock-module-junit4:1.7.0RC2'
-    testImplementation  'org.powermock:powermock-api-mockito2:1.7.0RC2'
+    testImplementation  'junit:junit:4.12'
+    testImplementation  'org.powermock:powermock:1.6.5'
+    testImplementation 'org.powermock:powermock-module-junit4:1.6.5'
+    testImplementation  'org.powermock:powermock-api-mockito:1.6.5'
 }
 
 apply plugin: 'com.google.gms.google-services'

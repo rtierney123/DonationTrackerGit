@@ -3,6 +3,7 @@ package com.track.brachio.donationtracker.model.database;
 import android.util.Log;
 
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.track.brachio.donationtracker.model.Address;
@@ -87,8 +88,11 @@ public class FirebaseLocationHandler {
      * @return current Task
      */
     public Task getAllLocations(){
+        CollectionReference ref = db.collection("location");
+        Task task = ref.get();
         return db.collection( "location" )
-                .get().addOnSuccessListener(documentSnapshots -> {
+                .get()
+                .addOnSuccessListener(documentSnapshots -> {
                     if (documentSnapshots.isEmpty()) {
                         Log.d( TAG, "onSuccess: LIST EMPTY" );
                     } else {
