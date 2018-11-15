@@ -31,9 +31,7 @@ import java.util.Objects;
 public class FirebaseItemHandler {
     private final FirebaseFirestore db ;
 
-    private FirebaseFirestore mFirestore;
     private final String TAG = "FirebaseItemHandler";
-    private final Collection<Item> items = new ArrayList<>();
 
     /**
      * Constructor for FirebaseItemhandler
@@ -44,13 +42,11 @@ public class FirebaseItemHandler {
     }
     /**
      * returns all of the items in Items database
-     * @param context passed in
      * @return all Items
      */
-    public Task getAllItems(Context context){
+    public Task getAllItems(){
         // Firestore
-        mFirestore = FirebaseFirestore.getInstance();
-        items.clear();
+
         return db.collection("items")
                 .get()
                 .addOnCompleteListener(task -> {
@@ -114,8 +110,9 @@ public class FirebaseItemHandler {
      * @param context passed in
      * @param item item being searched for
      */
+    /*
     public void getItemByLocation(Item item, Context context) {
-        mFirestore = FirebaseFirestore.getInstance();
+
         db.collection("items")
                 .whereEqualTo( "locationID", item.getLocation() )
                 .get()
@@ -151,6 +148,7 @@ public class FirebaseItemHandler {
                     }
                 });
     }
+    */
 
     /**
      * item being added to database
@@ -175,8 +173,6 @@ public class FirebaseItemHandler {
         if (bitmap != null){
             String encoded = item.encodePic();
             itemMap.put("picture", encoded);
-        } else {
-            itemMap.put("picture", null);
         }
 
 

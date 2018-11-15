@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         guestButton.setOnClickListener(v -> {
             findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
             PersistanceManager manager = new PersistanceManager(LoginActivity.this);
-            manager.loadAppOnStart( LoginActivity.this );
+            manager.loadAppOnStart( );
         });
 
         optionButton.setOnClickListener(v -> {
@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void goToCorrectActivity(){
         PersistanceManager manager = new PersistanceManager(this);
-        manager.loadAppOnStart( this );
+        manager.loadAppOnStart(  );
 
     }
 

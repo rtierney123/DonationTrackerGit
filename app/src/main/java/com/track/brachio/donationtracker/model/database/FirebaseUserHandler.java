@@ -31,6 +31,7 @@ public class FirebaseUserHandler {
     private final String TAG = "FirebaseUserHandler";
     private User userCallback;
 
+
     /**
      * returns current user
      * @return current user
@@ -155,7 +156,6 @@ public class FirebaseUserHandler {
     public void createNewUser(User appUser, String password,
                               RegistrationActivity registration, Activity activity){
         // Write a message to the database
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         Map<String, Object> userMap = new HashMap<>();
@@ -216,7 +216,7 @@ public class FirebaseUserHandler {
     public void signInUser(String email, String password, LoginActivity login, Activity activity){
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (!email.isEmpty() && !password.isEmpty()){
-           Task task = auth.signInWithEmailAndPassword(email, password)
+           auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task1 -> {
                         if (task1.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information

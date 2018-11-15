@@ -1,7 +1,6 @@
 package com.track.brachio.donationtracker.controller;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,16 +22,12 @@ import com.track.brachio.donationtracker.model.Location;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Manages Persistence
  */
 public class PersistanceManager {
 
-    private static ThreadPoolExecutor executor;
     private final Activity activity;
     private static boolean threadRunning;
     private static final long aliveTime = 60L;
@@ -43,18 +38,16 @@ public class PersistanceManager {
      */
     public PersistanceManager(Activity currentActivity) {
         activity = currentActivity;
-        initializeVariables();
 
     }
 
     /**
      * loads app on start
-     * @param activity current activity
      */
-    public void loadAppOnStart(Activity activity) {
+    public void loadAppOnStart() {
         //CurrentUser userInstance = CurrentUser.getInstance();
         //User user = userInstance.getUser();
-        gatherData(activity);
+        gatherData();
 
     }
 
@@ -62,7 +55,7 @@ public class PersistanceManager {
     /**
      * gather data
      */
-    private void gatherData(Context context){
+    private void gatherData(){
 
         //Get all locations from db so user can view all locations
         FirebaseLocationHandler locHandler = new FirebaseLocationHandler(db);
@@ -70,21 +63,13 @@ public class PersistanceManager {
 
         task1.addOnSuccessListener((OnSuccessListener<QuerySnapshot>) queryDocumentSnapshots -> {
             FirebaseItemHandler itemHandler = new FirebaseItemHandler(db);
-            Task task2 = itemHandler.getAllItems(context);
+            Task task2 = itemHandler.getAllItems();
             task2.addOnSuccessListener(
                     (OnSuccessListener<QuerySnapshot>) queryDocumentSnapshots1 -> goToMainPage());
         });
     }
 
-    /**
-     * initializes variables
-     */
-    private void initializeVariables() {
-        int numCores = Runtime.getRuntime().availableProcessors();
 
-        executor = new ThreadPoolExecutor( numCores * 2, numCores * 2,
-                aliveTime, TimeUnit.SECONDS, new LinkedBlockingQueue<>() );
-    }
 
 //    /**
 //     * returns executor
@@ -176,7 +161,7 @@ public class PersistanceManager {
         if (!threadRunning) {
             threadRunning = true;
             editItemTask.addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
-                Task updateTask = getAllItems(currentActivity);
+                Task updateTask = getAllItems();
                 updateTask.addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task1 -> {
                     threadRunning = false;
                     Intent intent = new Intent(currentActivity, MainActivity.class);
@@ -192,9 +177,9 @@ public class PersistanceManager {
      * returns all items
      * @return task with items
      */
-    private Task getAllItems(Context context) {
+    private Task getAllItems() {
         FirebaseItemHandler itemHandler = new FirebaseItemHandler(db);
-        return itemHandler.getAllItems(context);
+        return itemHandler.getAllItems();
     }
 
 //    /**

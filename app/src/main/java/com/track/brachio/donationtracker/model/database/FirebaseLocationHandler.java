@@ -3,15 +3,12 @@ package com.track.brachio.donationtracker.model.database;
 import android.util.Log;
 
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.track.brachio.donationtracker.model.Address;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +21,6 @@ public class FirebaseLocationHandler {
     private final String TAG = "FirebaseLocationHandler";
     private Location locationCallback;
     private final Map<String, Location> locationMap = new LinkedHashMap<>(  );
-    private final ArrayList<Location> locationArray = new ArrayList<>();
     private final FirebaseFirestore db;
 
     /**
@@ -39,6 +35,7 @@ public class FirebaseLocationHandler {
      * @param locationID id for the specific location
      * @return the Location being searched for
      */
+    /*
     public Location getLocation(String locationID){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -82,6 +79,7 @@ public class FirebaseLocationHandler {
                 });
         return locationCallback;
     }
+    */
 
     /**
      * returns all locations
@@ -140,6 +138,7 @@ public class FirebaseLocationHandler {
      * @param location location being added
      * @return task adding location
      */
+    /*
     public Task addLocation(Location location)  {
         Map<String, Object> locMap = new HashMap<>();
         if(location != null) {
@@ -163,5 +162,6 @@ public class FirebaseLocationHandler {
             return null;
         }
     }
+    */
 
 }

@@ -316,7 +316,6 @@ public class ItemEditActivity extends AppCompatActivity {
             RecyclerView.Adapter<ItemEditActivity
                     .CommentListAdapter.CommentViewHolder> {
         private final List<String> theComments;
-        private View view; //for now
 
         /**
          * Holder for Comment View
@@ -348,7 +347,7 @@ public class ItemEditActivity extends AppCompatActivity {
             View v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.adapter_comments_list,
                             parent, false);
-            view = v;
+
             return new
                     CommentViewHolder(v);
         }
