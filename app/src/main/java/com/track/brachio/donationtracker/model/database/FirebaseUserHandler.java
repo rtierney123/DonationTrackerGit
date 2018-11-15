@@ -19,12 +19,10 @@ import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Handler for User
