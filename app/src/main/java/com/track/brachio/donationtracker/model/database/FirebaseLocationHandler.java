@@ -88,8 +88,6 @@ public class FirebaseLocationHandler {
      * @return current Task
      */
     public Task getAllLocations(){
-        CollectionReference ref = db.collection("location");
-        Task task = ref.get();
         return db.collection( "location" )
                 .get()
                 .addOnSuccessListener(documentSnapshots -> {
