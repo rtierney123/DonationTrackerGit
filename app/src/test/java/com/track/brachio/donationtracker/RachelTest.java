@@ -1,21 +1,15 @@
 package com.track.brachio.donationtracker;
 
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.track.brachio.donationtracker.model.Address;
 import com.track.brachio.donationtracker.model.Location;
-import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +27,8 @@ public class RachelTest {
     @Test public void testGetAllLocationsWithValue() {
         //FirebaseLocationHandler t = new FirebaseLocationHandler(databaseMock);
         Address address = new Address("123 Fake Ln", "Atlanta", "GA", 30360);
-        Location location = new Location("1", "Center", 50, 60, "Store", "12345678", "mywebsite.com", address);
+        Location location = new Location("1", "Center", 50, 60, "Store",
+                "12345678", "mywebsite.com", address);
 
        // t.addLocation(location);
         //t.getAllLocations();
