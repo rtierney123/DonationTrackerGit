@@ -1,5 +1,9 @@
 package com.track.brachio.donationtracker.model;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Information holder for Location
  */
@@ -13,6 +17,7 @@ public class Location {
     private String phone;
     private String website;
     private Address address;
+    private static final List<LocationType> legalLocationTypes = Arrays.asList(LocationType.values());
 
     /**
      * Constructor for Location
@@ -194,7 +199,27 @@ public class Location {
         }
         return null;
     }
+    public static List<LocationType> getLegalLocationTypes() {
+        return Collections.unmodifiableList(legalLocationTypes);
+    }
 
+    /**
+     * finds Item by the position
+     * @param code code of ItemType
+     * @return position
+     */
+    public static int findLocationTypePosition(LocationType code) {
+        int i = 0;
+        while (i < legalLocationTypes.size()) {
+            if (code != null) {
+                if (code.equals(legalLocationTypes.get(i))) {
+                    return i;
+                }
+            }
+            i++;
+        }
+        return 0;
+    }
 
 
 }
