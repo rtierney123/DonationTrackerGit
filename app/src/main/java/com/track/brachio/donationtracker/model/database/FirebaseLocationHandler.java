@@ -140,9 +140,9 @@ public class FirebaseLocationHandler {
     /**
      * add locations to database
      * @param location location being added
+     * @return task adding location
      */
-    public void addLocation(Location location)  {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public Task addLocation(Location location)  {
         Map<String, Object> locMap = new HashMap<>();
         if(location != null) {
             locMap.put("name", location.getName());
@@ -156,10 +156,13 @@ public class FirebaseLocationHandler {
             locMap.put("city", address.getCity());
             locMap.put("state", address.getState());
             locMap.put("zip", address.getZip());
-            db.collection("location").document("location").set(locMap)
+            Task task =db.collection("location")
+                    .add(locMap)
                     .addOnSuccessListener(aVoid -> Log.d(TAG, "Added location."));
+            return task;
         } else {
             Log.e(TAG, "Entered null location");
+            return null;
         }
     }
 

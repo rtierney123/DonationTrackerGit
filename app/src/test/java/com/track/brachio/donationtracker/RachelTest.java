@@ -1,5 +1,7 @@
 package com.track.brachio.donationtracker;
 
+import android.util.Log;
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -101,20 +103,23 @@ public class RachelTest {
     @Mock
     private FirebaseFirestore firestoreMock;
 
-    private HashMap<String, Object> updateMap = new HashMap<>();
+    private Map<String, Object> locMap = new HashMap<>();
     private String locStr = "location";
 
+    @Before
     public void initializeDatabase(){
         MockitoAnnotations.initMocks(this);
 
         when(documentReference.get()).thenReturn(documentSnapshotTask);
         when(emptyDocumentReference.get()).thenReturn(emptyDocumentSnapshotTask);
+        when(collectionReference.document()).thenReturn(documentReference);
         when(collectionReference.get()).thenReturn(queryResultTask);
+        when(collectionReference.add(locMap)).thenReturn(documentRefTask);
         when(emptyCollectionReference.get()).thenReturn(emptyQueryResultTask);
         when(queryReference.get()).thenReturn(queryResultTask);
         when(emptyQueryReference.get()).thenReturn(emptyQueryResultTask);
         when(documentReference.delete()).thenReturn(mockVoidTask);
-        when(documentReference.update(updateMap)).thenReturn(mockVoidTask);
+        when(documentReference.update(locMap)).thenReturn(mockVoidTask);
         when(documentSnapshot.exists()).thenReturn(true); //This snapshots exist
         when(documentSnapshot.exists()).thenReturn(true); //This snapshots exist
         when(emptyDocumentSnapshot.exists()).thenReturn(false); //This snapshots exist
@@ -128,39 +133,46 @@ public class RachelTest {
         when(emptyQuerySnapshot.isEmpty()).thenReturn(true);
 
         when(firestoreMock.collection("location")).thenReturn(collectionReference);
-        when(firestoreMock.getInstance()).thenReturn(firestoreMock);
-
-
-        /*
-        CollectionReference mockedDatabaseReference = Mockito.mock(CollectionReference.class);
-
-        firestoreMock = Mockito.mock(FirebaseFirestore.class);
-        when(firestoreMock.collection( "location/" )).thenReturn(mockedDatabaseReference);
-
-        PowerMockito.mockStatic(FirebaseFirestore.class);
-        when(FirebaseFirestore.getInstance()).thenReturn(firestoreMock);
-        */
-
 
     }
 
+    /**
+     * Tests if can get all locations when value is in database
+     */
     @Test
     public void testGetAllLocationsWithValue() {
+
         FirebaseLocationHandler t = new FirebaseLocationHandler(firestoreMock);
         Address address = new Address("123 Fake Ln", "Atlanta", "GA", 30360);
         Location location = new Location("1", "Center", 50, 60, "Store",
                 "12345678", "mywebsite.com", address);
 
-        t.addLocation(location);
-        t.getAllLocations();
+        locMap.put("name", location.getName());
+        locMap.put("latitude", location.getLatitude());
+        locMap.put("longitude", location.getLongitude());
+        locMap.put("type", location.getType());
+        locMap.put("phone", location.getPhone());
+        locMap.put("website", location.getWebsite());
+        locMap.put("address", address.getStreetAddress());
+        locMap.put("city", address.getCity());
+        locMap.put("state", address.getState());
+        locMap.put("zip", address.getZip());
 
-        AllLocations allLocations = AllLocations.getInstance();
-        Map<String, Location> mapLoc = allLocations.getLocationMap();
-        List<String> keys = new ArrayList(mapLoc.keySet());
+        firestoreMock.collection( "location" )
+                .add(locMap).addOnSuccessListener(documentReference ->{
+                    t.getAllLocations();
+                    AllLocations allLocations = AllLocations.getInstance();
+                    Map<String, Location> mapLoc = allLocations.getLocationMap();
+                    List<String> keys = new ArrayList(mapLoc.keySet());
+                    assertEquals(1,keys.size());
+                }
+        );
 
-        assertEquals(keys.size(), 1);
     }
 
+    /**
+     * Tests method when not locations are in database
+     */
     @Test
     public void testGetAllLocationsWithEmpty() {
         FirebaseLocationHandler t = new FirebaseLocationHandler(firestoreMock);
@@ -171,7 +183,7 @@ public class RachelTest {
         Map<String, Location> mapLoc = allLocations.getLocationMap();
         List<String> keys = new ArrayList(mapLoc.keySet());
 
-        assertEquals(keys.size(), 0);
+        assertEquals(0, keys.size());
 
     }
 
