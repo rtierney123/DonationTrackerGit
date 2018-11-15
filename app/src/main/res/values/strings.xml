@@ -100,4 +100,12 @@
     <string name="navigation_menu">Navigation Menu</string>
     <string name="category">Category:</string>
     <string name="textview">TextView</string>
+    <string name="register">Register</string>
+    <string name="logout">Logout</string>
+    <string name="main_view_locations">View Locations</string>
+    <string name="view_items">View Items</string>
+    <string name="locations">Locations</string>
+    <string name="categories">Categories</string>
+    <string name="map">Map</string>
+    <string name="cancel">Cancel</string>
 </resources>

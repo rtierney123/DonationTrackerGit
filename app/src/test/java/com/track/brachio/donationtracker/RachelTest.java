@@ -148,7 +148,8 @@ public class RachelTest {
     public void testGetAllLocationsWithValue() {
         FirebaseLocationHandler t = new FirebaseLocationHandler(firestoreMock);
         Address address = new Address("123 Fake Ln", "Atlanta", "GA", 30360);
-        Location location = new Location("1", "Center", 50, 60, "Store", "12345678", "mywebsite.com", address);
+        Location location = new Location("1", "Center", 50, 60, "Store",
+                "12345678", "mywebsite.com", address);
 
         t.addLocation(location);
         t.getAllLocations();
