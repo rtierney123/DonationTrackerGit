@@ -4,15 +4,22 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.text.Editable;
+import android.widget.Spinner;
 
 import com.track.brachio.donationtracker.controller.PersistanceManager;
+import com.track.brachio.donationtracker.controller.UIPopulator;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Activity for Login
@@ -73,6 +80,29 @@ public class LoginActivity extends AppCompatActivity {
             });
 
             popup.show();
+        });
+
+        Spinner temp = findViewById( R.id.tempLoginSpinner );
+        List<String> userTypes = new ArrayList(Arrays.asList("Donator", "Manager", "Volunteer", "Admin"));
+        UIPopulator ui = new UIPopulator();
+        ui.populateSpinner( temp, userTypes, this );
+        temp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (id == 0){
+                    usernameField.setText("donator@email.com");
+                } else if (id == 1){
+                    usernameField.setText("manager@email.com");
+                } else if (id == 2){
+                    usernameField.setText("voluneer@email.com");
+                } else if (id == 3){
+                    usernameField.setText("admin@email.com");
+                }
+                passwordField.setText("password");
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
     }
 

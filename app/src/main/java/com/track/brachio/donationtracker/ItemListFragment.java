@@ -120,7 +120,7 @@ public class ItemListFragment extends Fragment {
 
 
         User currentUser = CurrentUser.getInstance().getUser();
-        if (currentUser.getUserType() == UserType.Guest){
+        if (currentUser.getUserType() == UserType.Guest || currentUser.getUserType() == UserType.Donator){
             view.findViewById(R.id.editButton).setVisibility( View.GONE );
         } else {
             FloatingActionButton editButton= view.findViewById(R.id.editButton);
