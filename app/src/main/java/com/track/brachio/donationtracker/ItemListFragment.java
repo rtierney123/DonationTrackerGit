@@ -25,7 +25,10 @@ import com.track.brachio.donationtracker.controller.UIPopulator;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.ItemType;
 import com.track.brachio.donationtracker.model.Location;
+import com.track.brachio.donationtracker.model.User;
+import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.singleton.CurrentItem;
+import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 import com.track.brachio.donationtracker.model.singleton.SearchedItems;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
 
@@ -111,15 +114,23 @@ public class ItemListFragment extends Fragment {
         // use a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
-        FloatingActionButton editButton= view.findViewById(R.id.editButton);
         Spinner locSpinner= view.findViewById(R.id.locSpinner);
         Spinner categorySpinner= view.findViewById( R.id.categorySpinner );
         SearchView searchView = view.findViewById(R.id.nameSearchView);
-        editButton.setOnClickListener (view1 -> {
-            Log.d("ItemList", "Edit");
-            Intent intent = new Intent(containerActivity, ItemAddActivity.class);
-            startActivity(intent);
-        });
+
+
+        User currentUser = CurrentUser.getInstance().getUser();
+        if (currentUser.getUserType() == UserType.Guest){
+            view.findViewById(R.id.editButton).setVisibility( View.GONE );
+        } else {
+            FloatingActionButton editButton= view.findViewById(R.id.editButton);
+            editButton.setOnClickListener (view1 -> {
+                Log.d("ItemList", "Edit");
+                Intent intent = new Intent(containerActivity, ItemAddActivity.class);
+                startActivity(intent);
+            });
+        }
+
 
         UIPopulator ui = new UIPopulator();
         List<String> names = new ArrayList<>();
@@ -319,10 +330,13 @@ public class ItemListFragment extends Fragment {
         // populate view based on items and adapter specifications
         RecyclerView.Adapter adapter =  new ItemListAdapter( displayItems,
                 item -> {
-                    CurrentItem currentItemInstance = CurrentItem.getInstance();
-                    currentItemInstance.setItem(item);
-                    Intent intent = new Intent(containerActivity, ItemDetailActivity.class);
-                    startActivity(intent);
+                    User currentUser = CurrentUser.getInstance().getUser();
+                    if (currentUser.getUserType() != UserType.Guest){
+                        CurrentItem currentItemInstance = CurrentItem.getInstance();
+                        currentItemInstance.setItem(item);
+                        Intent intent = new Intent(containerActivity, ItemDetailActivity.class);
+                        startActivity(intent);
+                    }
                 });
         recyclerView.setAdapter( adapter );
 

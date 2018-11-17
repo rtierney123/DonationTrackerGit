@@ -84,7 +84,7 @@ public class User {
         email = "";
         firstName= "";
         lastName = "";
-        userType = UserType.Donator;
+        userType = UserType.Guest;
     }
 
     /**

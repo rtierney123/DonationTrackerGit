@@ -7,5 +7,6 @@ public enum UserType {
     Donator,
     Volunteer,
     Manager,
-    Admin
+    Admin,
+    Guest
 }

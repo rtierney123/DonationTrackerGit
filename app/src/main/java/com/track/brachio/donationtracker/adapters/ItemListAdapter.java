@@ -95,7 +95,6 @@ public class ItemListAdapter extends
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.adapter_item_list, parent, false);
-        //Context context = v.getContext();
 
         return new ItemViewHolder(v);
 

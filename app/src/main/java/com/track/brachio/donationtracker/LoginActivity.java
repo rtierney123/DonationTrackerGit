@@ -12,6 +12,7 @@ import android.text.Editable;
 
 import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
+import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
 /**
  * Activity for Login

@@ -2,6 +2,7 @@ package com.track.brachio.donationtracker.controller;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -9,6 +10,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.track.brachio.donationtracker.MainActivity;
+import com.track.brachio.donationtracker.R;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
@@ -45,8 +47,6 @@ public class PersistanceManager {
      * loads app on start
      */
     public void loadAppOnStart() {
-        //CurrentUser userInstance = CurrentUser.getInstance();
-        //User user = userInstance.getUser();
         gatherData();
 
     }
@@ -99,7 +99,8 @@ public class PersistanceManager {
             currentLocation.setLocations(locationArray);
         } else if (currentUser.getUserType() == UserType.Manager) {
             currentLocation.setLocations(locationArray);
-
+        } else if (currentUser.getUserType() == UserType.Guest) {
+            currentLocation.setLocations(locationArray);
         }
         Intent intent = new Intent(activity, MainActivity.class );
         activity.startActivity(intent);
