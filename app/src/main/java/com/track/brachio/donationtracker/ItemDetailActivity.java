@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,9 +12,12 @@ import java.util.Date;
 
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.Location;
+import com.track.brachio.donationtracker.model.User;
+import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentItem;
 import com.track.brachio.donationtracker.model.ItemType;
+import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
 import java.util.Map;
 import java.util.Objects;
@@ -65,9 +69,15 @@ public class ItemDetailActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+
         if (currentItem.getPicture() != null){
             itemPic.setImageBitmap( currentItem.getPicture() );
         }
 
+        User currentUser = CurrentUser.getInstance().getUser();
+        if (currentUser.getUserType() == UserType.Guest
+                || currentUser.getUserType() == UserType.Donator){
+            findViewById( R.id.edit_item_button).setVisibility( View.GONE );
+        }
     }
 }

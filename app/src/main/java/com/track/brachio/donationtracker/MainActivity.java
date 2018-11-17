@@ -13,7 +13,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
 import com.track.brachio.donationtracker.controller.PersistanceManager;
+import com.track.brachio.donationtracker.model.User;
+import com.track.brachio.donationtracker.model.UserType;
+import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
 /**
  * Activity for Main page
@@ -42,6 +47,11 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener( this );
 
         FragmentManager fragmentManager = getSupportFragmentManager();
+        User currentUser = CurrentUser.getInstance().getUser();
+        if (currentUser.getUserType() != UserType.Admin){
+            MenuItem item = navigationView.getMenu().findItem(R.id.nav_user);
+            item.setVisible(false);
+        }
         fragmentManager.beginTransaction().
                 replace(R.id.main_frame_layout, new ItemListFragment())
                 .commit();

@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (id == 1){
                     usernameField.setText("manager@email.com");
                 } else if (id == 2){
-                    usernameField.setText("voluneer@email.com");
+                    usernameField.setText("volunteer@email.com");
                 } else if (id == 3){
                     usernameField.setText("admin@email.com");
                 }
