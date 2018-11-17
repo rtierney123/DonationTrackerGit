@@ -21,7 +21,8 @@ import com.track.brachio.donationtracker.controller.PersistanceManager;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         ItemListFragment.OnFragmentInteractionListener,
-        LocationListFragment.OnFragmentInteractionListener{
+        LocationListFragment.OnFragmentInteractionListener,
+        UserListFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +94,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_item) {
             fragmentManager.beginTransaction().
                     replace(R.id.main_frame_layout, new ItemListFragment())
+                    .commit();
+        }  else if (id == R.id.nav_user) {
+            fragmentManager.beginTransaction().
+                    replace(R.id.main_frame_layout, new UserListFragment())
                     .commit();
         }
 

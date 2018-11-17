@@ -10,4 +10,8 @@
         android:id="@+id/nav_item"
         android:icon="@drawable/fui_idp_button_background_github"
         android:title="@string/view_items" />
+    <item
+        android:id="@+id/nav_user"
+        android:icon="@drawable/fui_idp_button_background_github"
+        android:title="@string/manage_users" />
 </menu>

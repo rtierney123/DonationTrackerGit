@@ -51,10 +51,10 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'org.jetbrains:annotations:15.0'
 
-    testImplementation  'junit:junit:4.12'
-    testImplementation  'org.powermock:powermock:1.6.5'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.powermock:powermock:1.6.5'
     testImplementation 'org.powermock:powermock-module-junit4:1.6.5'
-    testImplementation  'org.powermock:powermock-api-mockito:1.6.5'
+    testImplementation 'org.powermock:powermock-api-mockito:1.6.5'
 }
 
 apply plugin: 'com.google.gms.google-services'
