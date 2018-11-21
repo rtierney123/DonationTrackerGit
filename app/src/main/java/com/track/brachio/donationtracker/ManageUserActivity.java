@@ -30,7 +30,10 @@ import android.os.Environment;
 import android.provider.MediaStore;
 
 import com.track.brachio.donationtracker.controller.PersistanceManager;
-import com.track.brachio.donationtracker.model.singleton.CurrentItem;
+import com.track.brachio.donationtracker.model.singleton.CurrentUser;
+import com.track.brachio.donationtracker.model.User;
+import com.track.brachio.donationtracker.model.UserType;
+import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -48,6 +51,7 @@ public class ManageUserActivity extends AppCompatActivity {
     private TextView emailField;
     private Spinner userTypeSpinner;
     private Spinner activitySpinner;
+    private Button saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,48 @@ public class ManageUserActivity extends AppCompatActivity {
         emailField = findViewById(R.id.displayEmailManageUserID);
         userTypeSpinner = findViewById(R.id.UserTypeSpinnerManageUserID);
         activitySpinner = findViewById(R.id.activitySpinnerID);
+        saveButton = findViewById(R.id.saveUserChangesID);
+
+        FirebaseUserHandler handler = new FirebaseUserHandler();
+
+        CurrentUser currentUser = CurrentUser.getInstance();
+
+        User user = currentUser.getUser();
+        String firstName = user.getFirstName();
+        String lastName = user.getLastName();
+        String email = user.getEmail();
+        UserType userUserType = user.getUserType();
+
+        lastNameFirstName.setText(lastName + ", " + firstName);
+        emailField.setText(email);
+
+        ArrayAdapter adapterUserType = new ArrayAdapter(this, android.R.layout.simple_spinner_item,
+                User.getLegalUserTypes());
+        adapterUserType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        userTypeSpinner.setAdapter(adapterUserType);
+
+        List<String> legalActivityTypes = new ArrayList<>();
+        legalActivityTypes.add("Active");
+        legalActivityTypes.add("Inactive");
+        ArrayAdapter adapterActivity = new ArrayAdapter(this, android.R.layout.simple_spinner_item,
+                legalActivityTypes);
+        adapterActivity.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        activitySpinner.setAdapter(adapterActivity);
+
+        saveButton.setOnClickListener(view -> {
+            UserType userTypeSelected;
+            String activityStatusSelected;
+
+            userTypeSelected = (UserType) userTypeSpinner.getSelectedItem();
+
+            activityStatusSelected = activitySpinner.getSelectedItem().toString();
+
+            /*
+            * Change the User when firebase items are created
+             */
+
+        });
+
 
     }
 }
