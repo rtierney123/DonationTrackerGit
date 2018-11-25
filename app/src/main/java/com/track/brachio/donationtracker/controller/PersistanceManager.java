@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 
+import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -122,6 +123,9 @@ public class PersistanceManager {
 
         //sign out google client
         handler.googleSignOut();
+
+        //sign out of facebook client
+        LoginManager.getInstance().logOut();
     }
 
     /**
