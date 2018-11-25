@@ -176,7 +176,7 @@
             app:layout_constraintStart_toStartOf="@+id/loginButton"
             app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
-        <Button
+        <com.facebook.login.widget.LoginButton
             android:id="@+id/facebookButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -3,10 +3,20 @@ package com.track.brachio.donationtracker.model.database;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -21,9 +31,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.track.brachio.donationtracker.LoginActivity;
 import com.track.brachio.donationtracker.RegistrationActivity;
+import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +50,7 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
     private final String TAG = "FirebaseUserHandler";
     private User userCallback;
     private static GoogleApiClient mGoogleApiClient;
+    private static CallbackManager mFacebookCallback;
 
     /**
      * returns current user
@@ -384,6 +398,7 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
             mGoogleApiClient.connect();
         }
     }
+
 
 
     @Override
