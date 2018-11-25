@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -17,7 +18,11 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
@@ -27,6 +32,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.track.brachio.donationtracker.LoginActivity;
 import com.track.brachio.donationtracker.RegistrationActivity;
+import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
@@ -43,7 +49,7 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
     private final String TAG = "FirebaseUserHandler";
     private User userCallback;
     private static GoogleApiClient mGoogleApiClient;
-    private static CallbackManager mFacebookCallback;
+
     /**
      * returns current user
      * @return current user
@@ -389,33 +395,6 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
             mGoogleApiClient.disconnect();
             mGoogleApiClient.connect();
         }
-    }
-
-
-    public void configureFacebookSignIn(){
-        mFacebookCallback = CallbackManager.Factory.create();
-    }
-
-    public void facebookSignIn(Context context, LoginButton loginButton){
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.registerCallback(mFacebookCallback, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG, "facebook:onSuccess:" + loginResult);
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d(TAG, "facebook:onCancel");
-                // ...
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d(TAG, "facebook:onError", error);
-                // ...
-            }
-        });
     }
 
 
