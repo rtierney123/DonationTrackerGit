@@ -47,7 +47,9 @@ public class UserListAdapter extends
         userViewHolder.fnText.setText(user.getFirstName());
         userViewHolder.lnText.setText(user.getLastName()+",");
         userViewHolder.emailText.setText(user.getEmail());
-        userViewHolder.typeText.setText(user.getUserType().name());
+        if (user.getUserType() != null){
+            userViewHolder.typeText.setText(user.getUserType().name());
+        }
         userViewHolder.statusText.setText("True");
     }
 
@@ -84,11 +86,11 @@ public class UserListAdapter extends
         UserViewHolder(View v) {
             super(v);
             this.v = v;
-            fnText = v.findViewById(R.id.location_name_adapter);
-            lnText = v.findViewById(R.id.location_city_adapter);
-            emailText = v.findViewById(R.id.location_city_adapter);
-            typeText = v.findViewById(R.id.location_city_adapter);
-            statusText = v.findViewById(R.id.location_city_adapter);
+            fnText = v.findViewById(R.id.fnText);
+            lnText = v.findViewById(R.id.lnText);
+            emailText = v.findViewById(R.id.emailText);
+            typeText = v.findViewById(R.id.typeText);
+            statusText = v.findViewById(R.id.statusText);
 
         }
 

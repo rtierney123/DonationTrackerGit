@@ -1,12 +1,25 @@
 package com.track.brachio.donationtracker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.track.brachio.donationtracker.adapters.ItemListAdapter;
+import com.track.brachio.donationtracker.adapters.UserListAdapter;
+import com.track.brachio.donationtracker.model.User;
+import com.track.brachio.donationtracker.model.UserType;
+import com.track.brachio.donationtracker.model.singleton.AllUsers;
+import com.track.brachio.donationtracker.model.singleton.CurrentUser;
+import com.track.brachio.donationtracker.model.singleton.SelectedItem;
+
+import java.util.List;
 
 
 /**
@@ -22,6 +35,7 @@ public class UserListFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private RecyclerView recyclerView;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -64,7 +78,16 @@ public class UserListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate( R.layout.fragment_user_list, container, false );
+        View view = inflater.inflate( R.layout.fragment_user_list, container, false );
+        recyclerView = view.findViewById(R.id.userList);
+        // Inflate the layout for this fragment
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        populateRecycleView();
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -104,5 +127,15 @@ public class UserListFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private void populateRecycleView(){
+        List<User> users = AllUsers.getInstance().getUsers();
+        // populate view based on items and adapter specifications
+        RecyclerView.Adapter adapter =  new UserListAdapter( users,
+                item -> {
+
+                });
+        recyclerView.setAdapter( adapter );
     }
 }

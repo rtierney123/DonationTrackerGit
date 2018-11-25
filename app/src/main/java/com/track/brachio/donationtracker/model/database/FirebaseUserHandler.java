@@ -370,7 +370,7 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
                         firstName = (String) doc.get("firstname");
                         lastName  = (String) doc.get( "lastname" );
                         email = (String) doc.get( "email" );
-                        type = (String) doc.get("userType");
+                        type = (String) doc.get("usertype");
                         //status = (String) doc.get("status");
 
                         User user = new User(firstName, lastName, email, type);
