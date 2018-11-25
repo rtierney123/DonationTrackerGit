@@ -5,7 +5,7 @@ import com.track.brachio.donationtracker.model.Item;
 /**
  * Information holder for CurrentItem
  */
-public final class CurrentItem {
+public final class SelectedItem {
 
     // current User
     private Item item;
@@ -15,7 +15,7 @@ public final class CurrentItem {
     /**
      * Constructor for CurrentItem
      */
-    private CurrentItem()
+    private SelectedItem()
     {
         item = new Item();
     }
@@ -23,14 +23,14 @@ public final class CurrentItem {
     // static method to create instance of CurrentUser class
 
     private static class Single_instanceHolder {
-        private static final CurrentItem single_instance = new CurrentItem();
+        private static final SelectedItem single_instance = new SelectedItem();
     }
 
     /**
      * returns currentInstance being used
      * @return current instance of Item
      */
-    public static CurrentItem getInstance()
+    public static SelectedItem getInstance()
     {
 
         return Single_instanceHolder.single_instance;

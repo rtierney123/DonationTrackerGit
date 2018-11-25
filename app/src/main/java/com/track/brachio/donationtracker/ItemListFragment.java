@@ -27,9 +27,9 @@ import com.track.brachio.donationtracker.model.ItemType;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
-import com.track.brachio.donationtracker.model.singleton.CurrentItem;
+import com.track.brachio.donationtracker.model.singleton.SelectedItem;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
-import com.track.brachio.donationtracker.model.singleton.SearchedItems;
+import com.track.brachio.donationtracker.model.singleton.AllItems;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
 
 import java.util.ArrayList;
@@ -274,7 +274,7 @@ public class ItemListFragment extends Fragment {
     private void populateRecycleView() {
         String locID = getCurrentLocationID();
 
-        SearchedItems searched = SearchedItems.getInstance();
+        AllItems searched = AllItems.getInstance();
         Map<String, Map<String, Item>> storeItems = searched.getSearchedMap();
 
 
@@ -332,8 +332,8 @@ public class ItemListFragment extends Fragment {
                 item -> {
                     User currentUser = CurrentUser.getInstance().getUser();
                     if (currentUser.getUserType() != UserType.Guest){
-                        CurrentItem currentItemInstance = CurrentItem.getInstance();
-                        currentItemInstance.setItem(item);
+                        SelectedItem selectedItemInstance = SelectedItem.getInstance();
+                        selectedItemInstance.setItem(item);
                         Intent intent = new Intent(containerActivity, ItemDetailActivity.class);
                         startActivity(intent);
                     }

@@ -30,7 +30,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 
 import com.track.brachio.donationtracker.controller.PersistanceManager;
-import com.track.brachio.donationtracker.model.singleton.CurrentItem;
+import com.track.brachio.donationtracker.model.singleton.SelectedItem;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -94,8 +94,8 @@ public class ItemEditActivity extends AppCompatActivity {
         newItemCategory.setAdapter(adapter);
 
         //set default value
-        CurrentItem currentItemInstance = CurrentItem.getInstance();
-        currentItem = currentItemInstance.getItem();
+        SelectedItem selectedItemInstance = SelectedItem.getInstance();
+        currentItem = selectedItemInstance.getItem();
         if (currentItem != null) {
             itemName.setText(currentItem.getName());
             if (currentItem.getDateCreated() != null) {
@@ -261,8 +261,8 @@ public class ItemEditActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                CurrentItem currentItemInstance = CurrentItem.getInstance();
-                Item item = currentItemInstance.getItem();
+                SelectedItem selectedItemInstance = SelectedItem.getInstance();
+                Item item = selectedItemInstance.getItem();
                 item.setPicture(bitmap);
                 newImage.setImageBitmap(bitmap);
             }

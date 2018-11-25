@@ -5,7 +5,7 @@ import com.track.brachio.donationtracker.model.Location;
 /**
  * Singleton for Location
  */
-public final class CurrentLocation {
+public final class SelectedLocation {
 
     // current User
     private Location location;
@@ -15,7 +15,7 @@ public final class CurrentLocation {
     /**
      * Constructor for CurrentLocation
      */
-    private CurrentLocation()
+    private SelectedLocation()
     {
         location = new Location();
     }
@@ -23,14 +23,14 @@ public final class CurrentLocation {
     // static method to create instance of CurrentUser class
 
     private static class Single_instanceHolder {
-        private static final CurrentLocation single_instance = new CurrentLocation();
+        private static final SelectedLocation single_instance = new SelectedLocation();
     }
 
     /**
      * Returns the instance of CurrentLocation
      * @return the current instance
      */
-    public static CurrentLocation getInstance()
+    public static SelectedLocation getInstance()
     {
 
         return Single_instanceHolder.single_instance;

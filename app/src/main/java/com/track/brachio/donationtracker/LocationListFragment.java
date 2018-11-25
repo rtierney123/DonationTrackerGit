@@ -18,7 +18,7 @@ import android.widget.Button;
 import com.track.brachio.donationtracker.adapters.LocationListAdapter;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
-import com.track.brachio.donationtracker.model.singleton.CurrentLocation;
+import com.track.brachio.donationtracker.model.singleton.SelectedLocation;
 
 import java.util.ArrayList;
 
@@ -107,7 +107,7 @@ public class LocationListFragment extends Fragment {
         // populate view based on locations and adapter specifications
         RecyclerView.Adapter adapter = new LocationListAdapter(locations,
                 item -> {
-                    CurrentLocation currentInstanceLocation = CurrentLocation.getInstance();
+                    SelectedLocation currentInstanceLocation = SelectedLocation.getInstance();
                     currentInstanceLocation.setLocation(item);
                     Intent intent = new Intent(containerActivity, LocationActivity.class);
                     startActivity(intent);

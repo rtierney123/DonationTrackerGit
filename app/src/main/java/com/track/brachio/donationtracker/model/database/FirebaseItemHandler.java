@@ -1,6 +1,5 @@
 package com.track.brachio.donationtracker.model.database;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 
@@ -10,15 +9,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.track.brachio.donationtracker.model.Item;
-import com.track.brachio.donationtracker.model.singleton.SearchedItems;
+import com.track.brachio.donationtracker.model.singleton.AllItems;
 import com.track.brachio.donationtracker.model.ItemType;
 /*
 import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutureCallback;
 import com.google.api.core.ApiFutures;
 */
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -97,7 +94,7 @@ public class FirebaseItemHandler {
 
                             }
                         }
-                        SearchedItems searched = SearchedItems.getInstance();
+                        AllItems searched = AllItems.getInstance();
                         searched.setSearchedMap(map);
                     } else {
                         Log.w(TAG, "Error getting documents.", task.getException());

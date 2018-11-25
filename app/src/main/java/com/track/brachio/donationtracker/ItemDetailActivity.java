@@ -15,7 +15,7 @@ import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
-import com.track.brachio.donationtracker.model.singleton.CurrentItem;
+import com.track.brachio.donationtracker.model.singleton.SelectedItem;
 import com.track.brachio.donationtracker.model.ItemType;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
@@ -32,7 +32,7 @@ public class ItemDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_item_detail );
-        CurrentItem currentInstance = CurrentItem.getInstance();
+        SelectedItem currentInstance = SelectedItem.getInstance();
         Item currentItem = currentInstance.getItem();
 
         TextView nameText = findViewById(R.id.detail_name);

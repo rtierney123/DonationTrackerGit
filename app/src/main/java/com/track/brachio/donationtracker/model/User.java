@@ -197,11 +197,13 @@ public class User {
      * @return UserType corresponding to the string
      */
     private UserType stringToUserType(String str){
-        switch(str){
-            case "Donator" : return UserType.Donator;
-            case "Volunteer" : return UserType.Volunteer;
-            case "Manager" : return UserType.Manager;
-            case "Admin" : return UserType.Admin;
+        if (str != null){
+            switch(str){
+                case "Donator" : return UserType.Donator;
+                case "Volunteer" : return UserType.Volunteer;
+                case "Manager" : return UserType.Manager;
+                case "Admin" : return UserType.Admin;
+            }
         }
         return null;
     }

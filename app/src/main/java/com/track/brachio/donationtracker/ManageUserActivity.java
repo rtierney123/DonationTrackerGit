@@ -40,6 +40,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.ItemType;
+import com.track.brachio.donationtracker.model.singleton.SelectedUser;
+
 import android.view.ViewGroup;
 
 import java.io.IOException;
@@ -66,9 +68,9 @@ public class ManageUserActivity extends AppCompatActivity {
 
         FirebaseUserHandler handler = new FirebaseUserHandler();
 
-        CurrentUser currentUser = CurrentUser.getInstance();
+        SelectedUser selectedUser = SelectedUser.getInstance();
 
-        User user = currentUser.getUser();
+        User user = selectedUser.getUser();
         String firstName = user.getFirstName();
         String lastName = user.getLastName();
         String email = user.getEmail();

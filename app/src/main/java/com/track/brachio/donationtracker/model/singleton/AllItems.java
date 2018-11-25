@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Information for searched items
  */
-public final class SearchedItems {
+public final class AllItems {
 
     // current User
     private Map<String, Map<String, Item>> map;
@@ -19,7 +19,7 @@ public final class SearchedItems {
     /**
      * constructor for SearchedItems
      */
-    private SearchedItems()
+    private AllItems()
     {
         map = new LinkedHashMap<>(  );
     }
@@ -27,14 +27,14 @@ public final class SearchedItems {
     // static method to create instance of AllLocations class
 
     private static class Single_instanceHolder {
-        private static final SearchedItems single_instance = new SearchedItems();
+        private static final AllItems single_instance = new AllItems();
     }
 
     /**
      * returns instance
      * @return instance of searched items
      */
-    public static SearchedItems getInstance()
+    public static AllItems getInstance()
     {
 
         return Single_instanceHolder.single_instance;

@@ -68,7 +68,18 @@ public class PersistanceManager {
             FirebaseItemHandler itemHandler = new FirebaseItemHandler(db);
             Task task2 = itemHandler.getAllItems();
             task2.addOnSuccessListener(
-                    (OnSuccessListener<QuerySnapshot>) queryDocumentSnapshots1 -> goToMainPage());
+                    (OnSuccessListener<QuerySnapshot>) queryDocumentSnapshots1 -> {
+                        FirebaseUserHandler userHandler = new FirebaseUserHandler();
+                        User currentUser = CurrentUser.getInstance().getUser();
+                        if (currentUser.getUserType() == UserType.Admin){
+                            Task task3 = userHandler.getAllUsers();
+                            task3.addOnSuccessListener((OnSuccessListener<QuerySnapshot>) queryDocumentSnapshots2 -> {
+                                goToMainPage();
+                            });
+                        } else {
+                            goToMainPage();
+                        }
+                    } );
         });
     }
 

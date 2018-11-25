@@ -35,8 +35,10 @@ import com.track.brachio.donationtracker.RegistrationActivity;
 import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
+import com.track.brachio.donationtracker.model.singleton.AllUsers;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -159,6 +161,8 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
                     }
                 });
     }
+
+
 
     //use for registration page
     //will add user to Firebase, make this user CurrentUser for singleton
@@ -342,18 +346,42 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
                 });
     }
 
-//    /**
-//     * returns locations
-//     * @param user user being passed in to find locations
-//     */
-//    private void getLocations(User user){
-//        if (user.getUserType() == UserType.Volunteer){
-//
-//        } else if (user.getUserType() == UserType.Manager){
-//
-//        }
-//
-//    }
+    /**
+     * get all user in database
+     */
+    public Task getAllUsers() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Task task = db.collection( "users" )
+            .get()
+            .addOnSuccessListener(documentSnapshots -> {
+                if (documentSnapshots.isEmpty()) {
+                    Log.d( TAG, "onSuccess: LIST EMPTY" );
+                } else {
+                    List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
+                    String firstName;
+                    String lastName;
+                    String email;
+                    String type;
+                    String status;
+                    Log.d(TAG, "onSuccess: Got Users");
+
+                    List<User> users = new ArrayList<>( );
+                    for (DocumentSnapshot doc : retDocs) {
+                        firstName = (String) doc.get("firstname");
+                        lastName  = (String) doc.get( "lastname" );
+                        email = (String) doc.get( "email" );
+                        type = (String) doc.get("userType");
+                        //status = (String) doc.get("status");
+
+                        User user = new User(firstName, lastName, email, type);
+                        users.add(user);
+                    }
+                    AllUsers allInstance = AllUsers.getInstance();
+                    allInstance.setUsers( users );
+                }
+            });
+        return task;
+    }
 
     /**
      * converts string user to usertype user

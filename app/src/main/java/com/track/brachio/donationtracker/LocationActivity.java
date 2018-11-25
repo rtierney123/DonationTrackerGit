@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.track.brachio.donationtracker.model.singleton.CurrentLocation;
+import com.track.brachio.donationtracker.model.singleton.SelectedLocation;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.Address;
 
@@ -30,7 +30,7 @@ public class LocationActivity extends AppCompatActivity {
         TextView locationType = findViewById(R.id.locationTypeID);
 
         Location currentLocation;
-        CurrentLocation locationInstance = CurrentLocation.getInstance();
+        SelectedLocation locationInstance = SelectedLocation.getInstance();
         currentLocation = locationInstance.getLocation();
         if (currentLocation != null) {
             double theLong = currentLocation.getLongitude();
