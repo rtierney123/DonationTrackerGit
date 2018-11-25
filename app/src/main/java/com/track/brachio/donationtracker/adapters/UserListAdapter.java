@@ -51,6 +51,7 @@ public class UserListAdapter extends
             userViewHolder.typeText.setText(user.getUserType().name());
         }
         userViewHolder.statusText.setText("True");
+        userViewHolder.bind(user, userListener);
     }
 
     @Override
@@ -66,7 +67,7 @@ public class UserListAdapter extends
          * abstract listener for onClick
          * @param item item being clicked
          */
-        void onItemClick(Location item);
+        void onItemClick(User item);
     }
 
 
@@ -99,7 +100,7 @@ public class UserListAdapter extends
          * @param item current item being bound
          * @param listener current listener
          */
-        private void bind(final Location item, final LocationListAdapter.OnItemClickListener listener) {
+        private void bind(final User item, final UserListAdapter.OnItemClickListener listener) {
             v.setOnClickListener(v -> {
                 Log.d("UserListActivity", "To Manage");
                 listener.onItemClick(item);

@@ -1,5 +1,6 @@
 package com.track.brachio.donationtracker;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,6 +19,8 @@ import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.singleton.AllUsers;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 import com.track.brachio.donationtracker.model.singleton.SelectedItem;
+import com.track.brachio.donationtracker.model.singleton.SelectedLocation;
+import com.track.brachio.donationtracker.model.singleton.SelectedUser;
 
 import java.util.List;
 
@@ -36,6 +39,7 @@ public class UserListFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView recyclerView;
+    private Activity containerActivity;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -68,6 +72,7 @@ public class UserListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
+        containerActivity = this.getActivity();
         if (getArguments() != null) {
             mParam1 = getArguments().getString( ARG_PARAM1 );
             mParam2 = getArguments().getString( ARG_PARAM2 );
@@ -84,7 +89,7 @@ public class UserListFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(containerActivity);
         recyclerView.setLayoutManager(layoutManager);
         populateRecycleView();
         return view;
@@ -134,7 +139,10 @@ public class UserListFragment extends Fragment {
         // populate view based on items and adapter specifications
         RecyclerView.Adapter adapter =  new UserListAdapter( users,
                 item -> {
-
+                    SelectedUser currentInstance= SelectedUser.getInstance();
+                    currentInstance.setUser(item);
+                    Intent intent = new Intent(containerActivity, ManageUserActivity.class);
+                    startActivity(intent);
                 });
         recyclerView.setAdapter( adapter );
     }

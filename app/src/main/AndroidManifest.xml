@@ -64,6 +64,9 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".ManageUserActivity"
+            android:theme="@style/AppTheme" />
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
