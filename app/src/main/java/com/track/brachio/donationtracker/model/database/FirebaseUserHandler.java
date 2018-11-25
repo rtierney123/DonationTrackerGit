@@ -11,6 +11,7 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
@@ -36,7 +37,7 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
     private final String TAG = "FirebaseUserHandler";
     private User userCallback;
     private GoogleApiClient mGoogleApiClient;
-    private static final int RC_SIGN_IN = 1;
+
     /**
      * returns current user
      * @return current user
@@ -370,9 +371,9 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
                 .build();
     }
 
-    public void googleSignIn(Activity activity) {
+    public void googleSignIn(Activity activity, int request) {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        activity.startActivityForResult(signInIntent, RC_SIGN_IN);
+        activity.startActivityForResult(signInIntent, request);
     }
 
 

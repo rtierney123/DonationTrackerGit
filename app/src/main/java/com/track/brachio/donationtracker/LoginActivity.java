@@ -3,6 +3,7 @@ package com.track.brachio.donationtracker;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -12,9 +13,15 @@ import android.widget.PopupMenu;
 import android.text.Editable;
 import android.widget.Spinner;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.controller.UIPopulator;
+import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
+import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText usernameField;
     private EditText passwordField;
     private ImageButton optionButton;
+    private static final int RC_SIGN_IN = 1;
+    private static final String TAG = "LoginActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
         //set up google login
         handler.configureGoogleSignIn( this );
         googleButton.setOnClickListener(v -> {
-            handler.googleSignIn( this );
+            handler.googleSignIn( this, RC_SIGN_IN );
         });
 
 
@@ -120,12 +129,41 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * goes to the correct location for user type
      */
-    public void goToCorrectActivity(){
-        PersistanceManager manager = new PersistanceManager(this);
-        manager.loadAppOnStart(  );
-
+    public void goToCorrectActivity() {
+        PersistanceManager manager = new PersistanceManager( this );
+        manager.loadAppOnStart();
     }
 
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            // Signed in successfully, show authenticated UI.
+            CurrentUser.getInstance().setUser( new User() );
+            goToCorrectActivity();
+            //updateUI(account);
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+            //updateUI(null);
+        }
+    }
 
 
 
