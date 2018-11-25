@@ -21,7 +21,6 @@ import com.track.brachio.donationtracker.model.database.FirebaseLocationHandler;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
-import com.track.brachio.donationtracker.model.singleton.SearchedItems;
 import com.track.brachio.donationtracker.model.singleton.UserLocations;
 import com.track.brachio.donationtracker.model.Location;
 
@@ -120,8 +119,6 @@ public class PersistanceManager {
         currentUserInstance.setUser( new User() );
         UserLocations currentLocationInstance = UserLocations.getInstance();
         currentLocationInstance.setLocations( new ArrayList<>() );
-        SearchedItems searchedItems = SearchedItems.getInstance();
-        searchedItems.getSearchedMap().clear();
 
         //sign out google client
         handler.googleSignOut();

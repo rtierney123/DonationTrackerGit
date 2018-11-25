@@ -13,7 +13,6 @@ import android.widget.PopupMenu;
 import android.text.Editable;
 import android.widget.Spinner;
 
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
@@ -36,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passwordField;
     private ImageButton optionButton;
     private static final int RC_SIGN_IN = 1;
-    private static final int FB_SIGN_IN = 2;
     private static final String TAG = "LoginActivity";
 
     @Override
@@ -47,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
         Button loginButton = findViewById(R.id.loginButton);
         Button guestButton = findViewById(R.id.guestButton);
         Button googleButton = findViewById(R.id.googleButton);
-        LoginButton facebookButton =findViewById( R.id.facebookButton );
         usernameField = findViewById(R.id.emailBox);
         passwordField = findViewById(R.id.passwordBox);
         optionButton = findViewById(R.id.login_option_register);
@@ -101,9 +98,6 @@ public class LoginActivity extends AppCompatActivity {
             handler.googleSignIn( this, RC_SIGN_IN );
         });
 
-        //set up facebook login
-        handler.configureFacebookSignIn();
-        handler.facebookSignIn( this, facebookButton );
 
         //DELETE THIS STUFF
         Spinner temp = findViewById( R.id.tempLoginSpinner );
@@ -152,11 +146,8 @@ public class LoginActivity extends AppCompatActivity {
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
-        } else if (requestCode == FB_SIGN_IN) {
-
         }
     }
-
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
