@@ -1,11 +1,16 @@
 package com.track.brachio.donationtracker.model.database;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
@@ -27,11 +32,11 @@ import java.util.Objects;
 /**
  * Handler for User
  */
-public class FirebaseUserHandler {
+public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedListener {
     private final String TAG = "FirebaseUserHandler";
     private User userCallback;
-
-
+    private GoogleApiClient mGoogleApiClient;
+    private static final int RC_SIGN_IN = 1;
     /**
      * returns current user
      * @return current user
@@ -353,4 +358,26 @@ public class FirebaseUserHandler {
     }
 
 
+    // This method configures Google SignIn
+    public void configureGoogleSignIn(Context context){
+        // Configure sign-in to request the user’s basic profile like name and email
+        GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        // Build a GoogleApiClient with access to GoogleSignIn.API and the options above.
+        mGoogleApiClient = new GoogleApiClient.Builder(context)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, options)
+                .build();
+    }
+
+    public void googleSignIn(Activity activity) {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        activity.startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
 }

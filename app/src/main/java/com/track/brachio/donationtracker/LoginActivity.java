@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.controller.UIPopulator;
 import com.track.brachio.donationtracker.model.database.FirebaseUserHandler;
-import com.track.brachio.donationtracker.model.singleton.CurrentUser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Button loginButton = findViewById(R.id.loginButton);
         Button guestButton = findViewById(R.id.guestButton);
+        Button googleButton = findViewById(R.id.googleButton);
         usernameField = findViewById(R.id.emailBox);
         passwordField = findViewById(R.id.passwordBox);
         optionButton = findViewById(R.id.login_option_register);
@@ -82,6 +82,15 @@ public class LoginActivity extends AppCompatActivity {
             popup.show();
         });
 
+
+        //set up google login
+        handler.configureGoogleSignIn( this );
+        googleButton.setOnClickListener(v -> {
+            handler.googleSignIn( this );
+        });
+
+
+        //DELETE THIS STUFF
         Spinner temp = findViewById( R.id.tempLoginSpinner );
         List<String> userTypes = new ArrayList(Arrays.asList("Donator", "Manager", "Volunteer", "Admin"));
         UIPopulator ui = new UIPopulator();
