@@ -36,7 +36,7 @@ import java.util.Objects;
 public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedListener {
     private final String TAG = "FirebaseUserHandler";
     private User userCallback;
-    private GoogleApiClient mGoogleApiClient;
+    private static GoogleApiClient mGoogleApiClient;
 
     /**
      * returns current user
@@ -369,11 +369,20 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
         mGoogleApiClient = new GoogleApiClient.Builder(context)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, options)
                 .build();
+        mGoogleApiClient.connect();
     }
 
     public void googleSignIn(Activity activity, int request) {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         activity.startActivityForResult(signInIntent, request);
+    }
+
+    public void googleSignOut() {
+        if (mGoogleApiClient.isConnected()) {
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient);
+            mGoogleApiClient.disconnect();
+            mGoogleApiClient.connect();
+        }
     }
 
 
