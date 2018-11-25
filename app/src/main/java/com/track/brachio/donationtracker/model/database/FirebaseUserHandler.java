@@ -7,6 +7,12 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.internal.CallbackManagerImpl;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -37,7 +43,7 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
     private final String TAG = "FirebaseUserHandler";
     private User userCallback;
     private static GoogleApiClient mGoogleApiClient;
-
+    private static CallbackManager mFacebookCallback;
     /**
      * returns current user
      * @return current user
@@ -383,6 +389,33 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
             mGoogleApiClient.disconnect();
             mGoogleApiClient.connect();
         }
+    }
+
+
+    public void configureFacebookSignIn(){
+        mFacebookCallback = CallbackManager.Factory.create();
+    }
+
+    public void facebookSignIn(Context context, LoginButton loginButton){
+        loginButton.setReadPermissions("email", "public_profile");
+        loginButton.registerCallback(mFacebookCallback, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.d(TAG, "facebook:onSuccess:" + loginResult);
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d(TAG, "facebook:onCancel");
+                // ...
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d(TAG, "facebook:onError", error);
+                // ...
+            }
+        });
     }
 
 
