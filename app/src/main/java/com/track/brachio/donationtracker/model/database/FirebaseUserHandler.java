@@ -28,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.track.brachio.donationtracker.LoginActivity;
@@ -105,10 +106,13 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
         return user.getUid();
     }
 
+
+    //PROBABLY DELETE THIS
     /**
      * updates the users name
      * @param newUserName new name
      */
+    /*
     public void updateUserName(String newUserName){
         FirebaseAuth currentInstance = FirebaseAuth.getInstance();
         FirebaseUser user = currentInstance.getCurrentUser();
@@ -124,6 +128,7 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
                     }
                 });
     }
+    */
 
     /**
      * updates email of current user
@@ -160,6 +165,26 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
                         Log.d(TAG, "User password updated.");
                     }
                 });
+    }
+
+    /**
+     * update user
+     * @param appUser user to update
+     */
+    public Task updateUser(User appUser){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference doc = db.collection("users").document(appUser.getKey());
+        Map<String, Object> userMap = new HashMap<>();
+        userMap.put("firstname", appUser.getFirstName());
+        userMap.put("lastname", appUser.getLastName());
+        userMap.put("email", appUser.getEmail());
+        UserType currentUserType = appUser.getUserType();
+        String stringCurrentUserType = currentUserType.name();
+        userMap.put("usertype", stringCurrentUserType);
+        userMap.put("date created", appUser.getTimestamp());
+        return doc.set(userMap);
+
+
     }
 
 
@@ -358,6 +383,7 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
                     Log.d( TAG, "onSuccess: LIST EMPTY" );
                 } else {
                     List<DocumentSnapshot> retDocs = documentSnapshots.getDocuments();
+                    String key;
                     String firstName;
                     String lastName;
                     String email;
@@ -367,6 +393,7 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
 
                     List<User> users = new ArrayList<>( );
                     for (DocumentSnapshot doc : retDocs) {
+                        key = (String) doc.getId();
                         firstName = (String) doc.get("firstname");
                         lastName  = (String) doc.get( "lastname" );
                         email = (String) doc.get( "email" );
@@ -374,6 +401,7 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
                         //status = (String) doc.get("status");
 
                         User user = new User(firstName, lastName, email, type);
+                        user.setKey(key);
                         users.add(user);
                     }
                     AllUsers allInstance = AllUsers.getInstance();

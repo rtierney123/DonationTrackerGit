@@ -12,6 +12,7 @@ import java.util.Date;
  * Information holder for User
  */
 public class User {
+    private String key;
     private final String firstName;
     private final String lastName;
     private final String email;
@@ -120,6 +121,10 @@ public class User {
 //        email = em;
 //    }
 
+    public String getKey() {
+        return key;
+    }
+
     /**
      * getter - email
      * @return email
@@ -190,6 +195,11 @@ public class User {
 //    public void setLastName(String lastName) {
 //        this.lastName = lastName;
 //    }
+
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     /**
      * converts string to UserType
