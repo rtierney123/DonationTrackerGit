@@ -13,10 +13,10 @@ import java.util.Date;
  */
 public class User {
     private String key;
-    private final String firstName;
-    private final String lastName;
-    private final String email;
-    private final UserType userType;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private UserType userType;
     private static final List<UserType> legalUserTypes = Arrays.asList(UserType.values());
     @ServerTimestamp
     private Date timestamp;
@@ -97,29 +97,19 @@ public class User {
     }
 
 
-//    /**
-//     * getter - locations
-//     * @return locations
-//     */
-//    public ArrayList<String> getLocations() {
-//        return locationIDs;
-//    }
 
-//    /**
-//     * setter - locations
-//     * @param locations locations being set
-//     */
-//    public void setLocations(ArrayList<String> locations) {
-//        this.locationIDs = locations;
-//    }
+    /**
+     * setter - email
+     * @param em email being set
+     */
+    public void setEmail(String em){
+        email = em;
+    }
 
-//    /**
-//     * setter - email
-//     * @param em email being set
-//     */
-//    public void setEmail(String em){
-//        email = em;
-//    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getKey() {
         return key;
@@ -172,13 +162,13 @@ public class User {
         return firstName;
     }
 
-//    /**
-//     * setter - first name
-//     * @param firstName first name being set
-//     */
-//    public void setFirstName(String firstName) {
-//        this.firstName = firstName;
-//    }
+    /**
+     * setter - first name
+     * @param firstName first name being set
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
     /**
      * getter - last name
@@ -188,18 +178,20 @@ public class User {
         return lastName;
     }
 
-//    /**
-//     * setter - last name
-//     * @param lastName last name
-//     */
-//    public void setLastName(String lastName) {
-//        this.lastName = lastName;
-//    }
-
-
-    public void setKey(String key) {
-        this.key = key;
+    /**
+     * setter - last name
+     * @param lastName last name
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
+
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
+
 
     /**
      * converts string to UserType

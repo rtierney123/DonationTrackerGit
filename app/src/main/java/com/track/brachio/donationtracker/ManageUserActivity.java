@@ -104,6 +104,11 @@ public class ManageUserActivity extends AppCompatActivity {
             * Change the User when firebase items are created
              */
 
+            user.setUserType( userTypeSelected );
+
+            PersistanceManager manager = new PersistanceManager( this );
+            manager.updateUser( user, this);
+
         });
 
 

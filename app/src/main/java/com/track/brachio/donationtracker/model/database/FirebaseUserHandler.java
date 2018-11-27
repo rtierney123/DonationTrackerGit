@@ -181,7 +181,6 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
         UserType currentUserType = appUser.getUserType();
         String stringCurrentUserType = currentUserType.name();
         userMap.put("usertype", stringCurrentUserType);
-        userMap.put("date created", appUser.getTimestamp());
         return doc.set(userMap);
 
 
@@ -393,7 +392,7 @@ public class FirebaseUserHandler implements GoogleApiClient.OnConnectionFailedLi
 
                     List<User> users = new ArrayList<>( );
                     for (DocumentSnapshot doc : retDocs) {
-                        key = (String) doc.getId();
+                        key = doc.getId();
                         firstName = (String) doc.get("firstname");
                         lastName  = (String) doc.get( "lastname" );
                         email = (String) doc.get( "email" );

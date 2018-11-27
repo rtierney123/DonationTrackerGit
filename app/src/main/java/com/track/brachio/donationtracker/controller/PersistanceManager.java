@@ -2,18 +2,14 @@ package com.track.brachio.donationtracker.controller;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 
 import com.facebook.login.LoginManager;
-import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.track.brachio.donationtracker.MainActivity;
-import com.track.brachio.donationtracker.R;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
@@ -147,7 +143,7 @@ public class PersistanceManager {
     public void deleteItem(Item item, Activity activity) {
         FirebaseItemHandler handler = new FirebaseItemHandler(db);
         Task task = handler.deleteItem( item );
-        startUpdate(task, activity);
+        startItemUpdate(task, activity);
     }
 
     /**
@@ -158,7 +154,7 @@ public class PersistanceManager {
     public void addItem(Item item, Activity activity) {
         FirebaseItemHandler handler = new FirebaseItemHandler(db);
         Task task = handler.addItem( item );
-        startUpdate(task, activity);
+        startItemUpdate(task, activity);
     }
 
     /**
@@ -169,7 +165,13 @@ public class PersistanceManager {
     public void editItem(Item item, Activity activity) {
         FirebaseItemHandler handler = new FirebaseItemHandler(db);
         Task task = handler.editItem( item);
-        startUpdate(task, activity);
+        startItemUpdate(task, activity);
+    }
+
+    public void updateUser(User user, Activity activity){
+        FirebaseUserHandler handler = new FirebaseUserHandler();
+        Task task = handler.updateUser( user );
+        startUserUpdate(task, activity);
     }
 
     /**
@@ -177,7 +179,7 @@ public class PersistanceManager {
      * @param editItemTask task being updated
      * @param currentActivity current activity
      */
-    private void startUpdate(Task editItemTask, Activity currentActivity) {
+    private void startItemUpdate(Task editItemTask, Activity currentActivity) {
 
         if (!threadRunning) {
             threadRunning = true;
@@ -194,6 +196,21 @@ public class PersistanceManager {
 
     }
 
+    private void startUserUpdate(Task editUserTask, Activity currentActivity){
+        if (!threadRunning) {
+            threadRunning = true;
+            editUserTask.addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
+                Task updateTask = getAllUsers();
+                updateTask.addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task1 -> {
+                    threadRunning = false;
+                    Intent intent = new Intent(currentActivity, MainActivity.class);
+                    currentActivity.startActivity(intent);
+                });
+
+            });
+        }
+    }
+
     /**
      * returns all items
      * @return task with items
@@ -202,6 +219,15 @@ public class PersistanceManager {
         FirebaseItemHandler itemHandler = new FirebaseItemHandler(db);
         return itemHandler.getAllItems();
     }
+    /**
+     * returns all users
+     * @return task with users
+     */
+    private Task getAllUsers(){
+        FirebaseUserHandler userHandler = new FirebaseUserHandler();
+        return userHandler.getAllUsers();
+    }
+
 
 //    /**
 //     * gets thread running
