@@ -30,6 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
             <ImageButton
                 android:id="@+id/addItemImage"
                 android:layout_width="100dp"
@@ -65,14 +66,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/location" />
 
-            <EditText
-                android:id="@+id/addItemLocationID"
+            <Spinner
+                android:id="@+id/locspinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="@string/add_location"
-                android:textSize="14sp" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/textView17"
