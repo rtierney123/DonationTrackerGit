@@ -136,29 +136,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //DELETE THIS STUFF
-        Spinner temp = findViewById( R.id.tempLoginSpinner );
-        List<String> userTypes = new ArrayList(Arrays.asList("Donator", "Manager", "Volunteer", "Admin"));
-        UIPopulator ui = new UIPopulator();
-        ui.populateSpinner( temp, userTypes, this );
-        temp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (id == 0){
-                    usernameField.setText("donator@email.com");
-                } else if (id == 1){
-                    usernameField.setText("manager@email.com");
-                } else if (id == 2){
-                    usernameField.setText("volunteer@email.com");
-                } else if (id == 3){
-                    usernameField.setText("admin@email.com");
-                }
-                passwordField.setText("password");
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+
     }
 
 
