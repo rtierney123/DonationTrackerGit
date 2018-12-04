@@ -94,7 +94,7 @@ public class ManageUserActivity extends AppCompatActivity {
             String activityStatusSelected;
 
             userTypeSelected = (UserType) userTypeSpinner.getSelectedItem();
-            
+
 
             /*
             * Change the User when firebase items are created

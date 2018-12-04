@@ -108,17 +108,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="31dp" />
 
-            <TextView
-                android:id="@+id/ActivitymageUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Activity: "
-                android:textSize="18sp" />
-
-            <Spinner
-                android:id="@+id/activitySpinnerID"
-                android:layout_width="match_parent"
-                android:layout_height="45dp" />
         </LinearLayout>
     </ScrollView>
 
