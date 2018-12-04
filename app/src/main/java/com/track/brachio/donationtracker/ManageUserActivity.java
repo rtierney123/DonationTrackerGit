@@ -52,7 +52,6 @@ public class ManageUserActivity extends AppCompatActivity {
     private TextView lastNameFirstName;
     private TextView emailField;
     private Spinner userTypeSpinner;
-    private Spinner activitySpinner;
     private Button saveButton;
 
     @Override
@@ -63,7 +62,6 @@ public class ManageUserActivity extends AppCompatActivity {
         lastNameFirstName = findViewById(R.id.displayNameManageUserID);
         emailField = findViewById(R.id.displayEmailManageUserID);
         userTypeSpinner = findViewById(R.id.UserTypeSpinnerManageUserID);
-        activitySpinner = findViewById(R.id.activitySpinnerID);
         saveButton = findViewById(R.id.saveUserChangesID);
 
         FirebaseUserHandler handler = new FirebaseUserHandler();
@@ -90,15 +88,13 @@ public class ManageUserActivity extends AppCompatActivity {
         ArrayAdapter adapterActivity = new ArrayAdapter(this, android.R.layout.simple_spinner_item,
                 legalActivityTypes);
         adapterActivity.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        activitySpinner.setAdapter(adapterActivity);
 
         saveButton.setOnClickListener(view -> {
             UserType userTypeSelected;
             String activityStatusSelected;
 
             userTypeSelected = (UserType) userTypeSpinner.getSelectedItem();
-
-            activityStatusSelected = activitySpinner.getSelectedItem().toString();
+            
 
             /*
             * Change the User when firebase items are created
