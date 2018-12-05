@@ -50,6 +50,7 @@ public class UserListAdapter extends
         if (user.getUserType() != null){
             userViewHolder.typeText.setText(user.getUserType().name());
         }
+        userViewHolder.statusText.setText("True");
         userViewHolder.bind(user, userListener);
     }
 
@@ -76,6 +77,7 @@ public class UserListAdapter extends
         private final TextView lnText;
         private final TextView emailText;
         private final TextView typeText;
+        private final TextView statusText;
         private final View v;
 
         /**
@@ -89,6 +91,7 @@ public class UserListAdapter extends
             lnText = v.findViewById(R.id.lnText);
             emailText = v.findViewById(R.id.emailText);
             typeText = v.findViewById(R.id.typeText);
+            statusText = v.findViewById(R.id.statusText);
 
         }
 
