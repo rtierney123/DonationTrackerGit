@@ -71,7 +71,7 @@ public class FirebaseItemHandler {
                                     Objects.requireNonNull(category));
 
                             //convert encoded string to bitmap
-                            String encodedImage = document.getString("picture");
+                            //String encodedImage = document.getString("picture");
                             //item.setPicture(encodedImage, context);
 
 
