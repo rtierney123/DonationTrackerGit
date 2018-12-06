@@ -149,11 +149,12 @@ public class FirebaseItemHandler {
         itemMap.put("shortDescription", item.getShortDescription());
         itemMap.put("longDescription", item.getLongDescription());
 
-        //convert bitmap into string to store in db
-        File pic = item.getPicture();
-        if (pic != null){
-            itemMap.put("picture", pic);
-        }
+        Bitmap bitmap = item.bitmap;
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        Blob blob = Blob.fromBytes(byteArray);
+        itemMap.put("picture", blob);
 
 
         // Add a new document with a generated ID

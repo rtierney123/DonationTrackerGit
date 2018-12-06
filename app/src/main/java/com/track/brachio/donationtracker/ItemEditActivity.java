@@ -63,8 +63,8 @@ public class ItemEditActivity extends AppCompatActivity {
     private PersistanceManager manager;
     private final Activity currentActivity = this;
     private Item currentItem;
-    private Uri file;
     private final static int THUMBNAIL_SIZE = 200;
+    private Uri file;
     //private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
