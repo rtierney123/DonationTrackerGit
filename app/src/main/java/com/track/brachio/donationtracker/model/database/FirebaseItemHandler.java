@@ -1,13 +1,18 @@
 package com.track.brachio.donationtracker.model.database;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Log;
 
+import com.google.firebase.firestore.Blob;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.track.brachio.donationtracker.ItemEditActivity;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.singleton.AllItems;
 import com.track.brachio.donationtracker.model.ItemType;
@@ -16,9 +21,12 @@ import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutureCallback;
 import com.google.api.core.ApiFutures;
 */
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -71,7 +79,7 @@ public class FirebaseItemHandler {
                                     Objects.requireNonNull(category));
 
                             //convert encoded string to bitmap
-                            String encodedImage = document.getString("picture");
+                            //String encodedImage = document.getString("picture");
                             //item.setPicture(encodedImage, context);
 
 
@@ -102,50 +110,26 @@ public class FirebaseItemHandler {
                 });
     }
 
-    /**
-     * gets Item through location
-     * @param context passed in
-     * @param item item being searched for
-     */
-    /*
-    public void getItemByLocation(Item item, Context context) {
-
-        db.collection("items")
-                .whereEqualTo( "locationID", item.getLocation() )
-                .get()
+    public Task getPicture(Item item){
+        return db.collection("items")
+                .document(item.getKey())
+                .get( )
                 .addOnCompleteListener(task -> {
-
                     if (task.isSuccessful()) {
-                        for (DocumentSnapshot document :
-                                task.getResult()) {
+                        DocumentSnapshot doc = task.getResult();
 
-                            Log.d(TAG, document.getId() + " => " + document.getData());
-
-                            String key = document.getId();
-                            String name = document.getString("name");
-                            Date date = document.getDate("date");
-                            String locationID = document.getString("locationID");
-                            Double cost = document.getDouble( "cost" );
-                            String category = document.getString("category");
-                            Item item1 = new Item(key, name,
-                                    Objects.requireNonNull(date), locationID,
-                                    Objects.requireNonNull(cost), category);
-
-                            String encodedPic = document.getString("picture");
-                            String shortDescription = document.getString("shortDescription");
-                            String longDescription = document.getString("longDescription");
-                            item1.setPicture( encodedPic, context);
-                            item1.setShortDescription( shortDescription );
-                            item1.setLongDescription( longDescription );
-                            items.add(item1);
-
+                        Blob pic = doc.getBlob("picture");
+                        if(pic != null){
+                            byte[] byteArray = pic.toBytes();
+                            item.bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
                         }
+
                     } else {
                         Log.w(TAG, "Error getting documents.", task.getException());
                     }
                 });
     }
-    */
+
 
     /**
      * item being added to database
@@ -166,10 +150,9 @@ public class FirebaseItemHandler {
         itemMap.put("longDescription", item.getLongDescription());
 
         //convert bitmap into string to store in db
-        Bitmap bitmap = item.getPicture();
-        if (bitmap != null){
-            String encoded = item.encodePic();
-            itemMap.put("picture", encoded);
+        File pic = item.getPicture();
+        if (pic != null){
+            itemMap.put("picture", pic);
         }
 
 
@@ -208,7 +191,15 @@ public class FirebaseItemHandler {
         itemMap.put("category", stringItemCategory);
         itemMap.put("shortDescription", item.getShortDescription());
         itemMap.put("longDescription", item.getLongDescription());
-        itemMap.put("picture", item.encodePic());
+
+
+
+        Bitmap bitmap = item.bitmap;
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        Blob blob = Blob.fromBytes(byteArray);
+        itemMap.put("picture", blob);
         return doc.set(itemMap);
 
     }

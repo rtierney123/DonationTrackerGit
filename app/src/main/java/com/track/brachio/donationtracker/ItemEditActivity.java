@@ -3,6 +3,7 @@ package com.track.brachio.donationtracker;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,9 @@ import android.widget.ArrayAdapter;
 import android.Manifest;
 import java.io.File;
 import android.text.Editable;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Date;
 
 import android.content.pm.PackageManager;
@@ -29,6 +33,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 
+import com.google.protobuf.compiler.PluginProtos;
 import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.singleton.SelectedItem;
 
@@ -59,6 +64,7 @@ public class ItemEditActivity extends AppCompatActivity {
     private final Activity currentActivity = this;
     private Item currentItem;
     private Uri file;
+    private final static int THUMBNAIL_SIZE = 200;
     //private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
@@ -182,10 +188,13 @@ public class ItemEditActivity extends AppCompatActivity {
         }
         newImage.setOnClickListener(this::takePicture);
 
-        Bitmap picture = currentItem.getPicture();
-        if (picture != null){
-            newImage.setImageBitmap( currentItem.getPicture() );
+
+        Bitmap pic = currentItem.bitmap;
+
+        if (pic != null){
+            newImage.setImageBitmap( pic );
         }
+
 
         optionButton.setOnClickListener(v -> {
             //Creating the instance of PopupMenu
@@ -251,22 +260,26 @@ public class ItemEditActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult ( int requestCode, int resultCode, Intent data){
+
         if (requestCode == 100) {
             if (resultCode == RESULT_OK) {
                 newImage.setImageURI(file);
                 Bitmap bitmap = null;
                 try {
-                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), file);
+                    bitmap = getThumbnail( file );
                     //bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 SelectedItem selectedItemInstance = SelectedItem.getInstance();
                 Item item = selectedItemInstance.getItem();
-                item.setPicture(bitmap);
+                File auxFile = new File(file.toString());
+                item.setPicture(auxFile);
+                item.bitmap = bitmap;
                 newImage.setImageBitmap(bitmap);
             }
         }
+
     }
 
     /**
@@ -284,6 +297,37 @@ public class ItemEditActivity extends AppCompatActivity {
         }
         return new File(mediaStorageDir.getPath() + File.separator +
                 "IMG_" + ".jpg");
+    }
+    public Bitmap getThumbnail(Uri uri) throws FileNotFoundException, IOException{
+        InputStream input = this.getContentResolver().openInputStream(uri);
+
+        BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
+        onlyBoundsOptions.inJustDecodeBounds = true;
+        onlyBoundsOptions.inPreferredConfig=Bitmap.Config.ARGB_8888;//optional
+        BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
+        input.close();
+
+        if ((onlyBoundsOptions.outWidth == -1) || (onlyBoundsOptions.outHeight == -1)) {
+            return null;
+        }
+
+        int originalSize = (onlyBoundsOptions.outHeight > onlyBoundsOptions.outWidth) ? onlyBoundsOptions.outHeight : onlyBoundsOptions.outWidth;
+
+        double ratio = (originalSize > THUMBNAIL_SIZE) ? (originalSize / THUMBNAIL_SIZE) : 1.0;
+
+        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+        bitmapOptions.inSampleSize = getPowerOfTwoForSampleRatio(ratio);
+        bitmapOptions.inPreferredConfig=Bitmap.Config.ARGB_8888;//
+        input = this.getContentResolver().openInputStream(uri);
+        Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
+        input.close();
+        return bitmap;
+    }
+
+    private static int getPowerOfTwoForSampleRatio(double ratio){
+        int k = Integer.highestOneBit((int)Math.floor(ratio));
+        if(k==0) return 1;
+        else return k;
     }
 
 //    /**
@@ -364,6 +408,7 @@ public class ItemEditActivity extends AppCompatActivity {
         public int getItemCount() {
             return theComments.size();
         }
+
 
 
     }

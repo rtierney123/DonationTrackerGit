@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.track.brachio.donationtracker.adapters.ItemListAdapter;
+import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.controller.UIPopulator;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.ItemType;
@@ -191,15 +192,6 @@ public class ItemListFragment extends Fragment {
     }
 
 
-//    /**
-//     * handler for button press
-//     * @param uri parameter
-//     */
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction( uri );
-//        }
-//    }
 
     @Override
     public void onAttach(Context context) {
@@ -334,8 +326,8 @@ public class ItemListFragment extends Fragment {
                     if (currentUser.getUserType() != UserType.Guest){
                         SelectedItem selectedItemInstance = SelectedItem.getInstance();
                         selectedItemInstance.setItem(item);
-                        Intent intent = new Intent(containerActivity, ItemDetailActivity.class);
-                        startActivity(intent);
+                        PersistanceManager manager = new PersistanceManager( this.getActivity() );
+                        manager.getPicture( item, ItemDetailActivity.class );
                     }
                 });
         recyclerView.setAdapter( adapter );

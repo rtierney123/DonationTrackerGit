@@ -2,23 +2,30 @@ package com.track.brachio.donationtracker;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.Date;
 
+import com.google.protobuf.compiler.PluginProtos;
 import com.track.brachio.donationtracker.model.Item;
+import com.track.brachio.donationtracker.model.ItemType;
 import com.track.brachio.donationtracker.model.Location;
 import com.track.brachio.donationtracker.model.User;
 import com.track.brachio.donationtracker.model.UserType;
 import com.track.brachio.donationtracker.model.singleton.AllLocations;
-import com.track.brachio.donationtracker.model.singleton.SelectedItem;
-import com.track.brachio.donationtracker.model.ItemType;
 import com.track.brachio.donationtracker.model.singleton.CurrentUser;
+import com.track.brachio.donationtracker.model.singleton.SelectedItem;
 
+
+import java.io.File;
+import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
 
@@ -47,8 +54,11 @@ public class ItemDetailActivity extends AppCompatActivity {
 
         nameText.setText(currentItem.getName());
         Date dateCreated = currentItem.getDateCreated();
-        String dateCreatedString = dateCreated.toString();
-        dateText.setText(dateCreatedString);
+        if (dateCreated != null){
+            String dateCreatedString = dateCreated.toString();
+            dateText.setText(dateCreatedString);
+        }
+
         AllLocations currentLocationsInstance = AllLocations.getInstance();
         Map<String, Location> allLoc = currentLocationsInstance.getLocationMap();
         Location loc = allLoc.get(currentItem.getLocation());
@@ -69,9 +79,9 @@ public class ItemDetailActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
-        if (currentItem.getPicture() != null){
-            itemPic.setImageBitmap( currentItem.getPicture() );
+        Bitmap pic = currentItem.bitmap;
+        if (pic != null){
+            itemPic.setImageBitmap(  pic );
         }
 
         User currentUser = CurrentUser.getInstance().getUser();

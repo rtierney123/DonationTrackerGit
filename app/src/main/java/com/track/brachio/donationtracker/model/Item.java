@@ -6,8 +6,12 @@ import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.util.Log;
 
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -29,7 +33,8 @@ public class Item {
     private ItemType category;
     private static final List<ItemType> legalItemTypes = Arrays.asList(ItemType.values());
     private final Collection<String> comments = new ArrayList<>();
-    private Bitmap picture;
+    private File picture;
+    public Bitmap bitmap;
     private static final int compressed = 50;
 
     /**
@@ -181,12 +186,10 @@ public class Item {
 
     /**
      * setter - Picture
-     * @param picture picture being set
+     * @param file picture being set
      */
-    public void setPicture(Bitmap picture) {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        picture.compress(Bitmap.CompressFormat.PNG, 100, out);
-        this.picture = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray()));
+    public void setPicture(File file) {
+        picture = file;
     }
 
     /**
@@ -194,7 +197,11 @@ public class Item {
      * @return date
      */
     public Date getDateCreated() {
-        return (Date) dateCreated.clone();
+        if(dateCreated != null){
+            return (Date) dateCreated.clone();
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -249,7 +256,7 @@ public class Item {
      * getter - picture
      * @return picture
      */
-    public Bitmap getPicture() {
+    public File getPicture() {
         return picture;
     }
 
@@ -276,117 +283,51 @@ public class Item {
         return null;
     }
 
+
     /**
      * setter - picture
-     * @param input the encoded Image of image
-     * @param context activity context
+     * @param encodedByte the encoded Image of image
      */
-    public void setPicture(String input, Context context){
-        /*
-        if(input != null) {
-            byte[] decodedByte = Base64.decode( input, 0 );
-
-            Boolean isSDPresent = android.os.Environment
-                    .getExternalStorageState().equals(
-                            android.os.Environment.MEDIA_MOUNTED );
-
-            File sdCardDirectory;
-            if (isSDPresent) {
-                // yes SD-card is present
-                sdCardDirectory = new File(
-                        Environment
-                               .getExternalStoragePublicDirectory( Environment.DIRECTORY_PICTURES ),
-                        "IMG" );
-
-                if (!sdCardDirectory.exists()) {
-                    if (!sdCardDirectory.mkdirs()) {
-                        Log.d( "MySnaps", "failed to create directory" );
-
-                    }
+    /*
+    public void setPicture(List<Byte> encodedByte) {
+            try {
+                byte[] array = new byte[encodedByte.size()];
+                for(int i = 0; i < encodedByte.size(); i++){
+                    array[i] = encodedByte.get(i);
                 }
-            } else {
-                // Sorry
-                sdCardDirectory = new File( context.getCacheDir(), "" );
-            }
-
-
-            String timeStamp = new SimpleDateFormat( )
-                    .format( new Date() );
-
-            Random rand = new Random();
-
-            // nextInt is normally exclusive of the top value,
-            // so add 1 to make it inclusive
-            int randomNum = rand.nextInt( (1000 - 0) + 1 ) + 0;
-
-            String nw = "IMG_" + timeStamp + randomNum + ".txt";
-            File image = new File( sdCardDirectory, nw );
-
-
-            // Encode the file as a PNG image.
-            FileOutputStream outStream;
-            try {
-
-
-                outStream = new FileOutputStream( image );
-                outStream.write( input.getBytes() );
-
-                outStream.flush();
-                outStream.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-            Log.i( "Compress bitmap path", image.getPath() );
-            Bitmap bitmap;
-            try {
-                bitmap = BitmapFactory.decodeByteArray( decodedByte, 0, decodedByte.length );
-            } catch (OutOfMemoryError e) {
-                e.printStackTrace();
-            //InputStream is = context.getResources().openRawResource( R.drawable.ic_menu_camera );
-                //bitmap = BitmapFactory.decodeStream( is );
-
+                picture = BitmapFactory.decodeByteArray( array, 0, array.length );
             } catch (Exception e) {
-                e.printStackTrace();
-                bitmap = null;
+                e.getMessage();
             }
-        }
-        */
-        Log.d("ToDo", "need to uncomment");
-        }
+    }
+    */
+
+
 
 
     /**
      * encodes picture
      * @return of encoded pic
      */
-    public String encodePic(){
-        if (picture != null){
-            //ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            ByteArrayOutputStream base=new  ByteArrayOutputStream();
-            picture.compress(Bitmap.CompressFormat.JPEG,100, base);
-            byte [] b=base.toByteArray();
-            String temp=null;
-            try{
-                System.gc();
-                temp=Base64.encodeToString(b, Base64.DEFAULT);
-            }catch(Exception e){
-                e.printStackTrace();
-            }catch(OutOfMemoryError e){
-                base=new  ByteArrayOutputStream();
-                picture.compress(Bitmap.CompressFormat.JPEG, compressed, base);
-                b=base.toByteArray();
-                temp=Base64.encodeToString(b, Base64.DEFAULT);
-                Log.e("EWN", "Out of memory error has been caught");
-            }
-            return temp;
+    /*
+    public List<Byte> encodePic(){
 
+        if (picture != null) {
+            //ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ByteArrayOutputStream base = new ByteArrayOutputStream();
+            picture.compress( Bitmap.CompressFormat.JPEG, 100, base );
+            List<Byte> list = new ArrayList<>( );
+            byte[] array = base.toByteArray();
+            for (byte b : array){
+                list.add(b);
+            }
+            return list;
         } else {
             return null;
         }
+
     }
+    */
+
 
 }

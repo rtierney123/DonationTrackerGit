@@ -1,12 +1,16 @@
 package com.track.brachio.donationtracker.controller;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.util.Log;
 
 import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.track.brachio.donationtracker.MainActivity;
@@ -31,7 +35,6 @@ public class PersistanceManager {
 
     private final Activity activity;
     private static boolean threadRunning;
-    private static final long aliveTime = 60L;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     /**
      * Constructor for Persistance Manager
@@ -80,14 +83,6 @@ public class PersistanceManager {
     }
 
 
-
-//    /**
-//     * returns executor
-//     * @return current executor
-//     */
-//    public ThreadPoolExecutor getExecutor() {
-//        return executor;
-//    }
 
 
     /**
@@ -165,6 +160,8 @@ public class PersistanceManager {
     public void editItem(Item item, Activity activity) {
         FirebaseItemHandler handler = new FirebaseItemHandler(db);
         Task task = handler.editItem( item);
+        //Bitmap pic = null;
+        //item.setPicture(pic);
         startItemUpdate(task, activity);
     }
 
@@ -228,14 +225,16 @@ public class PersistanceManager {
         return userHandler.getAllUsers();
     }
 
+    public void getPicture(Item item, Class nextActivity){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseItemHandler handler = new FirebaseItemHandler(db);
+        handler.getPicture( item )
+                .addOnCompleteListener(task -> {
+                Intent intent = new Intent(activity, nextActivity);
+                activity.startActivity(intent);
+        });
+    }
 
-//    /**
-//     * gets thread running
-//     * @return true if thread is running
-//     */
-//    public static boolean getThreadRunning() {
-//        return threadRunning;
-//    }
 
 
 }
