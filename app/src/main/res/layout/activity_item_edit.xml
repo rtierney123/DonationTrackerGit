@@ -79,11 +79,9 @@
 
     <ScrollView
         android:id="@+id/scrollView4"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
         android:background="@drawable/user_enter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,7 +91,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:layout_marginLeft="8dp"
+            tools:layout_marginRight="8dp"
+            tools:layout_marginTop="8dp">
 
             <TextView
                 android:id="@+id/editItemDateCreatedID"
@@ -112,13 +114,10 @@
                 android:text="@string/location"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/editItemLocationID"
+            <Spinner
+                android:id="@+id/editItemLocation"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textSize="14sp" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/textView18"

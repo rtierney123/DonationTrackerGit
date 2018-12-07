@@ -37,6 +37,8 @@ import android.provider.MediaStore;
 
 import com.google.protobuf.compiler.PluginProtos;
 import com.track.brachio.donationtracker.controller.PersistanceManager;
+import com.track.brachio.donationtracker.model.Location;
+import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.SelectedItem;
 
 import android.support.v7.widget.RecyclerView;
@@ -54,7 +56,7 @@ import java.util.List;
  * Activity for Editing Items
  */
 public class ItemEditActivity extends AppCompatActivity {
-    private EditText newLocation;
+    //private EditText newLocation;
     private EditText newShortDescription;
     private EditText newLongDescription;
     private EditText newDollarValue;
@@ -67,6 +69,8 @@ public class ItemEditActivity extends AppCompatActivity {
     private Item currentItem;
     private final static int THUMBNAIL_SIZE = 200;
     private Uri file;
+    private List<String> locNames = new ArrayList<>( );
+    private Spinner newLocation;
     //private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
@@ -76,7 +80,7 @@ public class ItemEditActivity extends AppCompatActivity {
 
         TextView itemName = findViewById(R.id.editItemNameID);
         TextView dateCreated = findViewById(R.id.editItemDateCreatedID);
-        newLocation = findViewById(R.id.editItemLocationID);
+        newLocation = findViewById(R.id.editItemLocation);
         newShortDescription = findViewById(R.id.editItemShortDescription);
         newLongDescription = findViewById(R.id.editItemLongDescriptionID);
         newDollarValue = findViewById(R.id.editItemValueID);
@@ -96,10 +100,22 @@ public class ItemEditActivity extends AppCompatActivity {
 
         manager = new PersistanceManager( this );
 
-        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,
+        ArrayAdapter adapter1 = new ArrayAdapter(this,android.R.layout.simple_spinner_item,
                 Item.getLegalItemTypes());
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        newItemCategory.setAdapter(adapter);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        newItemCategory.setAdapter(adapter1);
+
+        List<Location> locs = AllLocations.getInstance().getLocationArray();
+        for(Location loc : locs){
+            locNames.add(loc.getName());
+        }
+
+        ArrayAdapter adapter2 =
+                new ArrayAdapter(this, android.R.layout.simple_spinner_item,
+                        locNames);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        newLocation.setAdapter(adapter2);
+        newLocation.setSelection(0);
 
         //set default value
         SelectedItem selectedItemInstance = SelectedItem.getInstance();
@@ -111,7 +127,6 @@ public class ItemEditActivity extends AppCompatActivity {
                 String dateString = theDateCreated.toString();
                 dateCreated.setText(dateString);
             }
-            newLocation.setText(currentItem.getLocation());
             newShortDescription.setText(currentItem.getShortDescription());
             newLongDescription.setText(currentItem.getLongDescription());
             double dollarValue = currentItem.getDollarValue();
@@ -128,8 +143,8 @@ public class ItemEditActivity extends AppCompatActivity {
             findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
             Log.d("Edit Item", "Change Made");
 
-            Editable locationTemp = newLocation.getText();
-            String locationEntered = locationTemp.toString();
+            Location currentLoc = locs.get( newLocation.getSelectedItemPosition() );
+            String locationEntered = currentLoc.getId();
 
             Editable shortDescriptionTemp = newShortDescription.getText();
             String shortDescriptionEntered = shortDescriptionTemp.toString();

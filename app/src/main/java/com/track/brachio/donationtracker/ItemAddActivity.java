@@ -34,6 +34,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -52,9 +53,8 @@ public class ItemAddActivity extends AppCompatActivity {
     private final static int THUMBNAIL_SIZE = 200;
     private Uri file;
     private Bitmap bitmap;
-    private List<String> locNames;
+    private List<String> locNames = new ArrayList<>( );
     private Spinner locations;
-    private int locChosen = 0;
 
     private final Activity currentActivity = this;
     //Item currentItem;
@@ -74,6 +74,7 @@ public class ItemAddActivity extends AppCompatActivity {
         newImage = findViewById( R.id.addItemImage );
         Button addButton = findViewById(R.id.addItemAddID);
         Button cancelButton = findViewById(R.id.addItemCancelButton);
+        findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 
         PersistanceManager manager = new PersistanceManager( this );
 
@@ -93,16 +94,18 @@ public class ItemAddActivity extends AppCompatActivity {
                        locNames);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locations.setAdapter(adapter2);
+        locations.setSelection(0);
 
 
         addButton.setOnClickListener(view -> {
+            findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
             Log.d("Add Item", "Item added");
 
             Editable nameTemp = itemName.getText();
             String nameEntered = nameTemp.toString();
 
             int id = locations.getSelectedItemPosition();
-            String locationEntered = id+"";
+            String locationEntered = locs.get(id).getId();
 
             Editable shortTemp = shortDescription.getText();
             String sDescriptionEntered = shortTemp.toString();

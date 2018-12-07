@@ -150,11 +150,14 @@ public class FirebaseItemHandler {
         itemMap.put("longDescription", item.getLongDescription());
 
         Bitmap bitmap = item.bitmap;
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
-        Blob blob = Blob.fromBytes(byteArray);
-        itemMap.put("picture", blob);
+        if(bitmap != null){
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] byteArray = stream.toByteArray();
+            Blob blob = Blob.fromBytes(byteArray);
+            itemMap.put("picture", blob);
+        }
+
 
 
         // Add a new document with a generated ID
@@ -196,11 +199,14 @@ public class FirebaseItemHandler {
 
 
         Bitmap bitmap = item.bitmap;
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
-        Blob blob = Blob.fromBytes(byteArray);
-        itemMap.put("picture", blob);
+        if(bitmap != null){
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] byteArray = stream.toByteArray();
+            Blob blob = Blob.fromBytes(byteArray);
+            itemMap.put("picture", blob);
+        }
+
         return doc.set(itemMap);
 
     }
