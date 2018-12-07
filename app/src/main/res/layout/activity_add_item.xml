@@ -6,49 +6,94 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ToolbarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@mipmap/ic_launcher">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/addItemCancelButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@color/fui_transparent"
+                android:text="@string/cancel"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/addItemAddID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/fui_transparent"
+                android:text="@string/make_changes"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.Toolbar>
+
+
+    <ImageButton
+        android:id="@+id/addItemImage"
+        android:layout_width="100dp"
+        android:layout_height="103dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/todo"
+        android:onClick="takePicture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal_background" />
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/addItemImage">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="vertical"
+            android:background="@drawable/user_enter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-            <ImageButton
-                android:id="@+id/addItemImage"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:onClick="takePicture"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal_background"
-                android:contentDescription="@string/todo" />
+
 
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/item_name" />
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/item_name"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/addItemNameID"
@@ -63,22 +108,22 @@
                 android:id="@+id/textView16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/location" />
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/location"
+                android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/addItemLocationID"
+            <Spinner
+                android:id="@+id/addItemLocSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="@string/add_location"
-                android:textSize="14sp" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/textView17"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/short_description" />
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/short_description"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/addItemShortDescID"
@@ -92,7 +137,9 @@
                 android:id="@+id/textView24"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/long_description" />
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/long_description"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/addItemLongDescID"
@@ -106,7 +153,9 @@
                 android:id="@+id/textView25"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/dollar_value" />
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/dollar_value"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/addItemDollarValue"
@@ -120,7 +169,9 @@
                 android:id="@+id/textView26"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/item_category" />
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/item_category"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/addItemCategoryID"
@@ -131,7 +182,9 @@
                 android:id="@+id/addItemTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/add_comment" />
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/add_comment"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/addItemCommentID"
@@ -141,19 +194,6 @@
                 android:inputType="text|textPersonName"
                 android:textSize="14sp" />
 
-            <Button
-                android:id="@+id/addItemAddID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/darker_gray"
-                android:text="@string/add_item" />
-
-            <Button
-                android:id="@+id/addItemCancelButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/darker_gray"
-                android:text="@string/cancel" />
         </LinearLayout>
     </ScrollView>
 

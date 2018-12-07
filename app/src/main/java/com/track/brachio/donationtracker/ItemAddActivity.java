@@ -13,7 +13,9 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;import android.widget.Button;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -24,6 +26,8 @@ import android.text.Editable;
 import com.track.brachio.donationtracker.controller.PersistanceManager;
 import com.track.brachio.donationtracker.model.Item;
 import com.track.brachio.donationtracker.model.ItemType;
+import com.track.brachio.donationtracker.model.Location;
+import com.track.brachio.donationtracker.model.singleton.AllLocations;
 import com.track.brachio.donationtracker.model.singleton.SelectedItem;
 
 import java.io.File;
@@ -31,13 +35,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Activity for Adding Item Activity
  */
 public class ItemAddActivity extends AppCompatActivity {
     private EditText itemName;
-    private EditText location;
+    //private EditText location;
     private EditText shortDescription;
     private EditText longDescription;
     private EditText dollarValue;
@@ -47,6 +52,9 @@ public class ItemAddActivity extends AppCompatActivity {
     private final static int THUMBNAIL_SIZE = 200;
     private Uri file;
     private Bitmap bitmap;
+    private List<String> locNames;
+    private Spinner locations;
+    private int locChosen = 0;
 
     private final Activity currentActivity = this;
     //Item currentItem;
@@ -57,7 +65,7 @@ public class ItemAddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_item);
 
         itemName = findViewById(R.id.addItemNameID);
-        location = findViewById(R.id.addItemLocationID);
+        locations = findViewById(R.id.addItemLocSpinner);
         shortDescription = findViewById(R.id.addItemShortDescID);
         longDescription = findViewById(R.id.addItemLongDescID);
         dollarValue = findViewById(R.id.addItemDollarValue);
@@ -69,11 +77,22 @@ public class ItemAddActivity extends AppCompatActivity {
 
         PersistanceManager manager = new PersistanceManager( this );
 
-        ArrayAdapter adapter =
+        ArrayAdapter adapter1 =
                 new ArrayAdapter(this, android.R.layout.simple_spinner_item,
                         Item.getLegalItemTypes());
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        itemCategory.setAdapter(adapter);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        itemCategory.setAdapter(adapter1);
+
+        List<Location> locs = AllLocations.getInstance().getLocationArray();
+        for(Location loc : locs){
+            locNames.add(loc.getName());
+        }
+
+        ArrayAdapter adapter2 =
+                new ArrayAdapter(this, android.R.layout.simple_spinner_item,
+                       locNames);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        locations.setAdapter(adapter2);
 
 
         addButton.setOnClickListener(view -> {
@@ -82,8 +101,8 @@ public class ItemAddActivity extends AppCompatActivity {
             Editable nameTemp = itemName.getText();
             String nameEntered = nameTemp.toString();
 
-            Editable locationTemp = location.getText();
-            String locationEntered = locationTemp.toString();
+            int id = locations.getSelectedItemPosition();
+            String locationEntered = id+"";
 
             Editable shortTemp = shortDescription.getText();
             String sDescriptionEntered = shortTemp.toString();

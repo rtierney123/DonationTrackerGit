@@ -101,7 +101,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
                 android:text="@string/datecreated"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/editItemLocationTextView"
